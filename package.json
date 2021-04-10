@@ -4,8 +4,8 @@
   "description": "Student Services",
   "main": "",
   "scripts": {
-    "start": "",
-    "develop": "",
+    "start": "npm run develop",
+    "develop": "node app.js",
     "test": ""
   },
   "keywords": [
