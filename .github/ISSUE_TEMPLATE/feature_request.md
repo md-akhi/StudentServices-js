@@ -1,22 +1,20 @@
-<div dir="rtl">
-
 ---
-نام: درخواست ویژگی
-درباره: ایده ای برای این پروژه پیشنهاد دهید
-عنوان: ''
-برچسب ها: ''
-اختصاص داده شده: ""
+name: Feature request
+about: Suggest an idea for this project
+title: 'Feature: '
+labels: enhancement
+assignees: ''
 
 ---
 
-** آیا درخواست ویژگی شما با مشکلی ارتباط دارد؟ لطفا شرح دهید.**
-یک شرح واضح و روشن از مشکل چیست.
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-** راه حل مورد نظر خود را توصیف کنید **
-توصیف روشن و مختصر آنچه می خواهید اتفاق بیفتد.
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
 
-** گزینه هایی را که در نظر گرفته اید توصیف کنید **
-شرح روشن و مختصر هر راه حل یا ویژگی جایگزینی که در نظر گرفته اید.
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
 
-** زمینه اضافی **
-هر زمینه یا عکس صفحه دیگری درباره درخواست ویژگی در اینجا اضافه کنید.
+**Additional context**
+Add any other context or screenshots about the feature request here.
