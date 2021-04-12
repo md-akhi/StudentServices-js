@@ -1,0 +1,31 @@
+{
+  "name": "student-services",
+  "version": "0.1.0",
+  "description": "Student Services",
+  "main": "",
+  "scripts": {
+    "start": "npm run develop",
+    "develop": "node app.js",
+    "test": ""
+  },
+  "keywords": [
+    "student",
+    "services"
+  ],
+  "authors": [
+    "Mahnaz Mohammadi <mahnaz.mohamadi8613@gmail.com> (https://github.com/mohamadimahnaz)",
+    "Mohammad Amanalikhani <md.akhi.ir@gmail.com> (http://akhi.ir/)",
+    "sahar zeinivand <sahar.zeinivand95@gmail.com> (https://saharzeinivand.github.io/)"
+  ],
+  "license": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/md-akhi/studentServices.git"
+  }
+}
