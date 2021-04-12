@@ -1,38 +1,41 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: 'Bug: '
+name: گزارش خطا
+about: ایجاد گزارش اشکال
+title: 'اشکال: '
 labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+<div dir="rtl">
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+** اشکال را توصیف کنید **
+شرح صریح و مختصر آنچه اشکال دارد.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+**برای بازتولید**
+مراحل بازتولید رفتار:
+1. به "..." بروید
+2. بر روی "...." کلیک کنید
+3. به پایین "...." بروید
+4. خطا را مشاهده کنید
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+** رفتار مورد انتظار **
+توصیف روشن و مختصر آنچه انتظار دارید اتفاق بیفتد.
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+** عکسهای صفحه **
+در صورت وجود ، برای کمک به توضیح مشکل خود ، عکسهای صفحه را اضافه کنید.
 
-**Additional context**
-Add any other context about the problem here.
+** دسک تاپ (لطفا اطلاعات زیر را تکمیل کنید): **
+  - سیستم عامل: [به عنوان مثال iOS]
+  - مرورگر [به عنوان مثال کروم ، سافاری]
+  - نسخه [به عنوان مثال 22]
+
+** تلفن هوشمند (لطفاً اطلاعات زیر را تکمیل کنید): **
+  - دستگاه: [به عنوان مثال آیفون 6]
+  - سیستم عامل: [به عنوان مثال iOS8.1]
+  - مرورگر [به عنوان مثال مرورگر سهام ، سافاری]
+  - نسخه [به عنوان مثال 22]
+
+** زمینه اضافی **
+هر زمینه دیگری راجع به مشکل اینجا اضافه کنید.
