@@ -10,17 +10,26 @@
 ## [منتشر نشده][Unreleased]
 
 #
-<div align="center">
+<div align="center" dir="ltr">
 
-## [0.0.1] - SH 4Y-2M-2D - G 4Y-2M-2D
+## [0.1.0] - 1400-01-23 - 2021-04-12
+</div>
+
+- اضافه شدن صفحه اصلی سایت
+- اضافه شدن تاریخچه تغییرات
+#
+<div align="center" dir="ltr">
+
+## [0.0.1] - 1400-01-16 - 2021-04-06
 </div>
 
 شروع پروژه سایت خدمات دانشجویی
 
 
-[Unreleased]: https://github.com/md-akhi/studentServices/compare/v0.0.1...HEAD
-[x.y.z]: https://github.com/md-akhi/studentServices/compare/v0.0.1...v0.1.0
-[0.0.1]: https://github.com/md-akhi/studentServices/releases/tag/v0.0.1
+[Unreleased]: https://github.com/md-akhi/studentServices/compare/v0.1.0...HEAD
+[x.y.z]: https://github.com/md-akhi/studentServices/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/md-akhi/studentServices/releases/tag/v0.1.0
+[0.0.1]: https://github.com/md-akhi/studentServices/compare/main...develop
 
 
 
