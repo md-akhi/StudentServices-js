@@ -1,6 +1,6 @@
 {
   "name": "student-services",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Student Services",
   "main": "",
   "scripts": {
@@ -19,7 +19,10 @@
   ],
   "license": "",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   },
   "repository": {
     "type": "git",
