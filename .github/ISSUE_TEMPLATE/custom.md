@@ -1,10 +1,10 @@
-<div dir="rtl">
+---
+name: Custom issue template
+about: Describe this issue template's purpose here.
+title: ''
+labels: documentation, help wanted, invalid, question, wontfix
+assignees: ''
 
 ---
-نام: الگوی شماره سفارشی
-درباره: هدف این الگو را در اینجا شرح دهید.
-عنوان: ''
-برچسب ها: ''
-تکلیف کنندگان: ""
----
+
 
