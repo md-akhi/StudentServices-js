@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 var reactViews = require('express-react-views');
-var routeIndex = require('./routes').index;
+var routeHome = require('./routes').home;
 const app = express();
 const port = 9000;
 
@@ -13,7 +13,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
 app.engine('jsx', reactViews.createEngine());
 
-app.get('/', routeIndex);
+app.get('/', routeHome);
 
 
 app.listen(port, () => {
