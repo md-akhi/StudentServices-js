@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 var reactViews = require('express-react-views');
 var routeHome = require('./routes').home;
+var routeSignUp = require('./routes').signUp;
 const app = express();
 const port = 9000;
 
@@ -14,6 +15,7 @@ app.set('view engine', 'jsx');
 app.engine('jsx', reactViews.createEngine());
 
 app.get('/', routeHome);
+app.get('/signup', routeSignUp);
 
 
 app.listen(port, () => {
