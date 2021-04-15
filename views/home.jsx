@@ -1,7 +1,7 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/default');
 
-function index(props) {
+function home(props) {
   return (
     <DefaultLayout title={props.title}>
       <div>Hello {props.name}</div>
@@ -9,4 +9,4 @@ function index(props) {
   );
 }
 
-module.exports = index;
+module.exports = home;

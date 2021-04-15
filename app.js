@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 var reactViews = require('express-react-views');
-var routeHome = require('./routes').home;
+var routeHome = require('./routes').index;
 const app = express();
 const port = 9000;
 
