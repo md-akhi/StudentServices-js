@@ -724,7 +724,7 @@
 					    location   	(303, 635)
 					    anchor_loc 	1
 					    nlines     	2
-					    max_width  	381
+					    max_width  	325
 					    justify    	0
 					    label      	"ò«—›—„«")
 					icon       	"Actor"
@@ -904,7 +904,7 @@
 					    location   	(284, 629)
 					    anchor_loc 	1
 					    nlines     	2
-					    max_width  	385
+					    max_width  	325
 					    justify    	0
 					    label      	"frelancer")
 					icon       	"Actor"
@@ -1052,7 +1052,7 @@
 				    location   	(238, 673)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	377
+				    max_width  	325
 				    justify    	0
 				    label      	"ò«—»—")
 				icon       	"Actor"
@@ -1201,7 +1201,7 @@
 				    location   	(313, 598)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	389
+				    max_width  	325
 				    justify    	0
 				    label      	"„œÌ—")
 				icon       	"Actor"
@@ -1345,7 +1345,7 @@
 				supplier   	@45
 				vertices   	(list Points
 				    (370, 421)
-				    (1014, 251))
+				    (804, 307))
 				line_style 	0)
 			    (object DependencyView "" @49
 				stereotype 	TRUE
@@ -1384,7 +1384,7 @@
 				client     	@42
 				supplier   	@47
 				vertices   	(list Points
-				    (363, 516)
+				    (399, 572)
 				    (801, 1195))
 				line_style 	0)))))
 	    (object Mechanism @53
@@ -1521,7 +1521,7 @@
 		max_height 	28350
 		max_width  	21600
 		origin_x   	0
-		origin_y   	250
+		origin_y   	450
 		items      	(list diagram_item_list
 		    (object ClassView "Class" "Use Case View::»«“œÌœ ò‰‰œÂ" @55
 			ShowCompartmentStereotypes 	TRUE
