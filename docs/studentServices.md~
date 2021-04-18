@@ -646,6 +646,8 @@
 				    line_color 	3342489
 				    quidu      	"4F8BAFC90389"
 				    width      	450))))))
+	    (object UseCase "Ê—Êœ „œÌ—Ì "
+		quid       	"4F8BB3A603C2")
 	    (object Class_Category "œ«‘»Ê—œ ò«—»—"
 		quid       	"4F8BA4B7032C"
 		exportControl 	"Public"

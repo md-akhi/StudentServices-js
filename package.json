@@ -5,7 +5,10 @@
   "main": "",
   "scripts": {
     "start": "npm run develop",
-    "develop": "node app.js",
+    "develop": "nodemon app.js",
+    "seed": "mongo & use studentServices",
+    "prettier": "npx prettier --write .",
+    "eslint": "npx eslint --fix",
     "test": ""
   },
   "keywords": [
@@ -19,13 +22,32 @@
   ],
   "license": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-react-views": "^0.11.0",
+    "express-validator": "^6.10.0",
+    "mongoose": "^5.12.3",
+    "morgan": "^1.10.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/md-akhi/studentServices.git"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
+    "nodemon": "^2.0.7",
+    "prettier": "2.2.1"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "docs/*"
+    ],
+    "delay": 2500
   }
 }
