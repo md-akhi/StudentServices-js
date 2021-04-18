@@ -1,5 +1,5 @@
-var React = require('react');
-var DefaultLayout = require('./layouts/default');
+var React = require("react");
+var DefaultLayout = require("./layouts/default");
 
 function home(props) {
   return (
