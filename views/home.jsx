@@ -1,15 +1,28 @@
 var React = require("react");
-var DefaultLayout = require("./layouts/default");
+//var DefaultLayout = require("./layouts/default");
 
 function home(props) {
   return (
-    <DefaultLayout title={props.title}>
+    <div>
       <div>Hello {props.name}</div>
-      <a href="/login">login</a>
-      <a href="/signup">signup</a>
-      <a href="/logout">Logout</a>
-      <a href="/dashborad">dashborad</a>
-    </DefaultLayout>
+      <ul>
+        <li>
+          <a href="/auth/login">ورود</a>
+        </li>
+        <li>
+          <a href="/auth/signup">ثبت نام</a>
+        </li>
+        <li>
+          <a href="/auth/logout">خروج</a>
+        </li>
+        <li>
+          <a href="/dashboard">داشبورد کاربر</a>
+        </li>
+        <li>
+          <a href="#!/admin/dashboard">داشبورد مدیریت</a>
+        </li>
+      </ul>
+    </div>
   );
 }
 

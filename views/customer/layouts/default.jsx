@@ -6,7 +6,6 @@ function DefaultLayout(props) {
       <head>
         <title>{props.title}</title>
       </head>
-      <body>{props.children}</body>
     </html>
   );
 }

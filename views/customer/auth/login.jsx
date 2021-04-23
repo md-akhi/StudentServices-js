@@ -1,9 +1,12 @@
-var React = require('react');
+var React = require("react");
 
 function login(props) {
   return (
-    <form method="post" action="/login">
-      <h3>Login {props.name}{props.message}</h3>
+    <form method="post" action="/auth/login">
+      <h3>
+        Login {props.name}
+        {props.message}
+      </h3>
       <div className="form-group">
         <label>Email address</label>
         <input
@@ -23,7 +26,7 @@ function login(props) {
         />
       </div>
       <button type="submit" className="btn btn-primary btn-block">
-      Login
+        Login
       </button>
     </form>
   );
