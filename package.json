@@ -2,14 +2,15 @@
   "name": "student-services",
   "version": "0.1.0",
   "description": "Student Services",
-  "main": "",
+  "main": "app.js",
   "scripts": {
     "start": "npm run develop",
     "develop": "nodemon app.js",
-    "develop:DEBUG": "DEBUG=express:* nodemon app.js",
+    "debug": "DEBUG=express:*  npm start",
+    "debug:session": "DEBUG=express-session npm start",
     "seed": "mongo & use studentServices",
-    "prettier": "npx prettier --write .",
-    "eslint": "npx eslint --fix",
+    "pretir": "npx prettier --write .",
+    "lint": "npx eslint --fix",
     "test": ""
   },
   "keywords": [
@@ -34,6 +35,7 @@
     "mongoose": "^5.12.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "randomstring": "^1.1.5",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },
