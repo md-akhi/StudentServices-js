@@ -1,19 +1,23 @@
 const express = require("express");
+const app = express();
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const path = require("path");
-var morgan = require("morgan");
-var fs = require("fs");
-var reactViews = require("express-react-views");
 const bodyParser = require("body-parser");
-var session = require("express-session");
-var cookieParser = require("cookie-parser");
-var multer = require("multer");
 const cors = require("cors");
-var indexRouter = require("./routes/index");
-var sesion;
+const reactViews = require("express-react-views");
+const fs = require("fs");
+const path = require("path");
+const logger = require("morgan");
+const multer = require("multer");
+const randomstring = require("randomstring");
+
+const authRouter = require("./routes/auth");
+const dashboardRouter = require("./routes/dashboard");
 
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://127.0.0.1:27017/studentServices", {
+mongoose
+  .connect("mongodb://127.0.0.1:27017/studentServices", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -22,7 +26,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/studentServices", {
   });
 const db = mongoose.connection;
 
-const app = express();
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -30,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // setup the logger
-app.use(morgan("dev"));
+app.use(logger("dev"));
 
 //set static dir
 app.use(express.static(path.join(__dirname, "public")));
@@ -39,9 +42,11 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "jsx");
 app.engine("jsx", reactViews.createEngine());
 
-app.use(session({
-    secret: "secret",
-    resave: true,
+app.set("trust proxy", 1);
+app.use(
+  session({
+    secret: randomstring.generate(),
+    resave: false,
     saveUninitialized: true,
     cookie: {
       maxAge: 60000,
@@ -52,12 +57,13 @@ app.use(session({
 );
 
 //routers
-app.get('/',function(req,res){
- res.render("home", { name: "student Services", title: "Student Services" });
+app.get("/", function (req, res) {
+  res.render("home", { name: "student Services", title: "Student Services" });
 });
-app.use("/", indexRouter);
+app.use("/auth", authRouter);
+app.use("/dashboard", dashboardRouter);
 
-const port = 9000;
+const port = 3000;
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
