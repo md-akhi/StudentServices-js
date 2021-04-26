@@ -1,17 +1,18 @@
 {
   "name": "student-services",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Student Services",
   "main": "app.js",
   "scripts": {
-    "start": "npm run develop",
-    "develop": "nodemon app.js",
-    "debug": "DEBUG=express:*  npm start",
+    "start": "nodemon app.js",
+    "develop": "cross-env NODE_ENV=development npm start",
+    "debug:dev": "cross-env NODE_ENV=development npm start --inspect",
+    "debug:express": "DEBUG=express:*  npm start",
     "debug:session": "DEBUG=express-session npm start",
-    "seed": "mongo & use studentServices",
-    "pretir": "npx prettier --write .",
-    "lint": "npx eslint --fix",
-    "test": ""
+    "prettier": "npx prettier --write .",
+    "eslint": "npx eslint .",
+    "test": "cross-env NODE_ENV=test ",
+    "pm2:runtime": "pm2-runtime start ecosystem.config.js --env production"
   },
   "keywords": [
     "student",
@@ -26,8 +27,11 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "connect-mongo": "^4.4.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-react-views": "^0.11.0",
     "express-session": "^1.17.1",
@@ -44,6 +48,7 @@
     "url": "https://github.com/md-akhi/studentServices.git"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
     "nodemon": "^2.0.7",
