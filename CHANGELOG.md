@@ -12,6 +12,8 @@
 
 - ایجاد داشبورد کاربر توسط [@md-akhi](https://github.com/md-akhi).
 
+- باز طراحی روترها توسط [@md-akhi](https://github.com/md-akhi).
+
 #
 <div align="center" dir="ltr">
 

@@ -1,26 +1,25 @@
-var express = require("express");
-//var router = express.Router();
 const Users = require("../model/user");
 //var { check } = require("express-validator");
-let ssen = false;
-var app = express();
+
+
+module.exports = function(app, ssen) {
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
-  if (ssen) {
-    console.log(ssen);
+  console.log(ssen);
+  if (ssen.user) {
     res.redirect("/dashboard");
   } else {
     next();
   }
 };
 
-app.get("/", function (req, res) {
-  res.redirect("/login");
+app.get("/auth", function (req, res) {
+  res.redirect("/auth/login");
 });
 
 app
-  .route(["/signup", "/register"])
+  .route(["/auth/signup", "/auth/register"])
   .get(sessionChecker, function (req, res) {
     res.render("customer/auth/signup", { name: "signup" });
   })
@@ -56,8 +55,8 @@ app
         .save(newUser)
         .then((user) => {
           // REDIRECT TO THE dashboard
-          ssen = user.id;
-          res.redirect("/dashboard?id="+user.id);
+          ssen.user = user;
+          res.redirect("/dashboard");
         })
         .catch((err) => {
           res.render("customer/auth/signup", {
@@ -68,7 +67,7 @@ app
   });
 
 app
-  .route("/login")
+  .route("/auth/login")
   .get(sessionChecker, function (req, res) {
     res.render("customer/auth/login", { name: "login" });
   })
@@ -83,8 +82,8 @@ app
         .then((user) => {
           if (user.password == req.body.password) {
             // REDIRECT TO THE dashboard
-            ssen = user.id;
-            res.redirect("/dashboard?id="+user.id);
+            ssen.user = user;
+            res.redirect("/dashboard");
           }
         })
         .catch((err) => {
@@ -95,12 +94,10 @@ app
     }
   });
 
-app.get("/logout", function (req, res) {
-  // req.session.destroy(function () {
-  // });
-    console.log("user logged out.");
-    ssen = false;
+app.get("/auth/logout", function (req, res) {
+  console.log("user logged out.");
+  ssen.user = false;
   res.redirect("/");
 });
 
-module.exports = app;
+};

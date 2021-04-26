@@ -1,41 +1,45 @@
-var express = require("express");
 const Users = require("../model/user");
+const Frelanser = require("../model/frelanser");
+const Employer = require("../model/employer");
 
-let ssen = false;
-var app = express();
+
+module.exports = function(app, ssen) {
 
 // middleware function to check for logged-in users
 var sessionChecker = (req, res, next) => {
-  if (!ssen) {
-    if(req.query.id)
-      ssen = req.query.id;
-    else
-      res.redirect("/auth/login?massage=pleaseLogIn");
+  if (!ssen.user) {
+    res.redirect("/auth/login?massage=pleaseLogIn");
   } else {
     next();
   }
 };
 
-app.get("/", sessionChecker, function (req, res) {
-  console.log(ssen);
-  // if(ssen){
-  //   res.redirect("/dashboard?massage=ok");
-  // }
+app.get("/dashboard", sessionChecker, function (req, res) {
   res.render("customer/dashboard/dashboard", { name: "dashboard" });
 });
 
-app.get("/frelanser", sessionChecker, function (req, res) {
+app.get("/dashboard/frelanser", sessionChecker, function (req, res) {
   res.render("customer/dashboard/frelanser", { name: "frelanser" });
 });
 
-app.get("/employer", sessionChecker, function (req, res) {
+app.get("/dashboard/frelanser/request/:id", sessionChecker, function (req, res) {
+  res.render("customer/dashboard/frelanser", { name: "frelanser" });
+});
+
+app.get("/dashboard/frelanser/edit/:id", sessionChecker, function (req, res) {
+  res.render("customer/dashboard/frelanser", { name: "frelanser" });
+});
+
+app.get("/dashboard/employer", sessionChecker, function (req, res) {
   res.render("customer/dashboard/employer", { name: "employer" });
 });
 
-app.get("/logout", function (req, res) {
-    console.log("user logged out.");
-    ssen = false;
-  res.redirect("/auth/logout");
+app.get("/dashboard/employer/add/:id", sessionChecker, function (req, res) {
+  res.render("customer/dashboard/employer", { name: "employer" });
 });
 
-module.exports = app;
+app.get("/dashboard/employer/edit/:id", sessionChecker, function (req, res) {
+  res.render("customer/dashboard/employer", { name: "employer" });
+});
+
+};

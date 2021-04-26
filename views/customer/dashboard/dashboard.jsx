@@ -12,7 +12,7 @@ function dashborad(props) {
           <a href="/dashboard/employer">کارفرما</a>
         </li>
         <li>
-          <a href="/dashboard/logout">خروج</a>
+          <a href="/auth/logout">خروج</a>
         </li>
       </ul>
     </div>

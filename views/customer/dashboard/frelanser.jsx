@@ -6,7 +6,7 @@ function dashborad(props) {
       <div>Hello {props.name}</div>
       <ul>
         <li>
-          <a href="/dashboard/logout">Logout</a>
+          <a href="/auth/logout">Logout</a>
         </li>
       </ul>
     </div>
