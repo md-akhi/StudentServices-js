@@ -128,13 +128,7 @@
 			supplier   	
 |Use Case View::‰„«Ì‘ Å—ÊéÂ Â«
 			
-			quidu      	"4F8BA48100C0"))
-		operations 	(list Operations
-		    (object Operation "opname"
-			quid       	"4F93DD3C02C3"
-			concurrency 	"Sequential"
-			opExportControl 	"Public"
-			uid        	0)))
+			quidu      	"4F8BA48100C0")))
 	    (object Class "„œÌ—"
 		quid       	"4F8BA55401D3"
 		stereotype 	"Actor"
@@ -2755,7 +2749,7 @@
 				    location   	(1601, 723)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	365
+				    max_width  	335
 				    justify    	0
 				    label      	"")
 				icon       	"Actor"
@@ -2785,7 +2779,7 @@
 				    location   	(997, 275)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	432
+				    max_width  	435
 				    justify    	0
 				    label      	"")
 				icon       	"entity"
@@ -2816,7 +2810,7 @@
 				    location   	(981, 796)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	432
+				    max_width  	435
 				    justify    	0
 				    label      	"")
 				icon       	"entity"
@@ -2847,7 +2841,7 @@
 				    location   	(397, 714)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	365
+				    max_width  	335
 				    justify    	0
 				    label      	"")
 				icon       	"Actor"
@@ -3990,7 +3984,7 @@
 				    location   	(259, 328)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	182
+				    max_width  	360
 				    justify    	0
 				    label      	"")
 				icon       	"Actor"
@@ -3998,7 +3992,7 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4F93621902E6"
-				width      	194
+				width      	120
 				height     	794
 				icon_height 	162
 				icon_width 	120
@@ -4056,7 +4050,7 @@
 				    location   	(847, 303)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	113
+				    max_width  	462
 				    justify    	0
 				    label      	"")
 				icon       	"entity"
@@ -4143,7 +4137,7 @@
 				    location   	(1343, 312)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	110
+				    max_width  	360
 				    justify    	0
 				    label      	"")
 				icon       	"Actor"
@@ -4151,7 +4145,7 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4F93DD9A01DE"
-				width      	122
+				width      	120
 				height     	1347
 				icon_height 	162
 				icon_width 	120
@@ -4181,7 +4175,7 @@
 				    location   	(1770, 331)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	235
+				    max_width  	462
 				    justify    	0
 				    label      	"")
 				icon       	"entity"
@@ -4189,7 +4183,7 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4F93DDAB02DC"
-				width      	246
+				width      	154
 				height     	1329
 				icon_height 	153
 				icon_width 	154
@@ -4596,7 +4590,7 @@
 				quidu      	"4F8BA5090287")
 			    (object Dependency_Relationship
 				quid       	"4F8BA5910235"
-				supplier   	"Use Case View::œ«‘»Ê—œ ò«—»—::frelancer"
+				supplier   	"Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—"
 				quidu      	"4F8BA50B0205")))
 		    (object Class_Category "ò«—›—„«"
 			quid       	"4F8BA5090287"
@@ -4609,7 +4603,7 @@
 				    (object Dependency_Relationship
 					quid       	"4F8BA5EA03A3"
 					supplier   	
-|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Ê «’·«Õ Å—ÊéÂ
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ
 					
 					quidu      	"4F8BA5A4021B")
 				    (object Dependency_Relationship
@@ -4623,13 +4617,2096 @@
 					supplier   	
 |Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Å—œ«Œ  Â“Ì‰Â Å—ÊéÂ
 					
-					quidu      	"4F8BA5B902EF")))
-			    (object UseCase "«ÌÃ«œ Ê «’·«Õ Å—ÊéÂ"
-				quid       	"4F8BA5A4021B")
+					quidu      	"4F8BA5B902EF")
+				    (object Dependency_Relationship
+					quid       	"4F97B74502E3"
+					supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ
+					
+					quidu      	"4F97B72800EF")))
+			    (object UseCase "«ÌÃ«œ Å—ÊéÂ"
+				quid       	"4F8BA5A4021B"
+				statemachine 	(object State_Machine "State/Activity Model5"
+				    quid       	"4F97B956011A"
+				    states     	(list States
+					(object SynchronizationState "$UNNAMED$28"
+					    quid       	"4F97B95B00F3")
+					(object SynchronizationState "$UNNAMED$29"
+					    quid       	"4F97B96403D2")
+					(object State "$UNNAMED$30"
+					    quid       	"4F97B9A10006"
+					    type       	"StartState")
+					(object State "«‰ Œ«» œò„Â «ÌÃ«œ Å—ÊéÂ"
+					    quid       	"4F97B9A50212"
+					    type       	"Normal")
+					(object State "«—”«· ›—„"
+					    quid       	"4F97B9C500D6"
+					    type       	"Normal")
+					(object State "«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« "
+					    quid       	"4F97B9F900A2"
+					    type       	"Normal")
+					(object Decision "«⁄ »«—”‰ÃÌ «ÿ·«⁄« "
+					    quid       	"4F97BABA02E6")
+					(object ActivityState " ò„Ì· «ÿ·«⁄« "
+					    quid       	"4F97BB3000E2")
+					(object ActivityState "Å—œ«“‘ «ÿ·«⁄« "
+					    quid       	"4F97BB350202")
+					(object State "‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄« "
+					    quid       	"4F97BB420077"
+					    type       	"Normal")
+					(object ActivityState "À»  »«‰ò «ÿ·«⁄« "
+					    quid       	"4F97BBA102CC")
+					(object State "$UNNAMED$31"
+					    quid       	"4F97BBB603E2"
+					    type       	"EndState"))
+				    partitions 	(list Partitions)
+				    objects    	(list Objects)
+				    transitions 	(list transition_list
+					(object State_Transition
+					    quid       	"4F97BA3F00BE"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«‰ Œ«» œò„Â «ÌÃ«œ Å—ÊéÂ
+					    
+					    supplier_quidu 	"4F97B9A50212"
+					    client     	"$UNNAMED$30"
+					    client_quidu 	"4F97B9A10006"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BA3F00C1"))
+					(object State_Transition
+					    quid       	"4F97BA410260"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«—”«· ›—„
+					    
+					    supplier_quidu 	"4F97B9C500D6"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«‰ Œ«» œò„Â «ÌÃ«œ Å—ÊéÂ
+					    
+					    client_quidu 	"4F97B9A50212"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BA410263"))
+					(object State_Transition
+					    quid       	"4F97BA4303D4"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5:: ò„Ì· «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BB3000E2"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«—”«· ›—„
+					    
+					    client_quidu 	"4F97B9C500D6"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BA4303D7"))
+					(object State_Transition
+					    quid       	"4F97BA4E001A"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97B9F900A2"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5:: ò„Ì· «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BB3000E2"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BA4E001D"))
+					(object State_Transition
+					    quid       	"4F97BA540213"
+					    label      	""
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::Å—œ«“‘ «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BB350202"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«⁄ »«—”‰ÃÌ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BABA02E6"
+					    Event      	(object Event "»·Â"
+						quid       	"4F97BA540214")
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BA540216"))
+					(object State_Transition
+					    quid       	"4F97BB6C0266"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5:: ò„Ì· «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BB3000E2"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BB420077"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BB6C0269"))
+					(object State_Transition
+					    quid       	"4F97BBBA01D9"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::À»  »«‰ò «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BBA102CC"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::Å—œ«“‘ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BB350202"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BBBA01DC"))
+					(object State_Transition
+					    quid       	"4F97BBC102B8"
+					    supplier   	"$UNNAMED$31"
+					    supplier_quidu 	"4F97BBB603E2"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::À»  »«‰ò «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BBA102CC"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BBC102BB"))
+					(object State_Transition
+					    quid       	"4F97BBF70001"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«⁄ »«—”‰ÃÌ «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BABA02E6"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97B9F900A2"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BBF70004"))
+					(object State_Transition
+					    quid       	"4F97BC5002AE"
+					    label      	""
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BB420077"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ::State/Activity Model5::«⁄ »«—”‰ÃÌ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BABA02E6"
+					    Event      	(object Event "ŒÌ—"
+						quid       	"4F97BC5002AF")
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BC5002B1")))
+				    objectflows 	(list objectflow_list)
+				    statediagrams 	(list StateDiagrams
+					(object ActivityDiagram "«ÌÃ«œ Å—ÊéÂ"
+					    quid       	"4F97B956013B"
+					    title      	
+|«ÌÃ«œ Å—ÊéÂ
+					    
+					    zoom       	100
+					    max_height 	28350
+					    max_width  	21600
+					    origin_x   	0
+					    origin_y   	1032
+					    items      	(list diagram_item_list
+						(object Swimlane "" @208
+						    line_color 	3342489
+						    width      	450)
+						(object Label @209
+						    Parent_View 	@208
+						    location   	(272, 75)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	140
+						    justify    	1
+						    label      	"ò«—›—„«")
+						(object Label @210
+						    Parent_View 	@208
+						    location   	(741, 81)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	109
+						    justify    	1
+						    label      	"”Ì” „")
+						(object Label @211
+						    Parent_View 	@208
+						    location   	(488, 1919)
+						    font       	(object Font
+							size       	14
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	228
+						    justify    	1
+						    label      	
+|«ÌÃ«œ Å—ÊéÂ
+						    )
+						(object StateView "StartState" "$UNNAMED$30" @212
+						    Parent_View 	@208
+						    location   	(328, 265)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4F97B9A10006"
+						    autoResize 	TRUE)
+						(object StateView "Normal" "«‰ Œ«» œò„Â «ÌÃ«œ Å—ÊéÂ" @213
+						    Parent_View 	@208
+						    location   	(338, 453)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@213
+							location   	(338, 442)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	
+|«‰ Œ«» œò„Â «ÌÃ«œ Å—ÊéÂ
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97B9A50212"
+						    height     	134
+						    autoResize 	TRUE)
+						(object TransView "" @214
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BA3F00BE"
+						    client     	@212
+						    supplier   	@213
+						    vertices   	(list Points
+							(329, 295)
+							(334, 386))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object StateView "Normal" "«—”«· ›—„" @215
+						    Parent_View 	@208
+						    location   	(863, 570)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@215
+							location   	(863, 559)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	"«—”«· ›—„")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97B9C500D6"
+						    height     	134
+						    autoResize 	TRUE)
+						(object TransView "" @216
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BA410260"
+						    client     	@213
+						    supplier   	@215
+						    vertices   	(list Points
+							(488, 486)
+							(713, 536))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object StateView "Normal" "«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« " @217
+						    Parent_View 	@208
+						    location   	(331, 1030)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@217
+							location   	(331, 1019)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	252
+							justify    	0
+							label      	"«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« ")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97B9F900A2"
+						    width      	348
+						    height     	134
+						    autoResize 	TRUE)
+						(object DecisionView "«⁄ »«—”‰ÃÌ «ÿ·«⁄« " @218
+						    Parent_View 	@208
+						    location   	(919, 1052)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @219
+							Parent_View 	@218
+							location   	(1027, 1079)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							anchor     	1
+							nlines     	2
+							max_width  	300
+							justify    	1
+							label      	"«⁄ »«—”‰ÃÌ «ÿ·«⁄« "
+							pctDist    	1.551833
+							height     	77
+							orientation 	1)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BABA02E6"
+						    width      	238
+						    height     	131
+						    autoResize 	TRUE)
+						(object ActivityStateView " ò„Ì· «ÿ·«⁄« " @220
+						    Parent_View 	@208
+						    location   	(344, 766)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@220
+							location   	(344, 752)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	200
+							justify    	0
+							label      	" ò„Ì· «ÿ·«⁄« ")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BB3000E2"
+						    width      	330
+						    height     	141
+						    annotation 	1
+						    autoResize 	TRUE)
+						(object TransView "" @221
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BA4E001A"
+						    client     	@220
+						    supplier   	@217
+						    vertices   	(list Points
+							(340, 836)
+							(334, 963))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @222
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BA4303D4"
+						    client     	@215
+						    supplier   	@220
+						    vertices   	(list Points
+							(713, 626)
+							(483, 713))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object ActivityStateView "Å—œ«“‘ «ÿ·«⁄« " @223
+						    Parent_View 	@208
+						    location   	(917, 1343)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@223
+							location   	(917, 1329)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	200
+							justify    	0
+							label      	
+|Å—œ«“‘ «ÿ·«⁄« 
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BB350202"
+						    width      	330
+						    height     	141
+						    annotation 	1
+						    autoResize 	TRUE)
+						(object StateView "Normal" "‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄« " @224
+						    Parent_View 	@208
+						    location   	(928, 786)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@224
+							location   	(928, 775)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	288
+							justify    	0
+							label      	
+|‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄« 
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BB420077"
+						    width      	384
+						    height     	134
+						    autoResize 	TRUE)
+						(object TransView "" @225
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BB6C0266"
+						    client     	@224
+						    supplier   	@220
+						    vertices   	(list Points
+							(736, 779)
+							(508, 771))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object ActivityStateView "À»  »«‰ò «ÿ·«⁄« " @226
+						    Parent_View 	@208
+						    location   	(915, 1600)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@226
+							location   	(915, 1603)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	269
+							justify    	0
+							label      	"À»  »«‰ò «ÿ·«⁄« ")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BBA102CC"
+						    height     	106
+						    annotation 	1
+						    autoResize 	TRUE)
+						(object StateView "EndState" "$UNNAMED$31" @227
+						    Parent_View 	@208
+						    location   	(911, 1859)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4F97BBB603E2"
+						    autoResize 	TRUE)
+						(object SynchronizationView "$UNNAMED$28" @228
+						    location   	(603, 165)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @229
+							Parent_View 	@228
+							location   	(999, 94)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							hidden     	TRUE
+							nlines     	2
+							max_width  	300
+							justify    	1
+							label      	""
+							pctDist    	1.000000
+							height     	0
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4F97B95B00F3"
+						    width      	950
+						    autoResize 	TRUE
+						    sync_flow_direction 	1
+						    sync_is_horizontal 	TRUE)
+						(object SynchronizationView "$UNNAMED$29" @230
+						    location   	(609, 963)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @231
+							Parent_View 	@230
+							location   	(732, 1304)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							hidden     	TRUE
+							nlines     	1
+							max_width  	60
+							justify    	1
+							label      	""
+							pctDist    	1.340000
+							height     	1
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4F97B96403D2"
+						    height     	1838
+						    autoResize 	TRUE
+						    sync_flow_direction 	2
+						    sync_is_horizontal 	FALSE)
+						(object TransView "" @232
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BBC102B8"
+						    client     	@226
+						    supplier   	@227
+						    vertices   	(list Points
+							(914, 1653)
+							(911, 1817))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @233
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @234
+							Parent_View 	@233
+							location   	(963, 1196)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	FALSE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							anchor_loc 	1
+							nlines     	1
+							max_width  	450
+							justify    	0
+							label      	"»·Â"
+							pctDist    	0.500000
+							height     	45
+							orientation 	0)
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BA540213"
+						    client     	@218
+						    supplier   	@223
+						    vertices   	(list Points
+							(919, 1117)
+							(917, 1273))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @235
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @236
+							Parent_View 	@235
+							location   	(878, 919)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	FALSE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							anchor_loc 	1
+							nlines     	1
+							max_width  	450
+							justify    	0
+							label      	"ŒÌ—"
+							pctDist    	0.500000
+							height     	45
+							orientation 	0)
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BC5002AE"
+						    client     	@218
+						    supplier   	@224
+						    vertices   	(list Points
+							(919, 987)
+							(925, 853))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @237
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BBBA01D9"
+						    client     	@223
+						    supplier   	@226
+						    vertices   	(list Points
+							(916, 1414)
+							(915, 1546))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @238
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BBF70001"
+						    client     	@217
+						    supplier   	@218
+						    vertices   	(list Points
+							(505, 1035)
+							(800, 1052))
+						    line_style 	0
+						    x_offset   	FALSE))))))
 			    (object UseCase "Ê«ê–«—Ì Å—ÊéÂ"
-				quid       	"4F8BA5AD0353")
+				quid       	"4F8BA5AD0353"
+				statemachine 	(object State_Machine "State/Activity Model7"
+				    quid       	"4F97C3AF0340"
+				    states     	(list States
+					(object SynchronizationState "$UNNAMED$32"
+					    quid       	"4DB612C6009F")
+					(object SynchronizationState "$UNNAMED$33"
+					    quid       	"4DB612CD0342")
+					(object State "$UNNAMED$34"
+					    quid       	"4DB6130B0159"
+					    type       	"StartState")
+					(object State "œò„Â «‰ Œ«» ÅÌ‘‰Â«œ"
+					    quid       	"4DB6131802EA"
+					    type       	"Normal")
+					(object State "«—”«· ·Ì”  ÅÌ‘‰Â«œÂ«"
+					    quid       	"4DB61327034F"
+					    type       	"Normal")
+					(object State "«‰ Œ«» »Â —Ì‰ ÅÌ‘‰Â«œ"
+					    quid       	"4DB6133A00B1"
+					    type       	"Normal")
+					(object State "À»  œ— »«‰ò «ÿ·«⁄« "
+					    quid       	"4DB61352027E"
+					    type       	"Normal")
+					(object State "«ÿ·«⁄«  »Â ›—Ì·‰”—"
+					    quid       	"4DB61363010B"
+					    type       	"Normal")
+					(object State "$UNNAMED$35"
+					    quid       	"4DB613AC0123"
+					    type       	"EndState"))
+				    partitions 	(list Partitions)
+				    objects    	(list Objects)
+				    transitions 	(list transition_list
+					(object State_Transition
+					    quid       	"4DB613B601CE"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::œò„Â «‰ Œ«» ÅÌ‘‰Â«œ
+					    
+					    supplier_quidu 	"4DB6131802EA"
+					    client     	"$UNNAMED$34"
+					    client_quidu 	"4DB6130B0159"
+					    sendEvent  	(object sendEvent
+						quid       	"4DB613B601D1"))
+					(object State_Transition
+					    quid       	"4DB613B900FF"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::«—”«· ·Ì”  ÅÌ‘‰Â«œÂ«
+					    
+					    supplier_quidu 	"4DB61327034F"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::œò„Â «‰ Œ«» ÅÌ‘‰Â«œ
+					    
+					    client_quidu 	"4DB6131802EA"
+					    sendEvent  	(object sendEvent
+						quid       	"4DB613B90102"))
+					(object State_Transition
+					    quid       	"4DB613BC036A"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::«‰ Œ«» »Â —Ì‰ ÅÌ‘‰Â«œ
+					    
+					    supplier_quidu 	"4DB6133A00B1"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::«—”«· ·Ì”  ÅÌ‘‰Â«œÂ«
+					    
+					    client_quidu 	"4DB61327034F"
+					    sendEvent  	(object sendEvent
+						quid       	"4DB613BC036D"))
+					(object State_Transition
+					    quid       	"4DB613BF025C"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::À»  œ— »«‰ò «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4DB61352027E"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::«‰ Œ«» »Â —Ì‰ ÅÌ‘‰Â«œ
+					    
+					    client_quidu 	"4DB6133A00B1"
+					    sendEvent  	(object sendEvent
+						quid       	"4DB613BF025F"))
+					(object State_Transition
+					    quid       	"4DB613C3018B"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::«ÿ·«⁄«  »Â ›—Ì·‰”—
+					    
+					    supplier_quidu 	"4DB61363010B"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::À»  œ— »«‰ò «ÿ·«⁄« 
+					    
+					    client_quidu 	"4DB61352027E"
+					    sendEvent  	(object sendEvent
+						quid       	"4DB613C3018E"))
+					(object State_Transition
+					    quid       	"4DB613CD02C2"
+					    supplier   	"$UNNAMED$35"
+					    supplier_quidu 	"4DB613AC0123"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ::State/Activity Model7::«ÿ·«⁄«  »Â ›—Ì·‰”—
+					    
+					    client_quidu 	"4DB61363010B"
+					    sendEvent  	(object sendEvent
+						quid       	"4DB613CD02C5")))
+				    objectflows 	(list objectflow_list)
+				    statediagrams 	(list StateDiagrams
+					(object ActivityDiagram "Ê«ê–«—Ì Å—ÊéÂ"
+					    quid       	"4F97C3AF0342"
+					    title      	
+|Ê«ê–«—Ì Å—ÊéÂ
+					    
+					    zoom       	100
+					    max_height 	28350
+					    max_width  	21600
+					    origin_x   	0
+					    origin_y   	32
+					    items      	(list diagram_item_list
+						(object Swimlane "" @239
+						    line_color 	3342489
+						    width      	450)
+						(object Label @240
+						    Parent_View 	@239
+						    location   	(231, 66)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	140
+						    justify    	1
+						    label      	"ò«—›—„«")
+						(object Label @241
+						    Parent_View 	@239
+						    location   	(588, 69)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	109
+						    justify    	1
+						    label      	"”Ì” „")
+						(object StateView "StartState" "$UNNAMED$34" @242
+						    Parent_View 	@239
+						    location   	(309, 231)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4DB6130B0159"
+						    autoResize 	TRUE)
+						(object StateView "Normal" "œò„Â «‰ Œ«» ÅÌ‘‰Â«œ" @243
+						    Parent_View 	@239
+						    location   	(303, 397)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@243
+							location   	(303, 386)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	
+|œò„Â «‰ Œ«» ÅÌ‘‰Â«œ
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4DB6131802EA"
+						    height     	134
+						    autoResize 	TRUE)
+						(object StateView "Normal" "«—”«· ·Ì”  ÅÌ‘‰Â«œÂ«" @244
+						    Parent_View 	@239
+						    location   	(684, 391)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@244
+							location   	(684, 380)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	
+|«—”«· ·Ì”  ÅÌ‘‰Â«œÂ«
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4DB61327034F"
+						    height     	134
+						    autoResize 	TRUE)
+						(object StateView "Normal" "«‰ Œ«» »Â —Ì‰ ÅÌ‘‰Â«œ" @245
+						    Parent_View 	@239
+						    location   	(303, 647)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@245
+							location   	(303, 636)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	
+|«‰ Œ«» »Â —Ì‰ ÅÌ‘‰Â«œ
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4DB6133A00B1"
+						    height     	134
+						    autoResize 	TRUE)
+						(object StateView "Normal" "À»  œ— »«‰ò «ÿ·«⁄« " @246
+						    Parent_View 	@239
+						    location   	(734, 642)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@246
+							location   	(734, 631)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	"À»  œ— »«‰ò «ÿ·«⁄« ")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4DB61352027E"
+						    height     	134
+						    autoResize 	TRUE)
+						(object StateView "Normal" "«ÿ·«⁄«  »Â ›—Ì·‰”—" @247
+						    Parent_View 	@239
+						    location   	(747, 898)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@247
+							location   	(747, 887)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	"«ÿ·«⁄«  »Â ›—Ì·‰”—")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4DB61363010B"
+						    height     	134
+						    autoResize 	TRUE)
+						(object StateView "EndState" "$UNNAMED$35" @248
+						    Parent_View 	@239
+						    location   	(756, 1147)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4DB613AC0123"
+						    autoResize 	TRUE)
+						(object SynchronizationView "$UNNAMED$32" @249
+						    location   	(472, 650)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @250
+							Parent_View 	@249
+							location   	(493, 859)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							nlines     	2
+							max_width  	300
+							justify    	1
+							label      	""
+							pctDist    	1.000000
+							height     	0
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4DB612C6009F"
+						    height     	1168
+						    autoResize 	TRUE
+						    sync_flow_direction 	2
+						    sync_is_horizontal 	FALSE)
+						(object SynchronizationView "$UNNAMED$33" @251
+						    location   	(491, 150)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @252
+							Parent_View 	@251
+							location   	(715, 79)
+							font       	(object Font
+							    size       	12
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							nlines     	1
+							max_width  	12
+							justify    	1
+							label      	""
+							pctDist    	1.000000
+							height     	0
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4DB612CD0342"
+						    width      	600
+						    autoResize 	TRUE
+						    sync_flow_direction 	1
+						    sync_is_horizontal 	TRUE)
+						(object TransView "" @253
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4DB613B601CE"
+						    client     	@242
+						    supplier   	@243
+						    vertices   	(list Points
+							(307, 260)
+							(305, 330))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @254
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4DB613B900FF"
+						    client     	@243
+						    supplier   	@244
+						    vertices   	(list Points
+							(453, 394)
+							(534, 393))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @255
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4DB613BC036A"
+						    client     	@244
+						    supplier   	@245
+						    vertices   	(list Points
+							(584, 457)
+							(402, 580))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @256
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4DB613BF025C"
+						    client     	@245
+						    supplier   	@246
+						    vertices   	(list Points
+							(453, 645)
+							(584, 643))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @257
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4DB613C3018B"
+						    client     	@246
+						    supplier   	@247
+						    vertices   	(list Points
+							(737, 709)
+							(743, 831))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @258
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4DB613CD02C2"
+						    client     	@247
+						    supplier   	@248
+						    vertices   	(list Points
+							(749, 964)
+							(754, 1104))
+						    line_style 	0
+						    x_offset   	FALSE))))))
 			    (object UseCase "Å—œ«Œ  Â“Ì‰Â Å—ÊéÂ"
-				quid       	"4F8BA5B902EF"))
+				quid       	"4F8BA5B902EF"
+				statemachine 	(object State_Machine "State/Activity Model8"
+				    quid       	"4DB613FC0065"
+				    states     	(list States
+					(object SynchronizationState "$UNNAMED$36"
+					    quid       	"4DB613FE02D1")
+					(object SynchronizationState "$UNNAMED$37"
+					    quid       	"4DB614040364"))
+				    partitions 	(list Partitions)
+				    objects    	(list Objects)
+				    transitions 	(list transition_list)
+				    objectflows 	(list objectflow_list)
+				    statediagrams 	(list StateDiagrams
+					(object ActivityDiagram "NewDiagram"
+					    quid       	"4DB613FC0067"
+					    title      	"NewDiagram"
+					    zoom       	100
+					    max_height 	28350
+					    max_width  	21600
+					    origin_x   	0
+					    origin_y   	0
+					    items      	(list diagram_item_list
+						(object Swimlane "" @259
+						    line_color 	3342489
+						    width      	450)
+						(object Label @260
+						    Parent_View 	@259
+						    location   	(250, 87)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	137
+						    justify    	1
+						    label      	"ò«—›—„«")
+						(object Label @261
+						    Parent_View 	@259
+						    location   	(637, 75)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	109
+						    justify    	1
+						    label      	"”Ì” „")
+						(object SynchronizationView "$UNNAMED$36" @262
+						    location   	(538, 190)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @263
+							Parent_View 	@262
+							location   	(700, 119)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							nlines     	2
+							max_width  	300
+							justify    	1
+							label      	""
+							pctDist    	1.000000
+							height     	0
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4DB613FE02D1"
+						    width      	650
+						    height     	19
+						    autoResize 	TRUE
+						    sync_flow_direction 	1
+						    sync_is_horizontal 	TRUE)
+						(object SynchronizationView "$UNNAMED$37" @264
+						    location   	(493, 594)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @265
+							Parent_View 	@264
+							location   	(514, 669)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							nlines     	2
+							max_width  	300
+							justify    	1
+							label      	""
+							pctDist    	1.000000
+							height     	0
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4DB614040364"
+						    width      	19
+						    height     	1006
+						    autoResize 	TRUE
+						    sync_flow_direction 	2
+						    sync_is_horizontal 	FALSE))))))
+			    (object UseCase "«’·«Õ Å—ÊéÂ"
+				quid       	"4F97B72800EF"
+				statemachine 	(object State_Machine "State/Activity Model6"
+				    quid       	"4F97BCDA03D4"
+				    states     	(list States
+					(object SynchronizationState "$UNNAMED$38"
+					    quid       	"4F97BCDF00C0")
+					(object SynchronizationState "$UNNAMED$39"
+					    quid       	"4F97BCE402AB")
+					(object State "$UNNAMED$40"
+					    quid       	"4F97BD37037D"
+					    type       	"StartState")
+					(object State "«‰ Œ«» œò„Â ÊÌ—«Ì‘ Å—ÊéÂ"
+					    quid       	"4F97BD3C00E6"
+					    type       	"Normal")
+					(object State "«—”«· ›—„ «ÿ·«⁄« "
+					    quid       	"4F97BD510392"
+					    type       	"Normal")
+					(object ActivityState "ÊÌ—«Ì‘ «ÿ·«⁄« "
+					    quid       	"4F97BD630366")
+					(object State "«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« "
+					    quid       	"4F97BD7901CC"
+					    type       	"Normal")
+					(object Decision "«⁄ »«—”‰ÃÌ «ÿ·«⁄« "
+					    quid       	"4F97BDAA0094")
+					(object State "‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄«  ÷—Ê—Ì"
+					    quid       	"4F97BDC1010B"
+					    type       	"Normal")
+					(object ActivityState "Å—œ«“‘ «ÿ·«⁄« "
+					    quid       	"4F97BDF6029A")
+					(object State "«’·«Õ œ— »«‰ò «ÿ·«⁄« "
+					    quid       	"4F97C3790229"
+					    type       	"Normal")
+					(object State "$UNNAMED$41"
+					    quid       	"4F97C38902EA"
+					    type       	"EndState"))
+				    partitions 	(list Partitions)
+				    objects    	(list Objects)
+				    transitions 	(list transition_list
+					(object State_Transition
+					    quid       	"4F97BDE200C6"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«‰ Œ«» œò„Â ÊÌ—«Ì‘ Å—ÊéÂ
+					    
+					    supplier_quidu 	"4F97BD3C00E6"
+					    client     	"$UNNAMED$40"
+					    client_quidu 	"4F97BD37037D"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BDE200C9"))
+					(object State_Transition
+					    quid       	"4F97BDE4019E"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«—”«· ›—„ «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BD510392"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«‰ Œ«» œò„Â ÊÌ—«Ì‘ Å—ÊéÂ
+					    
+					    client_quidu 	"4F97BD3C00E6"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BDE401A1"))
+					(object State_Transition
+					    quid       	"4F97BDE6017B"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::ÊÌ—«Ì‘ «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BD630366"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«—”«· ›—„ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BD510392"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BDE6017E"))
+					(object State_Transition
+					    quid       	"4F97BDE802FE"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BD7901CC"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::ÊÌ—«Ì‘ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BD630366"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BDE80301"))
+					(object State_Transition
+					    quid       	"4F97BDEC003A"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«⁄ »«—”‰ÃÌ «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BDAA0094"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BD7901CC"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BDEC003D"))
+					(object State_Transition
+					    quid       	"4F97BE0602AF"
+					    label      	""
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::Å—œ«“‘ «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BDF6029A"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«⁄ »«—”‰ÃÌ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BDAA0094"
+					    Event      	(object Event "»·Â"
+						quid       	"4F97BE0602B0")
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BE0602B2"))
+					(object State_Transition
+					    quid       	"4F97BE0900D6"
+					    label      	""
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄«  ÷—Ê—Ì
+					    
+					    supplier_quidu 	"4F97BDC1010B"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«⁄ »«—”‰ÃÌ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BDAA0094"
+					    Event      	(object Event "ŒÌ—"
+						quid       	"4F97BE0900D7")
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BE0900D9"))
+					(object State_Transition
+					    quid       	"4F97BE1A0270"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::ÊÌ—«Ì‘ «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97BD630366"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄«  ÷—Ê—Ì
+					    
+					    client_quidu 	"4F97BDC1010B"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97BE1A0273"))
+					(object State_Transition
+					    quid       	"4F97C38C0130"
+					    supplier   	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«’·«Õ œ— »«‰ò «ÿ·«⁄« 
+					    
+					    supplier_quidu 	"4F97C3790229"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::Å—œ«“‘ «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97BDF6029A"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97C38C0133"))
+					(object State_Transition
+					    quid       	"4F97C38F0061"
+					    supplier   	"$UNNAMED$41"
+					    supplier_quidu 	"4F97C38902EA"
+					    client     	
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ::State/Activity Model6::«’·«Õ œ— »«‰ò «ÿ·«⁄« 
+					    
+					    client_quidu 	"4F97C3790229"
+					    sendEvent  	(object sendEvent
+						quid       	"4F97C38F0064")))
+				    objectflows 	(list objectflow_list)
+				    statediagrams 	(list StateDiagrams
+					(object ActivityDiagram "ÊÌ—«Ì‘ Å—ÊéÂ"
+					    quid       	"4F97BCDA03D6"
+					    title      	
+|ÊÌ—«Ì‘ Å—ÊéÂ
+					    
+					    zoom       	100
+					    max_height 	28350
+					    max_width  	21600
+					    origin_x   	0
+					    origin_y   	719
+					    items      	(list diagram_item_list
+						(object Swimlane "" @266
+						    line_color 	3342489
+						    width      	450)
+						(object Label @267
+						    Parent_View 	@266
+						    location   	(591, 1922)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	237
+						    justify    	1
+						    label      	
+|«’·«Õ Å—ÊéÂ
+						    )
+						(object Label @268
+						    Parent_View 	@266
+						    location   	(444, 119)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	140
+						    justify    	1
+						    label      	"ò«—›—„«")
+						(object Label @269
+						    Parent_View 	@266
+						    location   	(844, 125)
+						    font       	(object Font
+							size       	12
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    nlines     	1
+						    max_width  	109
+						    justify    	1
+						    label      	"”Ì” „")
+						(object StateView "StartState" "$UNNAMED$40" @270
+						    Parent_View 	@266
+						    location   	(487, 332)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4F97BD37037D"
+						    autoResize 	TRUE)
+						(object StateView "Normal" "«‰ Œ«» œò„Â ÊÌ—«Ì‘ Å—ÊéÂ" @271
+						    Parent_View 	@266
+						    location   	(488, 512)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@271
+							location   	(488, 501)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	
+|«‰ Œ«» œò„Â ÊÌ—«Ì‘ Å—ÊéÂ
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BD3C00E6"
+						    height     	134
+						    autoResize 	TRUE)
+						(object TransView "" @272
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BDE200C6"
+						    client     	@270
+						    supplier   	@271
+						    vertices   	(list Points
+							(487, 361)
+							(487, 444))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object StateView "Normal" "«—”«· ›—„ «ÿ·«⁄« " @273
+						    Parent_View 	@266
+						    location   	(1000, 656)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@273
+							location   	(1000, 645)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	"«—”«· ›—„ «ÿ·«⁄« ")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BD510392"
+						    height     	134
+						    autoResize 	TRUE)
+						(object TransView "" @274
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BDE4019E"
+						    client     	@271
+						    supplier   	@273
+						    vertices   	(list Points
+							(638, 554)
+							(850, 613))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object ActivityStateView "ÊÌ—«Ì‘ «ÿ·«⁄« " @275
+						    Parent_View 	@266
+						    location   	(466, 807)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@275
+							location   	(466, 810)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	269
+							justify    	0
+							label      	"ÊÌ—«Ì‘ «ÿ·«⁄« ")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BD630366"
+						    height     	106
+						    annotation 	1
+						    autoResize 	TRUE)
+						(object TransView "" @276
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BDE6017B"
+						    client     	@273
+						    supplier   	@275
+						    vertices   	(list Points
+							(850, 698)
+							(615, 764))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object StateView "Normal" "«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« " @277
+						    Parent_View 	@266
+						    location   	(456, 1079)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@277
+							location   	(456, 1068)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	252
+							justify    	0
+							label      	"«‰ Œ«» œò„Â «—”«· «ÿ·«⁄« ")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BD7901CC"
+						    width      	348
+						    height     	134
+						    autoResize 	TRUE)
+						(object TransView "" @278
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BDE802FE"
+						    client     	@275
+						    supplier   	@277
+						    vertices   	(list Points
+							(464, 860)
+							(458, 1012))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object DecisionView "«⁄ »«—”‰ÃÌ «ÿ·«⁄« " @279
+						    Parent_View 	@266
+						    location   	(1019, 1133)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @280
+							Parent_View 	@279
+							location   	(1090, 1059)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							anchor     	1
+							nlines     	2
+							max_width  	300
+							justify    	1
+							label      	"«⁄ »«—”‰ÃÌ «ÿ·«⁄« "
+							pctDist    	1.000000
+							height     	0
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BDAA0094"
+						    width      	213
+						    height     	125
+						    autoResize 	TRUE)
+						(object TransView "" @281
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BDEC003A"
+						    client     	@277
+						    supplier   	@279
+						    vertices   	(list Points
+							(630, 1095)
+							(913, 1133))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object StateView "Normal" "‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄«  ÷—Ê—Ì" @282
+						    Parent_View 	@266
+						    location   	(1016, 879)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@282
+							location   	(1016, 868)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	256
+							justify    	0
+							label      	
+|‰„«Ì‘ ÅÌ€«„ «’·«Õ «ÿ·«⁄«  ÷—Ê—Ì
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BDC1010B"
+						    width      	352
+						    height     	134
+						    autoResize 	TRUE)
+						(object TransView "" @283
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @284
+							Parent_View 	@283
+							location   	(974, 1009)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	FALSE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							anchor_loc 	1
+							nlines     	1
+							max_width  	450
+							justify    	0
+							label      	"ŒÌ—"
+							pctDist    	0.500000
+							height     	45
+							orientation 	0)
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BE0900D6"
+						    client     	@279
+						    supplier   	@282
+						    vertices   	(list Points
+							(1019, 1071)
+							(1017, 946))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @285
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BE1A0270"
+						    client     	@282
+						    supplier   	@275
+						    vertices   	(list Points
+							(840, 855)
+							(631, 828))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object ActivityStateView "Å—œ«“‘ «ÿ·«⁄« " @286
+						    Parent_View 	@266
+						    location   	(1018, 1393)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@286
+							location   	(1018, 1396)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	269
+							justify    	0
+							label      	
+|Å—œ«“‘ «ÿ·«⁄« 
+							)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97BDF6029A"
+						    height     	106
+						    annotation 	1
+						    autoResize 	TRUE)
+						(object TransView "" @287
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @288
+							Parent_View 	@287
+							location   	(1064, 1267)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	FALSE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							anchor_loc 	1
+							nlines     	1
+							max_width  	450
+							justify    	0
+							label      	"»·Â"
+							pctDist    	0.500000
+							height     	45
+							orientation 	0)
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97BE0602AF"
+						    client     	@279
+						    supplier   	@286
+						    vertices   	(list Points
+							(1019, 1195)
+							(1018, 1339))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object StateView "Normal" "«’·«Õ œ— »«‰ò «ÿ·«⁄« " @289
+						    Parent_View 	@266
+						    location   	(1050, 1665)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object ItemLabel
+							Parent_View 	@289
+							location   	(1050, 1654)
+							fill_color 	13434879
+							anchor_loc 	1
+							nlines     	2
+							max_width  	204
+							justify    	0
+							label      	"«’·«Õ œ— »«‰ò «ÿ·«⁄« ")
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    fill_color 	13434879
+						    quidu      	"4F97C3790229"
+						    height     	134
+						    autoResize 	TRUE)
+						(object StateView "EndState" "$UNNAMED$41" @290
+						    Parent_View 	@266
+						    location   	(1053, 1878)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4F97C38902EA"
+						    autoResize 	TRUE)
+						(object SynchronizationView "$UNNAMED$38" @291
+						    location   	(697, 240)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @292
+							Parent_View 	@291
+							location   	(859, 169)
+							font       	(object Font
+							    size       	12
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							hidden     	TRUE
+							nlines     	1
+							max_width  	12
+							justify    	1
+							label      	""
+							pctDist    	1.000000
+							height     	0
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4F97BCDF00C0"
+						    width      	862
+						    autoResize 	TRUE
+						    sync_flow_direction 	1
+						    sync_is_horizontal 	TRUE)
+						(object SynchronizationView "$UNNAMED$39" @293
+						    location   	(690, 944)
+						    font       	(object Font
+							size       	10
+							face       	"Arial"
+							charSet    	178
+							bold       	FALSE
+							italics    	FALSE
+							underline  	FALSE
+							strike     	FALSE
+							color      	0
+							default_color 	TRUE)
+						    label      	(object SegLabel @294
+							Parent_View 	@293
+							location   	(711, 1349)
+							font       	(object Font
+							    size       	10
+							    face       	"Arial"
+							    charSet    	178
+							    bold       	FALSE
+							    italics    	TRUE
+							    underline  	FALSE
+							    strike     	FALSE
+							    color      	0
+							    default_color 	TRUE)
+							hidden     	TRUE
+							nlines     	2
+							max_width  	300
+							justify    	1
+							label      	""
+							pctDist    	1.003333
+							height     	0
+							orientation 	0)
+						    icon_style 	"Icon"
+						    line_color 	3342489
+						    quidu      	"4F97BCE402AB"
+						    height     	1706
+						    autoResize 	TRUE
+						    sync_flow_direction 	2
+						    sync_is_horizontal 	FALSE)
+						(object TransView "" @295
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97C38C0130"
+						    client     	@286
+						    supplier   	@289
+						    vertices   	(list Points
+							(1024, 1446)
+							(1042, 1598))
+						    line_style 	0
+						    x_offset   	FALSE)
+						(object TransView "" @296
+						    stereotype 	TRUE
+						    line_color 	3342489
+						    quidu      	"4F97C38F0061"
+						    client     	@289
+						    supplier   	@290
+						    vertices   	(list Points
+							(1050, 1731)
+							(1052, 1835))
+						    line_style 	0
+						    x_offset   	FALSE)))))))
 			logical_presentations 	(list unit_reference_list
 			    (object UseCaseDiagram "Main"
 				quid       	"4F8BA51202D7"
@@ -4638,9 +6715,9 @@
 				max_height 	28350
 				max_width  	21600
 				origin_x   	0
-				origin_y   	0
+				origin_y   	856
 				items      	(list diagram_item_list
-				    (object ClassView "Class" "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::ò«—›—„«" @208
+				    (object ClassView "Class" "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::ò«—›—„«" @297
 					ShowCompartmentStereotypes 	TRUE
 					IncludeAttribute 	TRUE
 					IncludeOperation 	TRUE
@@ -4656,7 +6733,7 @@
 					    color      	0
 					    default_color 	TRUE)
 					label      	(object ItemLabel
-					    Parent_View 	@208
+					    Parent_View 	@297
 					    location   	(303, 635)
 					    anchor_loc 	1
 					    nlines     	2
@@ -4669,7 +6746,7 @@
 					quidu      	"4F8BA59C01CB"
 					annotation 	8
 					autoResize 	TRUE)
-				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Ê «’·«Õ Å—ÊéÂ" @209
+				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ" @298
 					location   	(797, 169)
 					font       	(object Font
 					    size       	10
@@ -4682,22 +6759,22 @@
 					    color      	0
 					    default_color 	TRUE)
 					label      	(object ItemLabel
-					    Parent_View 	@209
+					    Parent_View 	@298
 					    location   	(797, 307)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	630
 					    justify    	0
 					    label      	
-|«ÌÃ«œ Ê «’·«Õ Å—ÊéÂ
+|«ÌÃ«œ Å—ÊéÂ
 					    )
 					icon_style 	"Icon"
 					line_color 	3342489
 					fill_color 	13434879
 					quidu      	"4F8BA5A4021B"
 					height     	118)
-				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ" @210
-					location   	(894, 547)
+				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Ê«ê–«—Ì Å—ÊéÂ" @299
+					location   	(928, 706)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -4709,8 +6786,8 @@
 					    color      	0
 					    default_color 	TRUE)
 					label      	(object ItemLabel
-					    Parent_View 	@210
-					    location   	(894, 685)
+					    Parent_View 	@299
+					    location   	(928, 844)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	630
@@ -4723,7 +6800,7 @@
 					fill_color 	13434879
 					quidu      	"4F8BA5AD0353"
 					height     	118)
-				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Å—œ«Œ  Â“Ì‰Â Å—ÊéÂ" @211
+				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::Å—œ«Œ  Â“Ì‰Â Å—ÊéÂ" @300
 					location   	(728, 1003)
 					font       	(object Font
 					    size       	10
@@ -4736,7 +6813,7 @@
 					    color      	0
 					    default_color 	TRUE)
 					label      	(object ItemLabel
-					    Parent_View 	@211
+					    Parent_View 	@300
 					    location   	(728, 1141)
 					    anchor_loc 	1
 					    nlines     	2
@@ -4750,66 +6827,109 @@
 					fill_color 	13434879
 					quidu      	"4F8BA5B902EF"
 					height     	118)
-				    (object DependencyView "" @212
+				    (object DependencyView "" @301
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4F8BA5EA03A3"
-					client     	@208
-					supplier   	@209
+					client     	@297
+					supplier   	@298
 					vertices   	(list Points
 					    (360, 436)
-					    (532, 332))
+					    (700, 225))
 					line_style 	0)
-				    (object DependencyView "" @213
+				    (object DependencyView "" @302
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4F8BA5ED02F9"
-					client     	@208
-					supplier   	@210
+					client     	@297
+					supplier   	@299
 					vertices   	(list Points
-					    (360, 481)
-					    (784, 529))
+					    (360, 494)
+					    (818, 663))
 					line_style 	0)
-				    (object DependencyView "" @214
+				    (object DependencyView "" @303
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4F8BA5F0005B"
-					client     	@208
-					supplier   	@211
+					client     	@297
+					supplier   	@300
 					vertices   	(list Points
-					    (389, 583)
+					    (360, 548)
 					    (680, 945))
+					line_style 	0)
+				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«’·«Õ Å—ÊéÂ" @304
+					location   	(978, 422)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    charSet    	178
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@304
+					    location   	(978, 560)
+					    anchor_loc 	1
+					    nlines     	2
+					    max_width  	630
+					    justify    	0
+					    label      	
+|«’·«Õ Å—ÊéÂ
+					    )
+					icon_style 	"Icon"
+					line_color 	3342489
+					fill_color 	13434879
+					quidu      	"4F97B72800EF"
+					height     	118)
+				    (object DependencyView "" @305
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"4F97B74502E3"
+					client     	@297
+					supplier   	@304
+					vertices   	(list Points
+					    (360, 467)
+					    (868, 427))
 					line_style 	0)))))
-		    (object Class_Category "frelancer"
+		    (object Class_Category "›—Ì·‰”—"
 			quid       	"4F8BA50B0205"
 			exportControl 	"Public"
 			logical_models 	(list unit_reference_list
-			    (object Class "frelancer"
+			    (object Class "›—Ì·‰”—"
 				quid       	"4F8BA675021B"
 				stereotype 	"Actor"
 				visible_modules 	(list dependency_list
 				    (object Dependency_Relationship
 					quid       	"4F8BA6DD03B5"
-					supplier   	"Use Case View::œ«‘»Ê—œ ò«—»—::frelancer::«ÌÃ«œ Ê «’·«Õ —“Ê„Â"
+					supplier   	"Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::«ÌÃ«œ —“Ê„Â"
 					quidu      	"4F8BA683010B")
 				    (object Dependency_Relationship
 					quid       	"4F8BA6E000C4"
 					supplier   	
-|Use Case View::œ«‘»Ê—œ ò«—»—::frelancer::œ—ŒÊ«”  Å—ÊéÂ
+|Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::œ—ŒÊ«”  Å—ÊéÂ
 					
 					quidu      	"4F8BA68A02D3")
 				    (object Dependency_Relationship
 					quid       	"4F8BA6E2015D"
 					supplier   	
-|Use Case View::œ«‘»Ê—œ ò«—»—::frelancer::œ—Ì«›  Â“Ì‰Â Å—ÊéÂ
+|Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::œ—Ì«›  Â“Ì‰Â Å—ÊéÂ
 					
-					quidu      	"4F8BA6C80138")))
-			    (object UseCase "«ÌÃ«œ Ê «’·«Õ —“Ê„Â"
+					quidu      	"4F8BA6C80138")
+				    (object Dependency_Relationship
+					quid       	"4F97C8CD00E9"
+					supplier   	"Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::ÊÌ—«Ì‘ —“Ê„Â"
+					quidu      	"4F97C8BA03C6")))
+			    (object UseCase "«ÌÃ«œ —“Ê„Â"
 				quid       	"4F8BA683010B")
 			    (object UseCase "œ—ŒÊ«”  Å—ÊéÂ"
 				quid       	"4F8BA68A02D3")
 			    (object UseCase "œ—Ì«›  Â“Ì‰Â Å—ÊéÂ"
-				quid       	"4F8BA6C80138"))
+				quid       	"4F8BA6C80138")
+			    (object UseCase "ÊÌ—«Ì‘ —“Ê„Â"
+				quid       	"4F97C8BA03C6"))
 			logical_presentations 	(list unit_reference_list
 			    (object UseCaseDiagram "Main"
 				quid       	"4F8BA673003A"
@@ -4820,7 +6940,7 @@
 				origin_x   	112
 				origin_y   	0
 				items      	(list diagram_item_list
-				    (object ClassView "Class" "Use Case View::œ«‘»Ê—œ ò«—»—::frelancer::frelancer" @215
+				    (object ClassView "Class" "Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::›—Ì·‰”—" @306
 					ShowCompartmentStereotypes 	TRUE
 					IncludeAttribute 	TRUE
 					IncludeOperation 	TRUE
@@ -4836,20 +6956,20 @@
 					    color      	0
 					    default_color 	TRUE)
 					label      	(object ItemLabel
-					    Parent_View 	@215
+					    Parent_View 	@306
 					    location   	(284, 629)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	362
 					    justify    	0
-					    label      	"frelancer")
+					    label      	"›—Ì·‰”—")
 					icon       	"Actor"
 					icon_style 	"Icon"
 					line_color 	3342489
 					quidu      	"4F8BA675021B"
 					annotation 	8
 					autoResize 	TRUE)
-				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::frelancer::«ÌÃ«œ Ê «’·«Õ —“Ê„Â" @216
+				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::«ÌÃ«œ —“Ê„Â" @307
 					location   	(769, 166)
 					font       	(object Font
 					    size       	10
@@ -4862,20 +6982,20 @@
 					    color      	0
 					    default_color 	TRUE)
 					label      	(object ItemLabel
-					    Parent_View 	@216
+					    Parent_View 	@307
 					    location   	(769, 304)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	630
 					    justify    	0
-					    label      	"«ÌÃ«œ Ê «’·«Õ —“Ê„Â")
+					    label      	"«ÌÃ«œ —“Ê„Â")
 					icon_style 	"Icon"
 					line_color 	3342489
 					fill_color 	13434879
 					quidu      	"4F8BA683010B"
 					height     	118)
-				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::frelancer::œ—ŒÊ«”  Å—ÊéÂ" @217
-					location   	(903, 562)
+				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::œ—ŒÊ«”  Å—ÊéÂ" @308
+					location   	(931, 690)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -4887,8 +7007,8 @@
 					    color      	0
 					    default_color 	TRUE)
 					label      	(object ItemLabel
-					    Parent_View 	@217
-					    location   	(903, 700)
+					    Parent_View 	@308
+					    location   	(931, 828)
 					    anchor_loc 	1
 					    nlines     	2
 					    max_width  	630
@@ -4901,7 +7021,7 @@
 					fill_color 	13434879
 					quidu      	"4F8BA68A02D3"
 					height     	118)
-				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::frelancer::œ—Ì«›  Â“Ì‰Â Å—ÊéÂ" @218
+				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::œ—Ì«›  Â“Ì‰Â Å—ÊéÂ" @309
 					location   	(644, 925)
 					font       	(object Font
 					    size       	10
@@ -4914,7 +7034,7 @@
 					    color      	0
 					    default_color 	TRUE)
 					label      	(object ItemLabel
-					    Parent_View 	@218
+					    Parent_View 	@309
 					    location   	(644, 1063)
 					    anchor_loc 	1
 					    nlines     	2
@@ -4928,35 +7048,70 @@
 					fill_color 	13434879
 					quidu      	"4F8BA6C80138"
 					height     	118)
-				    (object DependencyView "" @219
+				    (object DependencyView "" @310
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4F8BA6DD03B5"
-					client     	@215
-					supplier   	@216
+					client     	@306
+					supplier   	@307
 					vertices   	(list Points
 					    (341, 430)
 					    (505, 329))
 					line_style 	0)
-				    (object DependencyView "" @220
+				    (object DependencyView "" @311
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4F8BA6E000C4"
-					client     	@215
-					supplier   	@217
+					client     	@306
+					supplier   	@308
 					vertices   	(list Points
-					    (341, 476)
-					    (793, 544))
+					    (341, 486)
+					    (819, 650))
 					line_style 	0)
-				    (object DependencyView "" @221
+				    (object DependencyView "" @312
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4F8BA6E2015D"
-					client     	@215
-					supplier   	@218
+					client     	@306
+					supplier   	@309
 					vertices   	(list Points
 					    (370, 579)
 					    (597, 867))
+					line_style 	0)
+				    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—::ÊÌ—«Ì‘ —“Ê„Â" @313
+					location   	(1009, 415)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    charSet    	178
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					label      	(object ItemLabel
+					    Parent_View 	@313
+					    location   	(1009, 553)
+					    anchor_loc 	1
+					    nlines     	2
+					    max_width  	630
+					    justify    	0
+					    label      	"ÊÌ—«Ì‘ —“Ê„Â")
+					icon_style 	"Icon"
+					line_color 	3342489
+					fill_color 	13434879
+					quidu      	"4F97C8BA03C6"
+					height     	118)
+				    (object DependencyView "" @314
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"4F97C8CD00E9"
+					client     	@306
+					supplier   	@313
+					vertices   	(list Points
+					    (341, 461)
+					    (899, 420))
 					line_style 	0))))))
 		logical_presentations 	(list unit_reference_list
 		    (object UseCaseDiagram "Main"
@@ -4968,7 +7123,7 @@
 			origin_x   	0
 			origin_y   	0
 			items      	(list diagram_item_list
-			    (object ClassView "Class" "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—»—" @222
+			    (object ClassView "Class" "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—»—" @315
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
@@ -4984,7 +7139,7 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@222
+				    Parent_View 	@315
 				    location   	(238, 673)
 				    anchor_loc 	1
 				    nlines     	2
@@ -4997,7 +7152,7 @@
 				quidu      	"4F8BA50203D1"
 				annotation 	8
 				autoResize 	TRUE)
-			    (object CategoryView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«" @223
+			    (object CategoryView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«" @316
 				location   	(863, 275)
 				font       	(object Font
 				    size       	10
@@ -5010,7 +7165,7 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@223
+				    Parent_View 	@316
 				    location   	(719, 191)
 				    fill_color 	13434879
 				    nlines     	2
@@ -5023,7 +7178,7 @@
 				quidu      	"4F8BA5090287"
 				width      	300
 				height     	180)
-			    (object CategoryView "Use Case View::œ«‘»Ê—œ ò«—»—::frelancer" @224
+			    (object CategoryView "Use Case View::œ«‘»Ê—œ ò«—»—::›—Ì·‰”—" @317
 				location   	(847, 715)
 				font       	(object Font
 				    size       	10
@@ -5036,35 +7191,35 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@224
+				    Parent_View 	@317
 				    location   	(703, 631)
 				    fill_color 	13434879
 				    nlines     	2
 				    max_width  	288
 				    justify    	0
-				    label      	"frelancer")
+				    label      	"›—Ì·‰”—")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4F8BA50B0205"
 				width      	300
 				height     	180)
-			    (object DependencyView "" @225
+			    (object DependencyView "" @318
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4F8BA58F0253"
-				client     	@222
-				supplier   	@223
+				client     	@315
+				supplier   	@316
 				vertices   	(list Points
 				    (295, 487)
 				    (712, 331))
 				line_style 	0)
-			    (object DependencyView "" @226
+			    (object DependencyView "" @319
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4F8BA5910235"
-				client     	@222
-				supplier   	@224
+				client     	@315
+				supplier   	@317
 				vertices   	(list Points
 				    (295, 529)
 				    (696, 664))
@@ -5092,7 +7247,7 @@
 			    (object Dependency_Relationship
 				quid       	"4F8BA80401C1"
 				supplier   	
-|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Ê «’·«Õ Å—ÊéÂ
+|Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ
 				
 				quidu      	"4F8BA5A4021B")
 			    (object Dependency_Relationship
@@ -5117,7 +7272,7 @@
 			origin_x   	0
 			origin_y   	94
 			items      	(list diagram_item_list
-			    (object ClassView "Class" "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::„œÌ—" @227
+			    (object ClassView "Class" "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::„œÌ—" @320
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
@@ -5133,7 +7288,7 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@227
+				    Parent_View 	@320
 				    location   	(313, 598)
 				    anchor_loc 	1
 				    nlines     	2
@@ -5146,7 +7301,7 @@
 				quidu      	"4F8BA77A008C"
 				annotation 	8
 				autoResize 	TRUE)
-			    (object UseCaseView "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::«ÌÃ«œ Ê «’·«Õ ò«—›—„«" @228
+			    (object UseCaseView "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::«ÌÃ«œ Ê «’·«Õ ò«—›—„«" @321
 				location   	(1737, 475)
 				font       	(object Font
 				    size       	10
@@ -5159,7 +7314,7 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@228
+				    Parent_View 	@321
 				    location   	(1737, 613)
 				    anchor_loc 	1
 				    nlines     	2
@@ -5171,7 +7326,7 @@
 				fill_color 	13434879
 				quidu      	"4F8BA781034E"
 				height     	118)
-			    (object UseCaseView "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::«ÌÃ«œ Ê «’·«Õ œ” —”Ì" @229
+			    (object UseCaseView "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::«ÌÃ«œ Ê «’·«Õ œ” —”Ì" @322
 				location   	(1428, 734)
 				font       	(object Font
 				    size       	10
@@ -5184,7 +7339,7 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@229
+				    Parent_View 	@322
 				    location   	(1428, 872)
 				    anchor_loc 	1
 				    nlines     	2
@@ -5196,7 +7351,7 @@
 				fill_color 	13434879
 				quidu      	"4F8BA7910038"
 				height     	118)
-			    (object UseCaseView "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::«ÌÃ«œ Ê «’·«Õ ›—Ì·‰”—" @230
+			    (object UseCaseView "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::«ÌÃ«œ Ê «’·«Õ ›—Ì·‰”—" @323
 				location   	(1125, 225)
 				font       	(object Font
 				    size       	10
@@ -5209,7 +7364,7 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@230
+				    Parent_View 	@323
 				    location   	(1125, 363)
 				    anchor_loc 	1
 				    nlines     	2
@@ -5221,7 +7376,7 @@
 				fill_color 	13434879
 				quidu      	"4F8BA79E01B9"
 				height     	118)
-			    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Ê «’·«Õ Å—ÊéÂ" @231
+			    (object UseCaseView "Use Case View::œ«‘»Ê—œ ò«—»—::ò«—›—„«::«ÌÃ«œ Å—ÊéÂ" @324
 				location   	(1306, 1006)
 				font       	(object Font
 				    size       	10
@@ -5234,21 +7389,21 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@231
+				    Parent_View 	@324
 				    location   	(1306, 1144)
 				    anchor_loc 	1
 				    nlines     	2
 				    max_width  	630
 				    justify    	0
 				    label      	
-|«ÌÃ«œ Ê «’·«Õ Å—ÊéÂ
+|«ÌÃ«œ Å—ÊéÂ
 				    )
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4F8BA5A4021B"
 				height     	118)
-			    (object UseCaseView "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::„œÌ—Ì  „«·Ì" @232
+			    (object UseCaseView "Use Case View::œ«‘»Ê—œ „œÌ—Ì ::„œÌ—Ì  „«·Ì" @325
 				location   	(840, 1253)
 				font       	(object Font
 				    size       	10
@@ -5261,7 +7416,7 @@
 				    color      	0
 				    default_color 	TRUE)
 				label      	(object ItemLabel
-				    Parent_View 	@232
+				    Parent_View 	@325
 				    location   	(840, 1391)
 				    anchor_loc 	1
 				    nlines     	2
@@ -5273,52 +7428,52 @@
 				fill_color 	13434879
 				quidu      	"4F8BA7E60174"
 				height     	118)
-			    (object DependencyView "" @233
+			    (object DependencyView "" @326
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4F8BA7FC0086"
-				client     	@227
-				supplier   	@230
+				client     	@320
+				supplier   	@323
 				vertices   	(list Points
 				    (370, 421)
 				    (804, 307))
 				line_style 	0)
-			    (object DependencyView "" @234
+			    (object DependencyView "" @327
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4F8BA7FE0341"
-				client     	@227
-				supplier   	@228
+				client     	@320
+				supplier   	@321
 				vertices   	(list Points
 				    (370, 438)
 				    (1627, 469))
 				line_style 	0)
-			    (object DependencyView "" @235
+			    (object DependencyView "" @328
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4F8BA801034C"
-				client     	@227
-				supplier   	@229
+				client     	@320
+				supplier   	@322
 				vertices   	(list Points
 				    (370, 452)
 				    (1318, 704))
 				line_style 	0)
-			    (object DependencyView "" @236
+			    (object DependencyView "" @329
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4F8BA80401C1"
-				client     	@227
-				supplier   	@231
+				client     	@320
+				supplier   	@324
 				vertices   	(list Points
 				    (370, 469)
 				    (1204, 946))
 				line_style 	0)
-			    (object DependencyView "" @237
+			    (object DependencyView "" @330
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4F8BA8070017"
-				client     	@227
-				supplier   	@232
+				client     	@320
+				supplier   	@325
 				vertices   	(list Points
 				    (399, 572)
 				    (801, 1195))
@@ -5331,13 +7486,13 @@
 		max_height 	28350
 		max_width  	21600
 		origin_x   	0
-		origin_y   	63
+		origin_y   	188
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Use Case View::»«“œÌœ ò‰‰œÂ" @238
+		    (object ClassView "Class" "Use Case View::»«“œÌœ ò‰‰œÂ" @331
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(326, 584)
+			location   	(327, 585)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5349,8 +7504,8 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@238
-			    location   	(326, 744)
+			    Parent_View 	@331
+			    location   	(327, 745)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	362
@@ -5360,27 +7515,9 @@
 			icon_style 	"Icon"
 			line_color 	3342489
 			quidu      	"4F8B9AE00332"
-			compartment 	(object Compartment
-			    Parent_View 	@238
-			    location   	(215, 785)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				charSet    	178
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    icon_style 	"Icon"
-			    anchor     	2
-			    nlines     	2
-			    max_width  	219
-			    justify    	0)
 			annotation 	8
 			autoResize 	TRUE)
-		    (object UseCaseView "Use Case View::‰„«Ì‘ Å—ÊéÂ Â«" @239
+		    (object UseCaseView "Use Case View::‰„«Ì‘ Å—ÊéÂ Â«" @332
 			location   	(612, 972)
 			font       	(object Font
 			    size       	10
@@ -5393,7 +7530,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@239
+			    Parent_View 	@332
 			    location   	(612, 1110)
 			    anchor_loc 	1
 			    nlines     	2
@@ -5407,7 +7544,7 @@
 			fill_color 	13434879
 			quidu      	"4F8BA48100C0"
 			height     	118)
-		    (object UseCaseView "Use Case View::‰„«Ì‘ ›—Ì·‰”—Â«" @240
+		    (object UseCaseView "Use Case View::‰„«Ì‘ ›—Ì·‰”—Â«" @333
 			location   	(240, 982)
 			font       	(object Font
 			    size       	10
@@ -5420,7 +7557,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@240
+			    Parent_View 	@333
 			    location   	(240, 1120)
 			    anchor_loc 	1
 			    nlines     	2
@@ -5432,7 +7569,7 @@
 			fill_color 	13434879
 			quidu      	"4F8BA49300C0"
 			height     	118)
-		    (object UseCaseView "Use Case View::À»  ‰«„" @241
+		    (object UseCaseView "Use Case View::À»  ‰«„" @334
 			location   	(731, 290)
 			font       	(object Font
 			    size       	10
@@ -5445,7 +7582,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@241
+			    Parent_View 	@334
 			    location   	(731, 428)
 			    anchor_loc 	1
 			    nlines     	2
@@ -5457,7 +7594,7 @@
 			fill_color 	13434879
 			quidu      	"4F8BA4A4039A"
 			height     	118)
-		    (object CategoryView "Use Case View::œ«‘»Ê—œ ò«—»—" @242
+		    (object CategoryView "Use Case View::œ«‘»Ê—œ ò«—»—" @335
 			location   	(1309, 715)
 			font       	(object Font
 			    size       	10
@@ -5470,7 +7607,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@242
+			    Parent_View 	@335
 			    location   	(1165, 631)
 			    fill_color 	13434879
 			    nlines     	2
@@ -5483,7 +7620,7 @@
 			quidu      	"4F8BA4B7032C"
 			width      	300
 			height     	180)
-		    (object UseCaseView "Use Case View::Ê—Êœ" @243
+		    (object UseCaseView "Use Case View::Ê—Êœ" @336
 			location   	(772, 675)
 			font       	(object Font
 			    size       	10
@@ -5496,7 +7633,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@243
+			    Parent_View 	@336
 			    location   	(772, 813)
 			    anchor_loc 	1
 			    nlines     	2
@@ -5508,57 +7645,57 @@
 			fill_color 	13434879
 			quidu      	"4F8BA4BA00F7"
 			height     	118)
-		    (object DependencyView "" @244
+		    (object DependencyView "" @337
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"4F8BA4D402EB"
-			client     	@238
-			supplier   	@241
+			client     	@331
+			supplier   	@334
 			vertices   	(list Points
-			    (383, 537)
-			    (647, 346))
+			    (384, 538)
+			    (648, 346))
 			line_style 	0)
-		    (object DependencyView "" @245
+		    (object DependencyView "" @338
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"4F8BA4D70179"
-			client     	@238
-			supplier   	@243
+			client     	@331
+			supplier   	@336
 			vertices   	(list Points
-			    (383, 595)
+			    (384, 595)
 			    (662, 648))
 			line_style 	0)
-		    (object DependencyView "" @246
+		    (object DependencyView "" @339
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"4F8BA4D903B3"
-			client     	@238
-			supplier   	@240
+			client     	@331
+			supplier   	@333
 			vertices   	(list Points
-			    (326, 584)
-			    (240, 982))
+			    (284, 770)
+			    (249, 924))
 			line_style 	0)
-		    (object DependencyView "" @247
+		    (object DependencyView "" @340
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"4F8BA4DC02F5"
-			client     	@238
-			supplier   	@239
+			client     	@331
+			supplier   	@332
 			vertices   	(list Points
-			    (403, 689)
+			    (404, 690)
 			    (568, 914))
 			line_style 	0)
-		    (object DependencyView "" @248
+		    (object DependencyView "" @341
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"4F8BA4DF024B"
-			client     	@241
-			supplier   	@243
+			client     	@334
+			supplier   	@336
 			vertices   	(list Points
 			    (746, 453)
 			    (762, 617))
 			line_style 	0)
-		    (object ClassView "Class" "Use Case View::„œÌ—" @249
+		    (object ClassView "Class" "Use Case View::„œÌ—" @342
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -5574,7 +7711,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@249
+			    Parent_View 	@342
 			    location   	(1298, 463)
 			    anchor_loc 	1
 			    nlines     	2
@@ -5587,7 +7724,7 @@
 			quidu      	"4F8BA55401D3"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object CategoryView "Use Case View::œ«‘»Ê—œ „œÌ—Ì " @250
+		    (object CategoryView "Use Case View::œ«‘»Ê—œ „œÌ—Ì " @343
 			location   	(1703, 297)
 			font       	(object Font
 			    size       	10
@@ -5600,7 +7737,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@250
+			    Parent_View 	@343
 			    location   	(1559, 213)
 			    fill_color 	13434879
 			    nlines     	2
@@ -5613,32 +7750,32 @@
 			quidu      	"4F8BA55D03C7"
 			width      	300
 			height     	180)
-		    (object DependencyView "" @251
+		    (object DependencyView "" @344
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"4F8BB38A0269"
-			client     	@249
-			supplier   	@250
+			client     	@342
+			supplier   	@343
 			vertices   	(list Points
 			    (1355, 299)
 			    (1552, 298))
 			line_style 	0)
-		    (object DependencyView "" @252
+		    (object DependencyView "" @345
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"4F8BA4E20007"
-			client     	@243
-			supplier   	@242
+			client     	@336
+			supplier   	@335
 			vertices   	(list Points
 			    (880, 680)
 			    (1158, 703))
 			line_style 	0)
-		    (object DependencyView "" @253
+		    (object DependencyView "" @346
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"4F8BB3CB0146"
-			client     	@243
-			supplier   	@249
+			client     	@336
+			supplier   	@342
 			vertices   	(list Points
 			    (849, 616)
 			    (1239, 341))
@@ -5651,7 +7788,47 @@
 	quidu      	"4F8B9ABA02AF"
 	logical_models 	(list unit_reference_list
 	    (object Class "users"
-		quid       	"4F93582B01DA"))
+		quid       	"4F93582B01DA"
+		operations 	(list Operations
+		    (object Operation "opname"
+			quid       	"4F97C90203A1"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)
+		    (object Operation "opname2"
+			quid       	"4F97C91701CA"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "name"
+			quid       	"4F97C8F60366")
+		    (object ClassAttribute "name2"
+			quid       	"4F97C91A0204")))
+	    (object Class "frelanser"
+		quid       	"4F97C9260210"
+		operations 	(list Operations
+		    (object Operation "opname"
+			quid       	"4F97C98202AF"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "name"
+			quid       	"4F97C98003BC")))
+	    (object Class "employer"
+		quid       	"4F97C94F000A"
+		operations 	(list Operations
+		    (object Operation "opname"
+			quid       	"4F97C98503C3"
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "name"
+			quid       	"4F97C9840193")))
+	    (object Class "db"
+		quid       	"4F97C99A0354"))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
 		quid       	"4F8B9ABA02B6"
@@ -5662,11 +7839,11 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Logical View::users" @254
+		    (object ClassView "Class" "Logical View::users" @347
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(241, 231)
+			location   	(240, 231)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -5678,23 +7855,177 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@254
-			    location   	(160, 180)
+			    Parent_View 	@347
+			    location   	(118, 75)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	162
+			    max_width  	244
 			    justify    	0
 			    label      	"users")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
 			quidu      	"4F93582B01DA"
+			compartment 	(object Compartment
+			    Parent_View 	@347
+			    location   	(118, 136)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	178
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	16777215
+			    anchor     	2
+			    nlines     	5
+			    max_width  	250
+			    justify    	1)
+			width      	262
+			height     	336
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::frelanser" @348
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1044, 544)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	178
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@348
+			    location   	(933, 438)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	222
+			    justify    	0
+			    label      	"frelanser")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"4F97C9260210"
+			compartment 	(object Compartment
+			    Parent_View 	@348
+			    location   	(933, 499)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	178
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	3
+			    max_width  	228
+			    justify    	1)
+			width      	240
+			height     	236
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::employer" @349
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1045, 153)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	178
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@349
+			    location   	(934, 47)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	222
+			    justify    	0
+			    label      	"employer")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"4F97C94F000A"
+			compartment 	(object Compartment
+			    Parent_View 	@349
+			    location   	(934, 108)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				charSet    	178
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	3
+			    max_width  	228
+			    justify    	1)
+			width      	240
+			height     	236
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::db" @350
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1866, 244)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	178
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@350
+			    location   	(1785, 193)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	162
+			    justify    	0
+			    label      	"db")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"4F97C99A0354"
 			height     	126
 			annotation 	8
 			autoResize 	TRUE)))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"4F8B9ABA02AF"
-	physical_models 	(list unit_reference_list)
+	physical_models 	(list unit_reference_list
+	    (object module "app.js" "SubType" "Main"
+		quid       	"4F97C9F7023D"
+		stereotype 	"Main Program"
+		language   	"Web Modeler"))
 	physical_presentations 	(list unit_reference_list
 	    (object Module_Diagram "Main"
 		quid       	"4F8B9ABA02C8"
@@ -5704,7 +8035,35 @@
 		max_width  	21600
 		origin_x   	0
 		origin_y   	0
-		items      	(list diagram_item_list)))
+		items      	(list diagram_item_list
+		    (object ModView "Component View::app.js" "SubType" "Main" @351
+			location   	(378, 250)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    charSet    	178
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@351
+			    location   	(275, 54)
+			    anchor_loc 	3
+			    nlines     	1
+			    max_width  	407
+			    justify    	1
+			    label      	"app.js")
+			icon       	"Main Program"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"4F97C9F7023D"
+			autoResize 	TRUE
+			width      	210
+			height     	312))))
 	category   	"Logical View"
 	quidu      	"4F8B9ABA02AD")
     process_structure 	(object Processes
@@ -6676,5 +9035,13 @@
 	    (object Attribute
 		tool       	"XML_DTD"
 		name       	"HiddenTool"
-		value      	FALSE))
+		value      	FALSE)
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Class"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"Pattern applied"
+			value      	"False"))))
 	quid       	"4F8B9ABA02B1"))
