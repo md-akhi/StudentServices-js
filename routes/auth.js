@@ -1,103 +1,26 @@
-const Users = require("../model/user");
-//var { check } = require("express-validator");
-
+const Users = require("../models/user");
 
 module.exports = function(app, ssen) {
 
-// middleware function to check for logged-in users
-var sessionChecker = (req, res, next) => {
-  console.log(ssen);
-  if (ssen.user) {
-    res.redirect("/dashboard");
-  } else {
-    next();
-  }
-};
+const Auth = require("../controllers/auth")(ssen);
+//var { check } = require("express-validator");
 
-app.get("/auth", function (req, res) {
-  res.redirect("/auth/login");
-});
+let dirAuth = "/auth";
+let dirCustomer = "customer";
+
+// root
+app.get(dirAuth, Auth.get_auth);
 
 app
-  .route(["/auth/signup", "/auth/register"])
-  .get(sessionChecker, function (req, res) {
-    res.render("customer/auth/signup", { name: "signup" });
-  })
-  .post(function (req, res) {
-    // check('fullname', "نام اجباری است")
-    // check('email', "ایمیل اجباری است", 'ایمیل وجود دارد');
-    // check('password', " رمز عبوراجباری است", 'پسوردها یکسان نیستند');
-    // check("email", "ایمیل نامعتبر است").isEmail()
-    const { fullname, email, password, passwordConfirmation } = req.body;
-    if (!req.body.email || !req.body.password) {
-      res.render("customer/auth/signup", { message: "Invalid credentials!" });
-    } else {
-      Users.findOne({ email: req.body.email })
-        .then((user) => {
-          if (user.email === req.body.email) {
-            res.render("customer/auth/signup", {
-              message: "User Already Exists! Login or choose another user id",
-            });
-          }
-        })
-        .catch((err) => {
-          res.render("customer/auth/signup", {
-            message: err.message || "failed db",
-          });
-        });
-
-      const newUser = new Users({
-        fullname: fullname,
-        email: email,
-        password: password,
-      });
-      newUser
-        .save(newUser)
-        .then((user) => {
-          // REDIRECT TO THE dashboard
-          ssen.user = user;
-          res.redirect("/dashboard");
-        })
-        .catch((err) => {
-          res.render("customer/auth/signup", {
-            message: err.message || "failed save db",
-          });
-        });
-    }
-  });
+  .route([dirAuth + "/signup", dirAuth + "/register"])
+  .get(Auth.get_signup)
+  .post(Auth.post_signup);
 
 app
-  .route("/auth/login")
-  .get(sessionChecker, function (req, res) {
-    res.render("customer/auth/login", { name: "login" });
-  })
-  .post(function (req, res) {
-    const { email, password } = req.body;
-    if (!req.body.email || !req.body.password) {
-      res.render("customer/auth/login", {
-        message: "Please enter both email and password",
-      });
-    } else {
-      Users.findOne({ email: req.body.email })
-        .then((user) => {
-          if (user.password == req.body.password) {
-            // REDIRECT TO THE dashboard
-            ssen.user = user;
-            res.redirect("/dashboard");
-          }
-        })
-        .catch((err) => {
-          res.render("customer/auth/login", {
-            message: err.message || "login err",
-          });
-        });
-    }
-  });
+  .route([dirAuth + "/login", dirAuth + "/signin"])
+  .get(Auth.get_login)
+  .post(Auth.post_login);
 
-app.get("/auth/logout", function (req, res) {
-  console.log("user logged out.");
-  ssen.user = false;
-  res.redirect("/");
-});
+app.get(dirAuth + "/logout", Auth.get_logout);
 
 };
