@@ -1,0 +1,31 @@
+
+\documentclass[msc,withpage,printonlyused]{config/pnu-seminar}
+\usepackage{xepersian}
+\settextfont[Scale=1.1]{Adobe Arabic}
+\setlatintextfont{Adobe Arabic}
+
+
+\begin{document}
+%\baselineskip=1cm
+\input{tex/fainfo}
+\thispagestyle{plain}%\cleardoublepage
+\tableofcontents
+%\include{abbr}%\clearpage
+\listoftables\clearpage
+\listoffigures\clearpage
+%\include{symbols}
+\pagenumbering{arabic}
+\include{tex/chapter1}
+\include{tex/chapter2}
+\include{tex/chapter3}
+\include{tex/chapter4}
+\include{tex/chapter5}
+\appendix
+\include{tex/appendix1}
+\include{tex/dicfa2en}
+\include{tex/dicen2fa}
+\bibliographystyle{acm-fa}
+\bibliography{tex/MyReferences}
+\printindex
+
+\end{document}
