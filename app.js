@@ -2,9 +2,14 @@
 const express = require("express");
 const path = require("path");
 const reactViews = require("express-react-views");
+
 const app = express();
 
-let ssen = {user: false};
+let ssen = {
+  user: false,
+  expires: Date.now() + 7 * 24 * 60 * 60,
+  dir: {}
+};
 
 //set static dir
 app.use(express.static(path.join(__dirname, "public")));
@@ -14,10 +19,10 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "jsx");
 app.engine("jsx", reactViews.createEngine());
 
-//routers
+//config
 require("./config/expers")(app, ssen);
-require("./routes/home")(app, ssen);
-require("./routes/auth")(app, ssen);
-require("./routes/dashboard")(app, ssen);
+
+// routes
+require("./routes/index")(app, ssen);
 
 module.exports = app;
