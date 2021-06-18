@@ -1,0 +1,32 @@
+% !TeX TS-program = 
+% !TeX encoding = UTF-8
+% !TeX spellcheck = <none>
+% !TeX root = ../گزارش.tex
+
+% config xepersian
+\settextfont[Scale=1.1]{Adobe Arabic}
+\setlatintextfont{Adobe Arabic}
+
+% chapter in toc
+\titlecontents{chapter}[0pt]
+{\bfseries \filcenter \large}
+{فصل
+	\thecontentslabel: }{}{} % That is, without page number
+
+% chapter title
+\titleformat{\chapter}[display]
+{\Huge \bfseries \filcenter}
+{\chaptertitlename	\thechapter}{20pt}{\Huge}
+
+% command abbr.tex 
+\newcommand\abbr[3]{
+	\ifthenelse{\isempty{#3}}
+	{\noindent \textbf{#1} \hspace{2pt} #2 \\}
+	{\noindent \textbf{#1} \hspace{2pt} #2 \dotfill \rl{#3} \\}
+}
+
+% command dic.tex
+\newcommand\dic[2]{\noindent #1 \dotfill \rl{#2} \\}
+
+% line vspace
+\linespread{1.3}
