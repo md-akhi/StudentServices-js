@@ -1,3 +1,83 @@
-\chapter{ساختار کار، یافته‌ها، تئوری‌ها ، (توصیفی، فرضیات،  آزمون‌ها) | تحلیل و طراحی سیستم}
+% ساختار کار، یافته‌ها، تئوری‌ها ، (توصیفی، فرضیات،  آزمون‌ها) |تحلیل و طراحی سیستم
+\chapter{طراحی و پیاده‌سازی نرم‌افزار}
+\clearpage
+
 \addcontentsline{toc}{section}{مقدمه}
 \section*{مقدمه}
+در این فصل به نحوه طراحی و پیاده سازی نرم‌افزار پرداخته شده است.
+\begin{figure}[H]
+	\includegraphics[width=.3\textwidth]{Folders-Files/all.png}
+	\centering
+	\caption{ساختار کلی پوشه‌ها}
+	\label{fig:folder-main}
+\end{figure}
+
+\section{پوشه مسیر (routes)}
+\input{tex/folder-file/مسیر}
+
+\section{پوشه کنترل (controllers)}
+\input{tex/folder-file/کنترل}
+
+\section{پوشه مدل (models)}
+\input{tex/folder-file/مدل}
+
+\section{پوشه نما (views)}
+\input{tex/folder-file/نما}
+
+\section{پوشه عمومی‌ (public)}
+\input{tex/folder-file/‌عمومی}
+
+\section{پوشه تنظیمات (config)}
+\input{tex/folder-file/تنظیمات}
+
+\section{پوشه مستندات (docs)}
+\input{tex/folder-file/مستندات}
+
+\section{پوشه گیت‌هاب (.github)}
+\input{tex/folder-file/گیت‌هاب}
+
+\section{فایل اصلی/اجرا (app.js)}
+\input{tex/folder-file/app}
+
+\subsection{فایل \LR{Environment} (.env)}
+\input{tex/folder-file/env}
+
+\subsection{فایل تاریخچه تغییرات (CHANGELOG)}
+\input{tex/folder-file/changelog}
+
+\subsection{فایل \LR{Travis CI} (.travis)}
+\input{tex/folder-file/travis}
+
+\subsection{فایل \LR{Editor Config} (.editorconfig)}
+\input{tex/folder-file/editorconfig}
+
+\subsection{فایل ESLint (.eslintrc)}
+\input{tex/folder-file/eslint}
+
+\subsection{فایل Prettier (.prettierrc)}
+\input{tex/folder-file/prettier}
+
+
+
+
+\section{ساختار پایگاه‌داده}
+در این قسمت به ساختار پایگاه داده پرداخته شده است.
+\begin{figure}[H]
+	\includegraphics[width=.7\textwidth]{Diagram/6.Class/کلی.jpg}
+	\centering
+	\caption{ساختار پایگاه داده}
+	\label{fig:db:پایگاه}
+\end{figure}
+
+\subsection{پایگاه‌داده کاربر}
+\input{tex/folder-file/پایگاه-کاربر}
+
+\subsection{پایگاه‌داده کارفرما}
+\input{tex/folder-file/پایگاه-کارفرما}
+
+\subsection{پایگاه‌داده فریلنسر}
+\input{tex/folder-file/پایگاه-فریلنسر}
+
+\subsection{پایگاه‌داده مدیریت}
+\input{tex/folder-file/پایگاه-مدیریت}
+
