@@ -1,31 +1,40 @@
+% ,draft => show img
+\documentclass[12pt,a4paper,oneside]{report}
 
-\documentclass[msc,withpage,printonlyused]{config/pnu-seminar}
-\usepackage{xepersian}
-\settextfont[Scale=1.1]{Adobe Arabic}
-\setlatintextfont{Adobe Arabic}
-
+\input{config/usepackage}
+\input{config/style}
 
 \begin{document}
-%\baselineskip=1cm
-\input{tex/fainfo}
-\thispagestyle{plain}%\cleardoublepage
+\input{tex/infoFA}
+\thispagestyle{plain}
 \tableofcontents
-%\include{abbr}%\clearpage
-\listoftables\clearpage
-\listoffigures\clearpage
-%\include{symbols}
-\pagenumbering{arabic}
-\include{tex/chapter1}
-\include{tex/chapter2}
-\include{tex/chapter3}
-\include{tex/chapter4}
-\include{tex/chapter5}
-\appendix
-\include{tex/appendix1}
-\include{tex/dicfa2en}
-\include{tex/dicen2fa}
-\bibliographystyle{acm-fa}
-\bibliography{tex/MyReferences}
-\printindex
+%\listoftables\clearpage
+\listoffigures
+\include{tex/abbr}
 
+\pagenumbering{arabic}
+
+\chapter{مقدمه}\clearpage
+\include{tex/chapter1}
+
+\chapter{مفاهیم و دانش فنی}\clearpage
+\include{tex/chapter2}
+
+\chapter{تجزیه و تحلیل نرم افزار}\clearpage
+\include{tex/chapter3}
+
+\chapter{طراحی و پیاده‌سازی نرم‌افزار}\clearpage
+\include{tex/chapter4}
+
+\chapter{جمع بندی و پیشنهادات}\clearpage
+\include{tex/chapter5}
+%\appendix
+%\include{tex/appendix1}
+\include{tex/dic}
+\include{tex/dicFA}
+\include{tex/dicEN}
+%\bibliographystyle{acm-fa}
+%\bibliography{tex/MyReferences}
+%\printindex
+\input{tex/infoEN}
 \end{document}

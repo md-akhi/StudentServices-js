@@ -1,8 +1,9 @@
-% !TeX TS-program = 
-% !TeX encoding = UTF-8
-% !TeX spellcheck = <none>
 % !TeX root = ../گزارش.tex
+% !TeX encoding = UTF-8
 
+% config xepersian
+\settextfont[Scale=1.1]{Adobe Arabic}
+\setlatintextfont{Adobe Arabic}
 % line vspace
 \linespread{1.3}
 
@@ -27,11 +28,13 @@
 % command dic.tex
 \newcommand\dic[2]{\noindent #1 \dotfill \rl{#2} \\}
 
+\definecolor{type}{HTML}{669933}
+\definecolor{str}{HTML}{cc3333}
+\definecolor{num}{HTML}{993366}
+\definecolor{func}{HTML}{336699}
+\definecolor{arg}{HTML}{336699}
+\definecolor{symb}{HTML}{737373}
 
-% config xepersian
-\settextfont[Scale=1.1]{Adobe Arabic}
-\setlatintextfont{Adobe Arabic}
+\newcommand\hr{\hspace{10pt}\rule{.85\textwidth}{0.3mm}\hspace{10pt}}
 
-
-
-
+{\rowcolors{2}{gray!10}{white!10}

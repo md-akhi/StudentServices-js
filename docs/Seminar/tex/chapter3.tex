@@ -1,59 +1,78 @@
-\chapter{تجزیه وتحلیل، مروری برکارهای انجام شده، روش پیاده سازی | تحلیل و طراحی نرم افزار}
+% !TeX root = ../گزارش.tex
+% !TeX encoding = UTF-8
+
+% تجزیه وتحلیل، مروری برکارهای انجام شده، روش پیاده سازی |تحلیل و طراحی نرم افزار
+
+
 \addcontentsline{toc}{section}{مقدمه}
 \section*{مقدمه}
-
-\begin{figure}[htbp]
+در این فصل به دیاگرام‌ها و سناریوهای نرم‌افزار پرداخته شده است.
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{Diagram/1.UseCase/main.png}
-	\caption{دیاگرام UC ساختار اصلی}
-	\label{fig:uc:main}
+	\includegraphics[width=0.7\textwidth]{Diagram/1.UseCase/کلی.jpg}
+	\caption{دیاگرام UC ساختار کلی}
+	\label{fig:uc:ساختار-کلی}
 \end{figure}
-
 
 \section{‌ثبت نام}
-\input{tex/Senario/ثبت-نام}
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{Diagram/2.Activity/ثبت-نام.png}
-	\caption{دیاگرام فعالیت ثبت‌نام}
-	\label{fig:a-ثبت-نام}
-\end{figure}
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.7\textwidth]{Diagram/3.Sequence/ثبت-نام.png}
-\caption{دیاگرام توالی ثبت‌نام}
-\label{fig:s-ثبت-نام}
-\end{figure}
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.7\textwidth]{Diagram/4.Collaboration/ثبت-نام.png}
-\caption{دیاگرام همکار ثبت‌نام}
-\label{fig:c-ثبت-نام}
-\end{figure}
+\input{tex/Senario/ثبت‌نام}
 
 \section{ورود}
 \input{tex/Senario/ورود}
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{Diagram/2.Activity/ورود.png}
-	\caption{دیاگرام فعالیت ورود}
-	\label{fig:a-ورود}
-\end{figure}
-\begin{figure}[htbp]
-	\centering
-	\includegraphics[width=0.6\textwidth]{Diagram/3.Sequence/ورود.png}
-	\caption{دیاگرام توالی ورود}
-	\label{fig:s-ورود}
-\end{figure}
-\begin{figure}[htbp]
-	\centering
-	%\includegraphics[width=0.7\textwidth]{Diagram/4.Collaboration/ورود.png}
-	\caption{دیاگرام همکار ورود}
-	\label{fig:c-ورود}
-\end{figure}
 
 \section{لیست پروژه‌ها}
+\input{tex/Senario/لیست-پروژه‌ها}
+
 \section{لیست فریلنسرها}
+\input{tex/Senario/لیست-فریلنسرها}
+
+
 \section{داشبورد کاربر}
+\input{tex/Senario/داشبورد-کاربر}
+
 \section{داشبورد کارفرما}
+\input{tex/Senario/کارفرما/داشبورد-کارفرما}
+
+\subsection{ایجاد پروژه}
+\input{tex/Senario/کارفرما/ایجاد-پروژه}
+
+\subsection{ویرایش پروژه}
+\input{tex/Senario/کارفرما/ویرایش-پروژه}
+
+\subsection{پرداخت هزینه پروژه}
+\input{tex/Senario/کارفرما/پرداخت-هزینه-پروژه}
+
+\subsection{واگذاری پروژه}
+\input{tex/Senario/کارفرما/واگذاری-پروژه}
+
+
 \section{داشبورد فریلنسر}
+\input{tex/Senario/فریلنسر/داشبورد-فریلنسر}
+
+\subsection{ایجاد رزومه}
+\input{tex/Senario/فریلنسر/ایجاد-رزومه}
+
+\subsection{ویرایش رزومه}
+\input{tex/Senario/فریلنسر/ویرایش-رزومه}
+
+\subsection{درخواست پروژه}
+\input{tex/Senario/فریلنسر/درخواست-پروژه}
+
+\subsection{دریافت هزینه پروژه}
+\input{tex/Senario/فریلنسر/دریافت-هزینه-پروژه}
+
+
+\section{داشبورد مدیریت}
+\input{tex/Senario/مدیریت/داشبورد-مدیریت}
+
+\subsection{مدیریت مالی}
+\input{tex/Senario/مدیریت/مدیریت-مالی}
+
+\subsection{شکایات/حل اختلاف}
+\input{tex/Senario/مدیریت/شکایات}
+
+\subsection{مدیریت کاربران}
+\input{tex/Senario/مدیریت/مدیریت-کاربران}
+
+\subsection{تنظیمات}
+%\input{tex/Senario/مدیریت/تنظیمات}
