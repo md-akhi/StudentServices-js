@@ -1,6 +1,10 @@
-node_modules
-.vscode
-.git
-public
-.github
-docs
+node_modules/
+.vscode/
+.git/
+public/
+.github/
+docs/
+
+
+!.eslintrc.js
+!.prettierrc.js
