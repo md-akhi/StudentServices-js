@@ -3,4 +3,4 @@ services:
 language: node_js
 node_js:
   # - "latest" # figure out how this should work! no example of this in travis ci docs
-  - "12.11.0"
+  - "14.17.3"

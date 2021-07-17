@@ -1,23 +1,28 @@
 module.exports = {
   env: {
     browser: true,
-	commonjs: true,
-	es2020: true,
-	node: true,
+    commonjs: true,
+    node: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:prettier/recommended"],
+  root: true,
+  extends: [
+    "eslint:recommended",
+    "eslint-plugin-react",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+  ],
   parserOptions: {
-	ecmaVersion: 11,
     ecmaFeatures: {
       jsx: true,
     },
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["react", "prettier"],
   rules: {
-	  	indent: ["error", "tab"],
-		"linebreak-style": ["error", "unix"],
-		quotes: ["error", "double"],
-		semi: ["error", "never"],
-	},
+    "linebreak-style": ["error", "unix"],
+    quotes: ["error", "double"],
+    semi: ["error", "always"],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+  },
 };

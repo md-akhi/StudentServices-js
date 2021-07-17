@@ -11,19 +11,16 @@
     "debug:session": "DEBUG=express-session npm start",
     "prettier": "npx prettier --write .",
     "eslint": "npx eslint .",
-    "test": "cross-env NODE_ENV=test ",
-    "pm2:runtime": "pm2-runtime start ecosystem.config.js --env production"
+    "test": "cross-env NODE_ENV=test "
   },
   "keywords": [
     "student",
     "services"
   ],
   "authors": [
-    "Mahnaz Mohammadi <mahnaz.mohamadi8613@gmail.com> (https://github.com/mohamadimahnaz)",
-    "Mohammad Amanalikhani <md.akhi.ir@gmail.com> (http://akhi.ir/)",
-    "sahar zeinivand <sahar.zeinivand95@gmail.com> (https://saharzeinivand.github.io/)"
+    "Mohammad Amanalikhani <md.akhi.ir@gmail.com> (http://akhi.ir/)"
   ],
-  "license": "",
+  "license": "UNLICENSED",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -49,16 +46,28 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "eslint": "^7.24.0",
-    "eslint-config-prettier": "^8.2.0",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.24.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.0.1",
     "nodemon": "^2.0.7",
-    "prettier": "2.2.1"
+    "prettier": "^2.2.1"
   },
-  "nodemonConfig": {
-    "ignore": [
-      "test/*",
-      "docs/*"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
     ],
-    "delay": 2500
+    "*.{html,css,less,ejs}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
