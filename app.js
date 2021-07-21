@@ -1,14 +1,24 @@
-
 const express = require("express");
 const path = require("path");
 const reactViews = require("express-react-views");
 
 const app = express();
 
-let ssen = {
-  user: false,
-  expires: Date.now() + 7 * 24 * 60 * 60,
-  dir: {}
+let infoApp = {
+  direction: {
+    // path
+    auth: "/auth",
+    customer: "customer",
+    dashboard: "/dashboard",
+    employer: "/employer",
+    frelanser: "/frelanser",
+    // template
+    tAuth: "/auth",
+    tCustomer: "customer",
+    tDashboard: "/dashboard",
+    tEmployer: "/employer",
+    tFrelanser: "/frelanser",
+  },
 };
 
 //set static dir
@@ -18,11 +28,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", __dirname + "/views");
 app.set("view engine", "jsx");
 app.engine("jsx", reactViews.createEngine());
+//app.use(favicon(__dirname + '/public/favicon.png'));
 
 //config
-require("./config/expers")(app, ssen);
+require("./config/expers")(app, infoApp);
 
 // routes
-require("./routes/index")(app, ssen);
+let routes = require("./routes/index")(infoApp);
+app.use("/", routes);
 
 module.exports = app;

@@ -1,7 +1,6 @@
-module.exports = function(app, ssen) {
-
-app.get("/", function (req, res) {
-  res.render("home", { name: "student Services", title: "Student Services" });
-});
-
+let router = require("express").Router();
+module.exports = function ( infoApp) {
+  const CHome = require("../controllers/home")(infoApp);
+  router.route("/").get(CHome.get_home);
+  return router;
 };

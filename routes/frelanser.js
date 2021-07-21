@@ -1,27 +1,30 @@
+let router = require("express").Router();
 const Users = require("../models/user");
 const Frelanser = require("../models/frelanser");
-const Employer = require("../models/employer");
 
-let dirDashboard = "/dashboard";
-let dirCustomer = "customer";
 
-module.exports = function(app, ssen) {
+module.exports = function (infoApp) {
+  const CFrelanser = require("../controllers/frelanser")(infoApp);
 
-  const Frelanser = require("../controllers/frelanser")(ssen);
+  // middleware function
+  const Mid = require("../controllers/middleware")(infoApp);
 
-// middleware function
-const Mid = require("../controllers/middleware")(ssen);
+  router.route("/").get(Mid.logInChecker, function (req, res) {
+    res.render(dir.tCustomer + dir.tDashboard + "/frelanser", {
+      name: "frelanser",
+    });
+  });
 
-app.get(dirDashboard + "/frelanser", Mid.logInChecker, function (req, res) {
-  res.render(dirCustomer + dirDashboard + "/frelanser", { name: "frelanser" });
-});
+  router.route("/request/:id").get(Mid.logInChecker, function (req, res) {
+    res.render(dir.tCustomer + dir.tDashboard + "/frelanser", {
+      name: "frelanser",
+    });
+  });
 
-app.get(dirDashboard + "/frelanser/request/:id", Mid.logInChecker, function (req, res) {
-  res.render(dirCustomer + dirDashboard + "/frelanser", { name: "frelanser" });
-});
-
-app.get(dirDashboard + "/frelanser/edit/:id", Mid.logInChecker, function (req, res) {
-  res.render(dirCustomer + dirDashboard + "/frelanser", { name: "frelanser" });
-});
-
+  router.route("/edit/:id").get(Mid.logInChecker, function (req, res) {
+    res.render(dir.tCustomer + dir.tDashboard + "/frelanser", {
+      name: "frelanser",
+    });
+  });
+  return router;
 };

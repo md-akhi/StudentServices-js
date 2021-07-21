@@ -1,26 +1,21 @@
-const Users = require("../models/user");
+let router = require("express").Router();
+module.exports = function (infoApp) {
+  const CAuth = require("../controllers/auth")(infoApp);
+  //var { check } = require("express-validator");
 
-module.exports = function(app, ssen) {
+  // root
+  router.get("/", CAuth.get_auth);
 
-const Auth = require("../controllers/auth")(ssen);
-//var { check } = require("express-validator");
+  router
+    .route(["/register", "/signup"])
+    .get(CAuth.get_register)
+    .post(CAuth.post_register);
 
-let dirAuth = "/auth";
-let dirCustomer = "customer";
+  router
+    .route(["/login", "/signin"])
+    .get(CAuth.get_login)
+    .post(CAuth.post_login);
 
-// root
-app.get(dirAuth, Auth.get_auth);
-
-app
-  .route([dirAuth + "/signup", dirAuth + "/register"])
-  .get(Auth.get_signup)
-  .post(Auth.post_signup);
-
-app
-  .route([dirAuth + "/login", dirAuth + "/signin"])
-  .get(Auth.get_login)
-  .post(Auth.post_login);
-
-app.get(dirAuth + "/logout", Auth.get_logout);
-
+  router.get("/logout", CAuth.get_logout);
+  return router;
 };
