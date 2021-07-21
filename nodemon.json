@@ -14,17 +14,11 @@
   },
   "legacyWatch": true,
   "watch": ["*.*"],
-  "watchOptions": {},
   "runOnChangeOnly": false,
   "verbose": true,
-  "stdin": true,
-  "stdout": true,
-  "delay": 2500,
-  "events": {
-    "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
-  },
+  "delay": 25000,
   "env": {
     "NODE_ENV": "development"
   },
-  "ext": "js,json"
+  "ext": "js,jsx"
 }
