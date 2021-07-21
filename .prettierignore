@@ -1,6 +1,4 @@
-node_modules/
-.vscode/
-.git/
-public/
-.github/
-docs/
+node_modules/*
+.git/*
+public/*
+docs/*
