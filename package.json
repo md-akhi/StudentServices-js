@@ -9,8 +9,6 @@
     "debug:dev": "cross-env NODE_ENV=development npm start --inspect",
     "debug:express": "DEBUG=express:*  npm start",
     "debug:session": "DEBUG=express-session npm start",
-    "prettier": "npx prettier --write .",
-    "eslint": "npx eslint .",
     "test": "cross-env NODE_ENV=test "
   },
   "keywords": [
@@ -31,7 +29,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-react-views": "^0.11.0",
-    "express-session": "^1.17.1",
+    "express-session": "^1.17.2",
     "express-validator": "^6.10.0",
     "mongoose": "^5.12.3",
     "morgan": "^1.10.0",
@@ -65,7 +63,7 @@
       "eslint --fix",
       "git add"
     ],
-    "*.{html,css,less,ejs}": [
+    "*.{html,css,sass}": [
       "prettier --write",
       "git add"
     ]
