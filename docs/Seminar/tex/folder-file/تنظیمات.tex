@@ -8,4 +8,69 @@
 \end{figure}
 
 \paragraph{فایل expers}
-در این فایل به تنظیمات فریم‌ورک اکسپرس پرداخته شده است.
+در این فایل به تنظیمات فریم‌ورک اکسپرس پرداخته شده است. که شامل ارتباط با پایگاه داده و فراخوانی فایل‌های .env و package.
+
+\paragraph{\rl{logInChecker}:}
+اعتبارسنجی ورود کاربر به سایت.
+\\
+\textbf{توضیحات}
+\hr
+\begin{flushleft}
+	\framebox[.9\textwidth][l]{
+		\lr{
+			\textcolor{type}{void}
+			\textcolor{func}{logInChecker}
+			\textcolor{symb}{(}
+			\textcolor{type}{object}
+			\textcolor{arg}{request}
+			\textcolor{symb}{,}
+			\textcolor{type}{object}
+			\textcolor{arg}{response}
+			\textcolor{symb}{,}
+			\textcolor{type}{object}
+			\textcolor{arg}{next}
+			\textcolor{symb}{);}
+		}
+	}
+\end{flushleft}
+بررسی طلاعات کاربری و اعتبار زمانی.
+\\
+\textbf{پارامترها}
+\hr \\[10pt]
+\begin{tabular}{|m{4cm}|m{3cm}|m{10cm}|}
+	\hline
+	\multicolumn{1}{|c}{پارامتر}
+	&
+	\multicolumn{1}{|c}{نوع}
+	&
+	\multicolumn{1}{|c|}{توضیحات}
+	\\
+	\hline
+	\multicolumn{1}{|c}{request}
+	&
+	\multicolumn{1}{|c|}{object}
+	&
+	نمایانگر درخواست HTTP و دارای خصوصیاتی برای درخواست رشته پرس‌و‌جو، پارامترها ، بدنه ، هدرهای HTTP و غیره است.
+	در این اسناد و طبق قرارداد ، از این شی همیشه به عنوان req یاد می شود (و پاسخ HTTP res است).
+	\\
+	\hline
+	\multicolumn{1}{|c}{response}
+	&
+	\multicolumn{1}{|c|}{object}
+	&
+	نمایانگر پاسخ HTTP که برنامه Express با دریافت درخواست HTTP ارسال می کند.
+	در این اسناد و طبق قرارداد ، از شی همیشه به عنوان res یاد می شود (و درخواست HTTP req است).
+	\\
+	\hline
+	\multicolumn{1}{|c}{next}
+	&
+	\multicolumn{1}{|c|}{object}
+	&
+	عملکرد میان‌افزار بعدی را نشان می دهد.
+	\\
+	\hline
+\end{tabular}
+\\[10pt]
+\textbf{خروجی}
+\hr \\
+در صورتی که کاربر به سایت وارد شده باشد یا مهلت زمانی ورود کاربر به پایان نرسیده باشد برنامه ادامه می‌یابد، در غیر این صورت به صفحه ورود به سایت هدایت می‌شود.
