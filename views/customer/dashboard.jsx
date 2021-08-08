@@ -1,15 +1,16 @@
 var React = require("react");
-const BreadCrumbComponet = require("../component/breadCrumb");
-const StatBoxComponet = require("../component/StatBox");
-const FooterLayout = require("../layouts/footer");
-const HtmlLayout = require("../layouts/html");
-const MainSidebarLayout = require("../layouts/mainSidebar");
-const NavbarLayout = require("../layouts/navbar");
-function employer(props) {
+
+const BreadCrumbComponet = require("./component/breadCrumb");
+const StatBoxComponet = require("./component/StatBox");
+const FooterLayout = require("./layouts/footer");
+const HtmlLayout = require("./layouts/html");
+//const MainSidebarLayout = require("./layouts/mainSidebar");
+const NavbarLayout = require("./layouts/navbar");
+function dashborad(props) {
   return (
-    <HtmlLayout class="hold-transition sidebar-mini layout-fixed">
+    <HtmlLayout class="layout-fixed layout-navbar-fixed sidebar-collapse">
       <NavbarLayout></NavbarLayout>
-      <MainSidebarLayout></MainSidebarLayout>
+      {/* <MainSidebarLayout></MainSidebarLayout> */}
 
       {/* Content Wrapper. Contains page content */}
       <div className="content-wrapper">
@@ -25,8 +26,9 @@ function employer(props) {
             {/* Main row */}
             <div className="row">
               {/* Left col */}
-              <section className="col-lg-7 connectedSortable">
+              <section className="col-lg-6 connectedSortable">
                 {/* Custom tabs (Charts with tabs)*/}
+                <BreadCrumbComponet></BreadCrumbComponet>
                 <div className="card">
                   <div className="card-header">
                     <h3 className="card-title">
@@ -601,7 +603,7 @@ function employer(props) {
               </section>
               {/* /.Left col */}
               {/* right col (We are only adding the ID to make the widgets sortable)*/}
-              <section className="col-lg-5 connectedSortable">
+              <section className="col-lg-6 connectedSortable">
                 {/* Map card */}
                 <div className="card bg-gradient-primary">
                   <div className="card-header border-0">
@@ -827,4 +829,4 @@ function employer(props) {
   );
 }
 
-module.exports = employer;
+module.exports = dashborad;
