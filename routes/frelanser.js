@@ -1,30 +1,27 @@
 let router = require("express").Router();
-const Users = require("../models/user");
-const Frelanser = require("../models/frelanser");
-
 
 module.exports = function (infoApp) {
+  // middleware function
+  let Mid = require("./middleware")(infoApp);
+  router.use(Mid.sessionChecker);
+
+  // controller
   const CFrelanser = require("../controllers/frelanser")(infoApp);
 
-  // middleware function
-  const Mid = require("../controllers/middleware")(infoApp);
+  router.route("/").get(CFrelanser.getRoot);
 
-  router.route("/").get(Mid.logInChecker, function (req, res) {
-    res.render(dir.tCustomer + dir.tDashboard + "/frelanser", {
-      name: "frelanser",
-    });
-  });
+  router
+    .route("/request/add/:id")
+    .get(CFrelanser.getAddRequest)
+    .post(CFrelanser.postAddRequest);
 
-  router.route("/request/:id").get(Mid.logInChecker, function (req, res) {
-    res.render(dir.tCustomer + dir.tDashboard + "/frelanser", {
-      name: "frelanser",
-    });
-  });
-
-  router.route("/edit/:id").get(Mid.logInChecker, function (req, res) {
-    res.render(dir.tCustomer + dir.tDashboard + "/frelanser", {
-      name: "frelanser",
-    });
-  });
+  router
+    .route("/request/edit/:id")
+    .get(CFrelanser.getEditRequest)
+    .post(CFrelanser.postEditRequest);
+  router
+    .route("/request/del/:id")
+    .get(CFrelanser.getDelRequest)
+    .post(CFrelanser.postDelRequest);
   return router;
 };

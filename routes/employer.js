@@ -1,34 +1,44 @@
 let router = require("express").Router();
-const MUsers = require("../models/user");
-const MEmployer = require("../models/employer");
 
-let dir.tDashboard = "/dashboard";
-let dir.tCustomer = "customer";
 module.exports = function (infoApp) {
+  // middleware function
+  let Mid = require("./middleware")(infoApp);
+  router.use(Mid.sessionChecker);
+
+  // controller
   const CEmployer = require("../controllers/employer")(infoApp);
 
-  // middleware function
-  const Mid = require("../controllers/middleware")(infoApp);
+  // root
+  router.route("/").get(CEmployer.getRoot);
 
-  router.route("/").get(CEmployer.get_employer);
+  router.route("/project").get(CEmployer.getProject);
 
-  router.route("/add/:id").get(Mid.logInChecker, function (req, res) {
-    res.render(dir.tCustomer + dir.tDashboard + "/employer", {
-      name: "employer",
-    });
-    ``;
-  });
+  router
+    .route("/project/add")
+    .get(CEmployer.getAddProject)
+    .post(CEmployer.postAddProject);
 
-  router.route("/edit/:id").get(Mid.logInChecker, function (req, res) {
-    res.render(dir.tCustomer + dir.tDashboard + "/employer", {
-      name: "employer",
-    });
-  });
+  router
+    .route("/project/edit/:id")
+    .get(CEmployer.getEditProject)
+    .post(CEmployer.postEditProject);
 
-  router.route("/pay/:id").get(Mid.logInChecker, function (req, res) {
-    res.render(dir.tCustomer + dir.tDashboard + "/employer", {
-      name: "employer",
-    });
-  });
+  router
+    .route("/project/detail/:id")
+    .get(CEmployer.getDetailProject)
+    .post(CEmployer.postDetailProject);
+
+  router.route("/project/del/:id").get(CEmployer.getDeleteProject);
+
+  router
+    .route("/invoice/:id")
+    .get(CEmployer.getInvoiceProject)
+    .post(CEmployer.postInvoiceProject);
+
+  router
+    .route("/invoice/print/:id")
+    .get(CEmployer.getInvoicePrintProject)
+    .post(CEmployer.postInvoicePrintProject);
+
   return router;
 };

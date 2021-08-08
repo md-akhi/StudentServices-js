@@ -1,6 +1,13 @@
 let router = require("express").Router();
-module.exports = function ( infoApp) {
+
+module.exports = function (infoApp) {
+  // middleware function
+  let Mid = require("./middleware")(infoApp);
+  router.use(Mid.sessionChecker);
+
+  // controller
   const CHome = require("../controllers/home")(infoApp);
-  router.route("/").get(CHome.get_home);
+  // root
+  router.route("/").get(CHome.getRoot);
   return router;
 };

@@ -1,21 +1,23 @@
 let router = require("express").Router();
+//var { check } = require("express-validator");
+
 module.exports = function (infoApp) {
+  // middleware function
+  let Mid = require("./middleware")(infoApp);
+  router.use(Mid.sessionChecker);
+  // controller
   const CAuth = require("../controllers/auth")(infoApp);
-  //var { check } = require("express-validator");
 
   // root
-  router.get("/", CAuth.get_auth);
+  router.get("/", CAuth.getRoot);
 
   router
     .route(["/register", "/signup"])
-    .get(CAuth.get_register)
-    .post(CAuth.post_register);
+    .get(CAuth.getRegister)
+    .post(CAuth.postRegister);
 
-  router
-    .route(["/login", "/signin"])
-    .get(CAuth.get_login)
-    .post(CAuth.post_login);
+  router.route(["/login", "/signin"]).get(CAuth.getLogIn).post(CAuth.postLogIn);
 
-  router.get("/logout", CAuth.get_logout);
+  router.get("/logout", CAuth.getLogOut);
   return router;
 };
