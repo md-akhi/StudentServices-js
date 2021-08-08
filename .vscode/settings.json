@@ -3,6 +3,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
+  "git.enableCommitSigning": true,
 
   // Enable per-language
   "[javascript]": {
