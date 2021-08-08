@@ -1,135 +1,144 @@
-const Users = require("../models/user");
+const MUsers = require("../models/user");
 var bcrypt = require("bcryptjs");
+const { template, path } = require("../config/static");
 
-module.exports = function(ssen) {
-
-  let dirAuth = "/auth";
-  let dirCustomer = "customer";
-
-// middleware function
-const Mid = require("../controllers/middleware")(ssen);
-
+module.exports = function (infoApp) {
+  // middleware function
+  let Mid = require("./middleware")(infoApp);
   return {
-
-    createUser: function (newUser, callback) {
-      bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(newUser.password, salt, function (err, hash) {
-          newUser.password = hash;
-          newUser.save(callback);
-        });
-      });
+    getRoot: function (req, res) {
+      res.redirect(path.CAuth() + "/login");
     },
 
-    getUserByEmail: function (email, callback) {
-      var query = { email: email };
-      Users.findOne(query, callback);
-    },
-
-    getUserById: function (id, callback) {
-      Users.findById(id, callback);
-    },
-
-    comparePassword: function (givenPassword, hash, callback) {
-      bcrypt.compare(givenPassword, hash, function (err, isMatch) {
-        if (err) throw err;
-        callback(null, isMatch);
-      });
-    },
-
-    getAllUsers: function (callback) {
-      Users.find(callback);
-    },
-
-    get_auth: function (req, res) {
-      res.redirect(dirAuth + "/login");
-    },
-
-    get_signup: [
+    getRegister: [
       Mid.logInChecker,
       function (req, res) {
-        res.render(dirCustomer + dirAuth + "/signup", { name: "signup" });
-      }
+        res.render(template.CAuth() + "/register", {
+          name: "register",
+        });
+      },
     ],
 
-    post_signup: function (req, res) {
+    postRegister: function (req, res) {
       // check('fullname', "نام اجباری است")
       // check('email', "ایمیل اجباری است", 'ایمیل وجود دارد');
       // check('password', " رمز عبوراجباری است", 'پسوردها یکسان نیستند');
       // check("email", "ایمیل نامعتبر است").isEmail()
-      const { fullname, email, password, passwordConfirmation } = req.body;
+      const {
+        firstname,
+        lastname,
+        email,
+        password,
+        retypePassword,
+        terms,
+      } = req.body;
       if (!req.body.email || !req.body.password) {
-        res.render(dirCustomer + dirAuth + "/signup", { message: "Invalid credentials!" });
+        res.render(template.CAuth() + "/register", {
+          message: "Invalid credentials!",
+        });
       } else {
-        Users.findOne({ email: req.body.email })
+        MUsers.findOne({ "email.now": email })
           .then((user) => {
-            if (user.email === req.body.email) {
-              res.render(dirCustomer + dirAuth + "/signup", {
+            if (user.email.now === email) {
+              res.render(template.CAuth() + "/register", {
                 message: "User Already Exists! Login or choose another user id",
               });
             }
           })
           .catch((err) => {
-            res.render(dirCustomer + dirAuth + "/signup", {
-              message: err.message || "failed db",
+            res.render(template.CAuth() + "/register", {
+              message: "not error",
             });
           });
 
-        const newUser = new Users({
-          fullname: fullname,
-          email: email,
-          password: password,
+        let newUser = new MUsers({
+          name: { first: firstname, last: lastname },
+          email: { now: email },
+          password: { now: password },
         });
         newUser
           .save(newUser)
           .then((user) => {
             // REDIRECT TO THE dashboard
-            ssen.user = user;
-            res.redirect("/dashboard");
+            infoApp.session.user = user;
+            infoApp.session.login = true;
+            res.redirect(path.CDashboard());
           })
           .catch((err) => {
-            res.render(dirCustomer + dirAuth + "/signup", {
-              message: err.message || "failed save db",
+            res.render(template.CAuth() + "/register", {
+              message: "failed set to db",
             });
           });
       }
     },
 
-    get_login: [
+    getLogIn: [
       Mid.logInChecker,
       function (req, res) {
-        res.render(dirCustomer + dirAuth + "/login", { name: "login" });
-      }
+        res.render(template.CAuth() + "/login", {
+          redirect: req.query.redirect,
+        });
+      },
     ],
 
-    post_login: function (req, res) {
+    postLogIn: function (req, res) {
       const { email, password } = req.body;
-      if (!req.body.email || !req.body.password) {
-        res.render(dirCustomer + dirAuth + "/login", {
+      let redirect = req.query.redirect;
+      if (!email || !password) {
+        res.render(template.CAuth() + "/login", {
           message: "Please enter both email and password",
         });
       } else {
-        Users.findOne({ email: req.body.email })
+        MUsers.findOne({ "email.now": email })
           .then((user) => {
-            if (user.password == req.body.password) {
+            if (user.password.now === password) {
               // REDIRECT TO THE dashboard
-              ssen.user = user;
-              res.redirect("/dashboard");
+              infoApp.session.user = user;
+              infoApp.session.login = true;
+              if (redirect) res.redirect(redirect);
+              res.redirect(path.CDashboard());
             }
           })
           .catch((err) => {
-            res.render(dirCustomer + dirAuth + "/login", {
-              message: err.message || "login err",
+            res.render(template.CAuth() + "/login", {
+              message: "login err",
             });
           });
       }
     },
 
-    get_logout: function (req, res) {
-      console.log("user logged out.");
-      ssen.user = false;
-      res.redirect("/");
+    // reset password
+    getRecover: [
+      // Mid.tokenChecker,
+      function (req, res) {
+        res.render(template.CAuth() + "/recover-password", {
+          name: "recover-password",
+        });
+      },
+    ],
+
+    postRecover: function (req, res) {
+      const { email, password } = req.body;
     },
 
-  };
+    getForgot: [
+      Mid.logInChecker,
+      function (req, res) {
+        res.render(template.CAuth() + "/forgot-password", {
+          name: "forgot-password",
+        });
+      },
+    ],
 
+    postForgot: function (req, res) {
+      const { email, password } = req.body;
+    },
+
+    getLogOut: function (req, res) {
+      console.log("user logged out.");
+      infoApp.session.user = undefined;
+      infoApp.session.login = true;
+      res.redirect("/");
+    },
+  };
 };
