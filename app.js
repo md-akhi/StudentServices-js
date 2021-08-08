@@ -2,24 +2,9 @@ const express = require("express");
 const path = require("path");
 const reactViews = require("express-react-views");
 
-const app = express();
+let app = express();
 
-let infoApp = {
-  direction: {
-    // path
-    auth: "/auth",
-    customer: "customer",
-    dashboard: "/dashboard",
-    employer: "/employer",
-    frelanser: "/frelanser",
-    // template
-    tAuth: "/auth",
-    tCustomer: "customer",
-    tDashboard: "/dashboard",
-    tEmployer: "/employer",
-    tFrelanser: "/frelanser",
-  },
-};
+let infoApp = {};
 
 //set static dir
 app.use(express.static(path.join(__dirname, "public")));

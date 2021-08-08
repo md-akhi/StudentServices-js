@@ -6,9 +6,13 @@
   "scripts": {
     "start": "nodemon app.js",
     "develop": "cross-env NODE_ENV=development npm start",
+    "webpack:start": "webpack serve --open --config webpack.dev.js",
+    "webpack:watch": "webpack --watch",
+    "webpack:build": "webpack --config webpack.prod.js",
     "debug:dev": "cross-env NODE_ENV=development npm start --inspect",
     "debug:express": "DEBUG=express:*  npm start",
     "debug:session": "DEBUG=express-session npm start",
+    "webpack:test": "mocha-webpack 'test/**/*.js",
     "test": "cross-env NODE_ENV=test "
   },
   "keywords": [
@@ -34,6 +38,7 @@
     "mongoose": "^5.12.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
+    "nodemailer": "^6.6.3",
     "randomstring": "^1.1.5",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
@@ -43,14 +48,21 @@
     "url": "https://github.com/md-akhi/studentServices.git"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.24.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.0.1",
+    "mocha": "^9.0.2",
+    "mocha-webpack": "^1.1.0",
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "webpack": "^5.46.0",
+    "webpack-stream": "^6.1.2"
   },
   "husky": {
     "hooks": {
