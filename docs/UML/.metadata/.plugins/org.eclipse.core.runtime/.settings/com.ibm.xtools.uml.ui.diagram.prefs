@@ -735,3 +735,8 @@ Themes/UML\ Modeling\ Classic/org.eclipse.gmf.runtime.diagram.ui.geoshapes.shado
 Themes/UML\ Modeling\ Classic/org.eclipse.gmf.runtime.diagram.ui.geoshapes.triangle=Yellow
 Themes/UML\ Modeling\ Classic/org.eclipse.gmf.runtime.diagram.ui.presentation.note=Yellow
 eclipse.preferences.version=1
+rulergrid.gridlevel=true
+rulergrid.gridlinecolor=12632256
+rulergrid.gridlinestyle=6
+rulergrid.gridspacing=0.125
+rulergrid.rulerunit=1
