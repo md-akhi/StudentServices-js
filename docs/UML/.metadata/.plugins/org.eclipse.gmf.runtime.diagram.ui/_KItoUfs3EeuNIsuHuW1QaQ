@@ -1,5 +1,5 @@
-#Thu Aug 12 12:53:13 IRDT 2021
-viewport.x=2
+#Tue Aug 17 11:15:20 IRDT 2021
+viewport.x=0
 zoom=1.0
 print.margin.right=0.5
 rulergrid.rulerunit=1
@@ -16,4 +16,4 @@ rulergrid.gridlevel=true
 print.margin.top=0.5
 print.useMillim=true
 print.usePortrait=true
-viewport.y=42
+viewport.y=0

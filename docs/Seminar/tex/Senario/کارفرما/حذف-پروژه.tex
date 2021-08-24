@@ -1,0 +1,93 @@
+\textbf{مورد استفاده:}
+حذف پروژه
+\\
+\textbf{شرح مختصر :UC}
+در این قسمت کارفرما پروژه خود را حذف می‌کند.
+\\
+\textbf{پيش شرط:}
+ورود به مدیریت پروژه در داشبورد کارفرما.
+\\
+\textbf{سناريو اصلی:}
+\begin{enumerate}
+	\item
+	شروع
+	\item
+	کارفرما دکمه حذف پروژه را انتخاب می‌کند و سیستم اطلاعات را به کارفرما نمایش می‌دهد.
+	\item
+	کارفرما تایید حذف پروژه را به سیستم ارسال می‌کند.
+	\item
+	سیستم پروژه را بررسی و از بانک اطلاعات حذف می‌کند.
+	\item
+	پایان
+\end{enumerate}
+
+\noindent
+\textbf{پس شرط:}
+ندارد.
+\\
+\textbf{سناريوهای فرعی:}
+\\
+\textbf{سناريو فرعی 1:}
+خطا در حذف پروژه
+\\
+\textbf{شرح مختصر :UC}
+این سناریو در مرحله ۴ سناریو اصلی در صورت خطا در روند حذف پروژه اجرا می‌شود.
+\begin{enumerate}
+	\item
+	شروع
+	\item
+	اطلاعات فرم بررسی می‌شود و خطاها مشخص می‌شوند.
+	\item
+	یک پیغام به کارفرما نمایش داده می‌شود و درخواست اصلاح روند را دارد.
+	\item
+	از مرحله 3 سناریو اصلی ادامه پیدا می‌کند.
+	\item
+	پایان
+\end{enumerate}
+
+\noindent
+\textbf{سناريو فرعی 2:}
+با موفقیت حذف شود
+\\
+\textbf{شرح مختصر :UC}
+این سناریو در مرحله ۴ سناریو اصلی در صورت موفقیت‌آمیز بودن حذف پروژه اجرا می‌شود.
+\begin{enumerate}
+	\item
+	شروع
+	\item
+	پروژه بررسی می‌شود و یک پیغام به کارفرما نمایش داده می‌شود که اطلاعات با موفقیت حذف شده است.
+	\item
+	از مرحله 4 سناریو اصلی ادامه پیدا می‌کند.
+	\item
+	پایان
+\end{enumerate}
+
+\noindent
+\textbf{پس شرط:}
+ندارد.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Diagram/2.Activity/کارفرما/مدیریت-پروژه-حذف.png}
+	\caption{دیاگرام فعالیت حذف پروژه}
+	\label{fig:a:حذف-پروژه}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Diagram/3.StateMachine/کارفرما/مدیریت-پروژه-حذف.png}
+	\caption{دیاگرام حالت ماشین حذف پروژه}
+	\label{fig:sm:حذف-پروژه}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Diagram/4.Collaboration/1.Sequence/کارفرما/مدیریت-پروژه-حذف.png}
+	\caption{دیاگرام توالی حذف پروژه}
+	\label{fig:s:حذف-پروژه}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{Diagram/4.Collaboration/2.Communication/کارفرما/مدیریت-پروژه-حذف.png}
+	\caption{دیاگرام همکار حذف پروژه}
+	\label{fig:c:حذف-پروژه}
+\end{figure}

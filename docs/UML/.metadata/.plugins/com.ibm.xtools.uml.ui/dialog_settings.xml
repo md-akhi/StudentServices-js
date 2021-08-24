@@ -8,8 +8,8 @@
 		<item value="false" key="com.ibm.xtools.uml.variable"/>
 		<item value="false" key="com.ibm.xtools.uml.enumeration"/>
 		<item value="false" key="com.ibm.xtools.uml.parameter"/>
-		<item value="false" key="com.ibm.xtools.uml.operation"/>
 		<item value="false" key="com.ibm.xtools.uml.opaqueBehavior"/>
+		<item value="false" key="com.ibm.xtools.uml.operation"/>
 		<item value="false" key="com.ibm.xtools.uml.artifact"/>
 		<item value="false" key="com.ibm.xtools.uml.stereotype"/>
 		<item value="" key="SEARCH_RESULTS_SIZE"/>
@@ -27,16 +27,16 @@
 		<item value="false" key="com.ibm.xtools.uml.primitiveType"/>
 		<item value="false" key="com.ibm.xtools.uml.collaboration"/>
 		<item value="false" key="UML Types"/>
-		<item value="false" key="com.ibm.xtools.uml.signal"/>
 		<item value="50" key="&amp;Limit number of matches to:"/>
+		<item value="false" key="com.ibm.xtools.uml.signal"/>
 		<item value="false" key="com.ibm.xtools.uml.stringExpression"/>
 		<item value="false" key="com.ibm.xtools.uml.actor"/>
 		<item value="false" key="com.ibm.xtools.uml.property"/>
 		<section name="DialogBoundsSettings">
 			<item value="430" key="DIALOG_WIDTH"/>
 			<item value="64" key="DIALOG_Y_ORIGIN"/>
-			<item value="690" key="DIALOG_HEIGHT"/>
 			<item value="754" key="DIALOG_X_ORIGIN"/>
+			<item value="690" key="DIALOG_HEIGHT"/>
 			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		</section>
 	</section>

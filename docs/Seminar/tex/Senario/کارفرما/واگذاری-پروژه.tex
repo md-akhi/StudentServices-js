@@ -5,25 +5,25 @@
 در این قسمت کارفرما پروژه را به یک فریلنسر واگذار می‌کند.
 \\
 \textbf{پيش شرط:}
-ورود به داشبورد کارفرما
+ورود به مدیریت پروژه در داشبورد کارفرما.
 \\
 \textbf{سناريو اصلی:}
 \begin{enumerate}
 \item
 شروع
 \item
-کارفرما دکمه واگذاری پروژه را انتخاب می‌کند و سیستم پیشنهادات فریلنسرها را به کارفرما نمایش می‌دهد.
+کارفرما دکمه قرارداد پروژه را انتخاب می‌کند و سیستم پیشنهادات فریلنسرها را به کارفرما نمایش می‌دهد.
 \item
-کارفرما بهترین پیشنهاد را انتخاب می‌کند و با دکمه ثبت، فریلنسر و اطلاعات پیشنهاد آن را به سیستم ارسال می‌کند.
+کارفرما بهترین پیشنهاد را انتخاب می‌کند و با دکمه تایید قرارداد را مشاهده کرده و وضعیت پیشنهاد را به سیستم ارسال می‌کند.
 \item
-سیستم اطلاعات را بررسی می‌کند و در بانک اطلاعات ثبت می‌کند.
+سیستم به فریلنسر اطلاع داده و در بانک اطلاعات ثبت می‌کند.
 \item
 پایان
 \end{enumerate}
 
 \noindent
 \textbf{پس شرط:}
-فریلنسر باید درخواست کارفرما را تایید کند.
+فریلنسر باید برای ادامه قرارداد را تایید کند.
 \\
 \textbf{سناريوهای فرعی:}
 ندارد.
@@ -35,19 +35,25 @@
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\textwidth]{Diagram/2.Activity/داشبورد-کاربر/کارفرما/واگذاری-پروژه.jpg}
+	\includegraphics[width=.8\textwidth]{Diagram/2.Activity/کارفرما/مدیریت-پروژه-قرارداد-تایید.png}
 	\caption{دیاگرام فعالیت واگذاری پروژه}
 	\label{fig:a:واگذاری-پروژه}
 \end{figure}
 \begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{Diagram/3.StateMachine/کارفرما/مدیریت-پروژه-قرارداد-تایید.png}
+\caption{دیاگرام حالت ماشین واگذاری پروژه}
+\label{fig:sm:واگذاری-پروژه}
+\end{figure}
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{Diagram/3.Sequence/داشبورد-کاربر/کارفرما/واگذاری-پروژه.jpg}
+	\includegraphics[width=1\textwidth]{Diagram/4.Collaboration/1.Sequence/کارفرما/مدیریت-پروژه-قرارداد-تایید.png}
 	\caption{دیاگرام توالی واگذاری پروژه}
 	\label{fig:s:واگذاری-پروژه}
 \end{figure}
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{Diagram/4.Collaboration/داشبورد-کاربر/کارفرما/واگذاری-پروژه.jpg}
+\includegraphics[width=0.7\textwidth]{Diagram/4.Collaboration/2.Communication/کارفرما/مدیریت-پروژه-قرارداد-تایید.png}
 \caption{دیاگرام همکار واگذاری پروژه}
 \label{fig:c:واگذاری-پروژه}
 \end{figure}

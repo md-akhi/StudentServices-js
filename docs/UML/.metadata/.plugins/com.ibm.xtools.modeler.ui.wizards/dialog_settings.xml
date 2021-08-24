@@ -9,4 +9,11 @@
 			<item value="Package" key="com.ibm.xtools.modeler.templates.blankRoseUMLModel"/>
 		</section>
 	</section>
+	<section name="Uml2XmiExportWizard">
+		<item value="false" key="Uml2XmiUML2ExportAppliedProfiles"/>
+		<item value="true" key="Uml2XmiWorkspaceSelected"/>
+		<item value="true" key="Uml2XmiRecreateIDs"/>
+		<item value="" key="Uml2XmiWorkspacePath"/>
+		<item value="" key="Uml2XmiDefaultDirectoryPath"/>
+	</section>
 </section>
