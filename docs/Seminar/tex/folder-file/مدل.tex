@@ -1,6 +1,6 @@
 % !TeX root = ../../Report.tex
 % !TeX encoding = UTF-8
-در این پوشه به بانک اطلاعات پرداخته می‌شود و تمام اطلاعات از پایگاه داده واکشی می‌شود.
+در این پوشه به ارتباط با پایگاه‌داده پرداخته می‌شود و تمام اطلاعات از پایگاه داده واکشی می‌شود.
 
 \begin{figure}[H]
 	\includegraphics[width=.3\textwidth]{Folders-Files/models.png}
@@ -10,171 +10,26 @@
 \end{figure}
 
 \subsection{فایل user}
-در این فایل به بانک اطلاعات برای ثبت اطلاعات کاربر از جمله مشخصات شناسنامه‌ای، اطلاعات کاربری و رمز و ... پرداخته شده است.
-
-\paragraph{\rl{setUser}:}
-ثبت اطلاعات کاربر.
-\\
-\textbf{توضیحات}
-\hr
-\begin{flushleft}
-	\framebox[.9\textwidth][l]{
-		\lr{
-			\textcolor{type}{void}
-			\textcolor{func}{setUser}
-			\textcolor{symb}{(}
-			\textcolor{type}{object}
-			\textcolor{arg}{newUser}
-			\textcolor{symb}{,}
-			\textcolor{type}{object}
-			\textcolor{arg}{callback}
-			\textcolor{symb}{);}
-		}
-	}
-\end{flushleft}
-ثبت طلاعات کاربر در بانک اطلاعات.
-\\
-\textbf{پارامترها}
-\hr \\[10pt]
-\begin{tabular}{|m{4cm}|m{3cm}|m{10cm}|}
-	\hline
-	\multicolumn{1}{|c}{پارامتر}
-	&
-	\multicolumn{1}{|c}{نوع}
-	&
-	\multicolumn{1}{|c|}{توضیحات}
-	\\
-	\hline
-	\multicolumn{1}{|c}{newUser}
-	&
-	\multicolumn{1}{|c|}{object}
-	&
-	0
-	\\
-	\hline
-	\multicolumn{1}{|c}{callback}
-	&
-	\multicolumn{1}{|c|}{object}
-	&
-	0
-	\\
-	\hline
-\end{tabular}
-\\[10pt]
-\textbf{خروجی}
-\hr \\
-در صورتی که ، در غیر این صورت .
-
-
-\paragraph{\rl{getUserByEmail}:}
-دریافت اطلاعات کاربر با پست الکترونیک.
-\\
-\textbf{توضیحات}
-\hr
-\begin{flushleft}
-	\framebox[.9\textwidth][l]{
-		\lr{
-			\textcolor{type}{void}
-			\textcolor{func}{getUserByEmail}
-			\textcolor{symb}{(}
-			\textcolor{type}{string}
-			\textcolor{arg}{email}
-			\textcolor{symb}{,}
-			\textcolor{type}{object}
-			\textcolor{arg}{callback}
-			\textcolor{symb}{);}
-		}
-	}
-\end{flushleft}
-دریافت طلاعات کاربر از بانک اطلاعات توسط پست الکترونیک.
-\\
-\textbf{پارامترها}
-\hr \\[10pt]
-\begin{tabular}{|m{4cm}|m{3cm}|m{10cm}|}
-	\hline
-	\multicolumn{1}{|c}{پارامتر}
-	&
-	\multicolumn{1}{|c}{نوع}
-	&
-	\multicolumn{1}{|c|}{توضیحات}
-	\\
-	\hline
-	\multicolumn{1}{|c}{email}
-	&
-	\multicolumn{1}{|c|}{string}
-	&
-	0
-	\\
-	\hline
-	\multicolumn{1}{|c}{callback}
-	&
-	\multicolumn{1}{|c|}{object}
-	&
-	0
-	\\
-	\hline
-\end{tabular}
-\\[10pt]
-\textbf{خروجی}
-\hr \\
-در صورتی که ، در غیر این صورت .
-
-
-\paragraph{\rl{getUserById}:}
-دریافت اطلاعات کاربر با ID.
-\\
-\textbf{توضیحات}
-\hr
-\begin{flushleft}
-	\framebox[.9\textwidth][l]{
-		\lr{
-			\textcolor{type}{void}
-			\textcolor{func}{getUserById}
-			\textcolor{symb}{(}
-			\textcolor{type}{int}
-			\textcolor{arg}{id}
-			\textcolor{symb}{,}
-			\textcolor{type}{object}
-			\textcolor{arg}{callback}
-			\textcolor{symb}{);}
-		}
-	}
-\end{flushleft}
-دریافت طلاعات کاربر از بانک اطلاعات توسط ID.
-\\
-\textbf{پارامترها}
-\hr \\[10pt]
-\begin{tabular}{|m{4cm}|m{3cm}|m{10cm}|}
-	\hline
-	\multicolumn{1}{|c}{پارامتر}
-	&
-	\multicolumn{1}{|c}{نوع}
-	&
-	\multicolumn{1}{|c|}{توضیحات}
-	\\
-	\hline
-	\multicolumn{1}{|c}{id}
-	&
-	\multicolumn{1}{|c|}{int}
-	&
-	0
-	\\
-	\hline
-	\multicolumn{1}{|c}{callback}
-	&
-	\multicolumn{1}{|c|}{object}
-	&
-	0
-	\\
-	\hline
-\end{tabular}
-\\[10pt]
-\textbf{خروجی}
-\hr \\
-در صورتی که ، در غیر این صورت .
+در این فایل به ارسال و دریافت اطلاعات کاربر شامل اسم، اطلاعات کاربری، رمز، نشست‌ها و ... از پایگاه‌داده پرداخته شده است.
 
 \subsection{فایل employer}
-در این فایل به بانک اطلاعات برای اطلاعات داشبورد کارفرما مانند ثبت و بروزرسانی پروژه، دریافت پیشنهادهای انجام پروژه و ... پرداخته شده است.
+در این فایل به ارسال و دریافت اطلاعات داشبورد کارفرما از پایگاه‌داده پرداخته شده است.
 
 \subsection{فایل frelanser}
-در این فایل به بانک اطلاعات برای ‌اطلاعات داشبورد فریلنسر مانند ثبت رزومه، ثبت پیشنهاد برای انجام پروژه و ... پرداخته شده است.
+در این فایل به ارسال و دریافت‌اطلاعات داشبورد فریلنسر از پایگاه‌داده پرداخته شده است.
+
+\subsection{فایل admin}
+در این فایل به ارسال و دریافت‌اطلاعات داشبورد مدیریت از پایگاه‌داده پرداخته شده است.
+
+\subsection{فایل chat}
+در این فایل به ارسال و دریافت پیام‌های ‌داخلی که شامل ارتباط کارفرما و فریلنسر، ارتباط کارفرما و مدیریت، ارتباط مهمان و مدیریت، ... از پایگاه‌داده پرداخته شده است.
+
+\subsection{فایل config}
+در این فایل به ارسال و دریافت تنظیمات عمومی از پایگاه‌داده پرداخته شده است.
+
+\subsection{فایل project}
+در این فایل به ارسال و دریافت اطلاعات پروژه از پایگاه‌داده پرداخته شده است.
+
+\subsection{فایل todo}
+در این فایل به ارسال و دریافت لیست کار از پایگاه‌داده پرداخته شده است.
+
