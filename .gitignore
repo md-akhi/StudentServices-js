@@ -106,4 +106,4 @@ dist
 
 /ex
 public/*
-package-lock.json
+/package-lock.json

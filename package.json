@@ -13,7 +13,8 @@
     "debug:express": "DEBUG=express:*  npm start",
     "debug:session": "DEBUG=express-session npm start",
     "webpack:test": "mocha-webpack 'test/**/*.js",
-    "test": "cross-env NODE_ENV=test "
+    "test": "cross-env NODE_ENV=test",
+    "prepare": "husky install"
   },
   "keywords": [
     "student",
@@ -55,7 +56,7 @@
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.24.0",
-    "husky": "^7.0.1",
+    "husky": "^7.0.2",
     "lint-staged": "^11.0.1",
     "mocha": "^9.0.2",
     "mocha-webpack": "^1.1.0",
