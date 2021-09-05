@@ -17,14 +17,7 @@ var userSchema = mongoose.Schema(
 				type: String,
 				unique: true,
 			},
-			new: {
-				type: String,
-			},
 			before: {},
-			isActive: {
-				type: Boolean,
-				default: false,
-			},
 		},
 		email: {
 			now: {
@@ -113,7 +106,7 @@ userSchema.static.getAllUsers = async function (arg) {
 	return users;
 };
 
-module.exports = mongoose.model("InfoUsers", userSchema);
+let MUser = mongoose.model("InfoUsers", userSchema);
 
 // createUser: function (newUser, callback) {
 // 	bcrypt.genSalt(10, function (err, salt) {
@@ -130,3 +123,23 @@ module.exports = mongoose.model("InfoUsers", userSchema);
 // 		callback(null, isMatch);
 // 	});
 // },
+
+var historyUserSchema = mongoose.Schema(
+	{
+		ipAddress: {
+			type: String,
+		},
+		infoSystem: { type: String },
+		createdAt: {
+			type: Date,
+			default: Date.now,
+		},
+	},
+	{ timestamps: true }
+);
+
+let MHistory = mongoose.model("historyUser", historyUserSchema);
+
+//user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+
+module.exports = { MUser, MHistory };
