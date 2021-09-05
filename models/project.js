@@ -1,12 +1,12 @@
 var mongoose = require("mongoose");
 
-const User = require("./user");
+const { MUser } = require("./user");
 
 var projectSchema = mongoose.Schema(
 	{
 		userId: {
 			type: mongoose.ObjectId,
-			ref: User,
+			ref: MUser,
 		},
 		name: {
 			type: String,
