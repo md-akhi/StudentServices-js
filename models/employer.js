@@ -1,37 +1,30 @@
 var mongoose = require("mongoose");
 
 var employerSchema = mongoose.Schema({
-  userId: {
-    type: String,
-    index: true,
-  },
-  name: {
-    type: String,
-  },
-  description: {
-    type: String,
-    trim: true
-  },
-  price: {
-    type: Number,
-  },
-  tag: {
-    type: String,
-  },
-  isActive: {
-    type: Boolean,
-    default: true
-  },
-  updated: Date,
-  created: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-// Virtual for author "full" name.
-employerSchema.virtual('name').get(function() {
-  return this.fullname;
+	userId: {
+		type: mongoose.Schema.Types.ObjectId,
+		index: true,
+	},
+	bookmark: [
+		{
+			title: { type: String },
+			projectId: { type: Number },
+		},
+	],
+	chat_status: {
+		type: String,
+		default: "offline",
+	},
+	role: {
+		type: [{ type: String }],
+		default: ["ROLE_CHAT", "ROLE_PROJECT", "ROLE_REQUEST"],
+		enum: ["ROLE_CHAT", "ROLE_PROJECT", "ROLE_REQUEST"],
+	},
+	updated: Date,
+	created: {
+		type: Date,
+		default: Date.now,
+	},
 });
 
 module.exports = mongoose.model("employer", employerSchema);
