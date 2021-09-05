@@ -1,25 +1,25 @@
 var mongoose = require("mongoose");
 
-var todoSchema = mongoose.Schema(
-  {
-    userId: {
-      type: String,
-      index: true,
-      ref: "User",
-    },
-    text: {
-      type: String,
-    },
-    date: {
-      type: Date,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-  },
-  { timestamps: true }
-);
+var todoSchema = mongoose.Schema({
+	userId: {
+		type: mongoose.Schema.Types.ObjectId,
+		index: true,
+		ref: "User",
+	},
+	title: {
+		type: String,
+	},
+	description: {
+		type: String,
+	},
+	status: {
+		type: Boolean,
+		default: true,
+	},
+	order: {
+		type: Number,
+	},
+});
 
 module.exports = mongoose.model("todo", todoSchema);
 
