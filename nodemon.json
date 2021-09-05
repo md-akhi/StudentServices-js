@@ -1,14 +1,7 @@
 {
   "restartable": "rs",
   "colours": true,
-  "ignore": [
-    "/.git/*",
-    "/node_modules/*",
-    "/.vscode/*",
-    "/.github/*",
-    "/docs/*",
-    "/ex/*"
-  ],
+  "ignore": ["/.git", "/node_modules", "/.vscode", "/.github", "/docs", "/ex"],
   "execMap": {
     "js": "node --harmony"
   },
