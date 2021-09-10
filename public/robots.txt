@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /1
+Allow: /login
+Allow: /2/*
+Disallow: /*
+Disallow: /*/*
+Sitemap: https://3/sitemap.xml
