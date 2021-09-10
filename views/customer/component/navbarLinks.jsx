@@ -1,5 +1,5 @@
 var React = require("react");
-let { menuNavUP } = require("../../../config/static");
+let { menuNavUP } = require("../../../config/varStatic");
 
 function NavbarLinksComponet(props) {
   return (

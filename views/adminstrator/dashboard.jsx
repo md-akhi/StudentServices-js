@@ -1,16 +1,16 @@
 var React = require("react");
-const FooterLayout = require("../layouts/footer");
-const HtmlLayout = require("../layouts/html");
-const MainSidebarLayout = require("../layouts/mainSidebar");
-const NavbarLayout = require("../layouts/navbar");
-const BreadCrumbComponet = require("../component/breadCrumb");
-const StatBoxComponet = require("../component/StatBox");
-//const SalesGraphOneComponet = require("../component/SalesGraph1");
-//const SalesGraphTwoComponet = require("../component/SalesGraph2");
-const CalendarComponet = require("../component/Calendar");
-//const VisitorsComponet = require("../component/Visitors");
-const ChatComponet = require("../component/Chat");
-const ToDoComponet = require("../component/ToDo");
+const FooterLayout = require("./layouts/footer");
+const HtmlLayout = require("./layouts/html");
+const MainSidebarLayout = require("./layouts/mainSidebar");
+const NavbarLayout = require("./layouts/navbar");
+const BreadCrumbComponet = require("./component/breadCrumb");
+const StatBoxComponet = require("./component/StatBox");
+const SalesGraphOneComponet = require("./component/SalesGraph1");
+const SalesGraphTwoComponet = require("./component/SalesGraph2");
+const CalendarComponet = require("./component/Calendar");
+const VisitorsComponet = require("./component/Visitors");
+const ChatComponet = require("./component/Chat");
+const ToDoComponet = require("./component/ToDo");
 function frelanser(props) {
 	return (
 		<HtmlLayout class="hold-transition sidebar-mini layout-fixed">
@@ -32,17 +32,17 @@ function frelanser(props) {
 						<div className="row">
 							{/* Left col */}
 							<section className="col-lg-7 connectedSortable">
-								{/* <SalesGraphOneComponet></SalesGraphOneComponet> */}
+								<SalesGraphOneComponet></SalesGraphOneComponet>
 								<ChatComponet></ChatComponet>
 								<ToDoComponet></ToDoComponet>
 							</section>
 							{/* /.Left col */}
 							{/* right col (We are only adding the ID to make the widgets sortable)*/}
 							<section className="col-lg-5 connectedSortable">
-								{/* <VisitorsComponet></VisitorsComponet>
-								<SalesGraphTwoComponet></SalesGraphTwoComponet> */}
+								<VisitorsComponet></VisitorsComponet>
+								<SalesGraphTwoComponet></SalesGraphTwoComponet>
 								<CalendarComponet></CalendarComponet>
-			 				</section>
+							</section>
 							{/* right col */}
 						</div>
 						{/* /.row (main row) */}

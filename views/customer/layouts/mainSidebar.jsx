@@ -1,5 +1,5 @@
 var React = require("react");
-let { EMenuSidbarRight } = require("../../../config/static");
+let { EMenuSidbarRight } = require("../../../config/varStatic");
 
 function MainSidebarLayout(props) {
   return (
