@@ -19,5 +19,27 @@ module.exports = function (infoApp) {
 	router.use(path.CDashboard(), RCDashboard);
 	router.use(path.CEmployer(), RCEmployer);
 	router.use(path.CFrelanser(), RCFrelanser);
+
+	// catch undefined routes and respond with 404
+	router.use(function (req, res, next) {
+		res.status(404).send("Sorry can't find that!");
+		// respond with html page
+		if (req.accepts("html")) {
+			res.render("error/404", { url: req.url });
+			return;
+		}
+	});
+
+	// catch server errors and respond with 500
+	router.use(function (err, req, res, next) {
+		console.error(err.stack);
+		res.status(500).send("Something broke!");
+		// respond with html page
+		if (req.accepts("html")) {
+			res.render("error/500", { url: req.url });
+			return;
+		}
+	});
+
 	return router;
 };
