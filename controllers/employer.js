@@ -1,6 +1,6 @@
 const MProject = require("../models/project");
 const MEmployer = require("../models/employer");
-const { template, path } = require("../config/varStatic");
+const { template, path } = require("../config/routes");
 
 module.exports = function (infoApp) {
 	// middleware function

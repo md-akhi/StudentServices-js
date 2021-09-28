@@ -1,4 +1,4 @@
-let { path } = require("../config/varStatic");
+let { path } = require("../config/routes");
 module.exports = function (infoApp) {
 	// middleware function to check for logged-in users
 	return {

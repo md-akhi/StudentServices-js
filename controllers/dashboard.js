@@ -1,4 +1,4 @@
-const { template, path } = require("../config/varStatic");
+const { template, path } = require("../config/routes");
 module.exports = function (infoApp) {
 	// middleware function
 	const Mid = require("../controllers/middleware")(infoApp);

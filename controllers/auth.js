@@ -1,6 +1,6 @@
 const { MUser } = require("../models/user");
 var bcrypt = require("bcryptjs");
-const { template, path } = require("../config/varStatic");
+const { template, path } = require("../config/routes");
 
 module.exports = function (infoApp) {
 	// middleware function

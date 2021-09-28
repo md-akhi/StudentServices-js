@@ -1,5 +1,5 @@
 let router = require("express").Router();
-const { path } = require("../config/varStatic");
+const { path } = require("../config/routes");
 
 module.exports = function (infoApp) {
 	// middleware function
@@ -22,23 +22,15 @@ module.exports = function (infoApp) {
 
 	// catch undefined routes and respond with 404
 	router.use(function (req, res, next) {
-		res.status(404).send("Sorry can't find that!");
-		// respond with html page
-		if (req.accepts("html")) {
-			res.render("error/404", { url: req.url });
-			return;
-		}
+		//res.status(404).send("Sorry can't find that! 400");
+		res.status(404).render("error/404", { url: req.url });
 	});
 
 	// catch server errors and respond with 500
 	router.use(function (err, req, res, next) {
 		console.error(err.stack);
-		res.status(500).send("Something broke!");
-		// respond with html page
-		if (req.accepts("html")) {
-			res.render("error/500", { url: req.url });
-			return;
-		}
+		//res.status(500).send("Something broke! 5xx");
+		res.status(500).render("error/500", { url: req.url });
 	});
 
 	return router;

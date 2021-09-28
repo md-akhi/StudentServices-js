@@ -1,6 +1,6 @@
 const { User } = require("../models/user");
 const Frelanser = require("../models/frelanser");
-const { template, path } = require("../config/varStatic");
+const { template, path } = require("../config/routes");
 
 module.exports = function (infoApp) {
 	// middleware function

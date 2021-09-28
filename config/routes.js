@@ -8,7 +8,7 @@ let path = {
 	},
 	cAuth: "/auth",
 	CAuth: function () {
-		return this.Customer() + this.cAuth;
+		return this.cAuth;
 	},
 	cDashboard: "/dashboard",
 	CDashboard: function () {
@@ -69,7 +69,7 @@ let template = {
 	},
 	aAuth: "auth",
 	AAuth: function () {
-		return this.aAuth;
+		return this.Admin() + this.aAuth;
 	},
 	aDashboard: "/dashboard",
 	ADashboard: function () {
@@ -77,48 +77,7 @@ let template = {
 	},
 };
 
-let menuNavUP = {
-	Home: "/",
-	Contact: "/Contact-us",
-	Frelanser: path.CFrelanser(),
-	Employer: path.CEmployer(),
-};
-
-let EMenuSidbarRight = {
-	Project: {
-		name: "project",
-		sub: {
-			List: path.CEmployer() + "/project",
-			Add: path.CEmployer() + "/project/Add",
-		},
-	},
-	Invoice: {
-		name: "invoice",
-		sub: {
-			List: path.CEmployer() + "/invoice",
-		},
-	},
-};
-
-let FMenuSidbarRight = {
-	Project: {
-		name: "project",
-		sub: {
-			List: path.CEmployer() + "/project",
-			Add: path.CEmployer() + "/project/Add",
-		},
-	},
-	Invoice: {
-		name: "invoice",
-		sub: {
-			List: path.CEmployer() + "/invoice",
-		},
-	},
-};
 module.exports = {
 	template,
 	path,
-	menuNavUP,
-	EMenuSidbarRight,
-	FMenuSidbarRight,
 };
