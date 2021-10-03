@@ -1,8 +1,10 @@
-module.exports = function (infoApp) {
+//import Mid from "../controllers/middleware.js";
+//import { templateCustomer } from "../config/routes.cjs";
+
+export default function (infoApp) {
 	// middleware function
-	const Mid = require("../controllers/middleware")(infoApp);
+	//Mid(infoApp);
 	// middleware function to check for logged-in users
-	let dir = infoApp.direction;
 	return {
 		getRoot: function (req, res) {
 			res.render("home", {
@@ -25,4 +27,4 @@ module.exports = function (infoApp) {
 			});
 		},
 	};
-};
+}

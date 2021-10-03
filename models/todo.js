@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 var todoSchema = mongoose.Schema({
 	userId: {
@@ -21,6 +21,6 @@ var todoSchema = mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("todo", todoSchema);
-
+let MTodo = mongoose.model("todo", todoSchema);
+export default MTodo;
 //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

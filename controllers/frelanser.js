@@ -1,80 +1,78 @@
-const { User } = require("../models/user");
-const Frelanser = require("../models/frelanser");
-const { template, path } = require("../config/routes");
+//import { User } from "../models/user.js";
+//import Frelanser from "../models/frelanser.js";
+import { templateCustomer } from "../config/routes.cjs";
+import Mid from "../controllers/Middleware.js";
 
-module.exports = function (infoApp) {
-	// middleware function
-	const Mid = require("../controllers/middleware")(infoApp);
-
-	// middleware function to check for logged-in users
+export default function (infoApp) {
+	// Middleware function to check for logged-in users
 	return {
 		getRoot: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CFrelanser(), {
+				res.render(templateCustomer.Frelanser(), {
 					name: "frelanser",
 				});
 			},
 		],
 
 		getAddRequest: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CFrelanser(), {
+				res.render(templateCustomer.Frelanser(), {
 					name: "frelanser",
 				});
 			},
 		],
 		postAddRequest: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CFrelanser(), {
+				res.render(templateCustomer.Frelanser(), {
 					name: "frelddanser",
 				});
 			},
 		],
 
 		getEditRequest: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CFrelanser(), {
+				res.render(templateCustomer.Frelanser(), {
 					name: "frelanser",
 				});
 			},
 		],
 		postEditRequest: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CFrelanser(), {
+				res.render(templateCustomer.Frelanser(), {
 					name: "frelanser",
 				});
 			},
 		],
 
 		getDelRequest: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CFrelanser(), {
+				res.render(templateCustomer.Frelanser(), {
 					name: "frelanser",
 				});
 			},
 		],
 		postDelRequest: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CFrelanser(), {
+				res.render(templateCustomer.Frelanser(), {
 					name: "frelanser",
 				});
 			},
 		],
 
 		getProfile: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CFrelanser() + "/profile", {
+				res.render(templateCustomer.Frelanser() + "/profile", {
 					name: "frelanser",
 				});
 			},
 		],
 	};
-};
+}

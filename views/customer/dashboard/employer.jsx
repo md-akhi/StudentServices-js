@@ -1,26 +1,35 @@
-var React = require("react");
-const FooterLayout = require("../layouts/footer");
-const HtmlLayout = require("../layouts/html");
-const MainSidebarLayout = require("../layouts/mainSidebar");
-const NavbarLayout = require("../layouts/navbar");
-const BreadCrumbComponet = require("../component/breadCrumb");
-const StatBoxComponet = require("../component/StatBox");
-//const SalesGraphOneComponet = require("../component/SalesGraph1");
-//const SalesGraphTwoComponet = require("../component/SalesGraph2");
-const CalendarComponet = require("../component/Calendar");
-//const VisitorsComponet = require("../component/Visitors");
-const ChatComponet = require("../component/Chat");
-const ToDoComponet = require("../component/ToDo");
+import React from "react";
+
+import dataEmployer from "../../dataTemp/employer.cjs";
+import FooterLayout from "../layouts/footer";
+import HtmlLayout from "../layouts/html";
+import MainSidebarLayout from "../layouts/mainSidebar";
+import NavbarLayout from "../layouts/navbar";
+import BreadCrumbComponet from "../component/breadCrumb";
+import StatBoxComponet from "../component/StatBox";
+//import SalesGraphOneComponet from "../component/SalesGraph1";
+//import SalesGraphTwoComponet from "../component/SalesGraph2";
+import CalendarComponet from "../component/Calendar";
+//import VisitorsComponet from "../component/Visitors";
+import ChatComponet from "../component/Chat";
+import ToDoComponet from "../component/ToDo";
+
 function frelanser(props) {
 	return (
 		<HtmlLayout class="hold-transition sidebar-mini layout-fixed">
-			<NavbarLayout></NavbarLayout>
-			<MainSidebarLayout></MainSidebarLayout>
+			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
+			<MainSidebarLayout
+				Data={dataEmployer.menuSidbarRight}
+			></MainSidebarLayout>
 
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
-				<BreadCrumbComponet></BreadCrumbComponet>
+				<BreadCrumbComponet
+					Data={dataEmployer.breadCrumb}
+					Name={"Employer"}
+					Active={"Employer"}
+				></BreadCrumbComponet>
 				{/* /.content-header */}
 
 				{/* Main content */}
@@ -64,4 +73,4 @@ function frelanser(props) {
 	);
 }
 
-module.exports = frelanser;
+export default frelanser;

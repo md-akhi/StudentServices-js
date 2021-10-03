@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 var frelanserSchema = mongoose.Schema({
 	userId: {
@@ -43,6 +43,6 @@ var frelanserSchema = mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("frelanser", frelanserSchema);
-
+let MFrelanser = mongoose.model("frelanser", frelanserSchema);
+export default MFrelanser;
 //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

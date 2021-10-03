@@ -1,43 +1,43 @@
-let router = require("express").Router();
+import express from "express";
+import Mid from "../controllers/middleware.js";
+import CEmployer from "../controllers/employer.js";
 
-module.exports = function (infoApp) {
+export default function (infoApp) {
+	let router = express.Router();
+
 	// middleware function
-	let Mid = require("../controllers/middleware")(infoApp);
-	router.use(Mid.sessionChecker);
-
-	// controller
-	const CEmployer = require("../controllers/employer")(infoApp);
+	router.use(Mid(infoApp).sessionChecker);
 
 	// root
-	router.route("/").get(CEmployer.getRoot);
+	router.route("/").get(CEmployer(infoApp).getRoot);
 
-	router.route("/project").get(CEmployer.getProject);
+	router.route("/project").get(CEmployer(infoApp).getProject);
 
 	router
 		.route("/project/add")
-		.get(CEmployer.getAddProject)
-		.post(CEmployer.postAddProject);
+		.get(CEmployer(infoApp).getAddProject)
+		.post(CEmployer(infoApp).postAddProject);
 
 	router
 		.route("/project/edit/:id")
-		.get(CEmployer.getEditProject)
-		.post(CEmployer.postEditProject);
+		.get(CEmployer(infoApp).getEditProject)
+		.post(CEmployer(infoApp).postEditProject);
 
 	router
 		.route("/project/detail/:id")
-		.get(CEmployer.getDetailProject)
-		.post(CEmployer.postDetailProject);
+		.get(CEmployer(infoApp).getDetailProject)
+		.post(CEmployer(infoApp).postDetailProject);
 
-	router.route("/project/del/:id").get(CEmployer.getDeleteProject);
+	router.route("/project/del/:id").get(CEmployer(infoApp).getDeleteProject);
 
 	router
 		.route("/invoice/:id")
-		.get(CEmployer.getInvoiceProject)
-		.post(CEmployer.postInvoiceProject);
+		.get(CEmployer(infoApp).getInvoiceProject)
+		.post(CEmployer(infoApp).postInvoiceProject);
 
 	router
 		.route("/invoice/print/:id")
-		.get(CEmployer.getInvoicePrintProject);
+		.get(CEmployer(infoApp).getInvoicePrintProject);
 
 	return router;
-};
+}

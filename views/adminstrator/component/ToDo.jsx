@@ -1,6 +1,8 @@
-var React = require("react");
+import React from "react";
 
 function ToDoComponet(props) {
+	const [checked, setChecked] = React.useState(true);
+
 	return (
 		<div className="card">
 			{/* TO DO List */}
@@ -77,7 +79,8 @@ function ToDoComponet(props) {
 								value=""
 								name="todo2"
 								id="todoCheck2"
-								checked
+								defaultChecked={checked}
+								onChange={() => setChecked(!checked)}
 							/>
 							<label htmlFor="todoCheck2"></label>
 						</div>
@@ -175,4 +178,4 @@ function ToDoComponet(props) {
 	);
 }
 
-module.exports = ToDoComponet;
+export default ToDoComponet;

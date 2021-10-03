@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 var chatSchema = mongoose.Schema(
 	{
@@ -51,6 +51,6 @@ var chatSchema = mongoose.Schema(
 	{ timestamps: true }
 );
 
-module.exports = mongoose.model("chat", chatSchema);
-
+let MChat = mongoose.model("chat", chatSchema);
+export default MChat;
 //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

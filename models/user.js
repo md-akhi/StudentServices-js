@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 var userSchema = mongoose.Schema(
 	{
@@ -142,4 +142,4 @@ let MHistory = mongoose.model("historyUser", historyUserSchema);
 
 //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 
-module.exports = { MUser, MHistory };
+export { MUser, MHistory };

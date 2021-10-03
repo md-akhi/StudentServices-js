@@ -1,4 +1,4 @@
-var React = require("react");
+import React from "react";
 
 function VisitorsComponet(props) {
 	return (
@@ -58,4 +58,4 @@ function VisitorsComponet(props) {
 	);
 }
 
-module.exports = VisitorsComponet;
+export default VisitorsComponet;

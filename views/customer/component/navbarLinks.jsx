@@ -1,33 +1,36 @@
-var React = require("react");
-let { menuNavUP } = require("../../../config/varStatic");
+import React from "react";
 
 function NavbarLinksComponet(props) {
-  return (
-    <ul className="navbar-nav">
-      <li className="nav-item">
-        <a className="nav-link" data-widget="pushmenu" href="#" role="button">
-          <i className="fas fa-bars"></i>
-        </a>
-      </li>
-      <MenuNav link={menuNavUP} />
-    </ul>
-  );
+	return (
+		<ul className="navbar-nav">
+			<MenuNav Data={props.Data} />
+		</ul>
+	);
 }
 
 function MenuNav(props) {
-  let listItems = [],
-    sum = 0;
-  Object.entries(props.link).forEach(
-    ([key, value]) =>
-      (listItems[sum++] = (
-        <li className="nav-item d-none d-sm-inline-block">
-          <a href={value} className="nav-link">
-            {key}
-          </a>
-        </li>
-      ))
-  );
-  return listItems;
+	let listItems = [],
+		sum = 0;
+	Object.entries(props.Data).forEach(([key, value]) => {
+		if (key == "widget") {
+			if (value == "pushmenu")
+				listItems[sum++] = (
+					<li className="nav-item">
+						<a className="nav-link" data-widget={value} href="#" role="button">
+							<i className="fas fa-bars"></i>
+						</a>
+					</li>
+				);
+		} else
+			listItems[sum++] = (
+				<li className="nav-item d-none d-sm-inline-block">
+					<a href={value} className="nav-link">
+						{key}
+					</a>
+				</li>
+			);
+	});
+	return listItems;
 }
 
-module.exports = NavbarLinksComponet;
+export default NavbarLinksComponet;

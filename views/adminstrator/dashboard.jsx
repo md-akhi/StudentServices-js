@@ -1,4 +1,4 @@
-var React = require("react");
+import React from "react";
 const FooterLayout = require("./layouts/footer");
 const HtmlLayout = require("./layouts/html");
 const MainSidebarLayout = require("./layouts/mainSidebar");
@@ -64,4 +64,4 @@ function frelanser(props) {
 	);
 }
 
-module.exports = frelanser;
+export default frelanser;

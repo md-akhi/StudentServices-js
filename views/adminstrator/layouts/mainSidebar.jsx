@@ -1,4 +1,4 @@
-var React = require("react");
+import React from "react";
 let { EMenuSidbarRight } = require("../../../config/varStatic");
 
 function MainSidebarLayout(props) {
@@ -238,4 +238,4 @@ function SubEMenuSidbar(props) {
 	);
 	return listItems;
 }
-module.exports = MainSidebarLayout;
+export default MainSidebarLayout;

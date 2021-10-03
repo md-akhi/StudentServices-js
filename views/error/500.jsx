@@ -1,7 +1,7 @@
-var React = require("react");
-const HtmlLayout = require("../customer/layouts/html");
+import React from "react";
+import HtmlLayout from "../customer/layouts/html";
 
-function error404(props) {
+function error500(props) {
 	return (
 		<HtmlLayout className="hold-transition">
 			{/* Content Wrapper. Contains page content */}
@@ -75,4 +75,4 @@ function error404(props) {
 	);
 }
 
-module.exports = error404;
+export default error500;

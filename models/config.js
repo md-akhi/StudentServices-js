@@ -1,26 +1,24 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-var chatSchema = mongoose.Schema(
-	{
-		emailTemplate: [
-			{
-				task: {
-					type: String,
-				},
-				subject: {
-					type: String,
-				},
-				body: {
-					type: String,
-				},
-				instruction: {
-					type: String,
-				},
+var configSchema = mongoose.Schema({
+	emailTemplate: [
+		{
+			task: {
+				type: String,
 			},
-		],
-	}
-);
+			subject: {
+				type: String,
+			},
+			body: {
+				type: String,
+			},
+			instruction: {
+				type: String,
+			},
+		},
+	],
+});
 
-module.exports = mongoose.model("chat", chatSchema);
-
+let MConfig = mongoose.model("config", configSchema);
+export default MConfig;
 //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

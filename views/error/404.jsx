@@ -1,5 +1,5 @@
-var React = require("react");
-const HtmlLayout = require("../customer/layouts/html");
+import React from "react";
+import HtmlLayout from "../customer/layouts/html";
 
 function error404(props) {
 	return (
@@ -76,4 +76,4 @@ function error404(props) {
 	);
 }
 
-module.exports = error404;
+export default error404;

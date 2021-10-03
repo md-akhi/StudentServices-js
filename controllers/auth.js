@@ -1,19 +1,19 @@
-const { MUser } = require("../models/user");
-var bcrypt = require("bcryptjs");
-const { template, path } = require("../config/routes");
+import bcrypt from "bcryptjs";
+import { MUser } from "../models/user.js";
+import { templateCustomer, pathCustomer } from "../config/routes.cjs";
+import Mid from "./middleware.js";
 
-module.exports = function (infoApp) {
+export default function (infoApp) {
 	// middleware function
-	let Mid = require("./middleware")(infoApp);
 	return {
 		getRoot: function (req, res) {
-			res.redirect(path.CAuth() + "/login");
+			res.redirect(pathCustomer.Auth() + "/login");
 		},
 
 		getRegister: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CAuth() + "/register", {
+				res.render(templateCustomer.Auth() + "/register", {
 					name: "register",
 				});
 			},
@@ -33,20 +33,20 @@ module.exports = function (infoApp) {
 				terms,
 			} = req.body;
 			if (!req.body.email || !req.body.password) {
-				res.render(template.CAuth() + "/register", {
+				res.render(templateCustomer.Auth() + "/register", {
 					message: "Invalid credentials!",
 				});
 			} else {
 				MUser.findOne({ "email.now": email })
 					.then((user) => {
 						if (user.email.now === email) {
-							res.render(template.CAuth() + "/register", {
+							res.render(templateCustomer.Auth() + "/register", {
 								message: "User Already Exists! Login or choose another user id",
 							});
 						}
 					})
 					.catch((err) => {
-						res.render(template.CAuth() + "/register", {
+						res.render(templateCustomer.Auth() + "/register", {
 							message: "not error",
 						});
 					});
@@ -62,10 +62,10 @@ module.exports = function (infoApp) {
 						// REDIRECT TO THE dashboard
 						infoApp.session.user = user;
 						infoApp.session.login = true;
-						res.redirect(path.CDashboard());
+						res.redirect(pathCustomer.Dashboard());
 					})
 					.catch((err) => {
-						res.render(template.CAuth() + "/register", {
+						res.render(templateCustomer.Auth() + "/register", {
 							message: "failed set to db",
 						});
 					});
@@ -73,9 +73,9 @@ module.exports = function (infoApp) {
 		},
 
 		getLogIn: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CAuth() + "/login", {
+				res.render(templateCustomer.Auth() + "/login", {
 					redirect: req.query.redirect,
 				});
 			},
@@ -85,7 +85,7 @@ module.exports = function (infoApp) {
 			const { email, password } = req.body;
 			let redirect = req.query.redirect;
 			if (!email || !password) {
-				res.render(template.CAuth() + "/login", {
+				res.render(templateCustomer.Auth() + "/login", {
 					message: "Please enter both email and password",
 				});
 			} else {
@@ -96,11 +96,11 @@ module.exports = function (infoApp) {
 							infoApp.session.user = user;
 							infoApp.session.login = true;
 							if (redirect) res.redirect(redirect);
-							res.redirect(path.CDashboard());
+							res.redirect(pathCustomer.Dashboard());
 						}
 					})
 					.catch((err) => {
-						res.render(template.CAuth() + "/login", {
+						res.render(templateCustomer.Auth() + "/login", {
 							message: "login err",
 						});
 					});
@@ -109,9 +109,9 @@ module.exports = function (infoApp) {
 
 		// reset password
 		getRecover: [
-			// Mid.tokenChecker,
+			// Mid(infoApp).tokenChecker,
 			function (req, res) {
-				res.render(template.CAuth() + "/recover-password", {
+				res.render(templateCustomer.Auth() + "/recover-password", {
 					name: "recover-password",
 				});
 			},
@@ -122,9 +122,9 @@ module.exports = function (infoApp) {
 		},
 
 		getForgot: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CAuth() + "/forgot-password", {
+				res.render(templateCustomer.Auth() + "/forgot-password", {
 					name: "forgot-password",
 				});
 			},
@@ -141,4 +141,4 @@ module.exports = function (infoApp) {
 			res.redirect("/");
 		},
 	};
-};
+}

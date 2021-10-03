@@ -1,14 +1,15 @@
-let router = require("express").Router();
-const MUsers = require("../models/user");
+import express from "express";
+//import MUsers from "../models/user.js";
+import Mid from "../controllers/middleware.js";
+import CDashboard from "../controllers/dashboard.js";
 
-module.exports = function (infoApp) {
+export default function (infoApp) {
+	let router = express.Router();
+
 	// middleware function
-	const Mid = require("../controllers/middleware")(infoApp);
-	router.use(Mid.sessionChecker);
+	router.use(Mid(infoApp).sessionChecker);
 
-	// controller
-	const CDashboard = require("../controllers/dashboard")(infoApp);
 	// root
-	router.route("/").get(CDashboard.getRoot);
+	router.route("/").get(CDashboard(infoApp).getRoot);
 	return router;
-};
+}

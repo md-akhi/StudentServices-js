@@ -1,4 +1,4 @@
-var React = require("react");
+import React from "react";
 
 function ChatComponet(props) {
 	return (
@@ -299,4 +299,4 @@ function ChatComponet(props) {
 	);
 }
 
-module.exports = ChatComponet;
+export default ChatComponet;

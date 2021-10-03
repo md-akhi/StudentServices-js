@@ -1,21 +1,26 @@
-var React = require("react");
+import React from "react";
 
-const FooterLayout = require("./layouts/footer");
-const HtmlLayout = require("./layouts/html");
-//const MainSidebarLayout = require("./layouts/mainSidebar");
-const NavbarLayout = require("./layouts/navbar");
-const BreadCrumbComponet = require("./component/breadCrumb");
-const StatBoxComponet = require("./component/StatBox");
+import dataDashboard from "../dataTemp/dashboard.cjs";
+import FooterLayout from "./layouts/footer";
+import HtmlLayout from "./layouts/html";
+//import MainSidebarLayout from "./layouts/mainSidebar";
+import NavbarLayout from "./layouts/navbar";
+import BreadCrumbComponet from "./component/breadCrumb";
+//import StatBoxComponet from "./component/StatBox";
+
 function dashborad(props) {
 	return (
 		<HtmlLayout class="layout-fixed layout-navbar-fixed sidebar-collapse">
-			<NavbarLayout></NavbarLayout>
+			<NavbarLayout NavbarLinks={dataDashboard.linkNavUp}></NavbarLayout>
 			{/* <MainSidebarLayout></MainSidebarLayout> */}
-
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
-				<BreadCrumbComponet></BreadCrumbComponet>
+				<BreadCrumbComponet
+					Data={dataDashboard.breadCrumb}
+					Name={"Dashboard"}
+					Active={"Dashboard"}
+				></BreadCrumbComponet>
 				{/* /.content-header */}
 
 				{/* Main content */}
@@ -27,7 +32,6 @@ function dashborad(props) {
 			</div>
 			{/* /.content-wrapper */}
 			<FooterLayout></FooterLayout>
-
 			{/* Control Sidebar */}
 			<aside className="control-sidebar control-sidebar-dark">
 				{/* Control sidebar content goes here */}
@@ -38,4 +42,4 @@ function dashborad(props) {
 	);
 }
 
-module.exports = dashborad;
+export default dashborad;

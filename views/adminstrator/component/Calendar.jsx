@@ -1,4 +1,4 @@
-var React = require("react");
+import React from "react";
 
 function CalendarComponet(props) {
 	return (
@@ -62,4 +62,4 @@ function CalendarComponet(props) {
 	);
 }
 
-module.exports = CalendarComponet;
+export default CalendarComponet;

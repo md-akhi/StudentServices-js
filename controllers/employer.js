@@ -1,23 +1,22 @@
-const MProject = require("../models/project");
-const MEmployer = require("../models/employer");
-const { template, path } = require("../config/routes");
+import MProject from "../models/project.js";
+//import MEmployer from "../models/employer.js";
+import { templateCustomer } from "../config/routes.cjs";
+import Mid from "../controllers/middleware.js";
 
-module.exports = function (infoApp) {
-	// middleware function
-	const Mid = require("../controllers/middleware")(infoApp);
+export default function (infoApp) {
 	// middleware function to check for logged-in users
 	return {
 		getRoot: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CEmployer(), {
+				res.render(templateCustomer.Employer(), {
 					name: "employer",
 				});
 			},
 		],
 
 		getProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				MProject.find(
@@ -25,7 +24,7 @@ module.exports = function (infoApp) {
 						userId: userId,
 					},
 					function (err, Project) {
-						res.render(template.CEmployer() + "/project_list", {
+						res.render(templateCustomer.Employer() + "/project_list", {
 							list: Project,
 						});
 					}
@@ -34,15 +33,15 @@ module.exports = function (infoApp) {
 		],
 
 		getAddProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CEmployer() + "/project_add", {
+				res.render(templateCustomer.Employer() + "/project_add", {
 					name: "employer",
 				});
 			},
 		],
 		postAddProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
 				const {
 					name,
@@ -71,10 +70,10 @@ module.exports = function (infoApp) {
 					.save(newPoroject)
 					.then((poroject) => {
 						// REDIRECT TO THE project
-						res.redirect(path.CEmployer() + "/project");
+						res.redirect(pathCustomer.Employer() + "/project");
 					})
 					.catch((err) => {
-						res.render(path.CEmployer() + "/project_add", {
+						res.render(pathCustomer.Employer() + "/project_add", {
 							message: "failed set to db",
 						});
 					});
@@ -82,13 +81,13 @@ module.exports = function (infoApp) {
 		],
 
 		getEditProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				let id = req.params.id;
 				MProject.find({ _id: id, userId: userId }, function (err, project) {
-					if (!project[0]) res.redirect(path.CEmployer() + "/project");
-					res.render(template.CEmployer() + "/project_add", {
+					if (!project[0]) res.redirect(pathCustomer.Employer() + "/project");
+					res.render(templateCustomer.Employer() + "/project_add", {
 						data: project[0],
 						isEdit: true,
 					});
@@ -96,7 +95,7 @@ module.exports = function (infoApp) {
 			},
 		],
 		postEditProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
 				const {
 					name,
@@ -121,27 +120,27 @@ module.exports = function (infoApp) {
 					edit.save();
 				});
 				// REDIRECT TO THE project
-				res.redirect(path.CEmployer() + "/project");
+				res.redirect(pathCustomer.Employer() + "/project");
 			},
 		],
 
 		getDetailProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				let id = req.params.id;
 				MProject.find({ _id: id, userId: userId }, function (err, project) {
-					if (!project[0]) res.redirect(path.CEmployer() + "/project");
-					res.render(template.CEmployer() + "/project_detail", {
+					if (!project[0]) res.redirect(pathCustomer.Employer() + "/project");
+					res.render(templateCustomer.Employer() + "/project_detail", {
 						data: project[0],
 					});
 				});
 			},
 		],
-		postDetailProject: [Mid.logInChecker, function (req, res) {}],
+		postDetailProject: [Mid(infoApp).logInChecker, function (req, res) {}],
 
 		getDeleteProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
 				let id = req.params.id;
 				MProject.findByIdAndDelete(id, function (err) {
@@ -149,27 +148,27 @@ module.exports = function (infoApp) {
 					console.log("Successful deletion");
 				});
 				// REDIRECT TO THE project
-				res.redirect(path.CEmployer() + "/project");
+				res.redirect(pathCustomer.Employer() + "/project");
 			},
 		],
 
 		getInvoiceProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CEmployer() + "/invoice", {
+				res.render(templateCustomer.Employer() + "/invoice", {
 					name: "employer",
 				});
 			},
 		],
-		postInvoiceProject: [Mid.logInChecker, function (req, res) {}],
+		postInvoiceProject: [Mid(infoApp).logInChecker, function (req, res) {}],
 
 		getInvoicePrintProject: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CEmployer() + "/invoice_print", {
+				res.render(templateCustomer.Employer() + "/invoice_print", {
 					name: "employer",
 				});
 			},
 		],
 	};
-};
+}

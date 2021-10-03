@@ -1,4 +1,4 @@
-var React = require("react");
+import React from "react";
 let { menuNavUP } = require("../../../config/varStatic");
 
 function NavbarLinksComponet(props) {
@@ -30,4 +30,4 @@ function MenuNav(props) {
 	return listItems;
 }
 
-module.exports = NavbarLinksComponet;
+export default NavbarLinksComponet;

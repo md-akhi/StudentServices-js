@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 var employerSchema = mongoose.Schema({
 	userId: {
@@ -27,4 +27,5 @@ var employerSchema = mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("employer", employerSchema);
+let MEmployer = mongoose.model("employer", employerSchema);
+export default MEmployer;

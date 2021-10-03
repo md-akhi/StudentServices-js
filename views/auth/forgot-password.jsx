@@ -1,5 +1,5 @@
-var React = require("react");
-const HtmlLayout = require("../customer/layouts/html");
+import React from "react";
+import HtmlLayout from "../customer/layouts/html";
 
 function forgotPassword(props) {
 	return (
@@ -50,4 +50,4 @@ function forgotPassword(props) {
 	);
 }
 
-module.exports = forgotPassword;
+export default forgotPassword;

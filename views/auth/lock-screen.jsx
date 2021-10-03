@@ -1,5 +1,5 @@
-var React = require("react");
-const HtmlLayout = require("../customer/layouts/html");
+import React from "react";
+import HtmlLayout from "../customer/layouts/html";
 
 function lockScreen(props) {
 	return (
@@ -63,4 +63,4 @@ function lockScreen(props) {
 	);
 }
 
-module.exports = lockScreen;
+export default lockScreen;

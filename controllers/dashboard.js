@@ -1,15 +1,14 @@
-const { template, path } = require("../config/routes");
-module.exports = function (infoApp) {
-	// middleware function
-	const Mid = require("../controllers/middleware")(infoApp);
+import { templateCustomer } from "../config/routes.cjs";
+import Mid from "../controllers/middleware.js";
+
+export default function (infoApp) {
 	// middleware function to check for logged-in users
-	let dir = infoApp.direction;
 	return {
 		getRoot: [
-			Mid.logInChecker,
+			Mid(infoApp).logInChecker,
 			function (req, res) {
-				res.render(template.CDashboard(), { name: "dashboard" });
+				res.render(templateCustomer.Dashboard(), { name: "dashboard" });
 			},
 		],
 	};
-};
+}

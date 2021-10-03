@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 var adminSchema = mongoose.Schema({
 	userId: {
@@ -25,6 +25,6 @@ var adminSchema = mongoose.Schema({
 	},
 });
 
-module.exports = mongoose.model("admin", adminSchema);
-
+let MAdmin = mongoose.model("admin", adminSchema);
+export default MAdmin;
 //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

@@ -1,27 +1,27 @@
-let router = require("express").Router();
+import express from "express";
+import Mid from "../controllers/middleware.js";
+import CFrelanser from "../controllers/frelanser.js";
 
-module.exports = function (infoApp) {
+export default function (infoApp) {
+	let router = express.Router();
+
 	// middleware function
-	let Mid = require("../controllers/middleware")(infoApp);
-	router.use(Mid.sessionChecker);
+	router.use(Mid(infoApp).sessionChecker);
 
-	// controller
-	const CFrelanser = require("../controllers/frelanser")(infoApp);
-
-	router.route("/").get(CFrelanser.getRoot);
+	router.route("/").get(CFrelanser(infoApp).getRoot);
 
 	router
 		.route("/request/add/:id")
-		.get(CFrelanser.getAddRequest)
-		.post(CFrelanser.postAddRequest);
+		.get(CFrelanser(infoApp).getAddRequest)
+		.post(CFrelanser(infoApp).postAddRequest);
 
 	router
 		.route("/request/edit/:id")
-		.get(CFrelanser.getEditRequest)
-		.post(CFrelanser.postEditRequest);
+		.get(CFrelanser(infoApp).getEditRequest)
+		.post(CFrelanser(infoApp).postEditRequest);
 	router
 		.route("/request/del/:id")
-		.get(CFrelanser.getDelRequest)
-		.post(CFrelanser.postDelRequest);
+		.get(CFrelanser(infoApp).getDelRequest)
+		.post(CFrelanser(infoApp).postDelRequest);
 	return router;
-};
+}

@@ -1,13 +1,13 @@
-let router = require("express").Router();
+import express from "express";
+import Mid from "../controllers/middleware.js";
+import CHome from "../controllers/home.js";
 
-module.exports = function (infoApp) {
+export default function (infoApp) {
+	let router = express.Router();
 	// middleware function
-	let Mid = require("../controllers/middleware")(infoApp);
-	router.use(Mid.sessionChecker);
+	router.use(Mid(infoApp).sessionChecker);
 
-	// controller
-	const CHome = require("../controllers/home")(infoApp);
 	// root
-	router.route("/").get(CHome.getRoot);
+	router.route("/").get(CHome(infoApp).getRoot);
 	return router;
-};
+}

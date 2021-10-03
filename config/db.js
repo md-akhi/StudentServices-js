@@ -1,6 +1,6 @@
-let mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-module.exports = function (env) {
+export default function (env) {
 	//mongoDB
 	const dbUrl =
 		env.MONGODB_URL + env.DB_NAME ||
@@ -17,4 +17,4 @@ module.exports = function (env) {
 		});
 	mongoose.connection;
 	return mongoose;
-};
+}

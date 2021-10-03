@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const { MUser } = require("./user");
+import { MUser } from "./user.js";
 
 var projectSchema = mongoose.Schema(
 	{
@@ -50,7 +50,8 @@ var projectSchema = mongoose.Schema(
 projectSchema.static("getAllProject", function (arg, callback) {
 	this.find(arg, callback);
 });
+let MProject = mongoose.model("project", projectSchema);
 
-module.exports = mongoose.model("project", projectSchema);
+export default MProject;
 
 //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

@@ -1,5 +1,5 @@
-var React = require("react");
-const HtmlLayout = require("../customer/layouts/html");
+import React from "react";
+import HtmlLayout from "../customer/layouts/html";
 
 function register(props) {
 	return (
@@ -121,4 +121,4 @@ function register(props) {
 	);
 }
 
-module.exports = register;
+export default register;

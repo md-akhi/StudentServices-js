@@ -1,6 +1,11 @@
-const express = require("express");
-const path = require("path");
-const reactViews = require("express-react-views");
+import express from "express";
+import path from "path";
+import reactViews from "express-react-views";
+import { fileURLToPath } from "url";
+import configExpress from "./config/express.js";
+import routes from "./routes/index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 let app = express();
 
@@ -16,10 +21,7 @@ app.engine("jsx", reactViews.createEngine());
 //app.use(favicon(__dirname + '/public/favicon.png'));
 
 //config
-require("./config/expers")(app, infoApp);
+app = configExpress(app, infoApp);
 
 // routes
-let routes = require("./routes/index")(infoApp);
-app.use("/", routes);
-
-module.exports = app;
+app.use("/", routes(infoApp));

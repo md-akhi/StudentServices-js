@@ -1,4 +1,4 @@
-var React = require("react");
+import React from "react";
 
 function SalesGraphOneComponet(props) {
 	return (
@@ -62,4 +62,4 @@ function SalesGraphOneComponet(props) {
 	);
 }
 
-module.exports = SalesGraphOneComponet;
+export default SalesGraphOneComponet;
