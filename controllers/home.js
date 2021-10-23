@@ -22,10 +22,28 @@ export default function (infoApp) {
 			});
 		},
 
+		userGet: function (req, res) {
+			let userId = req.params.id;
+			ModelUser.findOne({ _id: userId }, function (err, User) {
+				res.render("user_detail", {
+					item: User,
+				});
+			});
+		},
+
 		projectsGet: function (req, res) {
 			ModelProject.find({}, function (err, Project) {
 				res.render("projects_list", {
 					list: Project,
+				});
+			});
+		},
+
+		projectGet: function (req, res) {
+			let projectId = req.params.id;
+			ModelProject.findOne({ _id: projectId }, function (err, Project) {
+				res.render("project_detail", {
+					item: Project,
 				});
 			});
 		},

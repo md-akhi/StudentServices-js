@@ -1,9 +1,6 @@
 //import { User as ModelUser } from "../models/user.js";
 //import Frelanser from "../models/frelanser.js";
-import {
-	Message as ModelMassage,
-	Project as ModelProject,
-} from "../models/project.js";
+import { Message as ModelMassage } from "../models/project.js";
 import {
 	templateCustomer as Template,
 	pathCustomer as Path,
@@ -30,12 +27,12 @@ export default function (infoApp) {
 					{
 						userId: userId,
 					},
-					function (err, request) {
+					function (err, requests) {
 						res.render(Template.Frelanser() + "/request_list", {
-							list: request,
+							list: requests,
 						});
 					}
-				);
+				).populate("projectId");
 			},
 		],
 
@@ -82,15 +79,15 @@ export default function (infoApp) {
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				let id = req.params.id;
-				ModelMassage.find(
+				ModelMassage.findOne(
 					{
 						_id: id,
 						userId: userId,
 					},
 					function (err, request) {
-						if (!request[0]) res.redirect(Path.Frelanser() + "/requests");
+						if (!request) res.redirect(Path.Frelanser() + "/requests");
 						res.render(Template.Frelanser() + "/request_add", {
-							data: request[0],
+							data: request,
 							isEdit: true,
 						});
 					}
@@ -134,7 +131,7 @@ export default function (infoApp) {
 		profileGet: [
 			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				res.render(Template.Frelanser() + "/profile", {
+				res.render(Template.Frelanser() + "/user_detail", {
 					name: "frelanser",
 				});
 			},

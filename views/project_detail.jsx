@@ -4,7 +4,7 @@ import FooterLayout from "./layouts/footer";
 import HtmlLayout from "./layouts/html";
 
 function projectDetail(props) {
-	let data = props.data;
+	let data = props.item;
 	return (
 		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
 			{/* Content Wrapper. Contains page content */}
@@ -173,7 +173,8 @@ function projectDetail(props) {
 									</div>
 									<div className="col-12 col-md-12 col-lg-4 order-1 order-md-2">
 										<h3 className="text-primary">
-											<i className="fas fa-paint-brush"></i> {data.name}
+											<i className="fas fa-paint-brush"></i>
+											{data.name}
 										</h3>
 										<p className="text-muted">{data.description}</p>
 										<br />

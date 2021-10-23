@@ -89,14 +89,16 @@ function requests(props) {
 		</HtmlLayout>
 	);
 }
+
 function RequestsItem(props) {
 	let item;
 	item = props.items.map((key, value) => {
+		let project = key.projectId;
 		let str = (
 			<tr>
-				<td>{value + 1}</td>
+				<td>#{value + 1}</td>
 				<td>
-					<a>{key.name}</a>
+					{project.name}
 					<br />
 					<small>Created {new Date(key.createdAt).toDateString()}</small>
 				</td>
@@ -106,21 +108,21 @@ function RequestsItem(props) {
 				<td className="project-actions text-right">
 					<a
 						className="btn btn-primary btn-sm"
-						href={"/project/" + key.projectId}
+						href={"/project/" + project._id}
 					>
 						<i className="fas fa-folder"></i>
 						View project
 					</a>
 					<a
 						className="btn btn-info btn-sm"
-						href={"./request/" + key.id + "/edit"}
+						href={"./request/" + key._id + "/edit"}
 					>
 						<i className="fas fa-pencil-alt"></i>
 						Edit
 					</a>
 					<a
 						className="btn btn-danger btn-sm"
-						href={"./request/" + key.id + "/del"}
+						href={"./request/" + key._id + "/del"}
 					>
 						<i className="fas fa-trash"></i>
 						Delete

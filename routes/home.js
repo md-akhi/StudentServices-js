@@ -11,7 +11,10 @@ export default function (infoApp) {
 	router.route("/").get(controllerHome(infoApp).rootGet);
 
 	router.route("/projects").get(controllerHome(infoApp).projectsGet);
+	router.route("/project/:id").get(controllerHome(infoApp).projectGet);
+
 	router.route("/users").get(controllerHome(infoApp).usersGet);
+	router.route("/user/:id").get(controllerHome(infoApp).userGet);
 
 	return router;
 }

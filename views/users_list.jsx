@@ -141,20 +141,9 @@ function ProjectsItem(props) {
 					<span className="badge badge-success">Success</span>
 				</td>
 				<td className="project-actions text-right">
-					<a
-						className="btn btn-primary btn-sm"
-						href={"./project/detail/" + key.id}
-					>
+					<a className="btn btn-primary btn-sm" href={"./user/" + key.id}>
 						<i className="fas fa-folder"></i>
 						View
-					</a>
-					<a className="btn btn-info btn-sm" href={"./project/edit/" + key.id}>
-						<i className="fas fa-pencil-alt"></i>
-						Edit
-					</a>
-					<a className="btn btn-danger btn-sm" href={"./project/del/" + key.id}>
-						<i className="fas fa-trash"></i>
-						Delete
 					</a>
 				</td>
 			</tr>

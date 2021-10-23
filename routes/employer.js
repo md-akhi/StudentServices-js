@@ -32,40 +32,7 @@ export default function (infoApp) {
 		.get(ControllerEmployer(infoApp).detailProjectGet)
 		.post(ControllerEmployer(infoApp).detailProjectPost);
 
-	router
-		.route("/project/archives")
-		.get(ControllerEmployer(infoApp).archivesGet)
-		.post(ControllerEmployer(infoApp).archivesPost);
-
-	router
-		.route("/file/:id")
-		.get(ControllerEmployer(infoApp).fileGet)
-		.post(ControllerEmployer(infoApp).filePost);
-
-	router
-		.route("/task/:id")
-		.get(ControllerEmployer(infoApp).taskGet)
-		.post(ControllerEmployer(infoApp).taskPost);
-
-	router
-		.route("/bug/:id")
-		.get(ControllerEmployer(infoApp).bugGet)
-		.post(ControllerEmployer(infoApp).bugPost);
-
-	router
-		.route("/note/:id")
-		.get(ControllerEmployer(infoApp).noteGet)
-		.post(ControllerEmployer(infoApp).notePost);
-
-	router
-		.route("/payment")
-		.get(ControllerEmployer(infoApp).paymentGet)
-		.post(ControllerEmployer(infoApp).paymentPost);
-
-	router
-		.route("/invoices")
-		.get(ControllerEmployer(infoApp).invoicesGet)
-		.post(ControllerEmployer(infoApp).invoicesPost);
+	router.route("/invoices").get(ControllerEmployer(infoApp).invoicesGet);
 
 	router
 		.route("/invoice/:id")
@@ -76,45 +43,75 @@ export default function (infoApp) {
 		.route("/invoice/:id/print")
 		.get(ControllerEmployer(infoApp).invoicePrintGet);
 
-	router
-		.route("/todos")
-		.get(ControllerEmployer(infoApp).todosGet)
-		.post(ControllerEmployer(infoApp).todosPost);
+	// router
+	// 	.route("/project/archives")
+	// 	.get(ControllerEmployer(infoApp).archivesGet)
+	// 	.post(ControllerEmployer(infoApp).archivesPost);
 
-	router
-		.route("/todo/add")
-		.get(ControllerEmployer(infoApp).addTodoGet)
-		.post(ControllerEmployer(infoApp).addTodoPost);
+	// router
+	// 	.route("/file/:id")
+	// 	.get(ControllerEmployer(infoApp).fileGet)
+	// 	.post(ControllerEmployer(infoApp).filePost);
 
-	router
-		.route("/todo/:id/edit")
-		.get(ControllerEmployer(infoApp).editTodoGet)
-		.post(ControllerEmployer(infoApp).editTodoPost);
+	// router
+	// 	.route("/task/:id")
+	// 	.get(ControllerEmployer(infoApp).taskGet)
+	// 	.post(ControllerEmployer(infoApp).taskPost);
 
-	router
-		.route("/todo/:id/del")
-		.get(ControllerEmployer(infoApp).deleteTodoGet)
-		.post(ControllerEmployer(infoApp).deleteTodoPost);
+	// router
+	// 	.route("/bug/:id")
+	// 	.get(ControllerEmployer(infoApp).bugGet)
+	// 	.post(ControllerEmployer(infoApp).bugPost);
 
-	router
-		.route("/todo/:id/done")
-		.get(ControllerEmployer(infoApp).doneTodoGet)
-		.post(ControllerEmployer(infoApp).doneTodoPost);
+	// router
+	// 	.route("/note/:id")
+	// 	.get(ControllerEmployer(infoApp).noteGet)
+	// 	.post(ControllerEmployer(infoApp).notePost);
 
-	router
-		.route("/todo/:id/order")
-		.get(ControllerEmployer(infoApp).orderTodoGet)
-		.post(ControllerEmployer(infoApp).orderTodoPost);
+	// router
+	// 	.route("/payment")
+	// 	.get(ControllerEmployer(infoApp).paymentGet)
+	// 	.post(ControllerEmployer(infoApp).paymentPost);
 
-	router
-		.route("/tickets")
-		.get(ControllerEmployer(infoApp).orderTodoGet)
-		.post(ControllerEmployer(infoApp).orderTodoPost);
+	// router
+	// 	.route("/todos")
+	// 	.get(ControllerEmployer(infoApp).todosGet)
+	// 	.post(ControllerEmployer(infoApp).todosPost);
 
-	router
-		.route("/ticket/:id")
-		.get(ControllerEmployer(infoApp).orderTodoGet)
-		.post(ControllerEmployer(infoApp).orderTodoPost);
+	// router
+	// 	.route("/todo/add")
+	// 	.get(ControllerEmployer(infoApp).addTodoGet)
+	// 	.post(ControllerEmployer(infoApp).addTodoPost);
+
+	// router
+	// 	.route("/todo/:id/edit")
+	// 	.get(ControllerEmployer(infoApp).editTodoGet)
+	// 	.post(ControllerEmployer(infoApp).editTodoPost);
+
+	// router
+	// 	.route("/todo/:id/del")
+	// 	.get(ControllerEmployer(infoApp).deleteTodoGet)
+	// 	.post(ControllerEmployer(infoApp).deleteTodoPost);
+
+	// router
+	// 	.route("/todo/:id/done")
+	// 	.get(ControllerEmployer(infoApp).doneTodoGet)
+	// 	.post(ControllerEmployer(infoApp).doneTodoPost);
+
+	// router
+	// 	.route("/todo/:id/order")
+	// 	.get(ControllerEmployer(infoApp).orderTodoGet)
+	// 	.post(ControllerEmployer(infoApp).orderTodoPost);
+
+	// router
+	// 	.route("/tickets")
+	// 	.get(ControllerEmployer(infoApp).orderTodoGet)
+	// 	.post(ControllerEmployer(infoApp).orderTodoPost);
+
+	// router
+	// 	.route("/ticket/:id")
+	// 	.get(ControllerEmployer(infoApp).orderTodoGet)
+	// 	.post(ControllerEmployer(infoApp).orderTodoPost);
 
 	router.route("/profile").get(ControllerEmployer(infoApp).profileGet);
 

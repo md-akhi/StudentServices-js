@@ -73,7 +73,7 @@ export default function (infoApp) {
 					.save(newPoroject)
 					.then((poroject) => {
 						// REDIRECT TO THE project
-						res.redirect(Path.Employer() + "/project");
+						res.redirect(Path.Employer() + "/projects");
 					})
 					.catch((err) => {
 						res.render(Template.Employer() + "/project_add", {
@@ -88,13 +88,16 @@ export default function (infoApp) {
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				let id = req.params.id;
-				ModelProject.find({ _id: id, userId: userId }, function (err, project) {
-					if (!project[0]) res.redirect(Path.Employer() + "/project");
-					res.render(Template.Employer() + "/project_add", {
-						data: project[0],
-						isEdit: true,
-					});
-				});
+				ModelProject.findOne(
+					{ _id: id, userId: userId },
+					function (err, project) {
+						if (!project) res.redirect(Path.Employer() + "/projects");
+						res.render(Template.Employer() + "/project_add", {
+							data: project,
+							isEdit: true,
+						});
+					}
+				);
 			},
 		],
 		editProjectPost: [
@@ -111,7 +114,7 @@ export default function (infoApp) {
 				} = req.body;
 
 				let id = req.params.id;
-				ModelProject.findById(id, function (err, edit) {
+				ModelProject.findOne({ _id: id, userId: userId }, function (err, edit) {
 					edit.name = name;
 					edit.description = description;
 					edit.estimatedBudget = estimated;
@@ -123,7 +126,7 @@ export default function (infoApp) {
 					edit.save();
 				});
 				// REDIRECT TO THE project
-				res.redirect(Path.Employer() + "/project");
+				res.redirect(Path.Employer() + "/projects");
 			},
 		],
 
@@ -136,7 +139,7 @@ export default function (infoApp) {
 					console.log("Successful deletion");
 				});
 				// REDIRECT TO THE project
-				res.redirect(Path.Employer() + "/project");
+				res.redirect(Path.Employer() + "/projects");
 			},
 		],
 
@@ -145,12 +148,15 @@ export default function (infoApp) {
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				let id = req.params.id;
-				ModelProject.find({ _id: id, userId: userId }, function (err, project) {
-					if (!project[0]) res.redirect(Path.Employer() + "/project");
-					res.render(Template.Employer() + "/project_detail", {
-						data: project[0],
-					});
-				});
+				ModelProject.findOne(
+					{ _id: id, userId: userId },
+					function (err, project) {
+						if (!project) res.redirect(Path.Employer() + "/projects");
+						res.render(Template.Employer() + "/project_detail", {
+							data: project,
+						});
+					}
+				);
 			},
 		],
 		detailProjectPost: [
@@ -171,7 +177,9 @@ export default function (infoApp) {
 				});
 			},
 		],
-		invoicesPost: [Middleware(infoApp).logInChecker, function (req, res) {}],
+
+		invoiceGet: [Middleware(infoApp).logInChecker, function (req, res) {}],
+		invoicePost: [Middleware(infoApp).logInChecker, function (req, res) {}],
 
 		invoicePrintGet: [
 			Middleware(infoApp).logInChecker,
@@ -184,215 +192,216 @@ export default function (infoApp) {
 			},
 		],
 
-		archivesGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-				// REDIRECT TO THE project
-				res.redirect(Path.Employer() + "/project/archive");
-			},
-		],
-		archivesPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-				const { status } = req.body;
-				ModelProject.findById(id, function (err, edit) {
-					edit.status = status;
-					edit.save();
-				});
-				// REDIRECT TO THE project
-				res.redirect(Path.Employer() + "/project/archives");
-			},
-		],
+		// archivesGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 		// REDIRECT TO THE project
+		// 		res.redirect(Path.Employer() + "/project/archive");
+		// 	},
+		// ],
+		// archivesPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 		const { status } = req.body;
+		// 		ModelProject.findById(id, function (err, edit) {
+		// 			edit.status = status;
+		// 			edit.save();
+		// 		});
+		// 		// REDIRECT TO THE project
+		// 		res.redirect(Path.Employer() + "/project/archives");
+		// 	},
+		// ],
 
-		fileGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		filePost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// fileGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// filePost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		taskGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		taskPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// taskGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// taskPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		bugGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		bugPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// bugGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// bugPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		noteGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		notePost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// noteGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// notePost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		paymentGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		paymentPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// paymentGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// paymentPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		invoiceGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		invoicePost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// invoiceGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// invoicePost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		todosGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		todosPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// todosGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// todosPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		addTodoGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		addTodoPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// addTodoGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// addTodoPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		editTodoGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		editTodoPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// editTodoGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// editTodoPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		deleteTodoGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		deleteTodoPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// deleteTodoGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// deleteTodoPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		doneTodoGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		doneTodoPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// doneTodoGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// doneTodoPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
-		orderTodoGet: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
-		orderTodoPost: [
-			Middleware(infoApp).logInChecker,
-			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
-			},
-		],
+		// orderTodoGet: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
+		// orderTodoPost: [
+		// 	Middleware(infoApp).logInChecker,
+		// 	function (req, res) {
+		// 		let userId = infoApp.session.user.id;
+		// 		let id = req.params.id;
+		// 	},
+		// ],
 
 		profileGet: [
 			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
-				let id = req.params.id;
+				res.render(Template.Employer() + "/user_detail", {
+					name: "Employer",
+				});
 			},
 		],
 	};

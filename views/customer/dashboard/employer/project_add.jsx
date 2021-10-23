@@ -32,7 +32,7 @@ function projectAdd(props) {
 						{/* Main content */}
 						<section className="content">
 							<form
-								action={props.isEdit ? "./" + data.id : "./Add"}
+								action={props.isEdit ? "./edit" : "./add"}
 								method="post"
 							>
 								<div className="row">

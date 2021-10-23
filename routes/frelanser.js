@@ -27,17 +27,17 @@ export default function (infoApp) {
 		.get(ControllerFrelanser(infoApp).delRequestGet);
 
 	// router
-	// 	.route("/todo/add/:id")
+	// 	.route("/todo/add")
 	// 	.get(ControllerFrelanser(infoApp).detailProjectGet)
 	// 	.post(ControllerFrelanser(infoApp).detailProjectPost);
 
 	// router
-	// 	.route("/todo/edit/:id")
+	// 	.route("/todo/:id/edit")
 	// 	.get(ControllerFrelanser(infoApp).detailProjectGet)
 	// 	.post(ControllerFrelanser(infoApp).detailProjectPost);
 
 	// router
-	// 	.route("/todo/del/:id")
+	// 	.route("/todo/:id/del")
 	// 	.get(ControllerFrelanser(infoApp).getDetailProject)
 	// 	.post(ControllerFrelanser(infoApp).postDetailProject);
 
@@ -61,15 +61,7 @@ export default function (infoApp) {
 	// 	.get(ControllerFrelanser(infoApp).getEditProject)
 	// 	.post(ControllerFrelanser(infoApp).postEditProject);
 
-	// router
-	// 	.route("/profile")
-	// 	.get(ControllerFrelanser(infoApp).getEditProject)
-	// 	.post(ControllerFrelanser(infoApp).postEditProject);
-
-	// router
-	// 	.route("/profile/:id")
-	// 	.get(ControllerFrelanser(infoApp).getEditProject)
-	// 	.post(ControllerFrelanser(infoApp).postEditProject);
+	router.route("/profile").get(ControllerFrelanser(infoApp).profileGet);
 
 	// router
 	// 	.route("/tickets")
