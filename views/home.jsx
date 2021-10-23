@@ -18,7 +18,13 @@ function home(props) {
 					<a href="/dashboard">داشبورد کاربر</a>
 				</li>
 				<li>
-					<a href="#!/admin/dashboard">داشبورد مدیریت</a>
+					<a href="/users">کاربران</a>
+				</li>
+				<li>
+					<a href="/projects">پروژه‌ها</a>
+				</li>
+				<li>
+					<a href="/dashboard/admin">داشبورد مدیریت</a>
 				</li>
 			</ul>
 		</div>

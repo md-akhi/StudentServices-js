@@ -25,7 +25,22 @@ function dashborad(props) {
 
 				{/* Main content */}
 				<section className="content">
-					<div className="container-fluid">{/* /.row (main row) */}</div>
+					<div className="container-fluid">
+						<div className="row">
+							{/* Small boxes (Stat box) */}
+							<div className="col-lg-12">admin</div>
+						</div>
+						{/* Main row */}
+						<div className="row">
+							{/* Left col */}
+							<section className="col-lg-6">frelancer</section>
+							{/* /.Left col */}
+							{/* right col */}
+							<section className="col-lg-6">employer</section>
+							{/* right col */}
+						</div>
+						{/* /.row (main row) */}
+					</div>
 					{/* /.container-fluid */}
 				</section>
 				{/* /.content */}

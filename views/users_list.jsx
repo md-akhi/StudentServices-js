@@ -1,28 +1,15 @@
 import React from "react";
 
-import * as dataEmployer from "../../../dataTemp/employer.cjs";
-import BreadCrumbComponet from "../../component/breadCrumb";
-import FooterLayout from "../../layouts/footer";
-import HtmlLayout from "../../layouts/html";
-import MainSidebarLayout from "../../layouts/mainSidebar";
-import NavbarLayout from "../../layouts/navbar";
+import FooterLayout from "./layouts/footer";
+import HtmlLayout from "./layouts/html";
 
 function projects(props) {
 	return (
 		<HtmlLayout class="hold-transition sidebar-mini layout-fixed">
-			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
-			<MainSidebarLayout
-				Data={dataEmployer.menuSidbarRight}
-			></MainSidebarLayout>
-
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
-				<BreadCrumbComponet
-					Data={dataEmployer.breadCrumb}
-					Name={"Employer"}
-					Active={"Employer"}
-				></BreadCrumbComponet>
+
 				{/* /.content-header */}
 
 				{/* Main content */}
@@ -96,9 +83,9 @@ function ProjectsItem(props) {
 	item = props.items.map((key, value) => {
 		let str = (
 			<tr>
-				<td>#{value + 1}</td>
+				{/* <td>#{value + 1}</td> */}
 				<td>
-					<a>{key.name}</a>
+					<a>{key.isActive}</a>
 					<br />
 					<small>Created {new Date(key.createdAt).toDateString()}</small>
 				</td>
@@ -106,7 +93,7 @@ function ProjectsItem(props) {
 					<ul className="list-inline">
 						<li className="list-inline-item">
 							<a href="">
-								{key.request}
+								{key.email.now}
 								<img
 									alt="Avatar"
 									className="table-avatar"
@@ -156,22 +143,16 @@ function ProjectsItem(props) {
 				<td className="project-actions text-right">
 					<a
 						className="btn btn-primary btn-sm"
-						href={"./project/" + key.id + "/detail"}
+						href={"./project/detail/" + key.id}
 					>
 						<i className="fas fa-folder"></i>
 						View
 					</a>
-					<a
-						className="btn btn-info btn-sm"
-						href={"./project/" + key.id + "/edit"}
-					>
+					<a className="btn btn-info btn-sm" href={"./project/edit/" + key.id}>
 						<i className="fas fa-pencil-alt"></i>
 						Edit
 					</a>
-					<a
-						className="btn btn-danger btn-sm"
-						href={"./project/" + key.id + "/del"}
-					>
+					<a className="btn btn-danger btn-sm" href={"./project/del/" + key.id}>
 						<i className="fas fa-trash"></i>
 						Delete
 					</a>

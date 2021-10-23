@@ -1,5 +1,6 @@
 import React from "react";
 
+import * as dataEmployer from "../../../dataTemp/employer.cjs";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
 import HtmlLayout from "../../layouts/html";
@@ -9,13 +10,19 @@ import NavbarLayout from "../../layouts/navbar";
 function Invoice(props) {
 	return (
 		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
-			<NavbarLayout></NavbarLayout>
-			<MainSidebarLayout></MainSidebarLayout>
+			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
+			<MainSidebarLayout
+				Data={dataEmployer.menuSidbarRight}
+			></MainSidebarLayout>
 
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
-				<BreadCrumbComponet></BreadCrumbComponet>
+				<BreadCrumbComponet
+					Data={dataEmployer.breadCrumb}
+					Name={"Employer"}
+					Active={"Employer"}
+				></BreadCrumbComponet>
 				{/* /.content-header */}
 
 				{/* Main content */}

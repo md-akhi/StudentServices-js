@@ -1,28 +1,32 @@
 import React from "react";
 
-import * as dataEmployer from "../../../dataTemp/employer.cjs";
+import * as dataFrelanser from "../../../dataTemp/frelanser.cjs";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
 import HtmlLayout from "../../layouts/html";
 import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
 
-function projectAdd(props) {
+function requestAdd(props) {
 	let data = props.data;
+	let userId = <input type="hidden" name="userId" value={props.user} />;
+	let projectId = (
+		<input type="hidden" name="projectId" value={props.project} />
+	);
 	return (
 		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
-			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
+			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
-				Data={dataEmployer.menuSidbarRight}
+				Data={dataFrelanser.menuSidbarRight}
 			></MainSidebarLayout>
 
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
 				<BreadCrumbComponet
-					Data={dataEmployer.breadCrumb}
-					Name={"Employer"}
-					Active={"Employer"}
+					Data={dataFrelanser.breadCrumb}
+					Name={"Request"}
+					Active={"Add"}
 				></BreadCrumbComponet>
 				{/* /.content-header */}
 
@@ -31,10 +35,7 @@ function projectAdd(props) {
 					<div className="container-fluid">
 						{/* Main content */}
 						<section className="content">
-							<form
-								action={props.isEdit ? "./" + data.id : "./Add"}
-								method="post"
-							>
+							<form action={props.isEdit ? "./edit" : "./add"} method="post">
 								<div className="row">
 									<div className="col-md-6">
 										<div className="card card-primary">
@@ -54,18 +55,8 @@ function projectAdd(props) {
 											</div>
 											<div className="card-body">
 												<div className="form-group">
-													<label htmlFor="inputName">Project Name</label>
-													<input
-														type="text"
-														id="inputName"
-														className="form-control"
-														name="name"
-														value={props.isEdit ? data.name : ""}
-													/>
-												</div>
-												<div className="form-group">
 													<label htmlFor="inputDescription">
-														Project Description
+														Request Description
 													</label>
 													<textarea
 														id="inputDescription"
@@ -76,45 +67,6 @@ function projectAdd(props) {
 														{props.isEdit ? data.description : ""}
 													</textarea>
 												</div>
-												<div className="form-group">
-													<label htmlFor="inputStatus">Status</label>
-													<select
-														id="inputStatus"
-														className="form-control custom-select"
-														name="status"
-													>
-														<option selected disabled>
-															Select one
-														</option>
-														<option value="Hold">On Hold</option>
-														<option value="Canceled">Canceled</option>
-														<option value="Success">Success</option>
-													</select>
-												</div>
-												<div className="form-group">
-													<label htmlFor="inputClientCompany">
-														Client Company
-													</label>
-													<input
-														type="text"
-														id="inputClientCompany"
-														className="form-control"
-														name="company"
-														value={props.isEdit ? data.company : ""}
-													/>
-												</div>
-												<div className="form-group">
-													<label htmlFor="inputProjectLeader">
-														Project Leader
-													</label>
-													<input
-														type="text"
-														id="inputProjectLeader"
-														className="form-control"
-														name="leader"
-														value={props.isEdit ? data.leader : ""}
-													/>
-												</div>
 											</div>
 											{/* /.card-body */}
 										</div>
@@ -123,7 +75,7 @@ function projectAdd(props) {
 									<div className="col-md-6">
 										<div className="card card-secondary">
 											<div className="card-header">
-												<h3 className="card-title">Budget</h3>
+												<h3 className="card-title">Expense</h3>
 
 												<div className="card-tools">
 													<button
@@ -138,27 +90,13 @@ function projectAdd(props) {
 											</div>
 											<div className="card-body">
 												<div className="form-group">
-													<label htmlFor="inputEstimatedBudget">
-														Estimated budget
-													</label>
+													<label htmlFor="inputamount">Total amount</label>
 													<input
 														type="number"
-														id="inputEstimatedBudget"
+														id="inputamount"
 														className="form-control"
-														name="estimated"
-														value={props.isEdit ? data.estimatedBudget : ""}
-													/>
-												</div>
-												<div className="form-group">
-													<label htmlFor="inputSpentBudget">
-														Total amount spent
-													</label>
-													<input
-														type="number"
-														id="inputSpentBudget"
-														className="form-control"
-														name="total"
-														value={props.isEdit ? data.total : ""}
+														name="amount"
+														value={props.isEdit ? data.amount : ""}
 													/>
 												</div>
 												<div className="form-group">
@@ -186,11 +124,11 @@ function projectAdd(props) {
 										</a>
 										<input
 											type="submit"
-											value={
-												props.isEdit ? "Update Porject" : "Create new Porject"
-											}
+											value={props.isEdit ? "Update Request" : "Create Request"}
 											className="btn btn-success float-right"
 										/>
+										{!props.isEdit && userId}
+										{!props.isEdit && projectId}
 									</div>
 								</div>
 							</form>
@@ -214,4 +152,4 @@ function projectAdd(props) {
 	);
 }
 
-export default projectAdd;
+export default requestAdd;

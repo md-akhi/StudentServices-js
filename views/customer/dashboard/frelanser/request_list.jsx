@@ -1,27 +1,27 @@
 import React from "react";
 
-import * as dataEmployer from "../../../dataTemp/employer.cjs";
+import * as dataFrelanser from "../../../dataTemp/frelanser.cjs";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
 import HtmlLayout from "../../layouts/html";
 import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
 
-function projects(props) {
+function requests(props) {
 	return (
 		<HtmlLayout class="hold-transition sidebar-mini layout-fixed">
-			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
+			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
-				Data={dataEmployer.menuSidbarRight}
+				Data={dataFrelanser.menuSidbarRight}
 			></MainSidebarLayout>
 
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
 				<BreadCrumbComponet
-					Data={dataEmployer.breadCrumb}
-					Name={"Employer"}
-					Active={"Employer"}
+					Data={dataFrelanser.breadCrumb}
+					Name={"Requests"}
+					Active={"Requests"}
 				></BreadCrumbComponet>
 				{/* /.content-header */}
 
@@ -31,7 +31,7 @@ function projects(props) {
 						{/* Default box */}
 						<div className="card">
 							<div className="card-header">
-								<h3 className="card-title">Projects</h3>
+								<h3 className="card-title">requests</h3>
 
 								<div className="card-tools">
 									<button
@@ -58,16 +58,14 @@ function projects(props) {
 										<tr>
 											<th style={{ width: "1%" }}>#</th>
 											<th style={{ width: "20%" }}>Project Name</th>
-											<th style={{ width: "30%" }}>Team Members</th>
-											<th>Project Progress</th>
-											<th style={{ width: "8%" }} className="text-center">
+											<th style={{ width: "9%" }} className="text-center">
 												Status
 											</th>
-											<th style={{ width: "20%" }}></th>
+											<th style={{ width: "60%" }}></th>
 										</tr>
 									</thead>
 									<tbody>
-										<ProjectsItem items={props.list}></ProjectsItem>
+										<RequestsItem items={props.list}></RequestsItem>
 									</tbody>
 								</table>
 							</div>
@@ -91,86 +89,38 @@ function projects(props) {
 		</HtmlLayout>
 	);
 }
-function ProjectsItem(props) {
+function RequestsItem(props) {
 	let item;
 	item = props.items.map((key, value) => {
 		let str = (
 			<tr>
-				<td>#{value + 1}</td>
+				<td>{value + 1}</td>
 				<td>
 					<a>{key.name}</a>
 					<br />
 					<small>Created {new Date(key.createdAt).toDateString()}</small>
 				</td>
-				<td>
-					<ul className="list-inline">
-						<li className="list-inline-item">
-							<a href="">
-								{key.request}
-								<img
-									alt="Avatar"
-									className="table-avatar"
-									src="/img/avatar.png"
-								/>
-							</a>
-						</li>
-						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar2.png"
-							/>
-						</li>
-						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar3.png"
-							/>
-						</li>
-						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar4.png"
-							/>
-						</li>
-					</ul>
-				</td>
-				<td className="project_progress">
-					<div className="progress progress-sm">
-						<div
-							className="progress-bar bg-green"
-							role="progressbar"
-							aria-valuenow="57"
-							aria-valuemin="0"
-							aria-valuemax="100"
-							style={{ width: "57%" }}
-						></div>
-					</div>
-					<small>57% Complete</small>
-				</td>
 				<td className="project-state">
-					<span className="badge badge-success">Success</span>
+					<span className="badge badge-success">Success {key.status}</span>
 				</td>
 				<td className="project-actions text-right">
 					<a
 						className="btn btn-primary btn-sm"
-						href={"./project/" + key.id + "/detail"}
+						href={"/project/" + key.projectId}
 					>
 						<i className="fas fa-folder"></i>
-						View
+						View project
 					</a>
 					<a
 						className="btn btn-info btn-sm"
-						href={"./project/" + key.id + "/edit"}
+						href={"./request/" + key.id + "/edit"}
 					>
 						<i className="fas fa-pencil-alt"></i>
 						Edit
 					</a>
 					<a
 						className="btn btn-danger btn-sm"
-						href={"./project/" + key.id + "/del"}
+						href={"./request/" + key.id + "/del"}
 					>
 						<i className="fas fa-trash"></i>
 						Delete
@@ -182,4 +132,4 @@ function ProjectsItem(props) {
 	});
 	return item;
 }
-export default projects;
+export default requests;

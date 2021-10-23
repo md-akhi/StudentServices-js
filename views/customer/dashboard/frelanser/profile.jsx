@@ -1,5 +1,6 @@
 import React from "react";
 
+import * as dataFrelanser from "../../../dataTemp/frelanser.cjs";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
 import HtmlLayout from "../../layouts/html";
@@ -9,13 +10,19 @@ import NavbarLayout from "../../layouts/navbar";
 function Profile(props) {
 	return (
 		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
-			<NavbarLayout></NavbarLayout>
-			<MainSidebarLayout></MainSidebarLayout>
+			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
+			<MainSidebarLayout
+				Data={dataFrelanser.menuSidbarRight}
+			></MainSidebarLayout>
 
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
-				<BreadCrumbComponet></BreadCrumbComponet>
+				<BreadCrumbComponet
+					Data={dataFrelanser.breadCrumb}
+					Name={"Frelanser"}
+					Active={"Frelanser"}
+				></BreadCrumbComponet>
 				{/* /.content-header */}
 
 				{/* Main content */}
