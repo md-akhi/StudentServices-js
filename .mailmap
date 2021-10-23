@@ -1,0 +1,10 @@
+# student-services Mail Map
+#
+# This list is used by git-shortlog to fix a few botched names in the
+# git-flow repo, either because the author's full name was messed up and/or
+# not always written the same way, making contributions from the same person
+# appearing not to be so.
+#
+# https://github.com/md-akhi/studentServices
+
+Mohammad Amanalikhani <md.akhi.ir@gmail.com>
