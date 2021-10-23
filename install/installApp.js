@@ -19,7 +19,7 @@ app.engine("jsx", reactViews.createEngine());
 require("./config/expers")(app, infoApp);
 
 // routes
-let routes = require("./routes/index")(infoApp);
+let routes = require("./index")(infoApp);
 app.use("/", routes);
 
 module.exports = app;
