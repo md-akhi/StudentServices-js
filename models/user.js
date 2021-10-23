@@ -48,6 +48,21 @@ var userSchema = mongoose.Schema(
 				expires: { type: Date },
 			},
 		},
+		company: {
+			name: {
+				type: String,
+			},
+			address: {
+				type: String,
+			},
+			phone: { type: String },
+			email: {
+				type: String,
+			},
+			website: {
+				type: String,
+			},
+		},
 		isActive: {
 			type: Boolean,
 			default: true,
@@ -106,7 +121,7 @@ userSchema.static.getAllUsers = async function (arg) {
 	return users;
 };
 
-let MUser = mongoose.model("InfoUsers", userSchema);
+let User = mongoose.model("InfoUsers", userSchema);
 
 // createUser: function (newUser, callback) {
 // 	bcrypt.genSalt(10, function (err, salt) {
@@ -138,8 +153,29 @@ var historyUserSchema = mongoose.Schema(
 	{ timestamps: true }
 );
 
-let MHistory = mongoose.model("historyUser", historyUserSchema);
+let History = mongoose.model("historyUser", historyUserSchema);
 
 //user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 
-export { MUser, MHistory };
+var permissionUserSchema = mongoose.Schema(
+	{
+		createdAt: {
+			type: Date,
+			default: Date.now,
+		},
+		frelanser: {
+			type: String,
+		},
+		employer: {
+			type: String,
+		},
+		admin: {
+			type: String,
+		},
+	},
+	{ timestamps: true }
+);
+
+let Permission = mongoose.model("permissionUser", permissionUserSchema);
+
+export { User, History, Permission };
