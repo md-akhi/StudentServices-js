@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
-import { MUser } from "../models/user.js";
+import { User as ModelUser } from "../models/user.js";
 import { templateCustomer, pathCustomer } from "../config/routes.cjs";
-import Mid from "./middleware.js";
+import Middleware from "./middleware.js";
 
 export default function (infoApp) {
 	// middleware function
@@ -11,7 +11,7 @@ export default function (infoApp) {
 		},
 
 		getRegister: [
-			Mid(infoApp).logInChecker,
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				res.render(templateCustomer.Auth() + "/register", {
 					name: "register",
@@ -37,7 +37,7 @@ export default function (infoApp) {
 					message: "Invalid credentials!",
 				});
 			} else {
-				MUser.findOne({ "email.now": email })
+				ModelUser.findOne({ "email.now": email })
 					.then((user) => {
 						if (user.email.now === email) {
 							res.render(templateCustomer.Auth() + "/register", {
@@ -51,7 +51,7 @@ export default function (infoApp) {
 						});
 					});
 
-				let newUser = new MUser({
+				let newUser = new ModelUser({
 					name: { first: firstname, last: lastname },
 					email: { now: email },
 					password: { now: password },
@@ -73,7 +73,7 @@ export default function (infoApp) {
 		},
 
 		getLogIn: [
-			Mid(infoApp).logInChecker,
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				res.render(templateCustomer.Auth() + "/login", {
 					redirect: req.query.redirect,
@@ -89,7 +89,7 @@ export default function (infoApp) {
 					message: "Please enter both email and password",
 				});
 			} else {
-				MUser.findOne({ "email.now": email })
+				ModelUser.findOne({ "email.now": email })
 					.then((user) => {
 						if (user.password.now === password) {
 							// REDIRECT TO THE dashboard
@@ -109,7 +109,7 @@ export default function (infoApp) {
 
 		// reset password
 		getRecover: [
-			// Mid(infoApp).tokenChecker,
+			// Middleware(infoApp).tokenChecker,
 			function (req, res) {
 				res.render(templateCustomer.Auth() + "/recover-password", {
 					name: "recover-password",
@@ -122,7 +122,7 @@ export default function (infoApp) {
 		},
 
 		getForgot: [
-			Mid(infoApp).logInChecker,
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				res.render(templateCustomer.Auth() + "/forgot-password", {
 					name: "forgot-password",

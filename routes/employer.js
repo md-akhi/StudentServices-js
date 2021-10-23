@@ -1,43 +1,122 @@
 import express from "express";
-import Mid from "../controllers/middleware.js";
-import CEmployer from "../controllers/employer.js";
+import Middleware from "../controllers/middleware.js";
+import ControllerEmployer from "../controllers/employer.js";
 
 export default function (infoApp) {
 	let router = express.Router();
 
 	// middleware function
-	router.use(Mid(infoApp).sessionChecker);
+	router.use(Middleware(infoApp).sessionChecker);
 
 	// root
-	router.route("/").get(CEmployer(infoApp).getRoot);
+	router.route("/").get(ControllerEmployer(infoApp).rootGet);
 
-	router.route("/project").get(CEmployer(infoApp).getProject);
+	router.route("/projects").get(ControllerEmployer(infoApp).projectsGet);
 
 	router
 		.route("/project/add")
-		.get(CEmployer(infoApp).getAddProject)
-		.post(CEmployer(infoApp).postAddProject);
+		.get(ControllerEmployer(infoApp).addProjectGet)
+		.post(ControllerEmployer(infoApp).addProjectPost);
 
 	router
-		.route("/project/edit/:id")
-		.get(CEmployer(infoApp).getEditProject)
-		.post(CEmployer(infoApp).postEditProject);
+		.route("/project/:id/edit")
+		.get(ControllerEmployer(infoApp).editProjectGet)
+		.post(ControllerEmployer(infoApp).editProjectPost);
 
 	router
-		.route("/project/detail/:id")
-		.get(CEmployer(infoApp).getDetailProject)
-		.post(CEmployer(infoApp).postDetailProject);
+		.route("/project/:id/del")
+		.get(ControllerEmployer(infoApp).deleteProjectGet);
 
-	router.route("/project/del/:id").get(CEmployer(infoApp).getDeleteProject);
+	router
+		.route("/project/:id/detail")
+		.get(ControllerEmployer(infoApp).detailProjectGet)
+		.post(ControllerEmployer(infoApp).detailProjectPost);
+
+	router
+		.route("/project/archives")
+		.get(ControllerEmployer(infoApp).archivesGet)
+		.post(ControllerEmployer(infoApp).archivesPost);
+
+	router
+		.route("/file/:id")
+		.get(ControllerEmployer(infoApp).fileGet)
+		.post(ControllerEmployer(infoApp).filePost);
+
+	router
+		.route("/task/:id")
+		.get(ControllerEmployer(infoApp).taskGet)
+		.post(ControllerEmployer(infoApp).taskPost);
+
+	router
+		.route("/bug/:id")
+		.get(ControllerEmployer(infoApp).bugGet)
+		.post(ControllerEmployer(infoApp).bugPost);
+
+	router
+		.route("/note/:id")
+		.get(ControllerEmployer(infoApp).noteGet)
+		.post(ControllerEmployer(infoApp).notePost);
+
+	router
+		.route("/payment")
+		.get(ControllerEmployer(infoApp).paymentGet)
+		.post(ControllerEmployer(infoApp).paymentPost);
+
+	router
+		.route("/invoices")
+		.get(ControllerEmployer(infoApp).invoicesGet)
+		.post(ControllerEmployer(infoApp).invoicesPost);
 
 	router
 		.route("/invoice/:id")
-		.get(CEmployer(infoApp).getInvoiceProject)
-		.post(CEmployer(infoApp).postInvoiceProject);
+		.get(ControllerEmployer(infoApp).invoiceGet)
+		.post(ControllerEmployer(infoApp).invoicePost);
 
 	router
-		.route("/invoice/print/:id")
-		.get(CEmployer(infoApp).getInvoicePrintProject);
+		.route("/invoice/:id/print")
+		.get(ControllerEmployer(infoApp).invoicePrintGet);
+
+	router
+		.route("/todos")
+		.get(ControllerEmployer(infoApp).todosGet)
+		.post(ControllerEmployer(infoApp).todosPost);
+
+	router
+		.route("/todo/add")
+		.get(ControllerEmployer(infoApp).addTodoGet)
+		.post(ControllerEmployer(infoApp).addTodoPost);
+
+	router
+		.route("/todo/:id/edit")
+		.get(ControllerEmployer(infoApp).editTodoGet)
+		.post(ControllerEmployer(infoApp).editTodoPost);
+
+	router
+		.route("/todo/:id/del")
+		.get(ControllerEmployer(infoApp).deleteTodoGet)
+		.post(ControllerEmployer(infoApp).deleteTodoPost);
+
+	router
+		.route("/todo/:id/done")
+		.get(ControllerEmployer(infoApp).doneTodoGet)
+		.post(ControllerEmployer(infoApp).doneTodoPost);
+
+	router
+		.route("/todo/:id/order")
+		.get(ControllerEmployer(infoApp).orderTodoGet)
+		.post(ControllerEmployer(infoApp).orderTodoPost);
+
+	router
+		.route("/tickets")
+		.get(ControllerEmployer(infoApp).orderTodoGet)
+		.post(ControllerEmployer(infoApp).orderTodoPost);
+
+	router
+		.route("/ticket/:id")
+		.get(ControllerEmployer(infoApp).orderTodoGet)
+		.post(ControllerEmployer(infoApp).orderTodoPost);
+
+	router.route("/profile").get(ControllerEmployer(infoApp).profileGet);
 
 	return router;
 }

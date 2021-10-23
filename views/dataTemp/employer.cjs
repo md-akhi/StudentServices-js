@@ -1,31 +1,31 @@
 import { pathCustomer } from "../../config/routes.cjs";
 
-let linkNavUp = {
+exports.linkNavUp = {
 	widget: "pushmenu",
 	Home: "/",
 	Contact: "/Contact-us",
 	Frelanser: pathCustomer.Frelanser(),
 };
 
-let menuSidbarRight = {
+exports.menuSidbarRight = {
 	Project: {
 		name: "project",
+		icon: "fas fa-tachometer-alt",
 		sub: {
-			List: pathCustomer.Employer() + "/project",
-			Add: pathCustomer.Employer() + "/project/Add",
+			List: pathCustomer.Employer() + "/projects",
+			Add: pathCustomer.Employer() + "/project/add",
 		},
 	},
 	Invoice: {
 		name: "invoice",
+		icon: "fas fa-tachometer-alt",
 		sub: {
 			List: pathCustomer.Employer() + "/invoice",
 		},
 	},
 };
 
-let breadCrumb = {
+exports.breadCrumb = {
 	Dashboard: pathCustomer.Dashboard(),
 	Employer: pathCustomer.Employer(),
 };
-
-export { linkNavUp, menuSidbarRight, breadCrumb };

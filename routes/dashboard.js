@@ -1,5 +1,5 @@
 import express from "express";
-//import MUsers from "../models/user.js";
+//import User as ModelUser from "../models/user.js";
 import Mid from "../controllers/middleware.js";
 import CDashboard from "../controllers/dashboard.js";
 

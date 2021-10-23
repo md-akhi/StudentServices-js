@@ -90,7 +90,7 @@ typings/
 .tern-port
 
 
-/ex
+/z
 public/js/*
 public/img/*
 public/css/*

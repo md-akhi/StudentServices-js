@@ -1,13 +1,17 @@
 import express from "express";
-import Mid from "../controllers/middleware.js";
-import CHome from "../controllers/home.js";
+import Middleware from "../controllers/middleware.js";
+import controllerHome from "../controllers/home.js";
 
 export default function (infoApp) {
 	let router = express.Router();
 	// middleware function
-	router.use(Mid(infoApp).sessionChecker);
+	router.use(Middleware(infoApp).sessionChecker);
 
 	// root
-	router.route("/").get(CHome(infoApp).getRoot);
+	router.route("/").get(controllerHome(infoApp).rootGet);
+
+	router.route("/projects").get(controllerHome(infoApp).projectsGet);
+	router.route("/users").get(controllerHome(infoApp).usersGet);
+
 	return router;
 }

@@ -1,30 +1,33 @@
-import MProject from "../models/project.js";
+import { Project as ModelProject } from "../models/project.js";
 //import MEmployer from "../models/employer.js";
-import { templateCustomer } from "../config/routes.cjs";
-import Mid from "../controllers/middleware.js";
+import {
+	templateCustomer as Template,
+	pathCustomer as Path,
+} from "../config/routes.cjs";
+import Middleware from "../controllers/middleware.js";
 
 export default function (infoApp) {
 	// middleware function to check for logged-in users
 	return {
-		getRoot: [
-			Mid(infoApp).logInChecker,
+		rootGet: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				res.render(templateCustomer.Employer(), {
+				res.render(Template.Employer(), {
 					name: "employer",
 				});
 			},
 		],
 
-		getProject: [
-			Mid(infoApp).logInChecker,
+		projectsGet: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				let userId = infoApp.session.user.id;
-				MProject.find(
+				ModelProject.find(
 					{
 						userId: userId,
 					},
 					function (err, Project) {
-						res.render(templateCustomer.Employer() + "/project_list", {
+						res.render(Template.Employer() + "/project_list", {
 							list: Project,
 						});
 					}
@@ -32,16 +35,16 @@ export default function (infoApp) {
 			},
 		],
 
-		getAddProject: [
-			Mid(infoApp).logInChecker,
+		addProjectGet: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				res.render(templateCustomer.Employer() + "/project_add", {
+				res.render(Template.Employer() + "/project_add", {
 					name: "employer",
 				});
 			},
 		],
-		postAddProject: [
-			Mid(infoApp).logInChecker,
+		addProjectPost: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				const {
 					name,
@@ -53,7 +56,7 @@ export default function (infoApp) {
 					duration,
 				} = req.body;
 
-				let newPoroject = new MProject({
+				let newPoroject = new ModelProject({
 					userId: infoApp.session.user.id,
 					name: name,
 					description: description,
@@ -70,32 +73,32 @@ export default function (infoApp) {
 					.save(newPoroject)
 					.then((poroject) => {
 						// REDIRECT TO THE project
-						res.redirect(pathCustomer.Employer() + "/project");
+						res.redirect(Path.Employer() + "/project");
 					})
 					.catch((err) => {
-						res.render(pathCustomer.Employer() + "/project_add", {
+						res.render(Template.Employer() + "/project_add", {
 							message: "failed set to db",
 						});
 					});
 			},
 		],
 
-		getEditProject: [
-			Mid(infoApp).logInChecker,
+		editProjectGet: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				let id = req.params.id;
-				MProject.find({ _id: id, userId: userId }, function (err, project) {
-					if (!project[0]) res.redirect(pathCustomer.Employer() + "/project");
-					res.render(templateCustomer.Employer() + "/project_add", {
+				ModelProject.find({ _id: id, userId: userId }, function (err, project) {
+					if (!project[0]) res.redirect(Path.Employer() + "/project");
+					res.render(Template.Employer() + "/project_add", {
 						data: project[0],
 						isEdit: true,
 					});
 				});
 			},
 		],
-		postEditProject: [
-			Mid(infoApp).logInChecker,
+		editProjectPost: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				const {
 					name,
@@ -108,7 +111,7 @@ export default function (infoApp) {
 				} = req.body;
 
 				let id = req.params.id;
-				MProject.findById(id, function (err, edit) {
+				ModelProject.findById(id, function (err, edit) {
 					edit.name = name;
 					edit.description = description;
 					edit.estimatedBudget = estimated;
@@ -120,54 +123,276 @@ export default function (infoApp) {
 					edit.save();
 				});
 				// REDIRECT TO THE project
-				res.redirect(pathCustomer.Employer() + "/project");
+				res.redirect(Path.Employer() + "/project");
 			},
 		],
 
-		getDetailProject: [
-			Mid(infoApp).logInChecker,
+		deleteProjectGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let id = req.params.id;
+				ModelProject.findByIdAndDelete(id, function (err) {
+					if (err) console.log(err);
+					console.log("Successful deletion");
+				});
+				// REDIRECT TO THE project
+				res.redirect(Path.Employer() + "/project");
+			},
+		],
+
+		detailProjectGet: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				let id = req.params.id;
-				MProject.find({ _id: id, userId: userId }, function (err, project) {
-					if (!project[0]) res.redirect(pathCustomer.Employer() + "/project");
-					res.render(templateCustomer.Employer() + "/project_detail", {
+				ModelProject.find({ _id: id, userId: userId }, function (err, project) {
+					if (!project[0]) res.redirect(Path.Employer() + "/project");
+					res.render(Template.Employer() + "/project_detail", {
 						data: project[0],
 					});
 				});
 			},
 		],
-		postDetailProject: [Mid(infoApp).logInChecker, function (req, res) {}],
-
-		getDeleteProject: [
-			Mid(infoApp).logInChecker,
+		detailProjectPost: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
+				let userId = infoApp.session.user.id;
 				let id = req.params.id;
-				MProject.findByIdAndDelete(id, function (err) {
-					if (err) console.log(err);
-					console.log("Successful deletion");
+			},
+		],
+
+		invoicesGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+				res.render(Template.Employer() + "/invoice", {
+					name: "employer",
+				});
+			},
+		],
+		invoicesPost: [Middleware(infoApp).logInChecker, function (req, res) {}],
+
+		invoicePrintGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+				res.render(Template.Employer() + "/invoice_print", {
+					name: "employer",
+				});
+			},
+		],
+
+		archivesGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+				// REDIRECT TO THE project
+				res.redirect(Path.Employer() + "/project/archive");
+			},
+		],
+		archivesPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+				const { status } = req.body;
+				ModelProject.findById(id, function (err, edit) {
+					edit.status = status;
+					edit.save();
 				});
 				// REDIRECT TO THE project
-				res.redirect(pathCustomer.Employer() + "/project");
+				res.redirect(Path.Employer() + "/project/archives");
 			},
 		],
 
-		getInvoiceProject: [
-			Mid(infoApp).logInChecker,
+		fileGet: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				res.render(templateCustomer.Employer() + "/invoice", {
-					name: "employer",
-				});
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
 			},
 		],
-		postInvoiceProject: [Mid(infoApp).logInChecker, function (req, res) {}],
-
-		getInvoicePrintProject: [
-			Mid(infoApp).logInChecker,
+		filePost: [
+			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				res.render(templateCustomer.Employer() + "/invoice_print", {
-					name: "employer",
-				});
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		taskGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		taskPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		bugGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		bugPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		noteGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		notePost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		paymentGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		paymentPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		invoiceGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		invoicePost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		todosGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		todosPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		addTodoGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		addTodoPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		editTodoGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		editTodoPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		deleteTodoGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		deleteTodoPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		doneTodoGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		doneTodoPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		orderTodoGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+		orderTodoPost: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
+			},
+		],
+
+		profileGet: [
+			Middleware(infoApp).logInChecker,
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let id = req.params.id;
 			},
 		],
 	};
