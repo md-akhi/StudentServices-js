@@ -1,59 +1,107 @@
 {
   "name": "student-services",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Student Services",
   "main": "app.js",
+  "type": "module",
+  "keywords": ["student", "services"],
+  "authors": ["Mohammad Amanalikhani <md.akhi.ir@gmail.com> (http://akhi.ir)"],
+  "license": "UNLICENSED",
   "scripts": {
-    "start": "npm run develop",
-    "develop": "nodemon app.js",
-    "debug": "DEBUG=express:*  npm start",
-    "debug:session": "DEBUG=express-session npm start",
-    "seed": "mongo & use studentServices",
-    "pretir": "npx prettier --write .",
-    "lint": "npx eslint --fix",
-    "test": ""
+    "app": "node app.js",
+    "start": "npm run dev",
+    "dev": "cross-env NODE_ENV=development run-s dev:*",
+    "dev:mongod": "sh ./config/Mongod.sh",
+    "dev:nodemon": "nodemon app.js",
+    "gulp:dev": "gulp development",
+    "webpack:dev": "webpack serve --open --config webpack.dev.js",
+    "debug:dev": "npm run dev --inspect",
+    "prod": "cross-env NODE_ENV=production npm run app & npm run gulp:prod",
+    "gulp:prod": "gulp production",
+    "webpack:prod": "webpack --config webpack.prod.js",
+    "debug:prod": "npm run prod --inspect",
+    "test": "mocha",
+    "debug:express": "DEBUG=express:*  npm run dev",
+    "debug:all": "DEBUG=* npm run dev",
+    "gulp:watch": "gulp watch",
+    "webpack:watch": "webpack --watch",
+    "transpile": "babel ./server --out-dir dist-server",
+    "prepare": "husky install"
   },
-  "keywords": [
-    "student",
-    "services"
-  ],
-  "authors": [
-    "Mahnaz Mohammadi <mahnaz.mohamadi8613@gmail.com> (https://github.com/mohamadimahnaz)",
-    "Mohammad Amanalikhani <md.akhi.ir@gmail.com> (http://akhi.ir/)",
-    "sahar zeinivand <sahar.zeinivand95@gmail.com> (https://saharzeinivand.github.io/)"
-  ],
-  "license": "",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "cookie-parser": "^1.4.5",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "express-react-views": "^0.11.0",
-    "express-session": "^1.17.1",
-    "express-validator": "^6.10.0",
-    "mongoose": "^5.12.3",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.2",
-    "randomstring": "^1.1.5",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+  "directories": {
+    "build": "./build",
+    "config": "./config",
+    "controllers": "./controllers",
+    "docs": "./docs",
+    "models": "./models",
+    "public": "./public",
+    "routes": "./routes",
+    "views": "./views",
+    "install": "./install",
+    "test": "./test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/md-akhi/studentServices.git"
   },
-  "devDependencies": {
-    "eslint": "^7.24.0",
-    "eslint-config-prettier": "^8.2.0",
-    "nodemon": "^2.0.7",
-    "prettier": "2.2.1"
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "connect-mongo": "^4.4.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.10.0",
+    "mongoose": "^5.12.3",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.6.3",
+    "randomstring": "^1.1.5",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
   },
-  "nodemonConfig": {
-    "ignore": [
-      "test/*",
-      "docs/*"
-    ],
-    "delay": 2500
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "cssnano": "^5.0.8",
+    "debug": "^4.3.2",
+    "delete": "^1.1.0",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.24.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.0.1",
+    "mocha": "^9.0.2",
+    "nodemon": "^2.0.13",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.42.1",
+    "webpack": "^5.46.0",
+    "webpack-stream": "^6.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": ["prettier --write", "eslint --fix", "git add"],
+    "*": ["prettier --write", "git add"]
   }
 }

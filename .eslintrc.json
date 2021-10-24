@@ -1,0 +1,27 @@
+{
+  "root": true,
+  "plugins": ["react", "prettier", "node", "jest", "jsdoc"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "mongo": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+		"prettier/prettier": "error",
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "no-empty": "warn",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
+  }
+}

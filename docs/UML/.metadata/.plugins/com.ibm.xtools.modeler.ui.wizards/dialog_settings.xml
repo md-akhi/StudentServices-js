@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WorkingSetsConfigurationPage.TemplateConfiguration">
+	</section>
+	<section name="DefaultDiagramConfigurationPage.TemplateConfiguration">
+		<item value="0" key="DefaultDiagramConfigurationPage.defaultDiagramTypeForModelSetting"/>
+		<item value="true" key="DefaultDiagramConfigurationPage.createDefaultDiagramForModelSetting"/>
+		<section name="RootElementBlock">
+			<item value="Package" key="com.ibm.xtools.modeler.templates.blankRoseUMLModel"/>
+		</section>
+	</section>
+	<section name="Uml2XmiExportWizard">
+		<item value="false" key="Uml2XmiUML2ExportAppliedProfiles"/>
+		<item value="true" key="Uml2XmiWorkspaceSelected"/>
+		<item value="true" key="Uml2XmiRecreateIDs"/>
+		<item value="" key="Uml2XmiWorkspacePath"/>
+		<item value="" key="Uml2XmiDefaultDirectoryPath"/>
+	</section>
+</section>

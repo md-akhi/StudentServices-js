@@ -1,0 +1,44 @@
+% !TeX root = Report.tex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = fa_FA-Persian
+
+% ,draft => hide img
+\documentclass[12pt,a4paper,oneside]{report}
+
+\input{config/usepackage}
+\input{config/style}
+
+\begin{document}
+\input{tex/infoFA}
+\thispagestyle{plain}
+\tableofcontents
+%\listoftables\clearpage
+\listoffigures
+\include{tex/abbr}
+
+\pagenumbering{arabic}
+
+\chapter{مقدمه}\clearpage
+\include{tex/chapter1}
+
+\chapter{مفاهیم و دانش فنی}\clearpage
+\include{tex/chapter2}
+
+\chapter{تجزیه و تحلیل نرم‌افزار}\clearpage
+\include{tex/chapter3}
+
+\chapter{طراحی و پیاده‌سازی نرم‌افزار}\clearpage
+\include{tex/chapter4}
+
+\chapter{جمع‌بندی و پیشنهادات}\clearpage
+\include{tex/chapter5}
+%\appendix
+%\include{tex/appendix1}
+\include{tex/dic}
+\include{tex/dicFA}
+\include{tex/dicEN}
+%\bibliographystyle{acm-fa}
+%\bibliography{tex/MyReferences}
+%\printindex
+\input{tex/infoEN}
+\end{document}
