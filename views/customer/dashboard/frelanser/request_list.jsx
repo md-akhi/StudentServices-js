@@ -65,7 +65,7 @@ function requests(props) {
 										</tr>
 									</thead>
 									<tbody>
-										<RequestsItem items={props.list}></RequestsItem>
+										<RequestsItem data={props.data}></RequestsItem>
 									</tbody>
 								</table>
 							</div>
@@ -91,8 +91,7 @@ function requests(props) {
 }
 
 function RequestsItem(props) {
-	let item;
-	item = props.items.map((key, value) => {
+	return props.data.map((key, value) => {
 		let project = key.projectId;
 		let str = (
 			<tr>
@@ -132,6 +131,5 @@ function RequestsItem(props) {
 		);
 		return str;
 	});
-	return item;
 }
 export default requests;

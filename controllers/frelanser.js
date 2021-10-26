@@ -1,6 +1,7 @@
 //import { User as ModelUser } from "../models/user.js";
 //import Frelanser from "../models/frelanser.js";
-import { Message as ModelMassage } from "../models/project.js";
+//import { * as Model } from "../models/project.js";
+import { Request as ModelRequest } from "../models/project.js";
 import {
 	templateCustomer as Template,
 	pathCustomer as Path,
@@ -23,13 +24,13 @@ export default function (infoApp) {
 			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				let userId = infoApp.session.user.id;
-				ModelMassage.find(
+				ModelRequest.find(
 					{
 						userId: userId,
 					},
 					function (err, requests) {
 						res.render(Template.Frelanser() + "/request_list", {
-							list: requests,
+							data: requests,
 						});
 					}
 				).populate("projectId");
@@ -50,14 +51,14 @@ export default function (infoApp) {
 		addRequestPost: [
 			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				const { description, amount, duration, projectId } = req.body;
+				const { description, amount, duration, projectId, userId } = req.body;
 
-				let newRequest = new ModelMassage({
-					userId: infoApp.session.user.id,
+				let newRequest = new ModelRequest({
+					userId: userId,
 					projectId: projectId,
 					description: description,
 					amount: amount,
-					estimatedDuration: duration,
+					duration: duration,
 				});
 
 				newRequest
@@ -79,7 +80,7 @@ export default function (infoApp) {
 			function (req, res) {
 				let userId = infoApp.session.user.id;
 				let id = req.params.id;
-				ModelMassage.findOne(
+				ModelRequest.findOne(
 					{
 						_id: id,
 						userId: userId,
@@ -99,12 +100,12 @@ export default function (infoApp) {
 			function (req, res) {
 				const { description, status, estimated, total, duration } = req.body;
 				let id = req.params.id;
-				ModelMassage.findById(id, function (err, edit) {
+				ModelRequest.findById(id, function (err, edit) {
 					if (err) console.log(err);
 					edit.description = description;
 					edit.status = status;
-					edit.estimatedBudget = estimated;
-					edit.estimatedDuration = duration;
+					edit.budget = estimated;
+					edit.duration = duration;
 					// payId: payId,
 					// request: request,
 					// Progress: Progress,
@@ -120,7 +121,7 @@ export default function (infoApp) {
 			Middleware(infoApp).logInChecker,
 			function (req, res) {
 				let id = req.params.id;
-				ModelMassage.findByIdAndDelete(id, function (err) {
+				ModelRequest.findByIdAndDelete(id, function (err) {
 					if (err) console.log(err);
 					// REDIRECT TO THE project
 					res.redirect(Path.Frelanser() + "/requests");

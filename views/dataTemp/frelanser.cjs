@@ -3,7 +3,7 @@ import { pathCustomer as path } from "../../config/routes.cjs";
 exports.linkNavUp = {
 	widget: "pushmenu",
 	Home: "/",
-	Contact: "/Contact-us",
+	Contact: "/ContactUs",
 	Employer: path.Employer(),
 };
 
@@ -13,7 +13,7 @@ exports.menuSidbarRight = {
 		icon: "fas fa-tachometer-alt",
 		sub: {
 			List: path.Frelanser() + "/requests",
-			Add: path.Frelanser() + "/request/add",
+			Add: "/requests",
 		},
 	},
 	Invoice: {

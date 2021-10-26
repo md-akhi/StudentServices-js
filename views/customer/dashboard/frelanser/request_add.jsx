@@ -63,9 +63,8 @@ function requestAdd(props) {
 														className="form-control"
 														rows="4"
 														name="description"
-													>
-														{props.isEdit ? data.description : ""}
-													</textarea>
+														defaultValue={props.isEdit ? data.description : ""}
+													></textarea>
 												</div>
 											</div>
 											{/* /.card-body */}
