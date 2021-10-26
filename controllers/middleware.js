@@ -1,4 +1,4 @@
-import { pathCustomer as Path } from "../config/routes.cjs";
+import { pathCustomer as Path, pathHome } from "../config/routes.cjs";
 
 export default function (infoApp) {
 	// middleware function to check for logged-in users
@@ -10,14 +10,17 @@ export default function (infoApp) {
 		 * @returns {null}}
 		 */
 		logInChecker: (req, res, next) => {
-			if (infoApp.session.login === false && req.baseUrl !== Path.Auth()) {
-				res.redirect(Path.Auth() + "/login?redirect=" + req.originalUrl);
-			} else if (req.baseUrl == Path.Auth() && infoApp.session.login === true) {
+			if (infoApp.session.login === false && req.baseUrl !== pathHome.Auth()) {
+				res.redirect(pathHome.Auth() + "/login?redirect=" + req.originalUrl);
+			} else if (
+				req.baseUrl == pathHome.Auth() &&
+				infoApp.session.login === true
+			) {
 				res.redirect(Path.Dashboard());
 			}
 			//  else if (infoApp.session.cookie.originalMaxAge < 0) {
 			//   infoApp.session.lookscreen = 1;
-			//   res.redirect(Path.Auth()+"/lookscreen");
+			//   res.redirect(pathHome.Auth()+"/lookscreen");
 			// }
 			next();
 		},

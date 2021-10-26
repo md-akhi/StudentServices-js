@@ -30,10 +30,6 @@ exports.pathCustomer = {
 	Root: function () {
 		return this.root;
 	},
-	auth: "/auth",
-	Auth: function () {
-		return this.auth;
-	},
 	dashboard: "/dashboard",
 	Dashboard: function () {
 		return this.Root() + this.dashboard;
@@ -54,10 +50,6 @@ exports.templateCustomer = {
 	root: "customer",
 	Root: function () {
 		return this.root;
-	},
-	auth: "auth",
-	Auth: function () {
-		return this.auth;
 	},
 	dashboard: "/dashboard",
 	Dashboard: function () {

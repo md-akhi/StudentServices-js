@@ -1,19 +1,23 @@
 import bcrypt from "bcryptjs";
 import { User as ModelUser } from "../models/user.js";
-import { templateCustomer, pathCustomer } from "../config/routes.cjs";
+import {
+	templateHome as Template,
+	pathHome as Path,
+	pathCustomer,
+} from "../config/routes.cjs";
 import Middleware from "./middleware.js";
 
 export default function (infoApp) {
 	// middleware function
 	return {
 		getRoot: function (req, res) {
-			res.redirect(pathCustomer.Auth() + "/login");
+			res.redirect(Path.Auth() + "/login");
 		},
 
 		getRegister: [
 			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				res.render(templateCustomer.Auth() + "/register", {
+				res.render(Template.Auth() + "/register", {
 					name: "register",
 				});
 			},
@@ -33,20 +37,20 @@ export default function (infoApp) {
 				terms,
 			} = req.body;
 			if (!req.body.email || !req.body.password) {
-				res.render(templateCustomer.Auth() + "/register", {
+				res.render(Template.Auth() + "/register", {
 					message: "Invalid credentials!",
 				});
 			} else {
 				ModelUser.findOne({ "email.now": email })
 					.then((user) => {
 						if (user.email.now === email) {
-							res.render(templateCustomer.Auth() + "/register", {
+							res.render(Template.Auth() + "/register", {
 								message: "User Already Exists! Login or choose another user id",
 							});
 						}
 					})
 					.catch((err) => {
-						res.render(templateCustomer.Auth() + "/register", {
+						res.render(Template.Auth() + "/register", {
 							message: "not error",
 						});
 					});
@@ -65,7 +69,7 @@ export default function (infoApp) {
 						res.redirect(pathCustomer.Dashboard());
 					})
 					.catch((err) => {
-						res.render(templateCustomer.Auth() + "/register", {
+						res.render(Template.Auth() + "/register", {
 							message: "failed set to db",
 						});
 					});
@@ -75,7 +79,7 @@ export default function (infoApp) {
 		getLogIn: [
 			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				res.render(templateCustomer.Auth() + "/login", {
+				res.render(Template.Auth() + "/login", {
 					redirect: req.query.redirect,
 				});
 			},
@@ -85,7 +89,7 @@ export default function (infoApp) {
 			const { email, password } = req.body;
 			let redirect = req.query.redirect;
 			if (!email || !password) {
-				res.render(templateCustomer.Auth() + "/login", {
+				res.render(Template.Auth() + "/login", {
 					message: "Please enter both email and password",
 				});
 			} else {
@@ -100,7 +104,7 @@ export default function (infoApp) {
 						}
 					})
 					.catch((err) => {
-						res.render(templateCustomer.Auth() + "/login", {
+						res.render(Template.Auth() + "/login", {
 							message: "login err",
 						});
 					});
@@ -111,7 +115,7 @@ export default function (infoApp) {
 		getRecover: [
 			// Middleware(infoApp).tokenChecker,
 			function (req, res) {
-				res.render(templateCustomer.Auth() + "/recover-password", {
+				res.render(Template.Auth() + "/recover-password", {
 					name: "recover-password",
 				});
 			},
@@ -124,7 +128,7 @@ export default function (infoApp) {
 		getForgot: [
 			Middleware(infoApp).logInChecker,
 			function (req, res) {
-				res.render(templateCustomer.Auth() + "/forgot-password", {
+				res.render(Template.Auth() + "/forgot-password", {
 					name: "forgot-password",
 				});
 			},
