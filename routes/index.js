@@ -1,25 +1,25 @@
 import express from "express";
-import { pathCustomer } from "../config/routes.cjs";
-import Mid from "../controllers/middleware.js";
-import RHome from "./home.js";
-import RCAuth from "./auth.js";
-import RCDashboard from "./dashboard.js";
-import RCEmployer from "./employer.js";
-import RCFrelanser from "./frelanser.js";
+import { pathCustomer as Path, pathHome } from "../config/routes.cjs";
+import Middleware from "../controllers/middleware.js";
+import routerHome from "./home.js";
+import routerAuth from "./auth.js";
+import routerDashboard from "./dashboard.js";
+import routerEmployer from "./employer.js";
+import routerFrelanser from "./frelanser.js";
 
 export default function (infoApp) {
 	let router = express.Router();
 
 	// middleware function
-	router.use(Mid(infoApp).sessionChecker);
+	router.use(Middleware(infoApp).sessionChecker);
 
 	//router
-	router.use("/", RHome(infoApp));
+	router.use("/", routerHome(infoApp));
 	// customer
-	router.use(pathCustomer.Auth(), RCAuth(infoApp));
-	router.use(pathCustomer.Dashboard(), RCDashboard(infoApp));
-	router.use(pathCustomer.Employer(), RCEmployer(infoApp));
-	router.use(pathCustomer.Frelanser(), RCFrelanser(infoApp));
+	router.use(pathHome.Auth(), routerAuth(infoApp));
+	router.use(Path.Dashboard(), routerDashboard(infoApp));
+	router.use(Path.Employer(), routerEmployer(infoApp));
+	router.use(Path.Frelanser(), routerFrelanser(infoApp));
 
 	// catch undefined routes and respond with 404
 	router.use(function (req, res, next) {
