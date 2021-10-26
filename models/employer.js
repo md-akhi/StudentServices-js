@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+// import { User as ModelUser } from "./user.js";
+// import { Request as ModelRequest } from "./frelanser.js";
 
 var employerSchema = mongoose.Schema({
 	userId: {
@@ -27,5 +29,6 @@ var employerSchema = mongoose.Schema({
 	},
 });
 
-let MEmployer = mongoose.model("employer", employerSchema);
-export default MEmployer;
+let Employer = mongoose.model("employer", employerSchema);
+
+export default Employer;

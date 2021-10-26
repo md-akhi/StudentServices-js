@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+// import { User as ModelUser } from "./user.js";
+// import { Project as ModelProject } from "./employer.js";
 
 var frelanserSchema = mongoose.Schema({
 	userId: {
@@ -43,6 +45,6 @@ var frelanserSchema = mongoose.Schema({
 	},
 });
 
-let MFrelanser = mongoose.model("frelanser", frelanserSchema);
-export default MFrelanser;
-//user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+let Frelanser = mongoose.model("frelanser", frelanserSchema);
+
+export default Frelanser;
