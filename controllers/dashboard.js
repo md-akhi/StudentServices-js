@@ -1,13 +1,13 @@
-import { templateCustomer } from "../config/routes.cjs";
-import Mid from "../controllers/middleware.js";
+import { templateCustomer as Template } from "../config/routes.cjs";
+import Middleware from "../controllers/middleware.js";
 
 export default function (infoApp) {
 	// middleware function to check for logged-in users
 	return {
-		getRoot: [
-			Mid(infoApp).logInChecker,
+		Root_Get: [
+			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				res.render(templateCustomer.Dashboard(), { name: "dashboard" });
+				res.render(Template.Dashboard(), { name: "dashboard" });
 			},
 		],
 	};

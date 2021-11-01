@@ -12,15 +12,17 @@ exports.menuSidbarRight = {
 		name: "request",
 		icon: "fas fa-tachometer-alt",
 		sub: {
+			Add: "/projects",
 			List: path.Frelanser() + "/requests",
-			Add: "/requests",
+			Archived: path.Frelanser() + "/requests/Archived",
 		},
 	},
 	Invoice: {
-		name: "invoice",
+		name: "invoices",
 		icon: "fas fa-tachometer-alt",
 		sub: {
-			List: path.Frelanser() + "/invoice",
+			List: path.Frelanser() + "/invoices",
+			Archived: path.Frelanser() + "/invoices/Archived",
 		},
 	},
 };

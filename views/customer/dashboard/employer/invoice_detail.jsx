@@ -8,6 +8,10 @@ import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
 
 function Invoice(props) {
+	let project = props.data.projectId;
+	let request = props.data.requestId;
+	let employer = props.data.employerId;
+	let frelancer = props.data.frelancerId;
 	return (
 		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
@@ -45,7 +49,8 @@ function Invoice(props) {
 									<div className="row">
 										<div className="col-12">
 											<h4>
-												<i className="fas fa-globe"></i> AdminLTE, Inc.
+												<i className="fas fa-globe"></i>
+												{project.name} .
 												<small className="float-right">Date: 2/10/2014</small>
 											</h4>
 										</div>
@@ -56,35 +61,31 @@ function Invoice(props) {
 										<div className="col-sm-4 invoice-col">
 											From
 											<address>
-												<strong>Admin, Inc.</strong>
+												{/* <strong>{employer.name}.</strong> */}
 												<br />
-												795 Folsom Ave, Suite 600
+												{/* {employer.address} 795 Folsom Ave, Suite 600 */}
 												<br />
-												San Francisco, CA 94107
+												{/* Phone:{employer.phone} (804) 123-5432 */}
 												<br />
-												Phone: (804) 123-5432
-												<br />
-												Email: info@almasaeedstudio.com
+												Email: {employer.email.now}
 											</address>
 										</div>
 										{/* /.col */}
 										<div className="col-sm-4 invoice-col">
 											To
 											<address>
-												<strong>John Doe</strong>
+												{/* <strong>{frelancer.name}.</strong> */}
 												<br />
-												795 Folsom Ave, Suite 600
+												{/* {frelancer.address} 795 Folsom Ave, Suite 600 */}
 												<br />
-												San Francisco, CA 94107
+												{/* Phone:{frelancer.phone} (804) 123-5432 */}
 												<br />
-												Phone: (555) 539-1037
-												<br />
-												Email: john.doe@example.com
+												Email: {frelancer.email.now}
 											</address>
 										</div>
 										{/* /.col */}
 										<div className="col-sm-4 invoice-col">
-											<b>Invoice #007612</b>
+											<b>Invoice #{request.id}</b>
 											<br />
 											<br />
 											<b>Order ID:</b> 4F3S8J
@@ -111,6 +112,7 @@ function Invoice(props) {
 													</tr>
 												</thead>
 												<tbody>
+													{/* <expenseItem data={request.expense}></expenseItem> */}
 													<tr>
 														<td>1</td>
 														<td>Call of Duty</td>
@@ -156,23 +158,17 @@ function Invoice(props) {
 										{/* accepted payments column */}
 										<div className="col-6">
 											<p className="lead">Payment Methods:</p>
-											<img src="../../dist/img/credit/visa.png" alt="Visa" />
+											<img src="/img/credit/visa.png" alt="Visa" />
+											<img src="/img/credit/mastercard.png" alt="Mastercard" />
 											<img
-												src="../../dist/img/credit/mastercard.png"
-												alt="Mastercard"
-											/>
-											<img
-												src="../../dist/img/credit/american-express.png"
+												src="/img/credit/american-express.png"
 												alt="American Express"
 											/>
-											<img
-												src="../../dist/img/credit/paypal2.png"
-												alt="Paypal"
-											/>
+											<img src="/img/credit/paypal2.png" alt="Paypal" />
 
 											<p
 												className="text-muted well well-sm shadow-none"
-												style="margin-top: 10px;"
+												style={{ marginTop: "10px" }}
 											>
 												Etsy doostang zoodles disqus groupon greplin oooj voxy
 												zoodles, weebly ning heekya handango imeem plugg dopplr
@@ -187,7 +183,7 @@ function Invoice(props) {
 											<div className="table-responsive">
 												<table className="table">
 													<tr>
-														<th style="width:50%">Subtotal:</th>
+														<th style={{ width: "50%" }}>Subtotal:</th>
 														<td>$250.30</td>
 													</tr>
 													<tr>
@@ -213,7 +209,7 @@ function Invoice(props) {
 									<div className="row no-print">
 										<div className="col-12">
 											<a
-												href="invoice-print.html"
+												href={"./" + props.data.id + "/print"}
 												rel="noopener"
 												target="_blank"
 												className="btn btn-default"
@@ -229,7 +225,7 @@ function Invoice(props) {
 											<button
 												type="button"
 												className="btn btn-primary float-right"
-												style="margin-right: 5px;"
+												style={{ marginRight: "5px" }}
 											>
 												<i className="fas fa-download"></i> Generate PDF
 											</button>
@@ -250,7 +246,7 @@ function Invoice(props) {
 			<FooterLayout></FooterLayout>
 
 			{/* Control Sidebar */}
-			<aside classNameName="control-sidebar control-sidebar-dark">
+			<aside className="control-sidebar control-sidebar-dark">
 				{/* Control sidebar content goes here */}
 			</aside>
 			{/* /.control-sidebar */}
@@ -258,95 +254,18 @@ function Invoice(props) {
 		</HtmlLayout>
 	);
 }
-function ProjectsItem(props) {
-	let item;
-	item = props.items.map((key, value) => {
+function expenseItem(props) {
+	return props.items.map((key, value) => {
 		let str = (
 			<tr>
-				<td>#{value + 1}</td>
-				<td>
-					<a>{key.name}</a>
-					<br />
-					<small>Created {new Date(key.createdAt).toDateString()}</small>
-				</td>
-				<td>
-					<ul classNameName="list-inline">
-						<li classNameName="list-inline-item">
-							<a href="">
-								{key.request}
-								<img
-									alt="Avatar"
-									classNameName="table-avatar"
-									src="/img/avatar.png"
-								/>
-							</a>
-						</li>
-						<li classNameName="list-inline-item">
-							<img
-								alt="Avatar"
-								classNameName="table-avatar"
-								src="/img/avatar2.png"
-							/>
-						</li>
-						<li classNameName="list-inline-item">
-							<img
-								alt="Avatar"
-								classNameName="table-avatar"
-								src="/img/avatar3.png"
-							/>
-						</li>
-						<li classNameName="list-inline-item">
-							<img
-								alt="Avatar"
-								classNameName="table-avatar"
-								src="/img/avatar4.png"
-							/>
-						</li>
-					</ul>
-				</td>
-				<td classNameName="project_progress">
-					<div classNameName="progress progress-sm">
-						<div
-							classNameName="progress-bar bg-green"
-							role="progressbar"
-							aria-valuenow="57"
-							aria-valuemin="0"
-							aria-valuemax="100"
-							style={{ width: "57%" }}
-						></div>
-					</div>
-					<small>57% Complete</small>
-				</td>
-				<td classNameName="project-state">
-					<span classNameName="badge badge-success">Success</span>
-				</td>
-				<td classNameName="project-actions text-right">
-					<a
-						classNameName="btn btn-primary btn-sm"
-						href={"./project/detail/" + key.id}
-					>
-						<i classNameName="fas fa-folder"></i>
-						View
-					</a>
-					<a
-						classNameName="btn btn-info btn-sm"
-						href={"./project/edit/" + key.id}
-					>
-						<i classNameName="fas fa-pencil-alt"></i>
-						Edit
-					</a>
-					<a
-						classNameName="btn btn-danger btn-sm"
-						href={"./project/del/" + key.id}
-					>
-						<i classNameName="fas fa-trash"></i>
-						Delete
-					</a>
-				</td>
+				<td>1</td>
+				<td>Call of Duty</td>
+				<td>455-981-221</td>
+				<td>El snort testosterone trophy driving gloves handsome</td>
+				<td>$64.50</td>
 			</tr>
 		);
 		return str;
 	});
-	return item;
 }
 export default Invoice;

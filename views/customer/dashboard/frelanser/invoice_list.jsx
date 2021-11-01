@@ -1,27 +1,27 @@
 import React from "react";
 
-import * as dataEmployer from "../../../dataTemp/employer.cjs";
+import * as dataFrelanser from "../../../dataTemp/frelanser.cjs";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
 import HtmlLayout from "../../layouts/html";
 import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
 
-function projects(props) {
+function Invoices(props) {
 	return (
 		<HtmlLayout class="hold-transition sidebar-mini layout-fixed">
-			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
+			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
-				Data={dataEmployer.menuSidbarRight}
+				Data={dataFrelanser.menuSidbarRight}
 			></MainSidebarLayout>
 
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
 				<BreadCrumbComponet
-					Data={dataEmployer.breadCrumb}
-					Name={"Employer"}
-					Active={"Employer"}
+					Data={dataFrelanser.breadCrumb}
+					Name={"Frelanser"}
+					Active={"Frelanser"}
 				></BreadCrumbComponet>
 				{/* /.content-header */}
 
@@ -31,7 +31,7 @@ function projects(props) {
 						{/* Default box */}
 						<div className="card">
 							<div className="card-header">
-								<h3 className="card-title">Projects</h3>
+								<h3 className="card-title">Invoices</h3>
 
 								<div className="card-tools">
 									<button
@@ -67,7 +67,7 @@ function projects(props) {
 										</tr>
 									</thead>
 									<tbody>
-										<ProjectsItem items={props.list}></ProjectsItem>
+										<InvoicesItem data={props.data}></InvoicesItem>
 									</tbody>
 								</table>
 							</div>
@@ -91,15 +91,17 @@ function projects(props) {
 		</HtmlLayout>
 	);
 }
-function ProjectsItem(props) {
-	return props.items.map((key, value) => {
+function InvoicesItem(props) {
+	return props.data.map((key, value) => {
 		let str = (
 			<tr>
 				<td>#{value + 1}</td>
 				<td>
-					<a>{key.name}</a>
+					<a>{key.projectId.name}</a>
 					<br />
-					<small>Created {new Date(key.createdAt).toDateString()}</small>
+					<small>
+						Created {new Date(key.projectId.createdAt).toDateString()}
+					</small>
 				</td>
 				<td>
 					<ul className="list-inline">
@@ -112,27 +114,6 @@ function ProjectsItem(props) {
 									src="/img/avatar.png"
 								/>
 							</a>
-						</li>
-						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar2.png"
-							/>
-						</li>
-						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar3.png"
-							/>
-						</li>
-						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar4.png"
-							/>
 						</li>
 					</ul>
 				</td>
@@ -154,10 +135,7 @@ function ProjectsItem(props) {
 				</td>
 				<td className="project-actions text-right">
 					{key.frelancerId ? (
-						<a
-							className="btn btn-primary btn-sm"
-							href={"./invoice/" + key.id + "/" + key.frelancerId}
-						>
+						<a className="btn btn-primary btn-sm" href={"./invoice/" + key._id}>
 							<i className="fas fa-folder"></i>
 							Invoice
 						</a>
@@ -169,21 +147,7 @@ function ProjectsItem(props) {
 						href={"./project/" + key.id + "/detail"}
 					>
 						<i className="fas fa-folder"></i>
-						View
-					</a>
-					<a
-						className="btn btn-info btn-sm"
-						href={"./project/" + key.id + "/edit"}
-					>
-						<i className="fas fa-pencil-alt"></i>
-						Edit
-					</a>
-					<a
-						className="btn btn-danger btn-sm"
-						href={"./project/" + key.id + "/del"}
-					>
-						<i className="fas fa-trash"></i>
-						Delete
+						View Project
 					</a>
 				</td>
 			</tr>
@@ -191,4 +155,4 @@ function ProjectsItem(props) {
 		return str;
 	});
 }
-export default projects;
+export default Invoices;

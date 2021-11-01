@@ -9,7 +9,7 @@ export default function (infoApp) {
 		 * @param {Function} next
 		 * @returns {null}}
 		 */
-		logInChecker: (req, res, next) => {
+		LogInChecker: (req, res, next) => {
 			if (infoApp.session.login === false && req.baseUrl !== pathHome.Auth()) {
 				res.redirect(pathHome.Auth() + "/login?redirect=" + req.originalUrl);
 			} else if (
@@ -31,7 +31,7 @@ export default function (infoApp) {
 		 * @param {Function} next
 		 * @returns {null}}
 		 */
-		sessionChecker: (req, res, next) => {
+		SessionChecker: (req, res, next) => {
 			if (req.session === undefined) {
 				req.session = infoApp.session;
 			}
@@ -44,7 +44,7 @@ export default function (infoApp) {
 		 * @param {Function} next
 		 * @returns {null}}
 		 */
-		roleChecker: (req, res, next) => {
+		RoleChecker: (req, res, next) => {
 			if (undefined);
 			next();
 		},
@@ -55,7 +55,7 @@ export default function (infoApp) {
 		 * @param {Function} next
 		 * @returns {null}}
 		 */
-		tokenChecker: (req, res, next) => {
+		TokenChecker: (req, res, next) => {
 			if (undefined);
 			next();
 		},

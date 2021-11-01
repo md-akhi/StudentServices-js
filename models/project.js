@@ -7,33 +7,30 @@ var projectSchema = mongoose.Schema(
 			type: mongoose.ObjectId,
 			ref: ModelUser,
 		},
+		frelancerId: {
+			type: mongoose.ObjectId,
+			ref: ModelUser,
+		},
+		status: {
+			type: Number,
+		},
 		name: {
 			type: String,
 		},
 		description: {
 			type: String,
 		},
-		Status: {
+		progress: {
 			type: Number,
 		},
-		estimatedBudget: {
+		budget: {
 			type: Number,
 		},
-		estimatedDuration: {
-			type: Number,
-		},
-		payId: {
-			type: String,
-			ref: "Pay",
-		},
-		request: {
+		startTimeAt: {
 			type: Date,
 		},
-		Progress: {
+		duration: {
 			type: Number,
-		},
-		date: {
-			type: Date,
 		},
 		updatedAt: {
 			type: Date,
@@ -46,10 +43,119 @@ var projectSchema = mongoose.Schema(
 	{ timestamps: { currentTime: () => Math.floor(Date.now() / 1000) } }
 );
 
-projectSchema.static("getAllProject", function (arg, callback) {
+projectSchema.static("getAll", function (arg, callback) {
 	this.find(arg, callback);
 });
-let Project = mongoose.model("project", projectSchema);
+const Project = mongoose.model("project", projectSchema);
+
+var requestSchema = mongoose.Schema({
+	userId: {
+		type: mongoose.ObjectId,
+		ref: ModelUser,
+	},
+	projectId: {
+		type: mongoose.ObjectId,
+		ref: Project,
+	},
+	description: {
+		type: String,
+	},
+	invoice: [
+		{
+			order: {
+				type: String,
+			},
+			description: {
+				type: String,
+			},
+			amount: {
+				type: Number,
+			},
+		},
+	],
+	duration: {
+		type: Number,
+	},
+	status: {
+		type: Number,
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
+	},
+});
+const Request = mongoose.model("request", requestSchema);
+
+var paymentSchema = mongoose.Schema({
+	userId: {
+		type: mongoose.ObjectId,
+		ref: ModelUser,
+	},
+	status: {
+		type: Number,
+	},
+});
+let Payment = mongoose.model("payment", paymentSchema);
+
+var invoiceSchema = mongoose.Schema({
+	employerId: {
+		type: mongoose.ObjectId,
+		ref: ModelUser,
+	},
+	frelancerId: {
+		type: mongoose.ObjectId,
+		ref: ModelUser,
+	},
+	requestId: {
+		type: mongoose.ObjectId,
+		ref: Request,
+	},
+	projectId: {
+		type: mongoose.ObjectId,
+		ref: Project,
+	},
+	paymentId: [
+		{
+			type: mongoose.ObjectId,
+			ref: Payment,
+		},
+	],
+	employerStatus: {
+		type: Number,
+	},
+	frelancerStatus: {
+		type: Number,
+	},
+});
+let Invoice = mongoose.model("invoice", invoiceSchema);
+
+var fileSchema = mongoose.Schema({
+	userId: {
+		type: mongoose.ObjectId,
+		ref: ModelUser,
+	},
+	projectId: {
+		type: mongoose.ObjectId,
+		ref: Project,
+	},
+	name: {
+		type: String,
+	},
+	description: {
+		type: String,
+	},
+	type: {
+		type: String,
+	},
+	size: {
+		type: Number,
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
+	},
+});
+let File = mongoose.model("file", fileSchema);
 
 var bugSchema = mongoose.Schema({
 	userId: {
@@ -60,8 +166,9 @@ var bugSchema = mongoose.Schema({
 		type: mongoose.ObjectId,
 		ref: Project,
 	},
-	projectFileId: {
-		type: String,
+	fileId: {
+		type: mongoose.ObjectId,
+		ref: File,
 	},
 	title: {
 		type: String,
@@ -94,19 +201,16 @@ var taskSchema = mongoose.Schema({
 	description: {
 		type: String,
 	},
-	status: {
-		type: Number,
-	},
-	timeStart: {
-		type: Date,
-	},
-	timeEnd: {
-		type: Date,
-	},
 	color: {
 		type: String,
 	},
-	updatedAt: {
+	status: {
+		type: Number,
+	},
+	StartTimeAt: {
+		type: Date,
+	},
+	EndTimeAt: {
 		type: Date,
 	},
 	createdAt: {
@@ -139,71 +243,4 @@ var timeSheetSchema = mongoose.Schema({
 });
 let TimeSheet = mongoose.model("timesheet", timeSheetSchema);
 
-var paymentSchema = mongoose.Schema({
-	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
-	},
-});
-let Payment = mongoose.model("payment", paymentSchema);
-
-var fileSchema = mongoose.Schema({
-	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
-	},
-	projectId: {
-		type: mongoose.ObjectId,
-		ref: Project,
-	},
-	FileId: {
-		type: Number,
-	},
-	name: {
-		type: String,
-	},
-	description: {
-		type: String,
-	},
-	type: {
-		type: String,
-	},
-	size: {
-		type: Number,
-	},
-	createdAt: {
-		type: Date,
-		default: Date.now,
-	},
-});
-let File = mongoose.model("file", fileSchema);
-
-var messageSchema = mongoose.Schema({
-	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
-	},
-	projectId: {
-		type: mongoose.ObjectId,
-		ref: Project,
-	},
-	description: {
-		type: String,
-	},
-	amount: {
-		type: Number,
-	},
-	estimatedDuration: {
-		type: Number,
-	},
-	status: {
-		type: Number,
-	},
-	createdAt: {
-		type: Date,
-		default: Date.now,
-	},
-});
-let Message = mongoose.model("message", messageSchema);
-
-export { Project, Bug, Task, Note, TimeSheet, Payment, File, Message };
+export { Bug, Task, Note, TimeSheet, Payment, File, Project, Request, Invoice };

@@ -10,20 +10,19 @@ import Middleware from "./middleware.js";
 export default function (infoApp) {
 	// middleware function
 	return {
-		getRoot: function (req, res) {
+		Root_Get: function (req, res) {
 			res.redirect(Path.Auth() + "/login");
 		},
 
-		getRegister: [
-			Middleware(infoApp).logInChecker,
+		Register_Get: [
+			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				res.render(Template.Auth() + "/register", {
 					name: "register",
 				});
 			},
 		],
-
-		postRegister: function (req, res) {
+		Register_Post: function (req, res) {
 			// check('fullname', "نام اجباری است")
 			// check('email', "ایمیل اجباری است", 'ایمیل وجود دارد');
 			// check('password', " رمز عبوراجباری است", 'پسوردها یکسان نیستند');
@@ -76,16 +75,15 @@ export default function (infoApp) {
 			}
 		},
 
-		getLogIn: [
-			Middleware(infoApp).logInChecker,
+		LogIn_Get: [
+			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				res.render(Template.Auth() + "/login", {
 					redirect: req.query.redirect,
 				});
 			},
 		],
-
-		postLogIn: function (req, res) {
+		LogIn_Post: function (req, res) {
 			const { email, password } = req.body;
 			let redirect = req.query.redirect;
 			if (!email || !password) {
@@ -112,7 +110,7 @@ export default function (infoApp) {
 		},
 
 		// reset password
-		getRecover: [
+		Recover_Get: [
 			// Middleware(infoApp).tokenChecker,
 			function (req, res) {
 				res.render(Template.Auth() + "/recover-password", {
@@ -120,25 +118,23 @@ export default function (infoApp) {
 				});
 			},
 		],
-
-		postRecover: function (req, res) {
+		Recover_Post: function (req, res) {
 			const { email, password } = req.body;
 		},
 
-		getForgot: [
-			Middleware(infoApp).logInChecker,
+		Forgot_Get: [
+			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				res.render(Template.Auth() + "/forgot-password", {
 					name: "forgot-password",
 				});
 			},
 		],
-
-		postForgot: function (req, res) {
+		Forgot_Post: function (req, res) {
 			const { email, password } = req.body;
 		},
 
-		getLogOut: function (req, res) {
+		LogOut_Get: function (req, res) {
 			console.log("user logged out.");
 			infoApp.session.user = undefined;
 			infoApp.session.login = true;

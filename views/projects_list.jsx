@@ -141,10 +141,7 @@ function ProjectsItem(props) {
 					<span className="badge badge-success">Success</span>
 				</td>
 				<td className="project-actions text-right">
-					<a
-						className="btn btn-primary btn-sm"
-						href={"./project/" + key.id + "/detail"}
-					>
+					<a className="btn btn-primary btn-sm" href={"./project/" + key.id}>
 						<i className="fas fa-folder"></i>
 						View
 					</a>

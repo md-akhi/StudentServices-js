@@ -536,6 +536,7 @@ function Profile(props) {
 																className="form-control"
 																id="inputExperience"
 																placeholder="Experience"
+																defaultValue=""
 															></textarea>
 														</div>
 													</div>

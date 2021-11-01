@@ -5,7 +5,7 @@ function MainSidebarLayout(props) {
 		<aside className="main-sidebar sidebar-dark-primary elevation-4">
 			{/* Main Sidebar Container */}
 			{/* Brand Logo */}
-			<a href="index3.html" className="brand-link">
+			<a href="#" className="brand-link">
 				<img
 					src="/img/AdminLTELogo.png"
 					alt="AdminLTE Logo"

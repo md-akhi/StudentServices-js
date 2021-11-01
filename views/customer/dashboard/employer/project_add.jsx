@@ -31,10 +31,7 @@ function projectAdd(props) {
 					<div className="container-fluid">
 						{/* Main content */}
 						<section className="content">
-							<form
-								action={props.isEdit ? "./edit" : "./add"}
-								method="post"
-							>
+							<form action={props.isEdit ? "./edit" : "./add"} method="post">
 								<div className="row">
 									<div className="col-md-6">
 										<div className="card card-primary">
@@ -60,7 +57,7 @@ function projectAdd(props) {
 														id="inputName"
 														className="form-control"
 														name="name"
-														value={props.isEdit ? data.name : ""}
+														defaultValue={props.isEdit ? data.name : ""}
 													/>
 												</div>
 												<div className="form-group">
@@ -72,9 +69,8 @@ function projectAdd(props) {
 														className="form-control"
 														rows="4"
 														name="description"
-													>
-														{props.isEdit ? data.description : ""}
-													</textarea>
+														defaultValue={props.isEdit ? data.description : ""}
+													></textarea>
 												</div>
 												<div className="form-group">
 													<label htmlFor="inputStatus">Status</label>
@@ -100,7 +96,7 @@ function projectAdd(props) {
 														id="inputClientCompany"
 														className="form-control"
 														name="company"
-														value={props.isEdit ? data.company : ""}
+														defaultValue={props.isEdit ? data.company : ""}
 													/>
 												</div>
 												<div className="form-group">
@@ -112,7 +108,7 @@ function projectAdd(props) {
 														id="inputProjectLeader"
 														className="form-control"
 														name="leader"
-														value={props.isEdit ? data.leader : ""}
+														defaultValue={props.isEdit ? data.leader : ""}
 													/>
 												</div>
 											</div>
@@ -145,8 +141,10 @@ function projectAdd(props) {
 														type="number"
 														id="inputEstimatedBudget"
 														className="form-control"
-														name="estimated"
-														value={props.isEdit ? data.estimatedBudget : ""}
+														name="budget"
+														defaultValue={
+															props.isEdit ? data.estimatedBudget : ""
+														}
 													/>
 												</div>
 												<div className="form-group">
@@ -158,7 +156,7 @@ function projectAdd(props) {
 														id="inputSpentBudget"
 														className="form-control"
 														name="total"
-														value={props.isEdit ? data.total : ""}
+														defaultValue={props.isEdit ? data.total : ""}
 													/>
 												</div>
 												<div className="form-group">
@@ -170,7 +168,9 @@ function projectAdd(props) {
 														id="inputEstimatedDuration"
 														className="form-control"
 														name="duration"
-														value={props.isEdit ? data.estimatedDuration : ""}
+														defaultValue={
+															props.isEdit ? data.estimatedDuration : ""
+														}
 													/>
 												</div>
 											</div>
@@ -186,7 +186,7 @@ function projectAdd(props) {
 										</a>
 										<input
 											type="submit"
-											value={
+											defaultValue={
 												props.isEdit ? "Update Porject" : "Create new Porject"
 											}
 											className="btn btn-success float-right"

@@ -6,42 +6,56 @@ export default function (infoApp) {
 	let router = express.Router();
 
 	// middleware function
-	router.use(Middleware(infoApp).sessionChecker);
+	router.use(Middleware(infoApp).SessionChecker);
 
 	// root
-	router.route("/").get(ControllerEmployer(infoApp).rootGet);
+	router.route("/").get(ControllerEmployer(infoApp).Root_Get);
 
-	router.route("/projects").get(ControllerEmployer(infoApp).projectsGet);
+	router.route("/projects").get(ControllerEmployer(infoApp).Projects_Get);
+	router
+		.route("/projects/archived")
+		.get(ControllerEmployer(infoApp).Projects_Get);
 
 	router
 		.route("/project/add")
-		.get(ControllerEmployer(infoApp).addProjectGet)
-		.post(ControllerEmployer(infoApp).addProjectPost);
+		.get(ControllerEmployer(infoApp).ProjectAdd_Get)
+		.post(ControllerEmployer(infoApp).ProjectAdd_Post);
 
 	router
 		.route("/project/:id/edit")
-		.get(ControllerEmployer(infoApp).editProjectGet)
-		.post(ControllerEmployer(infoApp).editProjectPost);
+		.get(ControllerEmployer(infoApp).ProjectEdit_Get)
+		.post(ControllerEmployer(infoApp).ProjectEdit_Post);
 
 	router
 		.route("/project/:id/del")
-		.get(ControllerEmployer(infoApp).deleteProjectGet);
+		.get(ControllerEmployer(infoApp).ProjectDelete_Get);
 
 	router
-		.route("/project/:id/detail")
-		.get(ControllerEmployer(infoApp).detailProjectGet)
-		.post(ControllerEmployer(infoApp).detailProjectPost);
-
-	router.route("/invoices").get(ControllerEmployer(infoApp).invoicesGet);
+		.route("/project/:projectId/detail")
+		.get(ControllerEmployer(infoApp).ProjectDetail_Get);
 
 	router
-		.route("/invoice/:id")
-		.get(ControllerEmployer(infoApp).invoiceGet)
-		.post(ControllerEmployer(infoApp).invoicePost);
+		.route("/project/:projectId/set/:requestId")
+		.get(ControllerEmployer(infoApp).RequestSet_Get);
 
 	router
-		.route("/invoice/:id/print")
-		.get(ControllerEmployer(infoApp).invoicePrintGet);
+		.route("/project/:projectId/del/:requestId")
+		.get(ControllerEmployer(infoApp).RequestDelete_Get);
+
+	router.route("/invoices").get(ControllerEmployer(infoApp).Invoices_Get);
+
+	router
+		.route("/invoices/archived")
+		.get(ControllerEmployer(infoApp).Invoices_Get);
+
+	router
+		.route("/invoice/:invoiceId")
+		.get(ControllerEmployer(infoApp).InvoiceDetail_Get)
+		.post(ControllerEmployer(infoApp).InvoiceDetail_Post);
+
+	router
+		.route("/invoice/:invoiceId/print")
+		.get(ControllerEmployer(infoApp).InvoicePrint_Get);
 
 	// router
 	// 	.route("/project/archives")

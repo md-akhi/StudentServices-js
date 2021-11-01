@@ -9,9 +9,9 @@ import NavbarLayout from "../../layouts/navbar";
 
 function requestAdd(props) {
 	let data = props.data;
-	let userId = <input type="hidden" name="userId" value={props.user} />;
+	let userId = <input type="hidden" name="userId" defaultValue={props.user} />;
 	let projectId = (
-		<input type="hidden" name="projectId" value={props.project} />
+		<input type="hidden" name="projectId" defaultValue={props.project} />
 	);
 	return (
 		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
@@ -95,7 +95,7 @@ function requestAdd(props) {
 														id="inputamount"
 														className="form-control"
 														name="amount"
-														value={props.isEdit ? data.amount : ""}
+														defaultValue={props.isEdit ? data.amount : ""}
 													/>
 												</div>
 												<div className="form-group">
@@ -107,7 +107,9 @@ function requestAdd(props) {
 														id="inputEstimatedDuration"
 														className="form-control"
 														name="duration"
-														value={props.isEdit ? data.estimatedDuration : ""}
+														defaultValue={
+															props.isEdit ? data.estimatedDuration : ""
+														}
 													/>
 												</div>
 											</div>
@@ -123,7 +125,9 @@ function requestAdd(props) {
 										</a>
 										<input
 											type="submit"
-											value={props.isEdit ? "Update Request" : "Create Request"}
+											defaultValue={
+												props.isEdit ? "Update Request" : "Create Request"
+											}
 											className="btn btn-success float-right"
 										/>
 										{!props.isEdit && userId}

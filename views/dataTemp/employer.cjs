@@ -9,18 +9,20 @@ exports.linkNavUp = {
 
 exports.menuSidbarRight = {
 	Project: {
-		name: "project",
+		name: "projects",
 		icon: "fas fa-tachometer-alt",
 		sub: {
-			List: pathCustomer.Employer() + "/projects",
 			Add: pathCustomer.Employer() + "/project/add",
+			List: pathCustomer.Employer() + "/projects",
+			Archived: pathCustomer.Employer() + "/projects/Archived",
 		},
 	},
 	Invoice: {
-		name: "invoice",
+		name: "invoices",
 		icon: "fas fa-tachometer-alt",
 		sub: {
-			List: pathCustomer.Employer() + "/invoice",
+			List: pathCustomer.Employer() + "/invoices",
+			Archived: pathCustomer.Employer() + "/invoices/Archived",
 		},
 	},
 };

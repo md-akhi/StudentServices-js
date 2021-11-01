@@ -9,6 +9,7 @@ import NavbarLayout from "../../layouts/navbar";
 
 function projectDetail(props) {
 	let data = props.data;
+	let requests = props.requests;
 	return (
 		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
@@ -97,6 +98,10 @@ function projectDetail(props) {
 										<div className="row">
 											<div className="col-12">
 												<h4>Recent Activity</h4>
+												<RequestItem
+													data={requests}
+													active={data.frelancerId == undefined ? true : false}
+												></RequestItem>
 												<div className="post">
 													<div className="user-block">
 														<img
@@ -262,6 +267,46 @@ function projectDetail(props) {
 			{/* ./wrapper */}
 		</HtmlLayout>
 	);
+}
+
+function RequestItem(props) {
+	let item = props.data.map((key, value) => {
+		let str = (
+			<div className="post">
+				<div className="user-block">
+					<img
+						className="img-circle img-bordered-sm"
+						src="/img/user1-128x128.jpg"
+						alt="user image"
+					/>
+					<span className="username">
+						<a href="#">{key.userId.role}Jonathan Burke Jr.</a>
+					</span>
+					<span className="description">Shared publicly - 7:45 PM today</span>
+				</div>
+				{/* /.user-block */}
+				<p>{key.description}</p>
+
+				<p>
+					<a href="#" className="link-black text-sm">
+						<i className="fas fa-link mr-1"></i> Demo File 1 v2
+					</a>
+				</p>
+
+				<div className="text-center mt-5 mb-3">
+					{props.active ? (
+						<a href={"./set/" + key._id} className="btn btn-sm btn-primary">
+							Accept Request
+						</a>
+					) : (
+						""
+					)}
+				</div>
+			</div>
+		);
+		return str;
+	});
+	return item;
 }
 
 export default projectDetail;

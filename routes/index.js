@@ -1,25 +1,25 @@
 import express from "express";
 import { pathCustomer as Path, pathHome } from "../config/routes.cjs";
 import Middleware from "../controllers/middleware.js";
-import routerHome from "./home.js";
-import routerAuth from "./auth.js";
-import routerDashboard from "./dashboard.js";
-import routerEmployer from "./employer.js";
-import routerFrelanser from "./frelanser.js";
+import RouterHome from "./home.js";
+import RouterAuth from "./auth.js";
+import RouterDashboard from "./dashboard.js";
+import RouterEmployer from "./employer.js";
+import RouterFrelanser from "./frelanser.js";
 
 export default function (infoApp) {
 	let router = express.Router();
 
 	// middleware function
-	router.use(Middleware(infoApp).sessionChecker);
+	router.use(Middleware(infoApp).SessionChecker);
 
 	//router
-	router.use("/", routerHome(infoApp));
+	router.use("/", RouterHome(infoApp));
 	// customer
-	router.use(pathHome.Auth(), routerAuth(infoApp));
-	router.use(Path.Dashboard(), routerDashboard(infoApp));
-	router.use(Path.Employer(), routerEmployer(infoApp));
-	router.use(Path.Frelanser(), routerFrelanser(infoApp));
+	router.use(pathHome.Auth(), RouterAuth(infoApp));
+	router.use(Path.Dashboard(), RouterDashboard(infoApp));
+	router.use(Path.Employer(), RouterEmployer(infoApp));
+	router.use(Path.Frelanser(), RouterFrelanser(infoApp));
 
 	// catch undefined routes and respond with 404
 	router.use(function (req, res, next) {
