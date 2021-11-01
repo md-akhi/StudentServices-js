@@ -14,9 +14,9 @@ echo "OS TYPE: $OSTYPE - Platform: $Platform"
 
 if [[ $Platform == "WIN" ]]; then
 	echo "Win: Start & Connect MongoDB."
-	$INIT_CWD/config/WIN.bat $DB_Start $DB_Connect $DB_path
+	./config/WIN.bat $DB_Start $DB_Connect $DB_path
 
 elif [[ $Platform == "LINUX" ]]; then
-echo "Linux: Start & Connect MongoDB."
+ echo "Linux: Start & Connect MongoDB."
 
 fi
