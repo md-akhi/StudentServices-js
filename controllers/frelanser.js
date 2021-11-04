@@ -177,10 +177,6 @@ export default function (infoApp) {
 					});
 			},
 		],
-		InvoiceDetail_Post: [
-			Middleware(infoApp).LogInChecker,
-			function (req, res) {},
-		],
 
 		InvoicePrint_Get: [
 			Middleware(infoApp).LogInChecker,

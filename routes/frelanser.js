@@ -34,8 +34,7 @@ export default function (infoApp) {
 
 	router
 		.route("/invoice/:invoiceId")
-		.get(ControllerFrelanser(infoApp).InvoiceDetail_Get)
-		.post(ControllerFrelanser(infoApp).InvoiceDetail_Post);
+		.get(ControllerFrelanser(infoApp).InvoiceDetail_Get);
 
 	router
 		.route("/invoice/:invoiceId/print")

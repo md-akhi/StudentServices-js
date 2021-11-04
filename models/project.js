@@ -91,8 +91,18 @@ var paymentSchema = mongoose.Schema({
 		type: mongoose.ObjectId,
 		ref: ModelUser,
 	},
+	requestId: {
+		type: mongoose.ObjectId,
+		ref: Request,
+	},
 	status: {
 		type: Number,
+	},
+	amount: {
+		type: String,
+	},
+	desc: {
+		type: String,
 	},
 });
 let Payment = mongoose.model("payment", paymentSchema);

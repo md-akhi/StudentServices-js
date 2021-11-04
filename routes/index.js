@@ -15,6 +15,7 @@ export default function (infoApp) {
 
 	//router
 	router.use("/", RouterHome(infoApp));
+
 	// customer
 	router.use(pathHome.Auth(), RouterAuth(infoApp));
 	router.use(Path.Dashboard(), RouterDashboard(infoApp));

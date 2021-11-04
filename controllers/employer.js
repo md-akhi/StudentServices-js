@@ -3,12 +3,14 @@ import {
 	Project as ModelProject,
 	Request as ModelRequest,
 	Invoice as ModelInvoice,
+	Payment as ModelPayment,
 } from "../models/project.js";
 import {
 	templateCustomer as Template,
 	pathCustomer as Path,
 } from "../config/routes.cjs";
 import Middleware from "../controllers/middleware.js";
+import PaymentIDPay from "../config/pay.js";
 import async from "async";
 
 export default function (infoApp) {
@@ -55,15 +57,8 @@ export default function (infoApp) {
 			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				let userId = infoApp.session.user.id;
-				const {
-					name,
-					description,
-					status,
-					company,
-					budget,
-					total,
-					duration,
-				} = req.body;
+				const { name, description, status, company, budget, total, duration } =
+					req.body;
 
 				let newPoroject = new ModelProject({
 					userId: userId,
@@ -305,7 +300,93 @@ export default function (infoApp) {
 		],
 		InvoiceDetail_Post: [
 			Middleware(infoApp).LogInChecker,
-			function (req, res) {},
+			function (req, res) {
+				let userId = infoApp.session.user.id;
+				let invoiceId = req.params.invoiceId;
+			},
+		],
+
+		InvoicePayment_Get: [
+			Middleware(infoApp).LogInChecker,
+			function (req, res) {
+				rId = infoApp.session.user.id;
+				let invoiceId = req.params.invoiceId;
+				ModelInvoice.findOne({
+					//ModelPayment
+					_id: invoiceId,
+					frelancerId: userId,
+				})
+					.populate("projectId")
+					.populate("employerId")
+					.then(function (invoice) {
+						// res.render(Template.Frelanser() + "/invoice_detail", {
+						// 	data: invoice,
+						// });
+						let IDPay = new PaymentIDPay(
+							req.env.IDPAY_API_KEY,
+							{
+								payment: req.env.IDPAY_PAYMENT,
+								verify: req.env.IDPAY_VERIFY,
+								inquiry: req.env.IDPAY_INQUIRY,
+							},
+							req.env.IDPAY_SANDBOX
+						);
+						IDPay.payment("http://localhost:9000/dash/verify", orderId, data)
+							.then((body) => {
+								console.log(body);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					})
+					.catch(function (err) {
+						if (err) console.log(err);
+					});
+			},
+		],
+
+		Invoiceverify_Post: [
+			Middleware(infoApp).LogInChecker,
+			function (req, res) {
+				rId = infoApp.session.user.id;
+				let invoiceId = req.params.invoiceId;
+				ModelPayment.findOne({
+					//ModelPayment
+					_id: invoiceId,
+					userId: userId,
+				});
+				ModelInvoice.findOne({
+					//ModelPayment
+					_id: invoiceId,
+					frelancerId: userId,
+				})
+					.populate("projectId")
+					.populate("employerId")
+					.then(function (invoice) {
+						// res.render(Template.Frelanser() + "/invoice_detail", {
+						// 	data: invoice,
+						// });
+						let IDPay = new PaymentIDPay(
+							req.env.IDPAY_API_KEY,
+							{
+								payment: req.env.IDPAY_PAYMENT,
+								verify: req.env.IDPAY_VERIFY,
+								inquiry: req.env.IDPAY_INQUIRY,
+							},
+							req.env.IDPAY_SANDBOX
+						);
+						IDPay.Verify(trackId, orderId)
+							.then((body) => {
+								console.log(body);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					})
+					.catch(function (err) {
+						if (err) console.log(err);
+					});
+			},
 		],
 
 		InvoicePrint_Get: [

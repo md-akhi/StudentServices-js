@@ -50,8 +50,15 @@ export default function (infoApp) {
 
 	router
 		.route("/invoice/:invoiceId")
-		.get(ControllerEmployer(infoApp).InvoiceDetail_Get)
-		.post(ControllerEmployer(infoApp).InvoiceDetail_Post);
+		.get(ControllerEmployer(infoApp).InvoiceDetail_Get);
+
+	router
+		.route("/invoice/:invoiceId/pay")
+		.get(ControllerEmployer(infoApp).InvoicePayment_Get);
+
+	router
+		.route("/invoice/:invoiceId/verify")
+		.post(ControllerEmployer(infoApp).Invoiceverify_Post);
 
 	router
 		.route("/invoice/:invoiceId/print")
