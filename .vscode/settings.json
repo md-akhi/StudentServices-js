@@ -1,14 +1,14 @@
 {
   // Set the default
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
   "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
   "git.enableCommitSigning": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   // Enable per-language
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": false
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true
   }
 }
