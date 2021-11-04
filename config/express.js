@@ -9,6 +9,7 @@ import fs from "fs";
 import logger from "morgan";
 //import multer from "multer";
 import compression from "compression";
+import { v5 as uuidv5 } from "uuid";
 import mongoose from "./db.js";
 
 // Use fs.readFile() method to read the file
@@ -35,14 +36,10 @@ export default function (app, infoApp) {
 
 	//if (app.get("env") === "production") {
 	app.set("trust proxy", 1);
-	let sessionStore = MongoStore.create({
-		mongoUrl:
-			env.MONGODB_URL + env.DB_NAME ||
-			"mongodb://127.0.0.1:27017/studentServices",
-	});
+
 	app.use(
 		session({
-			secret: pkg.name,
+			secret: uuidv5(pkg.name, uuidv5.URL),
 			resave: true,
 			saveUninitialized: true,
 			cookie: {
@@ -51,7 +48,9 @@ export default function (app, infoApp) {
 				secure: true,
 				expires: new Date(Date.now() + 7 * 24 * 60 * 60),
 			},
-			//store: sessionStore,
+			store: MongoStore.create({
+				mongoUrl: env.MONGODB_URL + env.DB_NAME,
+			}),
 		})
 	);
 	//}
@@ -62,6 +61,8 @@ export default function (app, infoApp) {
 			infoApp.session = req.session;
 			infoApp.session.login = false;
 		}
+		req.env = env;
+		req.pkg = pkg;
 		//else req.session = infoApp.session;
 		next();
 	});
