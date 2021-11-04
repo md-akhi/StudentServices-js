@@ -4,6 +4,7 @@ import reactViews from "express-react-views";
 import { fileURLToPath } from "url";
 import configExpress from "./config/express.js";
 import routes from "./routes/index.js";
+import routesApi from "./api/routes/index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -24,4 +25,5 @@ app.engine("jsx", reactViews.createEngine());
 app = configExpress(app, infoApp);
 
 // routes
+app.use("/api", routesApi());
 app.use("/", routes(infoApp));
