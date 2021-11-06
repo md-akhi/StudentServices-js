@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import Mongoose from "mongoose";
 
-var configSchema = mongoose.Schema({
+var ConfigSchema = Mongoose.Schema({
 	emailTemplate: [
 		{
 			task: {
@@ -55,6 +55,6 @@ var configSchema = mongoose.Schema({
 	},
 });
 
-let MConfig = mongoose.model("config", configSchema);
-export default MConfig;
-//user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+let Config = Mongoose.model("config", ConfigSchema);
+export default Config;
+//user: { type: Mongoose.ObjectId, ref: 'User' },

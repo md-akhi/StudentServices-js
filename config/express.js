@@ -1,75 +1,81 @@
-import dotenv from "dotenv";
-import session from "express-session"; //deprecated
+import DotENV from "dotenv";
+import Session from "express-session";
 import MongoStore from "connect-mongo";
-import cookieParser from "cookie-parser";
-import bodyParser from "body-parser";
-import cors from "cors";
-import fs from "fs";
+import CookieParser from "cookie-parser";
+import BodyParser from "body-parser";
+import Cors from "cors";
+import FS from "fs";
 //import path from "path";
-import logger from "morgan";
+import Logger from "morgan";
 //import multer from "multer";
-import compression from "compression";
-import { v5 as uuidv5 } from "uuid";
-import mongoose from "./db.js";
+import Compression from "compression";
+import { v5 as UID5, v4 as UID4 } from "uuid";
+import DatabaseMongoDB from "./database.js";
 
-// Use fs.readFile() method to read the file
-let pkg = JSON.parse(fs.readFileSync("./package.json"));
+// Use FS.readFile() method to read the file
+const pkg = JSON.parse(FS.readFileSync("./package.json"));
 
-dotenv.config();
+DotENV.config();
 const env = process.env;
 
-export default function (app, infoApp) {
-	app.use(cookieParser());
-	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded({ extended: true }));
-	app.use(cors());
+export default function (App, infoApp) {
+	App.use(CookieParser());
+	App.use(BodyParser.json());
+	App.use(BodyParser.urlencoded({ extended: true }));
+	App.use(Cors());
 
-	// setup the logger
+	// setup the Logger
 	// Don't log during tests
 	// Logging middleware
-	if (env.NODE_ENV !== "test") app.use(logger("dev"));
+	if (env.NODE_ENV !== "test") App.use(Logger("dev"));
 
 	// Compression middleware (should be placed before express.static)
-	app.use(compression());
+	App.use(Compression());
 
-	mongoose(env);
+	DatabaseMongoDB(env);
 
-	//if (app.get("env") === "production") {
-	app.set("trust proxy", 1);
+	const SessionStore = MongoStore.create({
+		mongoUrl: env.MONGODB_URL + env.DB_NAME,
+	});
+	const sessionUID = UID4();
 
-	app.use(
-		session({
-			secret: uuidv5(pkg.name, uuidv5.URL),
+	//if (App.get("env") === "production") {
+	App.set("trust proxy", 1);
+	App.use(
+		Session({
+			genid: () => sessionUID,
+			name: "session",
+			secret: UID5(pkg.name, UID5.URL),
 			resave: true,
 			saveUninitialized: true,
 			cookie: {
-				path: "/",
-				maxAge: 7 * 24 * 60 * 60,
 				secure: true,
-				expires: new Date(Date.now() + 7 * 24 * 60 * 60),
+				path: "/",
+				maxAge: 7 * 24 * 60 * 60, //+ 7 * 24 * 60 * 60 = 7 days
+				expires: new Date(Date.now() + 7 * 24 * 60 * 60), //+ 7 * 24 * 60 * 60 = 7 days
 			},
-			store: MongoStore.create({
-				mongoUrl: env.MONGODB_URL + env.DB_NAME,
-			}),
+			store: SessionStore,
 		})
 	);
 	//}
 
 	// expose package.json to views
-	app.use(function (req, res, next) {
+	App.use(function (req, res, next) {
 		if (infoApp.session === undefined) {
+			infoApp.sessionId = req.session.id;
 			infoApp.session = req.session;
-			infoApp.session.login = false;
+			infoApp.sessionStore = SessionStore;
+			infoApp.user = {};
+			infoApp.user.login = false;
 		}
 		req.env = env;
 		req.pkg = pkg;
-		//else req.session = infoApp.session;
 		next();
 	});
 
-	app.listen(env.PORT, () => {
+	App.listen(env.PORT, () => {
 		console.log(`Server running on http://localhost:${env.PORT}`);
 	});
 
-	return app;
+	return App;
 }

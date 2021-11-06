@@ -1,91 +1,86 @@
-import express from "express";
+import Express from "express";
 import Middleware from "../controllers/middleware.js";
-import ControllerFrelanser from "../controllers/frelanser.js";
+import FrelanserController from "../controllers/frelanser.js";
 
 export default function (infoApp) {
-	let router = express.Router();
+	let Router = Express.Router();
 
-	// middleware function
-	router.use(Middleware(infoApp).SessionChecker);
+	Router.route("/").get(FrelanserController(infoApp).Root_Get);
 
-	router.route("/").get(ControllerFrelanser(infoApp).Root_Get);
+	Router.route("/requests").get(FrelanserController(infoApp).Requests_Get);
 
-	router.route("/requests").get(ControllerFrelanser(infoApp).Requests_Get);
+	Router.route("/project/:projectId/request/add")
+		.get(FrelanserController(infoApp).RequestAdd_Get)
+		.post(FrelanserController(infoApp).RequestAdd_Post);
 
-	router
-		.route("/project/:projectId/request/add")
-		.get(ControllerFrelanser(infoApp).RequestAdd_Get)
-		.post(ControllerFrelanser(infoApp).RequestAdd_Post);
+	Router.route("/request/:requestId/edit")
+		.get(FrelanserController(infoApp).RequestEdit_Get)
+		.post(FrelanserController(infoApp).RequestEdit_Post);
 
-	router
-		.route("/request/:requestId/edit")
-		.get(ControllerFrelanser(infoApp).RequestEdit_Get)
-		.post(ControllerFrelanser(infoApp).RequestEdit_Post);
+	Router.route("/request/:requestId/del").get(
+		FrelanserController(infoApp).RequestDelete_Get
+	);
 
-	router
-		.route("/request/:requestId/del")
-		.get(ControllerFrelanser(infoApp).RequestDelete_Get);
+	Router.route("/invoices").get(FrelanserController(infoApp).Invoices_Get);
 
-	router.route("/invoices").get(ControllerFrelanser(infoApp).Invoices_Get);
+	Router.route("/invoices/archived").get(
+		FrelanserController(infoApp).Invoices_Get
+	);
 
-	router
-		.route("/invoices/archived")
-		.get(ControllerFrelanser(infoApp).Invoices_Get);
+	Router.route("/invoice/:invoiceId").get(
+		FrelanserController(infoApp).InvoiceDetail_Get
+	);
 
-	router
-		.route("/invoice/:invoiceId")
-		.get(ControllerFrelanser(infoApp).InvoiceDetail_Get);
+	Router.route("/invoice/:invoiceId/print").get(
+		FrelanserController(infoApp).InvoicePrint_Get
+	);
 
-	router
-		.route("/invoice/:invoiceId/print")
-		.get(ControllerFrelanser(infoApp).InvoicePrint_Get);
-
-	// router
+	// Router
 	// 	.route("/todo/add")
-	// 	.get(ControllerFrelanser(infoApp).detailProjectGet)
-	// 	.post(ControllerFrelanser(infoApp).detailProjectPost);
+	// 	.get(FrelanserController(infoApp).detailProjectGet)
+	// 	.post(FrelanserController(infoApp).detailProjectPost);
 
-	// router
+	// Router
 	// 	.route("/todo/:id/edit")
-	// 	.get(ControllerFrelanser(infoApp).detailProjectGet)
-	// 	.post(ControllerFrelanser(infoApp).detailProjectPost);
+	// 	.get(FrelanserController(infoApp).detailProjectGet)
+	// 	.post(FrelanserController(infoApp).detailProjectPost);
 
-	// router
+	// Router
 	// 	.route("/todo/:id/del")
-	// 	.get(ControllerFrelanser(infoApp).getDetailProject)
-	// 	.post(ControllerFrelanser(infoApp).postDetailProject);
+	// 	.get(FrelanserController(infoApp).getDetailProject)
+	// 	.post(FrelanserController(infoApp).postDetailProject);
 
-	// router
+	// Router
 	// 	.route("/project/:id/file")
-	// 	.get(ControllerFrelanser(infoApp).getEditProject)
-	// 	.post(ControllerFrelanser(infoApp).postEditProject);
+	// 	.get(FrelanserController(infoApp).getEditProject)
+	// 	.post(FrelanserController(infoApp).postEditProject);
 
-	// router
+	// Router
 	// 	.route("/project/:id/bug")
-	// 	.get(ControllerFrelanser(infoApp).getEditProject)
-	// 	.post(ControllerFrelanser(infoApp).postEditProject);
+	// 	.get(FrelanserController(infoApp).getEditProject)
+	// 	.post(FrelanserController(infoApp).postEditProject);
 
-	// router
+	// Router
 	// 	.route("/project/archived")
-	// 	.get(ControllerFrelanser(infoApp).getEditProject)
-	// 	.post(ControllerFrelanser(infoApp).postEditProject);
+	// 	.get(FrelanserController(infoApp).getEditProject)
+	// 	.post(FrelanserController(infoApp).postEditProject);
 
-	// router
+	// Router
 	// 	.route("/project/payment")
-	// 	.get(ControllerFrelanser(infoApp).getEditProject)
-	// 	.post(ControllerFrelanser(infoApp).postEditProject);
+	// 	.get(FrelanserController(infoApp).getEditProject)
+	// 	.post(FrelanserController(infoApp).postEditProject);
 
-	router.route("/profile").get(ControllerFrelanser(infoApp).Profile_Get);
+	Router.route("/profile").get(FrelanserController(infoApp).Profile_Get);
 
-	// router
+	// Router
 	// 	.route("/tickets")
-	// 	.get(ControllerFrelanser(infoApp).orderTodoGet)
-	// 	.post(ControllerFrelanser(infoApp).orderTodoPost);
+	// 	.get(FrelanserController(infoApp).orderTodoGet)
+	// 	.post(FrelanserController(infoApp).orderTodoPost);
 
-	// router
+	// Router
 	// 	.route("/ticket/:id")
-	// 	.get(ControllerFrelanser(infoApp).orderTodoGet)
-	// 	.post(ControllerFrelanser(infoApp).orderTodoPost);
+	// 	.get(FrelanserController(infoApp).orderTodoGet)
+	// 	.post(FrelanserController(infoApp).orderTodoPost);
 
-	return router;
+	return Router;
 }

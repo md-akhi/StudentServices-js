@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
-// import { User as ModelUser } from "./user.js";
-// import { Request as ModelRequest } from "./frelanser.js";
+import Mongoose from "mongoose";
+// import { User as UserModel } from "./user.js";
+// import { Request as RequestModel } from "./frelanser.js";
 
-var employerSchema = mongoose.Schema({
+var EmployerSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Mongoose.ObjectId,
 		index: true,
 	},
 	bookmark: [
@@ -29,6 +29,6 @@ var employerSchema = mongoose.Schema({
 	},
 });
 
-let Employer = mongoose.model("employer", employerSchema);
+let Employer = Mongoose.model("employer", EmployerSchema);
 
 export default Employer;

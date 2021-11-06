@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import Mongoose from "mongoose";
 
-var adminSchema = mongoose.Schema({
+var AdminSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Mongoose.ObjectId,
 		index: true,
 	},
 	chatStatus: {
@@ -25,6 +25,6 @@ var adminSchema = mongoose.Schema({
 	},
 });
 
-let MAdmin = mongoose.model("admin", adminSchema);
-export default MAdmin;
-//user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+let Admin = Mongoose.model("admin", AdminSchema);
+export default Admin;
+//user: { type: Mongoose.ObjectId, ref: 'User' },

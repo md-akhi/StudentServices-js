@@ -1,13 +1,13 @@
-//import { User as ModelUser } from "../models/user.js";
+//import { User as UserModel } from "../models/user.js";
 //import Frelanser from "../models/frelanser.js";
 //import { * as Model } from "../models/project.js";
 import {
-	Request as ModelRequest,
-	Invoice as ModelInvoice,
+	Request as RequestModel,
+	Invoice as InvoiceModel,
 } from "../models/project.js";
 import {
-	templateCustomer as Template,
-	pathCustomer as Path,
+	customerTemplate as Template,
+	customerPath as Path,
 } from "../config/routes.cjs";
 import Middleware from "./middleware.js";
 
@@ -15,7 +15,6 @@ export default function (infoApp) {
 	// Middleware function to check for logged-in users
 	return {
 		Root_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				res.render(Template.Frelanser(), {
 					name: "frelanser",
@@ -24,10 +23,9 @@ export default function (infoApp) {
 		],
 
 		Requests_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
-				ModelRequest.find({
+				let userId = infoApp.user.id;
+				RequestModel.find({
 					userId: userId,
 				})
 					.populate("projectId")
@@ -42,9 +40,8 @@ export default function (infoApp) {
 		],
 
 		RequestAdd_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let projectId = req.params.projectId;
 				res.render(Template.Frelanser() + "/request_add", {
 					user: userId,
@@ -53,13 +50,12 @@ export default function (infoApp) {
 			},
 		],
 		RequestAdd_Post: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				//let userId = infoApp.session.user.id;
+				//let userId = infoApp.user.id;
 				//let projectId = req.params.projectId;
 				const { description, amount, duration, projectId, userId } = req.body;
 
-				let newRequest = new ModelRequest({
+				let newRequest = new RequestModel({
 					userId: userId,
 					projectId: projectId,
 					description: description,
@@ -82,11 +78,10 @@ export default function (infoApp) {
 		],
 
 		RequestEdit_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let requestId = req.params.requestId;
-				ModelRequest.findOne(
+				RequestModel.findOne(
 					{
 						_id: requestId,
 						userId: userId,
@@ -102,11 +97,10 @@ export default function (infoApp) {
 			},
 		],
 		RequestEdit_Post: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				const { description, status, estimated, total, duration } = req.body;
 				let requestId = req.params.requestId;
-				ModelRequest.findById(requestId, function (err, edit) {
+				RequestModel.findById(requestId, function (err, edit) {
 					if (err) console.log(err);
 					edit.description = description;
 					edit.status = status;
@@ -124,10 +118,9 @@ export default function (infoApp) {
 		],
 
 		RequestDelete_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				let requestId = req.params.requestId;
-				ModelRequest.findByIdAndDelete(requestId, function (err) {
+				RequestModel.findByIdAndDelete(requestId, function (err) {
 					if (err) console.log(err);
 					// REDIRECT TO THE project
 					res.redirect(Path.Frelanser() + "/requests");
@@ -136,10 +129,9 @@ export default function (infoApp) {
 		],
 
 		Invoices_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
-				ModelInvoice.find({
+				let userId = infoApp.user.id;
+				InvoiceModel.find({
 					frelancerId: userId,
 				})
 					.populate("projectId")
@@ -155,11 +147,10 @@ export default function (infoApp) {
 		],
 
 		InvoiceDetail_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
-				ModelInvoice.findOne({
+				InvoiceModel.findOne({
 					_id: invoiceId,
 					frelancerId: userId,
 				})
@@ -179,9 +170,8 @@ export default function (infoApp) {
 		],
 
 		InvoicePrint_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
 				res.render(Template.Frelanser() + "/invoice_print", {
 					name: "employer",
@@ -190,7 +180,6 @@ export default function (infoApp) {
 		],
 
 		Profile_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				res.render(Template.Frelanser() + "/user_detail", {
 					name: "frelanser",

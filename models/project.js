@@ -1,15 +1,15 @@
-import mongoose from "mongoose";
-import { User as ModelUser } from "./user.js";
+import Mongoose from "mongoose";
+import { User as UserModel } from "./user.js";
 
-var projectSchema = mongoose.Schema(
+var ProjectSchema = Mongoose.Schema(
 	{
 		userId: {
-			type: mongoose.ObjectId,
-			ref: ModelUser,
+			type: Mongoose.ObjectId,
+			ref: UserModel,
 		},
 		frelancerId: {
-			type: mongoose.ObjectId,
-			ref: ModelUser,
+			type: Mongoose.ObjectId,
+			ref: UserModel,
 		},
 		status: {
 			type: Number,
@@ -43,18 +43,18 @@ var projectSchema = mongoose.Schema(
 	{ timestamps: { currentTime: () => Math.floor(Date.now() / 1000) } }
 );
 
-projectSchema.static("getAll", function (arg, callback) {
+ProjectSchema.static("getAll", function (arg, callback) {
 	this.find(arg, callback);
 });
-const Project = mongoose.model("project", projectSchema);
+const Project = Mongoose.model("project", ProjectSchema);
 
-var requestSchema = mongoose.Schema({
+var RequestSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 	projectId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: Project,
 	},
 	description: {
@@ -84,15 +84,15 @@ var requestSchema = mongoose.Schema({
 		default: Date.now,
 	},
 });
-const Request = mongoose.model("request", requestSchema);
+const Request = Mongoose.model("request", RequestSchema);
 
-var paymentSchema = mongoose.Schema({
+var PaymentSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 	requestId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: Request,
 	},
 	status: {
@@ -105,28 +105,28 @@ var paymentSchema = mongoose.Schema({
 		type: String,
 	},
 });
-let Payment = mongoose.model("payment", paymentSchema);
+let Payment = Mongoose.model("payment", PaymentSchema);
 
-var invoiceSchema = mongoose.Schema({
+var InvoiceSchema = Mongoose.Schema({
 	employerId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 	frelancerId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 	requestId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: Request,
 	},
 	projectId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: Project,
 	},
 	paymentId: [
 		{
-			type: mongoose.ObjectId,
+			type: Mongoose.ObjectId,
 			ref: Payment,
 		},
 	],
@@ -137,15 +137,15 @@ var invoiceSchema = mongoose.Schema({
 		type: Number,
 	},
 });
-let Invoice = mongoose.model("invoice", invoiceSchema);
+let Invoice = Mongoose.model("invoice", InvoiceSchema);
 
-var fileSchema = mongoose.Schema({
+var FileSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 	projectId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: Project,
 	},
 	name: {
@@ -165,19 +165,19 @@ var fileSchema = mongoose.Schema({
 		default: Date.now,
 	},
 });
-let File = mongoose.model("file", fileSchema);
+let File = Mongoose.model("file", FileSchema);
 
-var bugSchema = mongoose.Schema({
+var BugSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 	projectId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: Project,
 	},
 	fileId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: File,
 	},
 	title: {
@@ -194,15 +194,15 @@ var bugSchema = mongoose.Schema({
 		default: Date.now,
 	},
 });
-let Bug = mongoose.model("bug", bugSchema);
+let Bug = Mongoose.model("bug", BugSchema);
 
-var taskSchema = mongoose.Schema({
+var TaskSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 	projectId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: Project,
 	},
 	title: {
@@ -228,29 +228,29 @@ var taskSchema = mongoose.Schema({
 		default: Date.now,
 	},
 });
-let Task = mongoose.model("task", taskSchema);
+let Task = Mongoose.model("task", TaskSchema);
 
-var noteSchema = mongoose.Schema({
+var NoteSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 	projectId: {
-		type: mongoose.ObjectId,
+		type: Mongoose.ObjectId,
 		ref: Project,
 	},
 	note: {
 		type: String,
 	},
 });
-let Note = mongoose.model("note", noteSchema);
+let Note = Mongoose.model("note", NoteSchema);
 
-var timeSheetSchema = mongoose.Schema({
+var TimeSheetSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.ObjectId,
-		ref: ModelUser,
+		type: Mongoose.ObjectId,
+		ref: UserModel,
 	},
 });
-let TimeSheet = mongoose.model("timesheet", timeSheetSchema);
+let TimeSheet = Mongoose.model("timesheet", TimeSheetSchema);
 
 export { Bug, Task, Note, TimeSheet, Payment, File, Project, Request, Invoice };

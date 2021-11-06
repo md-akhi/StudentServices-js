@@ -1,9 +1,9 @@
 import bcrypt from "bcryptjs";
-import { User as ModelUser } from "../models/user.js";
+import { User as UserModel } from "../models/user.js";
 import {
-	templateHome as Template,
-	pathHome as Path,
-	pathCustomer,
+	homeTemplate as Template,
+	homePath as Path,
+	customerPath,
 } from "../config/routes.cjs";
 import Middleware from "./middleware.js";
 
@@ -27,20 +27,14 @@ export default function (infoApp) {
 			// check('email', "ایمیل اجباری است", 'ایمیل وجود دارد');
 			// check('password', " رمز عبوراجباری است", 'پسوردها یکسان نیستند');
 			// check("email", "ایمیل نامعتبر است").isEmail()
-			const {
-				firstname,
-				lastname,
-				email,
-				password,
-				retypePassword,
-				terms,
-			} = req.body;
+			const { firstname, lastname, email, password, retypePassword, terms } =
+				req.body;
 			if (!req.body.email || !req.body.password) {
 				res.render(Template.Auth() + "/register", {
 					message: "Invalid credentials!",
 				});
 			} else {
-				ModelUser.findOne({ "email.now": email })
+				UserModel.findOne({ "email.now": email })
 					.then((user) => {
 						if (user.email.now === email) {
 							res.render(Template.Auth() + "/register", {
@@ -54,7 +48,7 @@ export default function (infoApp) {
 						});
 					});
 
-				let newUser = new ModelUser({
+				let newUser = new UserModel({
 					name: { first: firstname, last: lastname },
 					email: { now: email },
 					password: { now: password },
@@ -63,9 +57,9 @@ export default function (infoApp) {
 					.save(newUser)
 					.then((user) => {
 						// REDIRECT TO THE dashboard
-						infoApp.session.user = user;
-						infoApp.session.login = true;
-						res.redirect(pathCustomer.Dashboard());
+						infoApp.user = user;
+						infoApp.user.login = true;
+						res.redirect(customerPath.Dashboard());
 					})
 					.catch((err) => {
 						res.render(Template.Auth() + "/register", {
@@ -91,14 +85,14 @@ export default function (infoApp) {
 					message: "Please enter both email and password",
 				});
 			} else {
-				ModelUser.findOne({ "email.now": email })
+				UserModel.findOne({ "email.now": email })
 					.then((user) => {
 						if (user.password.now === password) {
 							// REDIRECT TO THE dashboard
-							infoApp.session.user = user;
-							infoApp.session.login = true;
+							infoApp.user = user;
+							infoApp.user.login = true;
 							if (redirect) res.redirect(redirect);
-							res.redirect(pathCustomer.Dashboard());
+							res.redirect(customerPath.Dashboard());
 						}
 					})
 					.catch((err) => {
@@ -136,8 +130,8 @@ export default function (infoApp) {
 
 		LogOut_Get: function (req, res) {
 			console.log("user logged out.");
-			infoApp.session.user = undefined;
-			infoApp.session.login = true;
+			infoApp.user = {};
+			infoApp.user.login = false;
 			res.redirect("/");
 		},
 	};

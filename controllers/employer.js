@@ -1,13 +1,13 @@
 //import { * as Model } from "../models/project.js";
 import {
-	Project as ModelProject,
-	Request as ModelRequest,
-	Invoice as ModelInvoice,
-	Payment as ModelPayment,
+	Project as ProjectModel,
+	Request as RequestModel,
+	Invoice as InvoiceModel,
+	Payment as PaymentModel,
 } from "../models/project.js";
 import {
-	templateCustomer as Template,
-	pathCustomer as Path,
+	customerTemplate as Template,
+	customerPath as Path,
 } from "../config/routes.cjs";
 import Middleware from "../controllers/middleware.js";
 import PaymentIDPay from "../config/pay.js";
@@ -18,7 +18,6 @@ export default function (infoApp) {
 	return {
 		// Display Root form on GET.
 		Root_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				res.render(Template.Employer(), {
 					name: "employer",
@@ -27,10 +26,9 @@ export default function (infoApp) {
 		],
 
 		Projects_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
-				ModelProject.find(
+				let userId = infoApp.user.id;
+				ProjectModel.find(
 					{
 						userId: userId,
 					},
@@ -45,7 +43,6 @@ export default function (infoApp) {
 
 		// Display Project add form on GET.
 		ProjectAdd_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				res.render(Template.Employer() + "/project_add", {
 					name: "employer",
@@ -54,13 +51,12 @@ export default function (infoApp) {
 		],
 		// Handle Project add on POST.
 		ProjectAdd_Post: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				const { name, description, status, company, budget, total, duration } =
 					req.body;
 
-				let newPoroject = new ModelProject({
+				let newPoroject = new ProjectModel({
 					userId: userId,
 					name: name,
 					description: description,
@@ -89,11 +85,10 @@ export default function (infoApp) {
 		],
 
 		ProjectEdit_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let id = req.params.id;
-				ModelProject.findOne(
+				ProjectModel.findOne(
 					{ _id: id, userId: userId },
 					function (err, project) {
 						if (!project) res.redirect(Path.Employer() + "/projects");
@@ -106,7 +101,6 @@ export default function (infoApp) {
 			},
 		],
 		ProjectEdit_Post: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				const {
 					name,
@@ -119,7 +113,7 @@ export default function (infoApp) {
 				} = req.body;
 
 				let id = req.params.id;
-				ModelProject.findOne({ _id: id, userId: userId }, function (err, edit) {
+				ProjectModel.findOne({ _id: id, userId: userId }, function (err, edit) {
 					edit.name = name;
 					edit.description = description;
 					edit.estimatedBudget = estimated;
@@ -136,10 +130,9 @@ export default function (infoApp) {
 		],
 
 		ProjectDelete_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				let id = req.params.id;
-				ModelProject.findByIdAndDelete(id, function (err) {
+				ProjectModel.findByIdAndDelete(id, function (err) {
 					if (err) console.log(err);
 					console.log("Successful deletion");
 				});
@@ -149,19 +142,18 @@ export default function (infoApp) {
 		],
 
 		ProjectDetail_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let projectId = req.params.projectId;
 				async
 					.parallel({
 						requests: function (callback) {
-							ModelRequest.find({ projectId: projectId })
+							RequestModel.find({ projectId: projectId })
 								.populate("userId")
 								.exec(callback);
 						},
 						project: function (callback) {
-							ModelProject.findOne({ _id: projectId, userId: userId }).exec(
+							ProjectModel.findOne({ _id: projectId, userId: userId }).exec(
 								callback
 							);
 						},
@@ -190,22 +182,21 @@ export default function (infoApp) {
 		],
 
 		RequestSet_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let projectId = req.params.projectId;
 				let requestId = req.params.requestId;
 
 				async
 					.parallel({
 						request: function (callback) {
-							ModelRequest.findOne({
+							RequestModel.findOne({
 								_id: requestId,
 								projectId: projectId,
 							}).exec(callback);
 						},
 						project: function (callback) {
-							ModelProject.findOne({ _id: projectId, userId: userId }).exec(
+							ProjectModel.findOne({ _id: projectId, userId: userId }).exec(
 								callback
 							);
 						},
@@ -218,11 +209,11 @@ export default function (infoApp) {
 							//return next(err);
 							res.redirect(Path.Employer() + "/projects");
 						}
-						ModelProject.findOne({ _id: projectId }, (err, update) => {
+						ProjectModel.findOne({ _id: projectId }, (err, update) => {
 							update.frelancerId = results.request.userId;
 							update.save();
 						});
-						let newInvoice = new ModelInvoice({
+						let newInvoice = new InvoiceModel({
 							employerId: userId,
 							frelancerId: results.request.userId,
 							projectId: projectId,
@@ -241,12 +232,11 @@ export default function (infoApp) {
 			},
 		],
 		RequestDelete_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let projectId = req.params.projectId;
 				let frelancerId = req.params.frelancerId;
-				ModelProject.findOneAndDelete(
+				ProjectModel.findOneAndDelete(
 					{ _id: projectId, userId: userId },
 					{ frelancerId: frelancerId },
 					function (err, project) {
@@ -257,10 +247,9 @@ export default function (infoApp) {
 		],
 
 		Invoices_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
-				ModelInvoice.find({
+				let userId = infoApp.user.id;
+				InvoiceModel.find({
 					employerId: userId,
 				})
 					.populate("projectId")
@@ -276,11 +265,10 @@ export default function (infoApp) {
 		],
 
 		InvoiceDetail_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
-				ModelInvoice.findOne({
+				InvoiceModel.findOne({
 					_id: invoiceId,
 					employerId: userId,
 				})
@@ -299,20 +287,18 @@ export default function (infoApp) {
 			},
 		],
 		InvoiceDetail_Post: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
 			},
 		],
 
 		InvoicePayment_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				rId = infoApp.session.user.id;
+				rId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
-				ModelInvoice.findOne({
-					//ModelPayment
+				InvoiceModel.findOne({
+					//PaymentModel
 					_id: invoiceId,
 					frelancerId: userId,
 				})
@@ -346,17 +332,16 @@ export default function (infoApp) {
 		],
 
 		Invoiceverify_Post: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				rId = infoApp.session.user.id;
+				rId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
-				ModelPayment.findOne({
-					//ModelPayment
+				PaymentModel.findOne({
+					//PaymentModel
 					_id: invoiceId,
 					userId: userId,
 				});
-				ModelInvoice.findOne({
-					//ModelPayment
+				InvoiceModel.findOne({
+					//PaymentModel
 					_id: invoiceId,
 					frelancerId: userId,
 				})
@@ -390,9 +375,8 @@ export default function (infoApp) {
 		],
 
 		InvoicePrint_Get: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
-				let userId = infoApp.session.user.id;
+				let userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
 				res.render(Template.Employer() + "/invoice_print", {
 					name: "employer",
@@ -401,21 +385,21 @@ export default function (infoApp) {
 		],
 
 		// archivesGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 		// REDIRECT TO THE project
 		// 		res.redirect(Path.Employer() + "/project/archive");
 		// 	},
 		// ],
 		// archivesPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 		const { status } = req.body;
-		// 		ModelProject.findById(id, function (err, edit) {
+		// 		ProjectModel.findById(id, function (err, edit) {
 		// 			edit.status = status;
 		// 			edit.save();
 		// 		});
@@ -425,187 +409,186 @@ export default function (infoApp) {
 		// ],
 
 		// fileGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// filePost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// taskGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// taskPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// bugGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// bugPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// noteGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// notePost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// paymentGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// paymentPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// invoiceGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// invoicePost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// todosGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// todosPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// addTodoGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// addTodoPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// editTodoGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// editTodoPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// deleteTodoGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// deleteTodoPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// doneTodoGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// doneTodoPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		// orderTodoGet: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 		// orderTodoPost: [
-		// 	Middleware(infoApp).LogInChecker,
+		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.session.user.id;
+		// 		let userId = infoApp.user.id;
 		// 		let id = req.params.id;
 		// 	},
 		// ],
 
 		profileGet: [
-			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				res.render(Template.Employer() + "/user_detail", {
 					name: "Employer",

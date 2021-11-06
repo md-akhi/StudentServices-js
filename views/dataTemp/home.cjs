@@ -1,1 +1,1 @@
-//import { pathCustomer } from "../../config/routes.cjs";
+//import { customerPath } from "../../config/routes.cjs";

@@ -1,10 +1,10 @@
-import { pathCustomer } from "../../config/routes.cjs";
+import { customerPath } from "../../config/routes.cjs";
 
 exports.linkNavUp = {
 	widget: "pushmenu",
 	Home: "/",
 	Contact: "/Contact-us",
-	Frelanser: pathCustomer.Frelanser(),
+	Frelanser: customerPath.Frelanser(),
 };
 
 exports.menuSidbarRight = {
@@ -12,22 +12,22 @@ exports.menuSidbarRight = {
 		name: "projects",
 		icon: "fas fa-tachometer-alt",
 		sub: {
-			Add: pathCustomer.Employer() + "/project/add",
-			List: pathCustomer.Employer() + "/projects",
-			Archived: pathCustomer.Employer() + "/projects/Archived",
+			Add: customerPath.Employer() + "/project/add",
+			List: customerPath.Employer() + "/projects",
+			Archived: customerPath.Employer() + "/projects/Archived",
 		},
 	},
 	Invoice: {
 		name: "invoices",
 		icon: "fas fa-tachometer-alt",
 		sub: {
-			List: pathCustomer.Employer() + "/invoices",
-			Archived: pathCustomer.Employer() + "/invoices/Archived",
+			List: customerPath.Employer() + "/invoices",
+			Archived: customerPath.Employer() + "/invoices/Archived",
 		},
 	},
 };
 
 exports.breadCrumb = {
-	Dashboard: pathCustomer.Dashboard(),
-	Employer: pathCustomer.Employer(),
+	Dashboard: customerPath.Dashboard(),
+	Employer: customerPath.Employer(),
 };

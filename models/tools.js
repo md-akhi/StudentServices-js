@@ -1,11 +1,11 @@
-import mongoose from "mongoose";
-import { User as ModelUser } from "./user.js";
+import Mongoose from "mongoose";
+import { User as UserModel } from "./user.js";
 
-var todoSchema = mongoose.Schema({
+var TodoSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Mongoose.ObjectId,
 		index: true,
-		ref: ModelUser,
+		ref: UserModel,
 	},
 	title: {
 		type: String,
@@ -22,19 +22,19 @@ var todoSchema = mongoose.Schema({
 	},
 });
 
-let Todo = mongoose.model("todo", todoSchema);
+let Todo = Mongoose.model("todo", TodoSchema);
 
-var chatSchema = mongoose.Schema(
+var ChatSchema = Mongoose.Schema(
 	{
 		fromId: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: Mongoose.ObjectId,
 			index: true,
-			ref: ModelUser,
+			ref: UserModel,
 		},
 		toId: {
-			type: mongoose.Schema.Types.ObjectId,
+			type: Mongoose.ObjectId,
 			index: true,
-			ref: ModelUser,
+			ref: UserModel,
 		},
 		from: [
 			{
@@ -75,13 +75,13 @@ var chatSchema = mongoose.Schema(
 	{ timestamps: true }
 );
 
-let Chat = mongoose.model("chat", chatSchema);
+let Chat = Mongoose.model("chat", ChatSchema);
 
-var calendarSchema = mongoose.Schema({
+var CalendarSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Mongoose.ObjectId,
 		index: true,
-		ref: ModelUser,
+		ref: UserModel,
 	},
 	title: {
 		type: String,
@@ -103,6 +103,6 @@ var calendarSchema = mongoose.Schema({
 	},
 });
 
-let Calendar = mongoose.model("calendar", calendarSchema);
+let Calendar = Mongoose.model("calendar", CalendarSchema);
 
 export { Chat, Todo, Calendar };

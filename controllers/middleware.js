@@ -1,48 +1,48 @@
-import { pathCustomer as Path, pathHome } from "../config/routes.cjs";
+import { customerPath as Path, homePath } from "../config/routes.cjs";
 
 export default function (infoApp) {
 	// middleware function to check for logged-in users
 	return {
 		/**
-		 * @param {object} req
-		 * @param {object} res
-		 * @param {Function} next
-		 * @returns {null}}
+		 * @param {object} req request
+		 * @param {object} res response
+		 * @param {Function} next next
+		 * @returns {null} null
 		 */
 		LogInChecker: (req, res, next) => {
-			if (infoApp.session.login === false && req.baseUrl !== pathHome.Auth()) {
-				res.redirect(pathHome.Auth() + "/login?redirect=" + req.originalUrl);
-			} else if (
-				req.baseUrl == pathHome.Auth() &&
-				infoApp.session.login === true
-			) {
-				res.redirect(Path.Dashboard());
+			if (infoApp.user.login === false) {
+				if (req.baseUrl !== homePath.Auth()) {
+					res.redirect(homePath.Auth() + "/login?redirect=" + req.originalUrl);
+				}
+			} else if (infoApp.user.login === true) {
+				if (req.baseUrl == homePath.Auth()) {
+					res.redirect(Path.Dashboard());
+				}
 			}
 			//  else if (infoApp.session.cookie.originalMaxAge < 0) {
 			//   infoApp.session.lookscreen = 1;
-			//   res.redirect(pathHome.Auth()+"/lookscreen");
+			//   res.redirect(homePath.Auth()+"/lookscreen");
 			// }
 			next();
 		},
 
 		/**
-		 * @param {object} req
-		 * @param {object} res
-		 * @param {Function} next
-		 * @returns {null}}
+		 * @param {object} req request
+		 * @param {object} res response
+		 * @param {Function} next next
+		 * @returns {null} null
 		 */
 		SessionChecker: (req, res, next) => {
-			if (req.session === undefined) {
-				req.session = infoApp.session;
+			if (infoApp.session == undefined) {
 			}
 			next();
 		},
 
 		/**
-		 * @param {object} req
-		 * @param {object} res
-		 * @param {Function} next
-		 * @returns {null}}
+		 * @param {object} req request
+		 * @param {object} res response
+		 * @param {Function} next next
+		 * @returns {null} null
 		 */
 		RoleChecker: (req, res, next) => {
 			if (undefined);
@@ -50,10 +50,10 @@ export default function (infoApp) {
 		},
 
 		/**
-		 * @param {object} req
-		 * @param {object} res
-		 * @param {Function} next
-		 * @returns {null}}
+		 * @param {object} req request
+		 * @param {object} res response
+		 * @param {Function} next next
+		 * @returns {null} null
 		 */
 		TokenChecker: (req, res, next) => {
 			if (undefined);

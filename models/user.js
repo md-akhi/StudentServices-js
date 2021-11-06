@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import Mongoose from "mongoose";
 
-var userSchema = mongoose.Schema(
+var UserSchema = Mongoose.Schema(
 	{
 		name: {
 			first: {
@@ -72,6 +72,7 @@ var userSchema = mongoose.Schema(
 			default: "default",
 		},
 		role: {
+			//permissionLevel
 			type: String,
 			default: "ROLE_MEMBER",
 			enum: ["ROLE_MEMBER", "ROLE_ADMIN"],
@@ -87,19 +88,19 @@ var userSchema = mongoose.Schema(
 );
 
 // Virtual for author "full" name.
-userSchema.virtual("gFullName").get(function () {
+UserSchema.virtual("gFullName").get(function () {
 	return this.name.first + " " + this.name.last;
 });
 // Virtual for author "email".
-userSchema.virtual("gEmail").get(function () {
+UserSchema.virtual("gEmail").get(function () {
 	return this.email.now;
 });
 // Virtual for author "password".
-userSchema.virtual("gPassword").get(function () {
+UserSchema.virtual("gPassword").get(function () {
 	return this.password.now;
 });
 
-userSchema.statics.findByLogin = async function (login) {
+UserSchema.statics.findByLogin = async function (login) {
 	let user = await this.findOne({
 		username: { now: login },
 	});
@@ -111,17 +112,17 @@ userSchema.statics.findByLogin = async function (login) {
 	return user;
 };
 
-userSchema.static.findById = async function (id, callback) {
+UserSchema.static.findById = async function (id, callback) {
 	let user = await this.findById(id, callback);
 	return user;
 };
 
-userSchema.static.getAllUsers = async function (arg) {
+UserSchema.static.getAllUsers = async function (arg) {
 	let users = await this.find(arg);
 	return users;
 };
 
-let User = mongoose.model("InfoUsers", userSchema);
+let User = Mongoose.model("InfoUsers", UserSchema);
 
 // createUser: function (newUser, callback) {
 // 	bcrypt.genSalt(10, function (err, salt) {
@@ -139,7 +140,7 @@ let User = mongoose.model("InfoUsers", userSchema);
 // 	});
 // },
 
-var historyUserSchema = mongoose.Schema(
+var HistoryUserSchema = Mongoose.Schema(
 	{
 		ipAddress: {
 			type: String,
@@ -153,11 +154,11 @@ var historyUserSchema = mongoose.Schema(
 	{ timestamps: true }
 );
 
-let History = mongoose.model("historyUser", historyUserSchema);
+let HistoryUser = Mongoose.model("historyUser", HistoryUserSchema);
 
-//user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+//user: { type: Mongoose.ObjectId, ref: 'User' },
 
-var permissionUserSchema = mongoose.Schema(
+var PermissionUserSchema = Mongoose.Schema(
 	{
 		createdAt: {
 			type: Date,
@@ -176,6 +177,6 @@ var permissionUserSchema = mongoose.Schema(
 	{ timestamps: true }
 );
 
-let Permission = mongoose.model("permissionUser", permissionUserSchema);
+let PermissionUser = Mongoose.model("permissionUser", PermissionUserSchema);
 
-export { User, History, Permission };
+export { User, HistoryUser, PermissionUser };

@@ -1,5 +1,5 @@
-// path Home
-exports.pathHome = {
+// Path Home
+exports.homePath = {
 	// Home
 	root: "",
 	Root: function () {
@@ -10,8 +10,8 @@ exports.pathHome = {
 		return this.auth;
 	},
 };
-// template Home
-exports.templateHome = {
+// Template Home
+exports.homeTemplate = {
 	// Home
 	root: "",
 	Root: function () {
@@ -23,9 +23,9 @@ exports.templateHome = {
 	},
 };
 
-// path customer
-exports.pathCustomer = {
-	// customer
+// Path Customer
+exports.customerPath = {
+	// Customer
 	root: "",
 	Root: function () {
 		return this.root;
@@ -44,9 +44,9 @@ exports.pathCustomer = {
 	},
 };
 
-// template Customer
-exports.templateCustomer = {
-	// customer
+// Template Customer
+exports.customerTemplate = {
+	// Customer
 	root: "customer",
 	Root: function () {
 		return this.root;
@@ -65,9 +65,9 @@ exports.templateCustomer = {
 	},
 };
 
-// path admin
-exports.pathAdmin = {
-	// admin
+// Path Admin
+exports.adminPath = {
+	// Admin
 	root: "admin",
 	Root: function () {
 		return this.root;
@@ -82,9 +82,9 @@ exports.pathAdmin = {
 	},
 };
 
-// template admin
-exports.templateAdmin = {
-	// admin
+// Template Admin
+exports.adminTemplate = {
+	// Admin
 	root: "admin",
 	Root: function () {
 		return this.root;

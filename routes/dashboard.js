@@ -1,15 +1,21 @@
-import express from "express";
-//import User as ModelUser from "../models/user.js";
+import Express from "express";
 import Middleware from "../controllers/middleware.js";
-import ControllerDashboard from "../controllers/dashboard.js";
+import { customerPath as Path } from "../config/routes.cjs";
+import DashboardController from "../controllers/dashboard.js";
+import EmployerRouter from "./employer.js";
+import FrelanserRouter from "./frelanser.js";
 
 export default function (infoApp) {
-	let router = express.Router();
+	let Router = Express.Router();
 
 	// middleware function
-	router.use(Middleware(infoApp).SessionChecker);
+	Router.use(Middleware(infoApp).SessionChecker);
 
 	// root
-	router.route("/").get(ControllerDashboard(infoApp).Root_Get);
-	return router;
+	Router.route("/").get(DashboardController(infoApp).Root_Get);
+
+	Router.use(Path.employer, EmployerRouter(infoApp));
+	Router.use(Path.frelanser, FrelanserRouter(infoApp));
+
+	return Router;
 }

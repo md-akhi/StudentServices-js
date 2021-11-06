@@ -1,13 +1,13 @@
-import { pathCustomer } from "../../config/routes.cjs";
+import { customerPath } from "../../config/routes.cjs";
 
 exports.er400 = {
 	Home: "/",
-	Frelanser: pathCustomer.Frelanser(),
-	Employer: pathCustomer.Employer(),
+	Frelanser: customerPath.Frelanser(),
+	Employer: customerPath.Employer(),
 };
 
 exports.er500 = {
 	Home: "/",
-	Frelanser: pathCustomer.Frelanser(),
-	Employer: pathCustomer.Employer(),
+	Frelanser: customerPath.Frelanser(),
+	Employer: customerPath.Employer(),
 };

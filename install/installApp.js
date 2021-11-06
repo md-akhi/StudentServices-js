@@ -1,25 +1,25 @@
-const express = require("express");
+const Express = require("express");
 const path = require("path");
 const reactViews = require("express-react-views");
 
-let app = express();
+let App = Express();
 
 let infoApp = {};
 
 //set static dir
-app.use(express.static(path.join(__dirname, "public")));
+App.use(Express.static(path.join(__dirname, "public")));
 
 // set views path, template engine and default layout
-app.set("views", __dirname + "/views");
-app.set("view engine", "jsx");
-app.engine("jsx", reactViews.createEngine());
-//app.use(favicon(__dirname + '/public/favicon.png'));
+App.set("views", __dirname + "/views");
+App.set("view engine", "jsx");
+App.engine("jsx", reactViews.createEngine());
+//App.use(favicon(__dirname + '/public/favicon.png'));
 
 //config
-require("./config/expers")(app, infoApp);
+require("./config/expers")(App, infoApp);
 
 // routes
 let routes = require("./index")(infoApp);
-app.use("/", routes);
+App.use("/", routes);
 
-module.exports = app;
+module.exports = App;

@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
-// import { User as ModelUser } from "./user.js";
-// import { Project as ModelProject } from "./employer.js";
+import Mongoose from "mongoose";
+// import { User as UserModel } from "./user.js";
+// import { Project as ProjectModel } from "./employer.js";
 
-var frelanserSchema = mongoose.Schema({
+var FrelanserSchema = Mongoose.Schema({
 	userId: {
-		type: mongoose.Schema.Types.ObjectId,
+		type: Mongoose.ObjectId,
 		index: true,
 	},
 	calendarEvent: [
@@ -45,6 +45,6 @@ var frelanserSchema = mongoose.Schema({
 	},
 });
 
-let Frelanser = mongoose.model("frelanser", frelanserSchema);
+let Frelanser = Mongoose.model("frelanser", FrelanserSchema);
 
 export default Frelanser;

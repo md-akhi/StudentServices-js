@@ -1,4 +1,4 @@
-import { pathCustomer as path } from "../../config/routes.cjs";
+import { customerPath as path } from "../../config/routes.cjs";
 
 exports.linkNavUp = {
 	widget: "pushmenu",

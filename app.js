@@ -1,29 +1,29 @@
-import express from "express";
-import path from "path";
+import Express from "express";
+import Path from "path";
 import reactViews from "express-react-views";
 import { fileURLToPath } from "url";
-import configExpress from "./config/express.js";
-import routes from "./routes/index.js";
-import routesApi from "./api/routes/index.js";
+import ConfigExpress from "./config/express.js";
+import Routes from "./routes/index.js";
+import APIRoutes from "./api/routes/index.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = Path.dirname(fileURLToPath(import.meta.url));
 
-let app = express();
+let App = Express();
 
 let infoApp = {};
 
 //set static dir
-app.use(express.static(path.join(__dirname, "public")));
+App.use(Express.static(Path.join(__dirname, "public")));
 
-// set views path, template engine and default layout
-app.set("views", __dirname + "/views");
-app.set("view engine", "jsx");
-app.engine("jsx", reactViews.createEngine());
-//app.use(favicon(__dirname + '/public/favicon.png'));
+// set views Path, template engine and default layout
+App.set("views", __dirname + "/views");
+App.set("view engine", "jsx");
+App.engine("jsx", reactViews.createEngine());
+//App.use(favicon(__dirname + '/public/favicon.png'));
 
 //config
-app = configExpress(app, infoApp);
+App = ConfigExpress(App, infoApp);
 
-// routes
-app.use("/api", routesApi());
-app.use("/", routes(infoApp));
+// Routes
+App.use("/api", APIRoutes());
+App.use("/", Routes(infoApp));

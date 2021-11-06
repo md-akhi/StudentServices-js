@@ -1,20 +1,18 @@
-import express from "express";
+import Express from "express";
 import Middleware from "../controllers/middleware.js";
-import ControllerHome from "../controllers/home.js";
+import HomeController from "../controllers/home.js";
 
 export default function (infoApp) {
-	let router = express.Router();
-	// middleware function
-	router.use(Middleware(infoApp).SessionChecker);
+	let Router = Express.Router();
 
 	// root
-	router.route("/").get(ControllerHome(infoApp).Root_Get);
+	Router.route("/").get(HomeController(infoApp).Root_Get);
 
-	router.route("/projects").get(ControllerHome(infoApp).Projects_Get);
-	router.route("/project/:id").get(ControllerHome(infoApp).Project_Get);
+	Router.route("/projects").get(HomeController(infoApp).Projects_Get);
+	Router.route("/project/:id").get(HomeController(infoApp).Project_Get);
 
-	router.route("/users").get(ControllerHome(infoApp).Users_Get);
-	router.route("/user/:id").get(ControllerHome(infoApp).User_Get);
+	Router.route("/users").get(HomeController(infoApp).Users_Get);
+	Router.route("/user/:id").get(HomeController(infoApp).User_Get);
 
-	return router;
+	return Router;
 }

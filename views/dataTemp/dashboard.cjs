@@ -1,11 +1,11 @@
-import { pathCustomer } from "../../config/routes.cjs";
+import { customerPath } from "../../config/routes.cjs";
 
 exports.linkNavUp = {
 	Contact: "/Contact-us",
-	Frelanser: pathCustomer.Frelanser(),
-	Employer: pathCustomer.Employer(),
+	Frelanser: customerPath.Frelanser(),
+	Employer: customerPath.Employer(),
 };
 
 exports.breadCrumb = {
-	Dashboard: pathCustomer.Dashboard(),
+	Dashboard: customerPath.Dashboard(),
 };
