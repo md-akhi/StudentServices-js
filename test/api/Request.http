@@ -1,0 +1,45 @@
+
+
+
+GET http://localhost:9000/api/frelanser/request/617fcbb9e0b439123803af32
+User-Agent: rest-client
+Content-Type: application/json
+
+###
+
+POST http://localhost:9000/api/frelanser/request/617fcbb9e0b439123803af32
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+
+PUT http://localhost:9000/api/frelanser/request/617fcbb9e0b439123803af32
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+
+DELETE http://localhost:9000/api/frelanser/request/617fcbb9e0b439123803af32
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+###
+
+PATCH  http://localhost:9000/api/frelanser/request/617fcbb9e0b439123803af32
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
