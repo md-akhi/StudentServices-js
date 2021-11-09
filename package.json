@@ -4,33 +4,24 @@
   "description": "Student Services",
   "main": "app.js",
   "type": "module",
-  "keywords": [
-    "student",
-    "services"
-  ],
-  "authors": [
-    "Mohammad Amanalikhani <md.akhi.ir@gmail.com> (http://akhi.ir)"
-  ],
+  "keywords": ["student", "services"],
+  "authors": ["Mohammad Amanalikhani <md.akhi.ir@gmail.com> (http://akhi.ir)"],
   "license": "UNLICENSED",
   "scripts": {
-    "app": "node app.js",
     "start": "npm run dev",
-    "dev": "cross-env NODE_ENV=development run-s dev:*",
+    "dev": "cross-env NODE_ENV=development run-s dev:* --inspect",
     "dev:mongod": "sh ./config/Mongod.sh",
+    "dev:webpack": "webpack --mode=development",
     "dev:nodemon": "nodemon app.js",
     "gulp:dev": "gulp development",
-    "webpack:dev": "webpack serve --open --config webpack.dev.js",
-    "debug:dev": "npm run dev --inspect",
-    "prod": "cross-env NODE_ENV=production npm run app & npm run gulp:prod",
+    "prod": "cross-env NODE_ENV=production run-s prod:*",
+    "prod:webpack": "webpack --mode=production",
     "gulp:prod": "gulp production",
-    "webpack:prod": "webpack --config webpack.prod.js",
-    "debug:prod": "npm run prod --inspect",
     "test": "mocha",
-    "debug:express": "DEBUG=express:*  npm run dev",
-    "debug:all": "DEBUG=* npm run dev",
-    "gulp:watch": "gulp watch",
-    "webpack:watch": "webpack --watch",
-    "transpile": "babel ./server --out-dir dist-server",
+    "debug": "DEBUG=* npm run dev",
+    "watch": "run-s watch:*",
+    "watch:gulp": "gulp watch",
+    "watch:webpack": "webpack --watch",
     "prepare": "husky install"
   },
   "directories": {
@@ -51,6 +42,7 @@
   },
   "dependencies": {
     "async": "^3.2.2",
+    "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
@@ -69,13 +61,14 @@
     "randomstring": "^1.1.5",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "request": "^2.88.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
+    "@babel/node": "^7.16.0",
     "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.16.0",
     "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "cssnano": "^5.0.8",
@@ -100,7 +93,10 @@
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "sass": "^1.42.1",
-    "webpack": "^5.46.0",
+    "webpack": "^5.62.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0",
+    "webpack-merge": "^5.8.0",
     "webpack-stream": "^6.1.2"
   },
   "husky": {
@@ -109,14 +105,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "*": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,jsx}": ["prettier --write", "eslint --fix", "git add"],
+    "*": ["prettier --write", "git add"]
   }
 }
