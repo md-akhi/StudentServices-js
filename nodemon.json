@@ -1,10 +1,24 @@
 {
-  "restartable": "rs",
-  "colours": true,
-  "ignore": ["/.git", "/node_modules", "/.vscode", "/.github", "/docs", "/ex"],
-  "watch": ["*.*"],
-  "runOnChangeOnly": false,
   "env": {
     "NODE_ENV": "development"
-  }
+  },
+  "restartable": "rs",
+  "verbose": true,
+  "colours": true,
+  "watch": ["test/", "src/"],
+  "runOnChangeOnly": false,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "ignore": [
+    "/.vscode/",
+    "/.github/",
+    "*.yaml",
+    "/docs/",
+    "*.md",
+    "/z/",
+    "*.test.js",
+    "src/public/"
+  ],
+  "ext": "js,json,jsx"
 }

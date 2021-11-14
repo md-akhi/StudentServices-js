@@ -1,22 +1,22 @@
 import { merge as MergeWebpack } from "webpack-merge";
 
 import commonWebpack from "./build/webpack/webpack.common.cjs";
-import productionWebpack from "./build/webpack/webpack.prod.cjs";
-import developmentWebpack from "./build/webpack/webpack.dev.cjs";
+import devWebpack from "./build/webpack/webpack.dev.cjs";
+import prodWebpack from "./build/webpack/webpack.prod.cjs";
 
-export default (env, args) => {
+export default (env) => {
 	let envConfig;
-	switch (args.mode || env.NODE_ENV) {
+	switch (env.NODE_ENV) {
 		case "prod":
 		case "production":
-			envConfig = productionWebpack;
+			envConfig = prodWebpack;
 			break;
-
 		case "dev":
 		case "development":
 		default:
-			envConfig = developmentWebpack;
-		//throw new Error('No matching configuration was found!');
+			envConfig = devWebpack;
+			//throw new Error('No matching configuration was found!');
+			break;
 	}
 	return MergeWebpack(commonWebpack, envConfig);
 };

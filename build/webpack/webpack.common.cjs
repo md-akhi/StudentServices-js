@@ -1,132 +1,164 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const pages = ["home", "users_list", "user_detail"];
+// https://www.npmjs.com/package/findit
+const Entry = (entry) => {
+	return entry.reduce((obj, item) => {
+		return {
+			...obj,
+			[item]: [
+				path.resolve(
+					__dirname,
+					"../../",
+					"src",
+					"views",
+					"helper",
+					`${item}.jsx`
+				),
+			],
+		};
+	}, {});
+};
+
+const PluginHtml = (entry) => {
+	return entry.map((item) => {
+		return new HtmlWebpackPlugin({
+			chunks: [item],
+			filename: path.resolve(
+				__dirname,
+				"../../",
+				"src",
+				"public",
+				"pages",
+				`${item}.ejs`
+			),
+			template: path.resolve(
+				__dirname,
+				"../../",
+				"src",
+				"views",
+				"template.ejs"
+			),
+		});
+	});
+};
 
 module.exports = {
-	entry: path.join(__dirname, "../../", "views/webpack-bundels.jsx"),
-	output: {
-		path: path.join(__dirname, "../../", "public"),
-		filename: "[name].bundle.js",
-		chunkFilename: "[id].js",
+	entry: {
+		...Entry(pages),
 	},
+
 	module: {
 		rules: [
 			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
+				test: /\.(js|jsx)$/,
 				use: {
 					loader: "babel-loader",
+					options: {
+						presets: ["@babel/preset-env", "@babel/preset-react"],
+					},
 				},
+				exclude: [/node_modules/, /public/],
 			},
-			// {
-			// 	test: /\.s?css$/i,
-			// 	use: [
-			// 		// [style-loader](/loaders/style-loader)
-			// 		{ loader: "style-loader" },
-			// 		// [css-loader](/loaders/css-loader)
-			// 		{
-			// 			loader: "css-loader",
-			// 			options: {
-			// 				sourceMap: true,
-			// 				modules: true,
-			// 			},
-			// 		},
-			// 		// [sass-loader](/loaders/sass-loader)
-			// 		{
-			// 			loader: "sass-loader",
-			// 			options: {
-			// 				sourceMap: true,
-			// 			},
-			// 		},
-			// 	],
-			// },
-			// {
-			// 	test: /\.(png|svg|jpg|jpeg|gif)$/i,
-			// 	use: ["file-loader"]
-			// },
-			// {
-			// 	test: /\.(woff|woff2|eot|ttf|otf)$/i,
-			// 	type: "asset/resource",
-			// },
-			// {
-			// 	test: /test\.js$/,
-			// 	use: "mocha-loader",
-			// 	exclude: /node_modules/,
-			// },
+			{
+				test: /\.ejs$/,
+				loader: "raw-loader",
+			},
+			{
+				test: /\.(s[ac]ss)$/,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: "/public/css",
+						},
+					},
+					"style-loader",
+					"css-loader",
+					{
+						loader: "sass-loader",
+						options: {
+							sassOptions: {
+								indentWidth: 4,
+								includePaths: ["/public/scss"],
+							},
+						},
+					},
+				],
+			},
+			{
+				test: /\.(jpg|jpeg|png|svg|gif)$/,
+				use: [
+					{
+						loader: "file-loader",
+						options: {
+							name: "[md5:hash:hex].[ext]",
+							publicPath: "/public/img",
+							outputPath: "img",
+						},
+					},
+				],
+			},
 		],
 	},
-	// optimization: {
-	// 	runtimeChunk: "single",
-	// 	splitChunks: {
-	// 		cacheGroups: {
-	// 			vendor: {
-	// 				test: /[\\/]node_modules[\\/]/,
-	// 				name: "vendors",
-	// 				chunks: "all",
-	// 			},
-	// 		},
-	// 	},
-	// },
+
+	resolve: {
+		extensions: [".js", ".jsx", ".json", ".mjs", ".cjs", "*"],
+	},
+
+	optimization: {
+		splitChunks: {
+			automaticNameDelimiter: ".",
+			cacheGroups: {
+				react: {
+					chunks: "initial",
+				},
+			},
+		},
+	},
+
+	plugins: [
+		new CleanWebpackPlugin(),
+		// Ejs pages
+		...PluginHtml(pages),
+	],
 };
 
-//Minimizing For Production
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-// module.exports = {
-// 	plugins: [
-// 		new MiniCssExtractPlugin({
-// 			filename: "[name].css",
-// 			chunkFilename: "[id].css",
-// 		}),
-// 	],
-// 	module: {
-// 		rules: [
-// 			{
-// 				test: /\.css$/,
-// 				use: [MiniCssExtractPlugin.loader, "css-loader"],
-// 			},
-// 		],
-// 	},
-// 	optimization: {
-// 		minimizer: [
-// 			// For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
-// 			// `...`,
-// 			new CssMinimizerPlugin(),
-// 		],
-// 	},
-// };
-
-//Extracting all CSS in a single file
-//const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
-// module.exports = {
-// 	optimization: {
-// 		splitChunks: {
-// 			cacheGroups: {
-// 				styles: {
-// 					name: "styles",
-// 					type: "css/mini-extract",
-// 					// For webpack@4
-// 					// test: /\.css$/,
-// 					chunks: "all",
-// 					enforce: true,
-// 				},
+// {
+// 	test: /\.s?css$/i,
+// 	use: [
+// 		// [style-loader](/loaders/style-loader)
+// 		{ loader: "style-loader" },
+// 		// [css-loader](/loaders/css-loader)
+// 		{
+// 			loader: "css-loader",
+// 			options: {
+// 				sourceMap: true,
+// 				modules: true,
 // 			},
 // 		},
-// 	},
-// 	plugins: [
-// 		new MiniCssExtractPlugin({
-// 			filename: "[name].css",
-// 		}),
-// 	],
-// 	module: {
-// 		rules: [
-// 			{
-// 				test: /\.css$/,
-// 				use: [MiniCssExtractPlugin.loader, "css-loader"],
+// 		// [sass-loader](/loaders/sass-loader)
+// 		{
+// 			loader: "sass-loader",
+// 			options: {
+// 				sourceMap: true,
 // 			},
-// 		],
-// 	},
-// };
-
-//
-//
-//
+// 		},
+// 	],
+// },
+// {
+// 	test: /\.(png|svg|jpg|jpeg|gif)$/i,
+// 	use: ["file-loader"]
+// },
+// {
+// 	test: /\.(woff|woff2|eot|ttf|otf)$/i,
+// 	type: "asset/resource",
+// },
+// {
+// 	test: /test\.js$/,
+// 	use: "mocha-loader",
+// 	exclude: /node_modules/,
+// },

@@ -1,6 +1,6 @@
 {
 	"root": true,
-	"plugins": ["react", "node", "jest", "jsdoc"],
+	"plugins": ["react", "node"],
 	"extends": ["eslint:recommended", "plugin:react/recommended"],
 	"env": {
 		"browser": true,

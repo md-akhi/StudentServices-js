@@ -6,6 +6,6 @@ public/
 docs/
 
 
-!.eslintrc.json
-!.prettierrc.json
+!.eslintrc
+!.prettierrc
 .gitignore
