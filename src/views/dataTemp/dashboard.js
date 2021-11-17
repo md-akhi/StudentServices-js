@@ -1,11 +1,12 @@
-import { customerPath } from "../../config/routes.cjs";
+import { customerPath } from "../../config/routes.js";
 
-exports.linkNavUp = {
+const linkNavUp = {
 	Contact: "/Contact-us",
 	Frelanser: customerPath.Frelanser(),
 	Employer: customerPath.Employer(),
 };
 
-exports.breadCrumb = {
+const breadCrumb = {
 	Dashboard: customerPath.Dashboard(),
 };
+export { linkNavUp, breadCrumb };

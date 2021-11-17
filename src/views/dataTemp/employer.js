@@ -1,13 +1,13 @@
-import { customerPath } from "../../config/routes.cjs";
+import { customerPath } from "../../config/routes.js";
 
-exports.linkNavUp = {
+const linkNavUp = {
 	widget: "pushmenu",
 	Home: "/",
 	Contact: "/Contact-us",
 	Frelanser: customerPath.Frelanser(),
 };
 
-exports.menuSidbarRight = {
+const menuSidbarRight = {
 	Project: {
 		name: "projects",
 		icon: "fas fa-tachometer-alt",
@@ -27,7 +27,9 @@ exports.menuSidbarRight = {
 	},
 };
 
-exports.breadCrumb = {
+const breadCrumb = {
 	Dashboard: customerPath.Dashboard(),
 	Employer: customerPath.Employer(),
 };
+
+export { linkNavUp, menuSidbarRight, breadCrumb };

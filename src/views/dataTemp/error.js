@@ -1,4 +1,4 @@
-import { customerPath } from "../../config/routes.cjs";
+import { customerPath } from "../../config/routes.js";
 
 exports.er400 = {
 	Home: "/",
@@ -11,3 +11,5 @@ exports.er500 = {
 	Frelanser: customerPath.Frelanser(),
 	Employer: customerPath.Employer(),
 };
+
+export { er400, er500 };
