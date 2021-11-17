@@ -7,25 +7,22 @@ import Routes from "./routes/index.js";
 import APIRoutes from "./api/routes/index.js";
 
 //const __dirname = Path.dirname(fileURLToPath(import.meta.url));
-export default () => {
-	let App = Express();
 
-	let infoApp = {};
+let App = Express();
 
-	//set static dir
-	App.use(Express.static(Path.resolve(__dirname, "public")));
+let infoApp = {};
 
-	// set views Path, template engine and default layout
-	App.set("views", Path.resolve(__dirname, "public", "pages"));
-	App.set("view engine", "ejs");
-	//App.use(favicon(__dirname + '/public/favicon.png'));
+//set static dir
+App.use(Express.static(Path.resolve(__dirname, "public")));
 
-	//config
-	App = ConfigExpress(App, infoApp);
+// set views Path, template engine and default layout
+App.set("views", Path.resolve(__dirname, "public", "pages"));
+App.set("view engine", "ejs");
+//App.use(favicon(__dirname + '/public/favicon.png'));
 
-	// Routes
-	App.use("/api", APIRoutes());
-	App.use("/", Routes(infoApp));
+//config
+App = ConfigExpress(App, infoApp);
 
-	return App;
-};
+// Routes
+App.use("/api", APIRoutes());
+App.use("/", Routes(infoApp));
