@@ -1,10 +1,10 @@
-import { merge as MergeWebpack } from "webpack-merge";
+const { merge } = require("webpack-merge");
 
-import commonWebpack from "./build/webpack/webpack.common.cjs";
-import devWebpack from "./build/webpack/webpack.dev.cjs";
-import prodWebpack from "./build/webpack/webpack.prod.cjs";
+const commonWebpack = require("./build/webpack/webpack.common.js");
+const devWebpack = require("./build/webpack/webpack.dev.js");
+const prodWebpack = require("./build/webpack/webpack.prod.js");
 
-export default (env) => {
+module.exports = (env) => {
 	let envConfig;
 	switch (env.NODE_ENV) {
 		case "prod":
@@ -18,5 +18,5 @@ export default (env) => {
 			//throw new Error('No matching configuration was found!');
 			break;
 	}
-	return MergeWebpack(commonWebpack, envConfig);
+	return merge(commonWebpack, envConfig);
 };
