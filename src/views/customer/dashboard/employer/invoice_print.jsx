@@ -1,5 +1,5 @@
 import React from "react";
-import * as dataEmployer from "../../../dataTemp/employer.js";
+import * as dataEmployer from "../../../data/employer.js";
 import HtmlLayout from "../../layouts/html";
 
 function InvoicePrint(props) {

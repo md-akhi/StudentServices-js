@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as dataFrelanser from "../../dataTemp/frelanser.js";
+import * as dataFrelanser from "../../data/frelanser.js";
 import FooterLayout from "../layouts/footer";
 import HtmlLayout from "../layouts/html";
 import MainSidebarLayout from "../layouts/mainSidebar";

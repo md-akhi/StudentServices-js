@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as dataFrelanser from "../../../dataTemp/frelanser.js";
+import * as dataFrelanser from "../../../data/frelanser.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
 import HtmlLayout from "../../layouts/html";
