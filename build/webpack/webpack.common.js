@@ -3,7 +3,36 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const pages = ["home", "users_list", "user_detail"];
+const pages = [
+	"customer/dashboard/employer/invoice_detail",
+	"customer/dashboard/employer/invoice_list",
+	"customer/dashboard/employer/invoice_print",
+	"customer/dashboard/employer/project_add",
+	"customer/dashboard/employer/project_detail",
+	"customer/dashboard/employer/project_list",
+	"customer/dashboard/employer/user_detail",
+	"customer/dashboard/employer",
+	"customer/dashboard/frelanser/invoice_detail",
+	"customer/dashboard/frelanser/invoice_list",
+	"customer/dashboard/frelanser/invoice_print",
+	"customer/dashboard/frelanser/request_add",
+	"customer/dashboard/frelanser/request_list",
+	"customer/dashboard/frelanser/user_detail",
+	"customer/dashboard/frelanser",
+	"customer/dashboard",
+	"auth/forgot-password",
+	"auth/lock-screen",
+	"auth/login",
+	"auth/recover-password",
+	"auth/register",
+	"error/500",
+	"error/404",
+	"home",
+	"users_list",
+	"user_detail",
+	"projects_list",
+	"project_detail",
+];
 // https://www.npmjs.com/package/findit
 const Entry = (entry) => {
 	return entry.reduce((obj, item) => {
@@ -40,6 +69,7 @@ const PluginHtml = (entry) => {
 				"../../",
 				"src",
 				"views",
+				"ejs",
 				"template.ejs"
 			),
 		});
@@ -74,6 +104,7 @@ module.exports = {
 						loader: MiniCssExtractPlugin.loader,
 						options: {
 							publicPath: "/public/css",
+							outputPath: "css",
 						},
 					},
 					"style-loader",
@@ -82,8 +113,7 @@ module.exports = {
 						loader: "sass-loader",
 						options: {
 							sassOptions: {
-								indentWidth: 4,
-								includePaths: ["/public/scss"],
+								includePaths: ["/scss"],
 							},
 						},
 					},
@@ -106,7 +136,7 @@ module.exports = {
 	},
 
 	resolve: {
-		extensions: [".js", ".jsx", ".json", ".mjs", ".cjs", "*"],
+		extensions: [".js", ".jsx", ".json", "*"],
 	},
 
 	optimization: {
@@ -121,7 +151,7 @@ module.exports = {
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(),
+		//new CleanWebpackPlugin(),
 		// Ejs pages
 		...PluginHtml(pages),
 	],

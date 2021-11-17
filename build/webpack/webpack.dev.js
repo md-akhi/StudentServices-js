@@ -12,7 +12,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, "../../", "src", "public"),
 		filename: "js/[name].js",
-		publicPath: "public",
+		//publicPath: "public",
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
