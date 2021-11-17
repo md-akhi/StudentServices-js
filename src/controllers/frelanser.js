@@ -1,3 +1,5 @@
+import React from "react";
+import { renderToString } from "react-dom/server";
 //import { User as UserModel } from "../models/user.js";
 //import Frelanser from "../models/frelanser.js";
 //import { * as Model } from "../models/project.js";
@@ -8,19 +10,24 @@ import {
 import {
 	customerTemplate as Template,
 	customerPath as Path,
-} from "../config/routes.cjs";
+} from "../config/routes.js";
 import Middleware from "./middleware.js";
+import FrelanserReact from "../views/customer/dashboard/frelanser";
+import RequestListReact from "../views/customer/dashboard/frelanser/request_list";
+import RequestAddReact from "../views/customer/dashboard/frelanser/request_add";
+import InvoiceListReact from "../views/customer/dashboard/frelanser/invoice_list";
+import InvoiceDetailReact from "../views/customer/dashboard/frelanser/invoice_detail";
+import InvoicePrintReact from "../views/customer/dashboard/frelanser/invoice_print";
+import UserDetailReact from "../views/customer/dashboard/frelanser/user_detail";
 
-import React from "react";
-import ReactDOMServer from "react-dom/server";
-import Request_Add from "../views/customer/dashboard/frelanser/request_add";
 export default function (infoApp) {
 	// Middleware function to check for logged-in users
 	return {
 		Root_Get: [
 			function (req, res) {
+				const RenderReact = renderToString(<FrelanserReact name="frelanser" />);
 				res.render(Template.Frelanser(), {
-					name: "frelanser",
+					reactApp: RenderReact,
 				});
 			},
 		],
@@ -33,8 +40,11 @@ export default function (infoApp) {
 				})
 					.populate("projectId")
 					.then(function (requests) {
+						const RenderReact = renderToString(
+							<RequestListReact data={requests} />
+						);
 						res.render(Template.Frelanser() + "/request_list", {
-							data: requests,
+							reactApp: RenderReact,
 						});
 					})
 					.catch(function (err) {});
@@ -45,11 +55,11 @@ export default function (infoApp) {
 			async (req, res) => {
 				let userId = infoApp.user.id;
 				let projectId = req.params.projectId;
-				//let RequestAdd = ReactDOMServer.renderToString(<Request_Add />);
+				const RenderReact = renderToString(
+					<RequestAddReact user={userId} project={projectId} />
+				);
 				res.render(Template.Frelanser() + "/request_add", {
-					user: userId,
-					project: projectId,
-					//ReactDOMServer: RequestAdd,
+					reactApp: RenderReact,
 				});
 			},
 		],
@@ -92,9 +102,11 @@ export default function (infoApp) {
 					},
 					function (err, request) {
 						if (err) console.log(err);
+						const RenderReact = renderToString(
+							<RequestAddReact data={request} isEdit={true} />
+						);
 						res.render(Template.Frelanser() + "/request_add", {
-							data: request,
-							isEdit: true,
+							reactApp: RenderReact,
 						});
 					}
 				);
@@ -140,8 +152,11 @@ export default function (infoApp) {
 				})
 					.populate("projectId")
 					.then(function (invoices) {
+						const RenderReact = renderToString(
+							<InvoiceListReact data={invoices} />
+						);
 						res.render(Template.Frelanser() + "/invoice_list", {
-							data: invoices,
+							reactApp: RenderReact,
 						});
 					})
 					.catch(function (err) {
@@ -163,8 +178,11 @@ export default function (infoApp) {
 					.populate("employerId")
 					.populate("frelancerId")
 					.then(function (invoice) {
+						const RenderReact = renderToString(
+							<InvoiceDetailReact data={invoice} />
+						);
 						res.render(Template.Frelanser() + "/invoice_detail", {
-							data: invoice,
+							reactApp: RenderReact,
 						});
 					})
 					.catch(function (err) {
@@ -177,16 +195,22 @@ export default function (infoApp) {
 			function (req, res) {
 				let userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
+				const RenderReact = renderToString(
+					<InvoicePrintReact name="employer" />
+				);
 				res.render(Template.Frelanser() + "/invoice_print", {
-					name: "employer",
+					reactApp: RenderReact,
 				});
 			},
 		],
 
 		Profile_Get: [
 			function (req, res) {
+				const RenderReact = renderToString(
+					<UserDetailReact name="frelanser" />
+				);
 				res.render(Template.Frelanser() + "/user_detail", {
-					name: "frelanser",
+					reactApp: RenderReact,
 				});
 			},
 		],

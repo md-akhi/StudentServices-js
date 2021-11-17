@@ -1,5 +1,5 @@
 import React from "react";
-import * as dataFrelanser from "../../../dataTemp/frelanser.cjs";
+import * as dataFrelanser from "../../../dataTemp/frelanser.js";
 import HtmlLayout from "../../layouts/html";
 
 function InvoicePrint(props) {

@@ -1,3 +1,5 @@
+import React from "react";
+import { renderToString } from "react-dom/server";
 //import { * as Model } from "../models/project.js";
 import {
 	Project as ProjectModel,
@@ -8,10 +10,18 @@ import {
 import {
 	customerTemplate as Template,
 	customerPath as Path,
-} from "../config/routes.cjs";
+} from "../config/routes.js";
 import Middleware from "../controllers/middleware.js";
 import PaymentIDPay from "../config/pay.js";
 import async from "async";
+import EmployerReact from "../views/customer/dashboard/employer";
+import ProjectListReact from "../views/customer/dashboard/employer/project_list";
+import ProjectAddReact from "../views/customer/dashboard/employer/project_add";
+import ProjectDetailReact from "../views/customer/dashboard/employer/project_detail";
+import InvoiceListReact from "../views/customer/dashboard/employer/invoice_list";
+import InvoiceDetailReact from "../views/customer/dashboard/employer/invoice_detail";
+import InvoicePrintReact from "../views/customer/dashboard/employer/invoice_print";
+import UserDetailReact from "../views/customer/dashboard/employer/user_detail";
 
 export default function (infoApp) {
 	// middleware function to check for logged-in users
@@ -19,8 +29,9 @@ export default function (infoApp) {
 		// Display Root form on GET.
 		Root_Get: [
 			function (req, res) {
+				const RenderReact = renderToString(<EmployerReact name="employer" />);
 				res.render(Template.Employer(), {
-					name: "employer",
+					reactApp: RenderReact,
 				});
 			},
 		],
@@ -33,8 +44,11 @@ export default function (infoApp) {
 						userId: userId,
 					},
 					function (err, Project) {
+						const RenderReact = renderToString(
+							<ProjectListReact list={Project} />
+						);
 						res.render(Template.Employer() + "/project_list", {
-							list: Project,
+							reactApp: RenderReact,
 						});
 					}
 				);
@@ -44,8 +58,11 @@ export default function (infoApp) {
 		// Display Project add form on GET.
 		ProjectAdd_Get: [
 			function (req, res) {
+				const RenderReact = renderToString(
+					<ProjectAddReact name={"employer"} />
+				);
 				res.render(Template.Employer() + "/project_add", {
-					name: "employer",
+					reactApp: RenderReact,
 				});
 			},
 		],
@@ -92,9 +109,11 @@ export default function (infoApp) {
 					{ _id: id, userId: userId },
 					function (err, project) {
 						if (!project) res.redirect(Path.Employer() + "/projects");
+						const RenderReact = renderToString(
+							<ProjectAddReact data={project} isEdit={true} />
+						);
 						res.render(Template.Employer() + "/project_add", {
-							data: project,
-							isEdit: true,
+							reactApp: RenderReact,
 						});
 					}
 				);
@@ -167,9 +186,14 @@ export default function (infoApp) {
 							res.redirect(Path.Employer() + "/projects");
 						}
 						// Successful, so render.
+						const RenderReact = renderToString(
+							<ProjectDetailReact
+								data={results.project}
+								requests={results.requests}
+							/>
+						);
 						res.render(Template.Employer() + "/project_detail", {
-							data: results.project,
-							requests: results.requests,
+							reactApp: RenderReact,
 						});
 					})
 					.catch((err) => {
@@ -254,8 +278,11 @@ export default function (infoApp) {
 				})
 					.populate("projectId")
 					.then(function (invoices) {
+						const RenderReact = renderToString(
+							<InvoiceListReact data={invoices} />
+						);
 						res.render(Template.Employer() + "/invoice_list", {
-							data: invoices,
+							reactApp: RenderReact,
 						});
 					})
 					.catch(function (err) {
@@ -277,8 +304,11 @@ export default function (infoApp) {
 					.populate("employerId")
 					.populate("frelancerId")
 					.then(function (invoice) {
+						const RenderReact = renderToString(
+							<InvoiceDetailReact data={invoice} />
+						);
 						res.render(Template.Employer() + "/invoice_detail", {
-							data: invoice,
+							reactApp: RenderReact,
 						});
 					})
 					.catch(function (err) {
@@ -378,8 +408,11 @@ export default function (infoApp) {
 			function (req, res) {
 				let userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
+				const RenderReact = renderToString(
+					<InvoicePrintReact name={"employer"} />
+				);
 				res.render(Template.Employer() + "/invoice_print", {
-					name: "employer",
+					reactApp: RenderReact,
 				});
 			},
 		],
@@ -590,8 +623,11 @@ export default function (infoApp) {
 
 		profileGet: [
 			function (req, res) {
+				const RenderReact = renderToString(
+					<UserDetailReact name={"Employer"} />
+				);
 				res.render(Template.Employer() + "/user_detail", {
-					name: "Employer",
+					reactApp: RenderReact,
 				});
 			},
 		],

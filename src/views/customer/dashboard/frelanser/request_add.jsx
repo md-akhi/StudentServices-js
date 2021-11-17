@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOMServer from "react-dom/server";
 //import Axios from "axios";
 
-import * as dataFrelanser from "../../../dataTemp/frelanser.cjs";
+import * as dataFrelanser from "../../../dataTemp/frelanser.js";
 import BreadCrumbComponet from "../../component/breadCrumb.jsx";
 import FooterLayout from "../../layouts/footer.jsx";
 import HtmlLayout from "../../layouts/html.jsx";

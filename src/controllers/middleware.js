@@ -1,4 +1,4 @@
-import { customerPath as Path, homePath } from "../config/routes.cjs";
+import { customerPath as Path, homePath } from "../config/routes.js";
 
 export default function (infoApp) {
 	// middleware function to check for logged-in users

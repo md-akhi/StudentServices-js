@@ -1,11 +1,18 @@
+import React from "react";
+import { renderToString } from "react-dom/server";
 import bcrypt from "bcryptjs";
 import { User as UserModel } from "../models/user.js";
 import {
 	homeTemplate as Template,
 	homePath as Path,
 	customerPath,
-} from "../config/routes.cjs";
+} from "../config/routes.js";
 import Middleware from "./middleware.js";
+import RegisterReact from "../views/auth/register";
+import LoginReact from "../views/auth/login";
+import LockScreenReact from "../views/auth/lock-screen";
+import ForgotPasswordReact from "../views/auth/forgot-password";
+import RecoverPasswordReact from "../views/auth/recover-password";
 
 export default function (infoApp) {
 	// middleware function
@@ -17,8 +24,9 @@ export default function (infoApp) {
 		Register_Get: [
 			Middleware(infoApp).LogInChecker,
 			function (req, res) {
+				const RenderReact = renderToString(<RegisterReact name="register" />);
 				res.render(Template.Auth() + "/register", {
-					name: "register",
+					reactApp: RenderReact,
 				});
 			},
 		],
@@ -72,8 +80,11 @@ export default function (infoApp) {
 		LogIn_Get: [
 			Middleware(infoApp).LogInChecker,
 			function (req, res) {
+				const RenderReact = renderToString(
+					<LoginReact redirect={req.query.redirect} />
+				);
 				res.render(Template.Auth() + "/login", {
-					redirect: req.query.redirect,
+					reactApp: RenderReact,
 				});
 			},
 		],
@@ -107,8 +118,11 @@ export default function (infoApp) {
 		Recover_Get: [
 			// Middleware(infoApp).tokenChecker,
 			function (req, res) {
+				const RenderReact = renderToString(
+					<RecoverPasswordReact name={"recover-password"} />
+				);
 				res.render(Template.Auth() + "/recover-password", {
-					name: "recover-password",
+					reactApp: RenderReact,
 				});
 			},
 		],
@@ -119,8 +133,11 @@ export default function (infoApp) {
 		Forgot_Get: [
 			Middleware(infoApp).LogInChecker,
 			function (req, res) {
+				const RenderReact = renderToString(
+					<ForgotPasswordReact name={"forgot-password"} />
+				);
 				res.render(Template.Auth() + "/forgot-password", {
-					name: "forgot-password",
+					reactApp: RenderReact,
 				});
 			},
 		],

@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as dataEmployer from "../../../dataTemp/employer.cjs";
+import * as dataEmployer from "../../../dataTemp/employer.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
 import HtmlLayout from "../../layouts/html";

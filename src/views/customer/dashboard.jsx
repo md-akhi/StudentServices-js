@@ -1,6 +1,6 @@
 import React from "react";
 
-import dataDashboard from "../dataTemp/dashboard.cjs";
+import * as dataDashboard from "../dataTemp/dashboard.js";
 import FooterLayout from "./layouts/footer";
 import HtmlLayout from "./layouts/html";
 //import MainSidebarLayout from "./layouts/mainSidebar";

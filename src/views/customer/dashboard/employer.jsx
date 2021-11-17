@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as dataEmployer from "../../dataTemp/employer.cjs";
+import * as dataEmployer from "../../dataTemp/employer.js";
 import FooterLayout from "../layouts/footer";
 import HtmlLayout from "../layouts/html";
 import MainSidebarLayout from "../layouts/mainSidebar";

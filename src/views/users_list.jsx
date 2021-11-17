@@ -2,6 +2,7 @@ import React from "react";
 
 import FooterLayout from "./layouts/footer";
 import HtmlLayout from "./layouts/html";
+import AvatarImg from "./img/avatar.png";
 
 function projects(props) {
 	return (
@@ -94,11 +95,7 @@ function ProjectsItem(props) {
 						<li className="list-inline-item">
 							<a href="">
 								{key.email.now}
-								<img
-									alt="Avatar"
-									className="table-avatar"
-									src="/img/avatar.png"
-								/>
+								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
 						<li className="list-inline-item">
