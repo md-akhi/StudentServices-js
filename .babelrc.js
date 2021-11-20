@@ -1,3 +1,5 @@
+const path = require("path");
+
 const presets = {
 	presets: [
 		"@babel/preset-react",
@@ -18,26 +20,26 @@ if (process.env.NODE_ENV === "development") {
 		[
 			"file-loader",
 			{
-				name: "[hash].[ext]",
+				name: "[name].[ext]",
 				extensions: ["png", "jpg", "jpeg", "gif", "svg"],
-				publicPath: "/public/img",
-				outputPath: null,
+				publicPath: "/img",
+				outputPath: path.join(".", "src", "public", "img"),
 			},
 			"img-file-loader-plugin",
-		],
-		[
-			"file-loader",
-			{
-				name: "[hash].[ext]",
-				extensions: ["css", "sass", "scss"],
-				publicPath: "/public/css",
-				outputPath: null,
-			},
-			"css-file-loader-plugin",
 		]
+		// [
+		// 	"file-loader",
+		// 	{
+		// 		name: "[name].[ext]",
+		// 		extensions: ["css", "scss"],
+		// 		publicPath: "/css",
+		// 		outputPath: path.join("src", "public", "css"),
+		// 	},
+		// 	"css-file-loader-plugin",
+		// ]
 	);
 }
 
 const addConfigs = { ignore: ["./src/public/"] };
 
-export default { ...plugins, ...presets, ...addConfigs };
+module.exports = { ...plugins, ...presets, ...addConfigs };
