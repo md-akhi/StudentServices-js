@@ -4,9 +4,9 @@ const commonWebpack = require("./build/webpack/webpack.common.js");
 const devWebpack = require("./build/webpack/webpack.dev.js");
 const prodWebpack = require("./build/webpack/webpack.prod.js");
 
-module.exports = (env) => {
+module.exports = () => {
 	let envConfig;
-	switch (env.NODE_ENV) {
+	switch (process.env.NODE_ENV) {
 		case "prod":
 		case "production":
 			envConfig = prodWebpack;

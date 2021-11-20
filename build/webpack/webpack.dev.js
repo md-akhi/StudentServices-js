@@ -14,10 +14,4 @@ module.exports = {
 		filename: "js/[name].js",
 		//publicPath: "public",
 	},
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: "css/[id].css",
-			chunkFilename: "css/[id].css",
-		}),
-	],
 };

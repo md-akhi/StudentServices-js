@@ -1,7 +1,7 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path"),
+	HtmlWebpackPlugin = require("html-webpack-plugin"),
+	{ CleanWebpackPlugin } = require("clean-webpack-plugin"),
+	MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const pages = [
 	"customer/dashboard/employer/invoice_detail",
@@ -98,36 +98,14 @@ module.exports = {
 				loader: "raw-loader",
 			},
 			{
-				test: /\.(s[ac]ss)$/,
-				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {
-							publicPath: "/public/css",
-							outputPath: "css",
-						},
-					},
-					"style-loader",
-					"css-loader",
-					{
-						loader: "sass-loader",
-						options: {
-							sassOptions: {
-								includePaths: ["/scss"],
-							},
-						},
-					},
-				],
-			},
-			{
 				test: /\.(jpg|jpeg|png|svg|gif)$/,
 				use: [
 					{
 						loader: "file-loader",
 						options: {
-							name: "[md5:hash:hex].[ext]",
-							publicPath: "/public/img",
-							outputPath: "img",
+							name: "[hash].[ext]",
+							publicPath: "/img",
+							outputPath: path.resolve("../../", "src", "public", "img"),
 						},
 					},
 				],
