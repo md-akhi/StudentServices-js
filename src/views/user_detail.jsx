@@ -1,12 +1,24 @@
 import React from "react";
 
-import HtmlLayout from "./layouts/html";
+import BodyLayout from "./layouts/body";
 import FooterLayout from "./layouts/footer";
+import User1Img from "./data/img/user1-128x128.jpg";
+import User4Img from "./data/img/user4-128x128.jpg";
+import User6Img from "./data/img/user6-128x128.jpg";
+import User7Img from "./data/img/user7-128x128.jpg";
+import Photo1Img from "./data/img/photo1.png";
+import Photo2Img from "./data/img/photo2.png";
+import Photo3Img from "./data/img/photo3.jpg";
+import Photo4Img from "./data/img/photo4.jpg";
+import AvatarImg from "./data/img/avatar.png";
+import Avatar2Img from "./data/img/avatar2.png";
+import Avatar3Img from "./data/img/avatar3.png";
+import Avatar4Img from "./data/img/avatar4.png";
 
 function Profile(props) {
 	let data = props.item;
 	return (
-		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
@@ -23,7 +35,7 @@ function Profile(props) {
 										<div className="text-center">
 											<img
 												className="profile-user-img img-fluid img-circle"
-												src="/img/user4-128x128.jpg"
+												src={User4Img}
 												alt="User profile picture"
 											/>
 										</div>
@@ -150,7 +162,7 @@ function Profile(props) {
 													<div className="user-block">
 														<img
 															className="img-circle img-bordered-sm"
-															src="/img/user1-128x128.jpg"
+															src={User1Img}
 															alt="user image"
 														/>
 														<span className="username">
@@ -201,7 +213,7 @@ function Profile(props) {
 													<div className="user-block">
 														<img
 															className="img-circle img-bordered-sm"
-															src="/img/user7-128x128.jpg"
+															src={User7Img}
 															alt="User Image"
 														/>
 														<span className="username">
@@ -248,7 +260,7 @@ function Profile(props) {
 													<div className="user-block">
 														<img
 															className="img-circle img-bordered-sm"
-															src="/img/user6-128x128.jpg"
+															src={User6Img}
 															alt="User Image"
 														/>
 														<span className="username">
@@ -266,7 +278,7 @@ function Profile(props) {
 														<div className="col-sm-6">
 															<img
 																className="img-fluid"
-																src="/img/photo1.png"
+																src={Photo1Img}
 																alt="Photo"
 															/>
 														</div>
@@ -276,12 +288,12 @@ function Profile(props) {
 																<div className="col-sm-6">
 																	<img
 																		className="img-fluid mb-3"
-																		src="/img/photo2.png"
+																		src={Photo2Img}
 																		alt="Photo"
 																	/>
 																	<img
 																		className="img-fluid"
-																		src="/img/photo3.jpg"
+																		src={Photo3Img}
 																		alt="Photo"
 																	/>
 																</div>
@@ -289,12 +301,12 @@ function Profile(props) {
 																<div className="col-sm-6">
 																	<img
 																		className="img-fluid mb-3"
-																		src="/img/photo4.jpg"
+																		src={Photo4Img}
 																		alt="Photo"
 																	/>
 																	<img
 																		className="img-fluid"
-																		src="/img/photo1.png"
+																		src={Photo1Img}
 																		alt="Photo"
 																	/>
 																</div>
@@ -587,7 +599,7 @@ function Profile(props) {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 function ProjectsItem(props) {
@@ -609,7 +621,7 @@ function ProjectsItem(props) {
 								<img
 									alt="Avatar"
 									classNameNameName="table-avatar"
-									src="/img/avatar.png"
+									src={AvatarImg}
 								/>
 							</a>
 						</li>
@@ -617,21 +629,21 @@ function ProjectsItem(props) {
 							<img
 								alt="Avatar"
 								classNameNameName="table-avatar"
-								src="/img/avatar2.png"
+								src={Avatar2Img}
 							/>
 						</li>
 						<li classNameNameName="list-inline-item">
 							<img
 								alt="Avatar"
 								classNameNameName="table-avatar"
-								src="/img/avatar3.png"
+								src={Avatar3Img}
 							/>
 						</li>
 						<li classNameNameName="list-inline-item">
 							<img
 								alt="Avatar"
 								classNameNameName="table-avatar"
-								src="/img/avatar4.png"
+								src={Avatar4Img}
 							/>
 						</li>
 					</ul>

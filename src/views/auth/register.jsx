@@ -1,9 +1,9 @@
 import React from "react";
-import HtmlLayout from "../customer/layouts/html";
+import BodyLayout from "../customer/layouts/body";
 
 function register(props) {
 	return (
-		<HtmlLayout class="hold-transition register-page">
+		<BodyLayout class="hold-transition register-page">
 			<div className="register-box">
 				<div className="card card-outline card-primary">
 					<div className="card-header text-center">
@@ -117,7 +117,7 @@ function register(props) {
 				{/* /.card */}
 			</div>
 			{/* /.register-box */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

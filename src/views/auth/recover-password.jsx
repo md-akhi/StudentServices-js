@@ -1,9 +1,9 @@
 import React from "react";
-import HtmlLayout from "../customer/layouts/html";
+import BodyLayout from "../customer/layouts/body";
 
 function recoverPassword(props) {
 	return (
-		<HtmlLayout className="hold-transition login-page">
+		<BodyLayout className="hold-transition login-page">
 			<div className="login-box">
 				<div className="card card-outline card-primary">
 					<div className="card-header text-center">
@@ -59,7 +59,7 @@ function recoverPassword(props) {
 				</div>
 			</div>
 			{/* /.login-box */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

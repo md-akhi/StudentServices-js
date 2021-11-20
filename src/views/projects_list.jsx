@@ -1,11 +1,16 @@
 import React from "react";
 
 import FooterLayout from "./layouts/footer";
-import HtmlLayout from "./layouts/html";
+import BodyLayout from "./layouts/body";
+
+import AvatarImg from "./data/img/avatar.png";
+import Avatar2Img from "./data/img/avatar2.png";
+import Avatar3Img from "./data/img/avatar3.png";
+import Avatar4Img from "./data/img/avatar4.png";
 
 function projects(props) {
 	return (
-		<HtmlLayout class="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
@@ -75,7 +80,7 @@ function projects(props) {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 function ProjectsItem(props) {
@@ -94,33 +99,17 @@ function ProjectsItem(props) {
 						<li className="list-inline-item">
 							<a href="">
 								{key.request}
-								<img
-									alt="Avatar"
-									className="table-avatar"
-									src="/img/avatar.png"
-								/>
+								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
 						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar2.png"
-							/>
+							<img alt="Avatar" className="table-avatar" src={Avatar2Img} />
 						</li>
 						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar3.png"
-							/>
+							<img alt="Avatar" className="table-avatar" src={Avatar3Img} />
 						</li>
 						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar4.png"
-							/>
+							<img alt="Avatar" className="table-avatar" src={Avatar4Img} />
 						</li>
 					</ul>
 				</td>

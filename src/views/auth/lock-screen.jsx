@@ -1,9 +1,11 @@
 import React from "react";
-import HtmlLayout from "../customer/layouts/html";
+import BodyLayout from "../customer/layouts/body";
+
+import User1Img from "../data/img/user1-128x128.jpg";
 
 function lockScreen(props) {
 	return (
-		<HtmlLayout class="hold-transition lockscreen">
+		<BodyLayout class="hold-transition lockscreen">
 			{/* Automatic element centering */}
 			<div className="lockscreen-wrapper">
 				<div className="lockscreen-logo">
@@ -18,7 +20,7 @@ function lockScreen(props) {
 				<div className="lockscreen-item">
 					{/* lockscreen image */}
 					<div className="lockscreen-image">
-						<img src="/img/user1-128x128.jpg" alt="User Image" />
+						<img src={User1Img} alt="User Image" />
 					</div>
 					{/* /.lockscreen-image */}
 
@@ -59,7 +61,7 @@ function lockScreen(props) {
 				</div>
 			</div>
 			{/* /.center */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

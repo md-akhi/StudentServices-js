@@ -1,10 +1,19 @@
 import React from "react";
 import * as dataFrelanser from "../../../data/frelanser.js";
-import HtmlLayout from "../../layouts/html";
+import BodyLayout from "../../layouts/body";
+
+import VisaImg from "../../../data/img/credit/visa.png";
+import MasterCardImg from "../../../data/img/credit/mastercard.png";
+import AmericanExpressImg from "../../../data/img/credit/american-express.png";
+import PayPalImg from "../../../data/img/credit/paypal2.png";
+import AvatarImg from "../../../data/img/avatar.png";
+import Avatar2Img from "../../../data/img/avatar2.png";
+import Avatar3Img from "../../../data/img/avatar3.png";
+import Avatar4Img from "../../../data/img/avatar4.png";
 
 function InvoicePrint(props) {
 	return (
-		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<div className="wrapper">
 				{/* Main content */}
 				<section className="invoice">
@@ -121,13 +130,10 @@ function InvoicePrint(props) {
 						{/* accepted payments column */}
 						<div className="col-6">
 							<p className="lead">Payment Methods:</p>
-							<img src="/img/credit/visa.png" alt="Visa" />
-							<img src="/img/credit/mastercard.png" alt="Mastercard" />
-							<img
-								src="/img/credit/american-express.png"
-								alt="American Express"
-							/>
-							<img src="/img/credit/paypal2.png" alt="Paypal" />
+							<img src={VisaImg} alt="Visa" />
+							<img src={MasterCardImg} alt="Mastercard" />
+							<img src={AmericanExpressImg} alt="American Express" />
+							<img src={PayPalImg} alt="Paypal" />
 
 							<p
 								className="text-muted well well-sm shadow-none"
@@ -172,7 +178,7 @@ function InvoicePrint(props) {
 			{/* ./wrapper */}
 			{/* Page specific script */}
 			<script>window.addEventListener("load", window.print());</script>
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 function ProjectsItem(props) {
@@ -191,33 +197,17 @@ function ProjectsItem(props) {
 						<li className="list-inline-item">
 							<a href="">
 								{key.request}
-								<img
-									alt="Avatar"
-									className="table-avatar"
-									src="/img/avatar.png"
-								/>
+								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
 						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar2.png"
-							/>
+							<img alt="Avatar" className="table-avatar" src={Avatar2Img} />
 						</li>
 						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar3.png"
-							/>
+							<img alt="Avatar" className="table-avatar" src={Avatar3Img} />
 						</li>
 						<li className="list-inline-item">
-							<img
-								alt="Avatar"
-								className="table-avatar"
-								src="/img/avatar4.png"
-							/>
+							<img alt="Avatar" className="table-avatar" src={Avatar4Img} />
 						</li>
 					</ul>
 				</td>

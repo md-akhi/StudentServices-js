@@ -1,6 +1,10 @@
 import React from "react";
 import NavbarLinksComponet from "../component/navbarLinks.jsx";
 
+import User1Img from "../../data/img/user1-128x128.jpg";
+import User3Img from "../../data/img/user3-128x128.jpg";
+import User8Img from "../../data/img/user8-128x128.jpg";
+
 function NavbarLayout(props) {
 	return (
 		<nav className="main-header navbar navbar-expand navbar-white navbar-light">
@@ -57,7 +61,7 @@ function NavbarLayout(props) {
 							{/* Message Start */}
 							<div className="media">
 								<img
-									src="/img/user1-128x128.jpg"
+									src={User1Img}
 									alt="User Avatar"
 									className="img-size-50 mr-3 img-circle"
 								/>
@@ -81,7 +85,7 @@ function NavbarLayout(props) {
 							{/* Message Start */}
 							<div className="media">
 								<img
-									src="/img/user8-128x128.jpg"
+									src={User8Img}
 									alt="User Avatar"
 									className="img-size-50 img-circle mr-3"
 								/>
@@ -105,7 +109,7 @@ function NavbarLayout(props) {
 							{/* Message Start */}
 							<div className="media">
 								<img
-									src="/img/user3-128x128.jpg"
+									src={User3Img}
 									alt="User Avatar"
 									className="img-size-50 img-circle mr-3"
 								/>

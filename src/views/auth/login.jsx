@@ -1,9 +1,9 @@
 import React from "react";
-import HtmlLayout from "../customer/layouts/html";
+import BodyLayout from "../customer/layouts/body";
 
 function login(props) {
 	return (
-		<HtmlLayout class="hold-transition login-page">
+		<BodyLayout class="hold-transition login-page">
 			<div className="login-box">
 				{/* /.login-logo */}
 				<div className="card card-outline card-primary">
@@ -89,7 +89,7 @@ function login(props) {
 				{/* /.card */}
 			</div>
 			{/* /.login-box */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

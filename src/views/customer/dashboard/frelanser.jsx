@@ -2,7 +2,7 @@ import React from "react";
 
 import * as dataFrelanser from "../../data/frelanser.js";
 import FooterLayout from "../layouts/footer";
-import HtmlLayout from "../layouts/html";
+import BodyLayout from "../layouts/body";
 import MainSidebarLayout from "../layouts/mainSidebar";
 import NavbarLayout from "../layouts/navbar";
 import BreadCrumbComponet from "../component/breadCrumb";
@@ -16,7 +16,7 @@ import ToDoComponet from "../component/ToDo";
 
 function frelanser(props) {
 	return (
-		<HtmlLayout class="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
 				Data={dataFrelanser.menuSidbarRight}
@@ -69,7 +69,7 @@ function frelanser(props) {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

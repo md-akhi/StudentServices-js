@@ -2,7 +2,7 @@ import React from "react";
 
 import * as dataDashboard from "../data/dashboard.js";
 import FooterLayout from "./layouts/footer";
-import HtmlLayout from "./layouts/html";
+import BodyLayout from "./layouts/body";
 //import MainSidebarLayout from "./layouts/mainSidebar";
 import NavbarLayout from "./layouts/navbar";
 import BreadCrumbComponet from "./component/breadCrumb";
@@ -10,7 +10,7 @@ import BreadCrumbComponet from "./component/breadCrumb";
 
 function dashborad(props) {
 	return (
-		<HtmlLayout class="layout-fixed layout-navbar-fixed sidebar-collapse">
+		<BodyLayout class="layout-fixed layout-navbar-fixed sidebar-collapse">
 			<NavbarLayout NavbarLinks={dataDashboard.linkNavUp}></NavbarLayout>
 			{/* <MainSidebarLayout></MainSidebarLayout> */}
 			{/* Content Wrapper. Contains page content */}
@@ -53,7 +53,7 @@ function dashborad(props) {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

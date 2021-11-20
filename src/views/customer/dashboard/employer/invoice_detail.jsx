@@ -3,9 +3,14 @@ import React from "react";
 import * as dataEmployer from "../../../data/employer.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
-import HtmlLayout from "../../layouts/html";
+import BodyLayout from "../../layouts/body";
 import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
+
+import VisaImg from "../../../data/img/credit/visa.png";
+import MasterCardImg from "../../../data/img/credit/mastercard.png";
+import AmericanExpressImg from "../../../data/img/credit/american-express.png";
+import PayPalImg from "../../../data/img/credit/paypal2.png";
 
 function Invoice(props) {
 	let project = props.data.projectId;
@@ -13,7 +18,7 @@ function Invoice(props) {
 	let employer = props.data.employerId;
 	let frelancer = props.data.frelancerId;
 	return (
-		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
 				Data={dataEmployer.menuSidbarRight}
@@ -158,13 +163,10 @@ function Invoice(props) {
 										{/* accepted payments column */}
 										<div className="col-6">
 											<p className="lead">Payment Methods:</p>
-											<img src="/img/credit/visa.png" alt="Visa" />
-											<img src="/img/credit/mastercard.png" alt="Mastercard" />
-											<img
-												src="/img/credit/american-express.png"
-												alt="American Express"
-											/>
-											<img src="/img/credit/paypal2.png" alt="Paypal" />
+											<img src={VisaImg} alt="Visa" />
+											<img src={MasterCardImg} alt="Mastercard" />
+											<img src={AmericanExpressImg} alt="American Express" />
+											<img src={PayPalImg} alt="Paypal" />
 
 											<p
 												className="text-muted well well-sm shadow-none"
@@ -251,7 +253,7 @@ function Invoice(props) {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 function expenseItem(props) {

@@ -1,12 +1,15 @@
 import React from "react";
 
 import FooterLayout from "./layouts/footer";
-import HtmlLayout from "./layouts/html";
+import BodyLayout from "./layouts/body";
+
+import User1Img from "./data/img/user1-128x128.jpg";
+import User7Img from "./data/img/user7-128x128.jpg";
 
 function projectDetail(props) {
 	let data = props.item;
 	return (
-		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
@@ -88,7 +91,7 @@ function projectDetail(props) {
 													<div className="user-block">
 														<img
 															className="img-circle img-bordered-sm"
-															src="/img/user1-128x128.jpg"
+															src={User1Img}
 															alt="user image"
 														/>
 														<span className="username">
@@ -117,7 +120,7 @@ function projectDetail(props) {
 													<div className="user-block">
 														<img
 															className="img-circle img-bordered-sm"
-															src="/img/user7-128x128.jpg"
+															src={User7Img}
 															alt="User Image"
 														/>
 														<span className="username">
@@ -144,7 +147,7 @@ function projectDetail(props) {
 													<div className="user-block">
 														<img
 															className="img-circle img-bordered-sm"
-															src="/img/user1-128x128.jpg"
+															src={User1Img}
 															alt="user image"
 														/>
 														<span className="username">
@@ -248,7 +251,7 @@ function projectDetail(props) {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

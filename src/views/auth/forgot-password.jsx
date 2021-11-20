@@ -1,9 +1,9 @@
 import React from "react";
-import HtmlLayout from "../customer/layouts/html";
+import BodyLayout from "../customer/layouts/body";
 
 function forgotPassword(props) {
 	return (
-		<HtmlLayout class="hold-transition login-page">
+		<BodyLayout class="hold-transition login-page">
 			<div className="login-box">
 				<div className="card card-outline card-primary">
 					<div className="card-header text-center">
@@ -46,7 +46,7 @@ function forgotPassword(props) {
 				</div>
 			</div>
 			{/* /.login-box */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

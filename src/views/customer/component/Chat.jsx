@@ -1,5 +1,12 @@
 import React from "react";
 
+import User1Img from "../../data/img/user1-128x128.jpg";
+import User3Img from "../../data/img/user3-128x128.jpg";
+import User5Img from "../../data/img/user5-128x128.jpg";
+import User6Img from "../../data/img/user6-128x128.jpg";
+import User7Img from "../../data/img/user7-128x128.jpg";
+import User8Img from "../../data/img/user8-128x128.jpg";
+
 function ChatComponet(props) {
 	return (
 		<div className="card direct-chat direct-chat-primary">
@@ -50,7 +57,7 @@ function ChatComponet(props) {
 						{/* /.direct-chat-infos */}
 						<img
 							className="direct-chat-img"
-							src="/img/user1-128x128.jpg"
+							src={User1Img}
 							alt="message user image"
 						/>
 						{/* /.direct-chat-img */}
@@ -74,7 +81,7 @@ function ChatComponet(props) {
 						{/* /.direct-chat-infos */}
 						<img
 							className="direct-chat-img"
-							src="/img/user3-128x128.jpg"
+							src={User3Img}
 							alt="message user image"
 						/>
 						{/* /.direct-chat-img */}
@@ -94,7 +101,7 @@ function ChatComponet(props) {
 						{/* /.direct-chat-infos */}
 						<img
 							className="direct-chat-img"
-							src="/img/user1-128x128.jpg"
+							src={User1Img}
 							alt="message user image"
 						/>
 						{/* /.direct-chat-img */}
@@ -118,7 +125,7 @@ function ChatComponet(props) {
 						{/* /.direct-chat-infos */}
 						<img
 							className="direct-chat-img"
-							src="/img/user3-128x128.jpg"
+							src={User3Img}
 							alt="message user image"
 						/>
 						{/* /.direct-chat-img */}
@@ -136,7 +143,7 @@ function ChatComponet(props) {
 							<a href="#">
 								<img
 									className="contacts-list-img"
-									src="/img/user1-128x128.jpg"
+									src={User1Img}
 									alt="User Avatar"
 								/>
 
@@ -159,7 +166,7 @@ function ChatComponet(props) {
 							<a href="#">
 								<img
 									className="contacts-list-img"
-									src="/img/user7-128x128.jpg"
+									src={User7Img}
 									alt="User Avatar"
 								/>
 
@@ -182,7 +189,7 @@ function ChatComponet(props) {
 							<a href="#">
 								<img
 									className="contacts-list-img"
-									src="/img/user3-128x128.jpg"
+									src={User3Img}
 									alt="User Avatar"
 								/>
 
@@ -205,7 +212,7 @@ function ChatComponet(props) {
 							<a href="#">
 								<img
 									className="contacts-list-img"
-									src="/img/user5-128x128.jpg"
+									src={User5Img}
 									alt="User Avatar"
 								/>
 
@@ -228,7 +235,7 @@ function ChatComponet(props) {
 							<a href="#">
 								<img
 									className="contacts-list-img"
-									src="/img/user6-128x128.jpg"
+									src={User6Img}
 									alt="User Avatar"
 								/>
 
@@ -251,7 +258,7 @@ function ChatComponet(props) {
 							<a href="#">
 								<img
 									className="contacts-list-img"
-									src="/img/user8-128x128.jpg"
+									src={User8Img}
 									alt="User Avatar"
 								/>
 

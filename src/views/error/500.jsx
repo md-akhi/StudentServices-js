@@ -1,9 +1,9 @@
 import React from "react";
-import HtmlLayout from "../customer/layouts/html";
+import BodyLayout from "../customer/layouts/body";
 
 function error500(props) {
 	return (
-		<HtmlLayout className="hold-transition">
+		<BodyLayout className="hold-transition">
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
@@ -71,7 +71,7 @@ function error500(props) {
 				{/* /.content */}
 			</div>
 			{/* /.content-wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

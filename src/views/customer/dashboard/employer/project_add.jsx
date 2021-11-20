@@ -3,14 +3,14 @@ import React from "react";
 import * as dataEmployer from "../../../data/employer.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
-import HtmlLayout from "../../layouts/html";
+import BodyLayout from "../../layouts/body";
 import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
 
 function projectAdd(props) {
 	let data = props.data;
 	return (
-		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
 				Data={dataEmployer.menuSidbarRight}
@@ -210,7 +210,7 @@ function projectAdd(props) {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 

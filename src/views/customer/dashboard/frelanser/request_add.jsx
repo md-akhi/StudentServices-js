@@ -5,15 +5,15 @@ import ReactDOMServer from "react-dom/server";
 import * as dataFrelanser from "../../../data/frelanser.js";
 import BreadCrumbComponet from "../../component/breadCrumb.jsx";
 import FooterLayout from "../../layouts/footer.jsx";
-import HtmlLayout from "../../layouts/html.jsx";
+import BodyLayout from "../../layouts/body.jsx";
 import MainSidebarLayout from "../../layouts/mainSidebar.jsx";
 import NavbarLayout from "../../layouts/navbar.jsx";
 
 export default (props) => {
-	let data = props.data,
-		invoice = { items: [], text: "" };
+	let data = props.data;
+	data.invoice = { items: "", text: "" };
 	return (
-		<HtmlLayout className="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
 				Data={dataFrelanser.menuSidbarRight}
@@ -92,7 +92,7 @@ export default (props) => {
 											<div className="card-body">
 												<div className="form-group">
 													<label htmlFor="ShowInvoce"> invoce</label>
-													{/* <TodoApp></TodoApp> */}
+													<TodoApp invoice={data.invoice}></TodoApp>
 												</div>
 											</div>
 											{/* /.card-body */}
@@ -141,7 +141,7 @@ export default (props) => {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 };
 
@@ -160,7 +160,7 @@ class TodoApp extends Component {
 		super(props);
 		this.onChange = this.onChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.state = props;
+		this.state = props.invoice;
 	}
 	onChange(e) {
 		this.setState({ text: e.target.value });

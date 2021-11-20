@@ -3,13 +3,15 @@ import React from "react";
 import * as dataEmployer from "../../../data/employer.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
-import HtmlLayout from "../../layouts/html";
+import BodyLayout from "../../layouts/body";
 import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
 
+import AvatarImg from "../../../data/img/avatar.png";
+
 function Invoices(props) {
 	return (
-		<HtmlLayout class="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
 				Data={dataEmployer.menuSidbarRight}
@@ -88,7 +90,7 @@ function Invoices(props) {
 			</aside>
 			{/* /.control-sidebar */}
 			{/* ./wrapper */}
-		</HtmlLayout>
+		</BodyLayout>
 	);
 }
 function InvoicesItem(props) {
@@ -108,11 +110,7 @@ function InvoicesItem(props) {
 						<li className="list-inline-item">
 							<a href="">
 								{key.request}
-								<img
-									alt="Avatar"
-									className="table-avatar"
-									src="/img/avatar.png"
-								/>
+								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
 					</ul>
