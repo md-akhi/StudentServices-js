@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import ForgotPasswordReact from "../../auth/forgot-password";
 
-hydrate(<ForgotPasswordReact />, document.getElementsByTagName("html"));
+hydrate(<ForgotPasswordReact />, document.getElementById("reactApp"));

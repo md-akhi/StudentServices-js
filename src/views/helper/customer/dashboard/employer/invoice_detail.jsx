@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import InvoiceDetailReact from "../../../../customer/dashboard/employer/invoice_detail";
 
-hydrate(<InvoiceDetailReact />, document.getElementsByTagName("html"));
+hydrate(<InvoiceDetailReact />, document.getElementById("reactApp"));

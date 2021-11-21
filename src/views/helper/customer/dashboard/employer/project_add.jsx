@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import ProjectAddReact from "../../../../customer/dashboard/employer/project_add";
 
-hydrate(<ProjectAddReact />, document.getElementsByTagName("html"));
+hydrate(<ProjectAddReact />, document.getElementById("reactApp"));

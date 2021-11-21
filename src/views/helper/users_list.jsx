@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import UsersListReact from "../users_list";
 
-hydrate(<UsersListReact />, document.getElementsByTagName("html"));
+hydrate(<UsersListReact />, document.getElementById("reactApp"));

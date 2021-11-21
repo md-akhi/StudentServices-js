@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import InvoiceListReact from "../../../../customer/dashboard/frelanser/invoice_list";
 
-hydrate(<InvoiceListReact />, document.getElementsByTagName("html"));
+hydrate(<InvoiceListReact />, document.getElementById("reactApp"));

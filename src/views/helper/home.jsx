@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import HomeReact from "../home";
 
-hydrate(<HomeReact />, document.getElementsByTagName("html"));
+hydrate(<HomeReact />, document.getElementById("reactApp"));

@@ -2,7 +2,7 @@ const path = require("path");
 
 const presets = {
 	presets: [
-		"@babel/preset-react",
+		["@babel/preset-react"],
 		[
 			"@babel/preset-env",
 			{
@@ -13,7 +13,7 @@ const presets = {
 		],
 	],
 };
-const plugins = { plugins: [["@babel/plugin-proposal-class-properties"]] };
+const plugins = { plugins: ["@babel/plugin-proposal-class-properties"] };
 
 if (process.env.NODE_ENV === "development") {
 	plugins.plugins.push(
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "development") {
 				name: "[name].[ext]",
 				extensions: ["png", "jpg", "jpeg", "gif", "svg"],
 				publicPath: "/img",
-				outputPath: path.join(".", "src", "public", "img"),
+				outputPath: null,
 			},
 			"img-file-loader-plugin",
 		]
@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "development") {
 		// 		name: "[name].[ext]",
 		// 		extensions: ["css", "scss"],
 		// 		publicPath: "/css",
-		// 		outputPath: path.join("src", "public", "css"),
+		// 		outputPath: null,
 		// 	},
 		// 	"css-file-loader-plugin",
 		// ]

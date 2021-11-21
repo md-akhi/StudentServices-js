@@ -1,7 +1,7 @@
 const path = require("path"),
-	HtmlWebpackPlugin = require("html-webpack-plugin"),
-	{ CleanWebpackPlugin } = require("clean-webpack-plugin"),
-	MiniCssExtractPlugin = require("mini-css-extract-plugin");
+	HtmlWebpackPlugin = require("html-webpack-plugin");
+//{ CleanWebpackPlugin } = require("clean-webpack-plugin");
+//MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const pages = [
 	"customer/dashboard/employer/invoice_detail",
@@ -103,9 +103,9 @@ module.exports = {
 					{
 						loader: "file-loader",
 						options: {
-							name: "[hash].[ext]",
+							name: "[md5:hash:hex].[ext]",
 							publicPath: "/img",
-							outputPath: path.resolve("../../", "src", "public", "img"),
+							outputPath: path.resolve("../", "src", "public", "img"),
 						},
 					},
 				],

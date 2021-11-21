@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import RegisterReact from "../../auth/register";
 
-hydrate(<RegisterReact />, document.getElementsByTagName("html"));
+hydrate(<RegisterReact />, document.getElementById("reactApp"));

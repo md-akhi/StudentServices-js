@@ -1,7 +1,7 @@
 import React from "react";
 
 function BodyLayout(props) {
-	return <body className={props.class}>{props.children}</body>;
+	return <div className={props.class}>{props.children}</div>;
 }
 
 export default BodyLayout;

@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import UserDetailReact from "../../../../customer/dashboard/frelanser/user_detail";
 
-hydrate(<UserDetailReact />, document.getElementsByTagName("html"));
+hydrate(<UserDetailReact />, document.getElementById("reactApp"));

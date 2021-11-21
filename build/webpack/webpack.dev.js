@@ -1,17 +1,17 @@
 const path = require("path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+//const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	mode: "development",
-	//devtool: "source-map",
-
-	stats: {
-		//colors: true,
-		errorDetails: true,
-	},
+	devtool: "eval-cheap-module-source-map",
 	output: {
 		path: path.resolve(__dirname, "../../", "src", "public"),
 		filename: "js/[name].js",
-		//publicPath: "public",
+		publicPath: "/",
 	},
 };
+
+// stats: {
+// 	//colors: true,
+// 	errorDetails: true,
+// },
