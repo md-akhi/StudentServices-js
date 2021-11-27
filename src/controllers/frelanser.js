@@ -34,7 +34,7 @@ export default function (infoApp) {
 
 		Requests_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
+				const userId = infoApp.user.id;
 				RequestModel.find({
 					userId: userId,
 				})
@@ -53,21 +53,22 @@ export default function (infoApp) {
 
 		RequestAdd_Get: [
 			async (req, res) => {
-				let userId = infoApp.user.id;
-				let projectId = req.params.projectId;
+				const userId = infoApp.user.id;
+				const projectId = req.params.projectId;
 				const RenderReact = renderToString(
 					<RequestAddReact user={userId} project={projectId} />
 				);
 				res.render(Template.Frelanser() + "/request_add", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ user: userId, project: projectId }),
 				});
 			},
 		],
 		RequestAdd_Post: [
 			function (req, res) {
-				//let userId = infoApp.user.id;
-				//let projectId = req.params.projectId;
-				const { description, amount, duration, projectId, userId } = req.body;
+				const userId = infoApp.user.id;
+				const projectId = req.params.projectId;
+				const { description, amount, duration, invoice } = req.body;
 
 				let newRequest = new RequestModel({
 					userId: userId,
@@ -75,6 +76,7 @@ export default function (infoApp) {
 					description: description,
 					amount: amount,
 					duration: duration,
+					invoice: JSON.parse(invoice),
 				});
 
 				newRequest
@@ -93,8 +95,8 @@ export default function (infoApp) {
 
 		RequestEdit_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
-				let requestId = req.params.requestId;
+				const userId = infoApp.user.id;
+				const requestId = req.params.requestId;
 				RequestModel.findOne(
 					{
 						_id: requestId,
@@ -107,6 +109,7 @@ export default function (infoApp) {
 						);
 						res.render(Template.Frelanser() + "/request_add", {
 							reactApp: RenderReact,
+							data: JSON.stringify({ data: request, isEdit: true }),
 						});
 					}
 				);
@@ -114,20 +117,24 @@ export default function (infoApp) {
 		],
 		RequestEdit_Post: [
 			function (req, res) {
-				const { description, status, estimated, total, duration } = req.body;
-				let requestId = req.params.requestId;
-				RequestModel.findById(requestId, function (err, edit) {
-					if (err) console.log(err);
-					edit.description = description;
-					edit.status = status;
-					edit.budget = estimated;
-					edit.duration = duration;
-					// payId: payId,
-					// request: request,
-					// Progress: Progress,
-					// date: date,
-					edit.save();
-				});
+				const requestId = req.params.requestId;
+				const userId = infoApp.user.id;
+				const { description, amount, duration, invoice } = req.body;
+				const filter = {
+					_id: requestId,
+					userId: userId,
+				};
+				const update = {
+					description: description,
+					duration: duration,
+					amount: amount,
+					invoice: JSON.parse(invoice),
+				};
+				RequestModel.findOneAndUpdate(filter, update);
+				// payId: payId,
+				// request: request,
+				// Progress: Progress,
+				// date: date,
 				// REDIRECT TO THE project
 				res.redirect(Path.Frelanser() + "/requests");
 			},
@@ -135,7 +142,7 @@ export default function (infoApp) {
 
 		RequestDelete_Get: [
 			function (req, res) {
-				let requestId = req.params.requestId;
+				const requestId = req.params.requestId;
 				RequestModel.findByIdAndDelete(requestId, function (err) {
 					if (err) console.log(err);
 					// REDIRECT TO THE project
@@ -146,7 +153,7 @@ export default function (infoApp) {
 
 		Invoices_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
+				const userId = infoApp.user.id;
 				InvoiceModel.find({
 					frelancerId: userId,
 				})
@@ -167,7 +174,7 @@ export default function (infoApp) {
 
 		InvoiceDetail_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
+				const userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
 				InvoiceModel.findOne({
 					_id: invoiceId,
@@ -193,7 +200,7 @@ export default function (infoApp) {
 
 		InvoicePrint_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
+				const userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
 				const RenderReact = renderToString(
 					<InvoicePrintReact name="employer" />
