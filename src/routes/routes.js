@@ -98,3 +98,12 @@ exports.adminTemplate = {
 		return this.Root() + this.dashboard;
 	},
 };
+
+// Template Home
+exports.errorTemplate = {
+	// Home
+	root: "error",
+	Root: function () {
+		return this.root;
+	},
+};

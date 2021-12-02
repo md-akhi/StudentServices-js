@@ -4,4 +4,7 @@ import { hydrate } from "react-dom";
 
 import HomeReact from "../home";
 
-hydrate(<HomeReact />, document.getElementById("reactApp"));
+hydrate(
+	<HomeReact {...window.__PRELOADED_STATE__} />,
+	document.getElementById("reactApp")
+);

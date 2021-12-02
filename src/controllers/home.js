@@ -2,7 +2,7 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { Project as ProjectModel } from "../models/project.js";
 import { User as UserModel } from "../models/user.js";
-import { homeTemplate as Template } from "../config/routes.js";
+import { homeTemplate as Template } from "../routes/routes.js";
 import HomeReact from "../views/home";
 import UsersListReact from "../views/users_list";
 import UserDetailReact from "../views/user_detail";
@@ -16,10 +16,11 @@ export default function (infoApp) {
 	return {
 		Root_Get: function (req, res) {
 			const RenderReact = renderToString(
-				<HomeReact name="student Services" title="Student Services" />
+				<HomeReact name="student Services" title="home" />
 			);
 			res.render("home", {
 				reactApp: RenderReact,
+				data: JSON.stringify({ name: "student Services", title: "home" }),
 			});
 		},
 
@@ -28,6 +29,7 @@ export default function (infoApp) {
 				const RenderReact = renderToString(<UsersListReact list={User} />);
 				res.render("users_list", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ list: User }),
 				});
 			});
 		},
@@ -38,6 +40,7 @@ export default function (infoApp) {
 				const RenderReact = renderToString(<UserDetailReact item={User} />);
 				res.render("user_detail", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ item: User }),
 				});
 			});
 		},
@@ -49,6 +52,7 @@ export default function (infoApp) {
 				);
 				res.render("projects_list", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ list: Projects }),
 				});
 			});
 		},
@@ -61,6 +65,7 @@ export default function (infoApp) {
 				);
 				res.render("project_detail", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ item: Project }),
 				});
 			});
 		},

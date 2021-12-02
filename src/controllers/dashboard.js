@@ -1,6 +1,6 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
-import { customerTemplate as Template } from "../config/routes.js";
+import { customerTemplate as Template } from "../routes/routes.js";
 import Middleware from "../controllers/middleware.js";
 import DashboardReact from "../views/customer/dashboard";
 
@@ -12,6 +12,7 @@ export default function (infoApp) {
 				const RenderReact = renderToString(<DashboardReact name="dashboard" />);
 				res.render(Template.Dashboard(), {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "dashboard" }),
 				});
 			},
 		],

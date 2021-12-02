@@ -4,4 +4,7 @@ import { hydrate } from "react-dom";
 
 import ProjectListReact from "../../../../customer/dashboard/employer/project_list";
 
-hydrate(<ProjectListReact />, document.getElementById("reactApp"));
+hydrate(
+	<ProjectListReact {...window.__PRELOADED_STATE__} />,
+	document.getElementById("reactApp")
+);

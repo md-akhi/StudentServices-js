@@ -10,7 +10,7 @@ import {
 import {
 	customerTemplate as Template,
 	customerPath as Path,
-} from "../config/routes.js";
+} from "../routes/routes.js";
 import Middleware from "../controllers/middleware.js";
 import PaymentIDPay from "../config/pay.js";
 import async from "async";
@@ -32,6 +32,7 @@ export default function (infoApp) {
 				const RenderReact = renderToString(<EmployerReact name="employer" />);
 				res.render(Template.Employer(), {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "employer" }),
 				});
 			},
 		],
@@ -49,6 +50,7 @@ export default function (infoApp) {
 						);
 						res.render(Template.Employer() + "/project_list", {
 							reactApp: RenderReact,
+							data: JSON.stringify({ list: Project }),
 						});
 					}
 				);
@@ -63,6 +65,7 @@ export default function (infoApp) {
 				);
 				res.render(Template.Employer() + "/project_add", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "employer" }),
 				});
 			},
 		],
@@ -114,6 +117,7 @@ export default function (infoApp) {
 						);
 						res.render(Template.Employer() + "/project_add", {
 							reactApp: RenderReact,
+							data: JSON.stringify({ data: project, isEdit: true }),
 						});
 					}
 				);
@@ -121,28 +125,32 @@ export default function (infoApp) {
 		],
 		ProjectEdit_Post: [
 			function (req, res) {
+				const id = req.params.id;
+				const userId = infoApp.user.id;
 				const {
 					name,
 					description,
 					status,
 					company,
-					estimated,
+					estimatedBudget,
 					total,
-					duration,
+					estimatedDuration,
 				} = req.body;
-
-				let id = req.params.id;
-				ProjectModel.findOne({ _id: id, userId: userId }, function (err, edit) {
-					edit.name = name;
-					edit.description = description;
-					edit.estimatedBudget = estimated;
-					edit.estimatedDuration = duration;
-					// payId: payId,
-					// request: request,
-					// Progress: Progress,
-					// date: date,
-					edit.save();
-				});
+				const filter = { _id: id, userId: userId };
+				const update = {
+					name: name,
+					description: description,
+					budget: estimatedBudget,
+					duration: estimatedDuration,
+					status: status,
+					company: company,
+					total: total,
+				};
+				ProjectModel.findOneAndUpdate(filter, update);
+				// payId: payId,
+				// request: request,
+				// Progress: Progress,
+				// date: date,
 				// REDIRECT TO THE project
 				res.redirect(Path.Employer() + "/projects");
 			},
@@ -194,13 +202,14 @@ export default function (infoApp) {
 						);
 						res.render(Template.Employer() + "/project_detail", {
 							reactApp: RenderReact,
+							data: JSON.stringify({
+								data: results.project,
+								requests: results.requests,
+							}),
 						});
 					})
 					.catch((err) => {
 						console.log(err);
-						if (err) {
-							return next(err);
-						}
 					});
 			},
 		],
@@ -283,6 +292,7 @@ export default function (infoApp) {
 						);
 						res.render(Template.Employer() + "/invoice_list", {
 							reactApp: RenderReact,
+							data: JSON.stringify({ data: invoices }),
 						});
 					})
 					.catch(function (err) {
@@ -309,6 +319,7 @@ export default function (infoApp) {
 						);
 						res.render(Template.Employer() + "/invoice_detail", {
 							reactApp: RenderReact,
+							data: JSON.stringify({ data: invoice }),
 						});
 					})
 					.catch(function (err) {
@@ -413,6 +424,7 @@ export default function (infoApp) {
 				);
 				res.render(Template.Employer() + "/invoice_print", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "employer" }),
 				});
 			},
 		],

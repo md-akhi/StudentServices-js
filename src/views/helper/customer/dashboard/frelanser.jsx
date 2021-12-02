@@ -4,4 +4,4 @@ import { hydrate } from "react-dom";
 
 import FrelanserReact from "../../../customer/dashboard/frelanser";
 
-hydrate(<FrelanserReact />, document.getElementById("reactApp"));
+hydrate(<FrelanserReact {...window.__PRELOADED_STATE__}/>, document.getElementById("reactApp"));

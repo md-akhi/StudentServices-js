@@ -6,7 +6,7 @@ import {
 	homeTemplate as Template,
 	homePath as Path,
 	customerPath,
-} from "../config/routes.js";
+} from "../routes/routes.js";
 import Middleware from "./middleware.js";
 import RegisterReact from "../views/auth/register";
 import LoginReact from "../views/auth/login";
@@ -27,6 +27,7 @@ export default function (infoApp) {
 				const RenderReact = renderToString(<RegisterReact name="register" />);
 				res.render(Template.Auth() + "/register", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "register" }),
 				});
 			},
 		],
@@ -85,6 +86,7 @@ export default function (infoApp) {
 				);
 				res.render(Template.Auth() + "/login", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ redirect: req.query.redirect }),
 				});
 			},
 		],
@@ -119,10 +121,11 @@ export default function (infoApp) {
 			// Middleware(infoApp).tokenChecker,
 			function (req, res) {
 				const RenderReact = renderToString(
-					<RecoverPasswordReact name={"recover-password"} />
+					<RecoverPasswordReact name={"recover password"} />
 				);
 				res.render(Template.Auth() + "/recover-password", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "recover password" }),
 				});
 			},
 		],
@@ -134,10 +137,11 @@ export default function (infoApp) {
 			Middleware(infoApp).LogInChecker,
 			function (req, res) {
 				const RenderReact = renderToString(
-					<ForgotPasswordReact name={"forgot-password"} />
+					<ForgotPasswordReact name={"forgot password"} />
 				);
 				res.render(Template.Auth() + "/forgot-password", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "forgot password" }),
 				});
 			},
 		],

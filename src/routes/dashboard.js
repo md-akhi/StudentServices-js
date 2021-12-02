@@ -1,6 +1,6 @@
 import Express from "express";
 import Middleware from "../controllers/middleware.js";
-import { customerPath as Path } from "../config/routes.js";
+import { customerPath as Path } from "./routes.js";
 import DashboardController from "../controllers/dashboard.js";
 import EmployerRouter from "./employer.js";
 import FrelanserRouter from "./frelanser.js";

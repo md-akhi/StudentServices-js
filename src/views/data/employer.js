@@ -1,4 +1,4 @@
-import { customerPath } from "../../config/routes.js";
+import { customerPath } from "../../routes/routes.js";
 
 const linkNavUp = {
 	widget: "pushmenu",

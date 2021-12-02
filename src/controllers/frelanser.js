@@ -10,7 +10,7 @@ import {
 import {
 	customerTemplate as Template,
 	customerPath as Path,
-} from "../config/routes.js";
+} from "../routes/routes.js";
 import Middleware from "./middleware.js";
 import FrelanserReact from "../views/customer/dashboard/frelanser";
 import RequestListReact from "../views/customer/dashboard/frelanser/request_list";
@@ -28,6 +28,7 @@ export default function (infoApp) {
 				const RenderReact = renderToString(<FrelanserReact name="frelanser" />);
 				res.render(Template.Frelanser(), {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "frelanser" }),
 				});
 			},
 		],
@@ -45,6 +46,7 @@ export default function (infoApp) {
 						);
 						res.render(Template.Frelanser() + "/request_list", {
 							reactApp: RenderReact,
+							data: JSON.stringify({ data: requests }),
 						});
 					})
 					.catch(function (err) {});
@@ -76,7 +78,7 @@ export default function (infoApp) {
 					description: description,
 					amount: amount,
 					duration: duration,
-					invoice: JSON.parse(invoice),
+					invoice: JSON.parse(invoice), 
 				});
 
 				newRequest
@@ -164,6 +166,7 @@ export default function (infoApp) {
 						);
 						res.render(Template.Frelanser() + "/invoice_list", {
 							reactApp: RenderReact,
+							data: JSON.stringify({ data: invoices }),
 						});
 					})
 					.catch(function (err) {
@@ -190,6 +193,7 @@ export default function (infoApp) {
 						);
 						res.render(Template.Frelanser() + "/invoice_detail", {
 							reactApp: RenderReact,
+							data: JSON.stringify({ data: invoice }),
 						});
 					})
 					.catch(function (err) {
@@ -207,6 +211,7 @@ export default function (infoApp) {
 				);
 				res.render(Template.Frelanser() + "/invoice_print", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "employer" }),
 				});
 			},
 		],
@@ -218,6 +223,7 @@ export default function (infoApp) {
 				);
 				res.render(Template.Frelanser() + "/user_detail", {
 					reactApp: RenderReact,
+					data: JSON.stringify({ name: "frelanser" }),
 				});
 			},
 		],

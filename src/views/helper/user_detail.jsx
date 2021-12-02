@@ -4,4 +4,7 @@ import { hydrate } from "react-dom";
 
 import UserDetailReact from "../user_detail";
 
-hydrate(<UserDetailReact />, document.getElementById("reactApp"));
+hydrate(
+	<UserDetailReact {...window.__PRELOADED_STATE__} />,
+	document.getElementById("reactApp")
+);
