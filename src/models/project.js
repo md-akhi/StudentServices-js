@@ -62,9 +62,6 @@ var RequestSchema = Mongoose.Schema({
 	},
 	invoice: [
 		{
-			order: {
-				type: String,
-			},
 			description: {
 				type: String,
 			},
@@ -148,18 +145,25 @@ var FileSchema = Mongoose.Schema({
 		type: Mongoose.ObjectId,
 		ref: Project,
 	},
-	name: {
-		type: String,
-	},
-	description: {
-		type: String,
-	},
-	type: {
-		type: String,
-	},
-	size: {
-		type: Number,
-	},
+	files: [
+		{
+			name: {
+				type: String,
+			},
+			originalName: {
+				type: String,
+			},
+			description: {
+				type: String,
+			},
+			type: {
+				type: String,
+			},
+			size: {
+				type: Number,
+			},
+		},
+	],
 	createdAt: {
 		type: Date,
 		default: Date.now,

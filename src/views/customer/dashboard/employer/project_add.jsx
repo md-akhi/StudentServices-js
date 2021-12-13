@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
+import axios from "axios";
 
 import * as dataEmployer from "../../../data/employer.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
@@ -7,8 +8,20 @@ import BodyLayout from "../../layouts/body";
 import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
 
-function projectAdd(props) {
-	let data = props.data;
+export default (props) => {
+	const { isEdit = false, data = null } = props;
+	const {
+		userId = false,
+		_id: projectId = null,
+		name = null,
+		description = null,
+		company = null,
+		leader = null,
+		budget = null,
+		total = null,
+		duration = null,
+		createdAt = null,
+	} = data;
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
@@ -31,23 +44,12 @@ function projectAdd(props) {
 					<div className="container-fluid">
 						{/* Main content */}
 						<section className="content">
-							<form action={props.isEdit ? "./edit" : "./add"} method="post">
+							<form action={isEdit ? "./edit" : "./add"} method="post">
 								<div className="row">
 									<div className="col-md-6">
 										<div className="card card-primary">
 											<div className="card-header">
 												<h3 className="card-title">General</h3>
-
-												<div className="card-tools">
-													<button
-														type="button"
-														className="btn btn-tool"
-														data-card-widget="collapse"
-														title="Collapse"
-													>
-														<i className="fas fa-minus"></i>
-													</button>
-												</div>
 											</div>
 											<div className="card-body">
 												<div className="form-group">
@@ -57,7 +59,7 @@ function projectAdd(props) {
 														id="inputName"
 														className="form-control"
 														name="name"
-														defaultValue={props.isEdit ? data.name : ""}
+														defaultValue={name}
 													/>
 												</div>
 												<div className="form-group">
@@ -69,7 +71,7 @@ function projectAdd(props) {
 														className="form-control"
 														rows="4"
 														name="description"
-														defaultValue={props.isEdit ? data.description : ""}
+														defaultValue={description}
 													></textarea>
 												</div>
 												<div className="form-group">
@@ -82,9 +84,9 @@ function projectAdd(props) {
 														<option selected disabled>
 															Select one
 														</option>
-														<option value="Hold">On Hold</option>
-														<option value="Canceled">Canceled</option>
-														<option value="Success">Success</option>
+														<option value="0">On Hold</option>
+														<option value="-1">Canceled</option>
+														<option value="1">Success</option>
 													</select>
 												</div>
 												<div className="form-group">
@@ -96,7 +98,7 @@ function projectAdd(props) {
 														id="inputClientCompany"
 														className="form-control"
 														name="company"
-														defaultValue={props.isEdit ? data.company : ""}
+														defaultValue={company}
 													/>
 												</div>
 												<div className="form-group">
@@ -108,7 +110,7 @@ function projectAdd(props) {
 														id="inputProjectLeader"
 														className="form-control"
 														name="leader"
-														defaultValue={props.isEdit ? data.leader : ""}
+														defaultValue={leader}
 													/>
 												</div>
 											</div>
@@ -120,17 +122,6 @@ function projectAdd(props) {
 										<div className="card card-secondary">
 											<div className="card-header">
 												<h3 className="card-title">Budget</h3>
-
-												<div className="card-tools">
-													<button
-														type="button"
-														className="btn btn-tool"
-														data-card-widget="collapse"
-														title="Collapse"
-													>
-														<i className="fas fa-minus"></i>
-													</button>
-												</div>
 											</div>
 											<div className="card-body">
 												<div className="form-group">
@@ -142,9 +133,7 @@ function projectAdd(props) {
 														id="inputEstimatedBudget"
 														className="form-control"
 														name="budget"
-														defaultValue={
-															props.isEdit ? data.estimatedBudget : ""
-														}
+														defaultValue={budget}
 													/>
 												</div>
 												<div className="form-group">
@@ -156,7 +145,7 @@ function projectAdd(props) {
 														id="inputSpentBudget"
 														className="form-control"
 														name="total"
-														defaultValue={props.isEdit ? data.total : ""}
+														defaultValue={total}
 													/>
 												</div>
 												<div className="form-group">
@@ -168,11 +157,20 @@ function projectAdd(props) {
 														id="inputEstimatedDuration"
 														className="form-control"
 														name="duration"
-														defaultValue={
-															props.isEdit ? data.estimatedDuration : ""
-														}
+														defaultValue={duration}
 													/>
 												</div>
+											</div>
+
+											<div className="card-header">
+												<h3 className="card-title">Files</h3>
+											</div>
+											<div className="card-body">
+												<FilesUploadComponent
+													data={""}
+													userId={userId}
+													projectId={projectId}
+												></FilesUploadComponent>
 											</div>
 											{/* /.card-body */}
 										</div>
@@ -187,12 +185,18 @@ function projectAdd(props) {
 										<input
 											type="submit"
 											defaultValue={
-												props.isEdit ? "Update Porject" : "Create new Porject"
+												isEdit ? "Update Porject" : "Create new Porject"
 											}
 											className="btn btn-success float-right"
 										/>
 									</div>
 								</div>
+								<input type="hidden" name="userId" defaultValue={userId} />
+								<input
+									type="hidden"
+									name="projectId"
+									defaultValue={projectId}
+								/>
 							</form>
 						</section>
 						{/* /.content */}
@@ -212,6 +216,65 @@ function projectAdd(props) {
 			{/* ./wrapper */}
 		</BodyLayout>
 	);
-}
+};
 
-export default projectAdd;
+class FilesUploadComponent extends Component {
+	constructor(props) {
+		super(props);
+		const { data = null, userId = null, projectId = null } = props;
+		this.userId = userId;
+		this.projectId = projectId;
+		this.onFileChange = this.onFileChange.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.state = {
+			files: "", //data
+		};
+	}
+
+	onFileChange(e) {
+		this.setState({ files: e.target.files });
+	}
+
+	onSubmit(e) {
+		e.preventDefault();
+		const http = "/api/employer/upload/" + this.projectId;
+		var formData = new FormData();
+		for (const key of Object.keys(this.state.files)) {
+			formData.append("file", this.state.files[key]);
+		}
+		axios({
+			method: "post",
+			url: http,
+			data: {
+				state: this.state.files,
+				file: formData,
+				userId: this.userId,
+				projectId: this.projectId,
+			},
+		}).then((res) => {
+			//http://localhost:9000
+			console.log(res);
+		});
+	}
+
+	render() {
+		return (
+			<form onSubmit={this.onSubmit} enctype="multipart/form-data">
+				<div className="form-group">
+					<label htmlFor="inputFiles">Files</label>
+					<input
+						type="file"
+						name="file"
+						onChange={this.onFileChange}
+						multiple
+					/>
+				</div>
+				<div className="form-group">
+					<button className="btn btn-primary" type="submit">
+						Upload
+					</button>
+				</div>
+			</form>
+		);
+	}
+}
