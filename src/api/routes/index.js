@@ -5,10 +5,10 @@ import FrelanserRouter from "./frelanser.js";
 import GuestRouter from "./guest.js";
 
 export default function () {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	Router.use(Express.json());
-	Router.use(Express.urlencoded({ extended: true }));
+	Router.use(Express.urlencoded({ extended: false }));
 
 	//Router
 	Router.use("/admin", AdminRouter());
@@ -26,7 +26,9 @@ export default function () {
 	// catch server errors and respond with 500
 	Router.use(function (err, req, res, next) {
 		//console.error(err.stack);
-		res.status(500).json({ status: "500", massage: "Something broke! 500" });
+		res
+			.status(500)
+			.json({ status: "500", massage: "Something broke! 500", error: err });
 	});
 
 	return Router;

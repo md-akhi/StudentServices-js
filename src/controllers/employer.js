@@ -39,7 +39,7 @@ export default function (infoApp) {
 
 		Projects_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
+				const userId = infoApp.user.id;
 				ProjectModel.find(
 					{
 						userId: userId,
@@ -72,7 +72,7 @@ export default function (infoApp) {
 		// Handle Project add on POST.
 		ProjectAdd_Post: [
 			function (req, res) {
-				let userId = infoApp.user.id;
+				const userId = infoApp.user.id;
 				const { name, description, status, company, budget, total, duration } =
 					req.body;
 
@@ -106,8 +106,8 @@ export default function (infoApp) {
 
 		ProjectEdit_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
-				let id = req.params.id;
+				const userId = infoApp.user.id;
+				const id = req.params.id;
 				ProjectModel.findOne(
 					{ _id: id, userId: userId },
 					function (err, project) {
@@ -158,7 +158,7 @@ export default function (infoApp) {
 
 		ProjectDelete_Get: [
 			function (req, res) {
-				let id = req.params.id;
+				const id = req.params.id;
 				ProjectModel.findByIdAndDelete(id, function (err) {
 					if (err) console.log(err);
 					console.log("Successful deletion");
@@ -170,8 +170,8 @@ export default function (infoApp) {
 
 		ProjectDetail_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
-				let projectId = req.params.projectId;
+				const userId = infoApp.user.id;
+				const projectId = req.params.projectId;
 				async
 					.parallel({
 						requests: function (callback) {
@@ -216,9 +216,9 @@ export default function (infoApp) {
 
 		RequestSet_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
-				let projectId = req.params.projectId;
-				let requestId = req.params.requestId;
+				const userId = infoApp.user.id;
+				const projectId = req.params.projectId;
+				const requestId = req.params.requestId;
 
 				async
 					.parallel({
@@ -266,8 +266,8 @@ export default function (infoApp) {
 		],
 		RequestDelete_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
-				let projectId = req.params.projectId;
+				const userId = infoApp.user.id;
+				const projectId = req.params.projectId;
 				let frelancerId = req.params.frelancerId;
 				ProjectModel.findOneAndDelete(
 					{ _id: projectId, userId: userId },
@@ -281,7 +281,7 @@ export default function (infoApp) {
 
 		Invoices_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
+				const userId = infoApp.user.id;
 				InvoiceModel.find({
 					employerId: userId,
 				})
@@ -303,8 +303,8 @@ export default function (infoApp) {
 
 		InvoiceDetail_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
-				let invoiceId = req.params.invoiceId;
+				const userId = infoApp.user.id;
+				const invoiceId = req.params.invoiceId;
 				InvoiceModel.findOne({
 					_id: invoiceId,
 					employerId: userId,
@@ -329,15 +329,15 @@ export default function (infoApp) {
 		],
 		InvoiceDetail_Post: [
 			function (req, res) {
-				let userId = infoApp.user.id;
-				let invoiceId = req.params.invoiceId;
+				const userId = infoApp.user.id;
+				const invoiceId = req.params.invoiceId;
 			},
 		],
 
 		InvoicePayment_Get: [
 			function (req, res) {
-				rId = infoApp.user.id;
-				let invoiceId = req.params.invoiceId;
+				const userId = infoApp.user.id;
+				const invoiceId = req.params.invoiceId;
 				InvoiceModel.findOne({
 					//PaymentModel
 					_id: invoiceId,
@@ -349,7 +349,7 @@ export default function (infoApp) {
 						// res.render(Template.Frelanser() + "/invoice_detail", {
 						// 	data: invoice,
 						// });
-						let IDPay = new PaymentIDPay(
+						const idPay = new PaymentIDPay(
 							req.env.IDPAY_API_KEY,
 							{
 								payment: req.env.IDPAY_PAYMENT,
@@ -374,8 +374,8 @@ export default function (infoApp) {
 
 		Invoiceverify_Post: [
 			function (req, res) {
-				rId = infoApp.user.id;
-				let invoiceId = req.params.invoiceId;
+				const userId = infoApp.user.id;
+				const invoiceId = req.params.invoiceId;
 				PaymentModel.findOne({
 					//PaymentModel
 					_id: invoiceId,
@@ -392,7 +392,7 @@ export default function (infoApp) {
 						// res.render(Template.Frelanser() + "/invoice_detail", {
 						// 	data: invoice,
 						// });
-						let IDPay = new PaymentIDPay(
+						const idPay = new PaymentIDPay(
 							req.env.IDPAY_API_KEY,
 							{
 								payment: req.env.IDPAY_PAYMENT,
@@ -417,8 +417,8 @@ export default function (infoApp) {
 
 		InvoicePrint_Get: [
 			function (req, res) {
-				let userId = infoApp.user.id;
-				let invoiceId = req.params.invoiceId;
+				const userId = infoApp.user.id;
+				const invoiceId = req.params.invoiceId;
 				const RenderReact = renderToString(
 					<InvoicePrintReact name={"employer"} />
 				);
@@ -432,8 +432,8 @@ export default function (infoApp) {
 		// archivesGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 		// REDIRECT TO THE project
 		// 		res.redirect(Path.Employer() + "/project/archive");
 		// 	},
@@ -441,8 +441,8 @@ export default function (infoApp) {
 		// archivesPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 		const { status } = req.body;
 		// 		ProjectModel.findById(id, function (err, edit) {
 		// 			edit.status = status;
@@ -456,180 +456,180 @@ export default function (infoApp) {
 		// fileGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// filePost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// taskGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// taskPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// bugGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// bugPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// noteGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// notePost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// paymentGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// paymentPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// invoiceGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// invoicePost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// todosGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// todosPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// addTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// addTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// editTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// editTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// deleteTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// deleteTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// doneTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// doneTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
 		// orderTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// orderTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		let userId = infoApp.user.id;
-		// 		let id = req.params.id;
+		// 		const userId = infoApp.user.id;
+		// 		const id = req.params.id;
 		// 	},
 		// ],
 
