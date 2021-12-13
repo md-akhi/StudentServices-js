@@ -13,10 +13,28 @@ import AmericanExpressImg from "../../../data/img/credit/american-express.png";
 import PayPalImg from "../../../data/img/credit/paypal2.png";
 
 function Invoice(props) {
-	let project = props.data.projectId;
-	let request = props.data.requestId;
-	let employer = props.data.employerId;
-	let frelancer = props.data.frelancerId;
+	const { data = null } = props;
+	const {
+		id = null,
+		projectId = null,
+		requestId = null,
+		employerId = null,
+		frelancerId = null,
+	} = data;
+	const { name: PName = null } = projectId;
+	const { id: RId = null } = requestId;
+	const {
+		name: EName = null,
+		address: EAddress = null,
+		phone: EPhone = null,
+		email: EEmail = null,
+	} = employerId;
+	const {
+		name: FName = null,
+		address: FAddress = null,
+		phone: FPhone = null,
+		email: FEmail = null,
+	} = frelancerId;
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
@@ -55,7 +73,7 @@ function Invoice(props) {
 										<div className="col-12">
 											<h4>
 												<i className="fas fa-globe"></i>
-												{project.name} .
+												{PName} .
 												<small className="float-right">Date: 2/10/2014</small>
 											</h4>
 										</div>
@@ -66,31 +84,31 @@ function Invoice(props) {
 										<div className="col-sm-4 invoice-col">
 											From
 											<address>
-												{/* <strong>{employer.name}.</strong> */}
+												{/* <strong>{EName}.</strong> */}
 												<br />
-												{/* {employer.address} 795 Folsom Ave, Suite 600 */}
+												{/* {EAddress} 795 Folsom Ave, Suite 600 */}
 												<br />
-												{/* Phone:{employer.phone} (804) 123-5432 */}
+												{/* Phone:{EPhone} (804) 123-5432 */}
 												<br />
-												Email: {employer.email.now}
+												Email: {EEmail.now}
 											</address>
 										</div>
 										{/* /.col */}
 										<div className="col-sm-4 invoice-col">
 											To
 											<address>
-												{/* <strong>{frelancer.name}.</strong> */}
+												{/* <strong>{FName}.</strong> */}
 												<br />
-												{/* {frelancer.address} 795 Folsom Ave, Suite 600 */}
+												{/* {FAddress} 795 Folsom Ave, Suite 600 */}
 												<br />
-												{/* Phone:{frelancer.phone} (804) 123-5432 */}
+												{/* Phone:{FPhone} (804) 123-5432 */}
 												<br />
-												Email: {frelancer.email.now}
+												Email: {FEmail.now}
 											</address>
 										</div>
 										{/* /.col */}
 										<div className="col-sm-4 invoice-col">
-											<b>Invoice #{request.id}</b>
+											<b>Invoice #{RId}</b>
 											<br />
 											<br />
 											<b>Order ID:</b> 4F3S8J
@@ -211,7 +229,7 @@ function Invoice(props) {
 									<div className="row no-print">
 										<div className="col-12">
 											<a
-												href={"./" + props.data.id + "/print"}
+												href={"./" + id + "/print"}
 												rel="noopener"
 												target="_blank"
 												className="btn btn-default"

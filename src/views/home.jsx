@@ -1,9 +1,12 @@
 import React from "react";
 
-function home(props) {
+export default (props) => {
+	const { name: dataName = "", title: dataTitle = "" } = props;
 	return (
 		<div>
-			<div>Hello {props.name}</div>
+			<div>
+				Hello {dataName}+{dataTitle}
+			</div>
 			<ul>
 				<li>
 					<a href="/auth/login">ورود</a>
@@ -29,6 +32,4 @@ function home(props) {
 			</ul>
 		</div>
 	);
-}
-
-export default home;
+};

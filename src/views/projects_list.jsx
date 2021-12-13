@@ -9,8 +9,9 @@ import Avatar3Img from "./data/img/avatar3.png";
 import Avatar4Img from "./data/img/avatar4.png";
 
 function projects(props) {
+	const { list = null } = props;
 	return (
-		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout class="hold-transition layout-fixed">
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
@@ -59,7 +60,7 @@ function projects(props) {
 										</tr>
 									</thead>
 									<tbody>
-										<ProjectsItem items={props.list}></ProjectsItem>
+										<ProjectsItem items={list}></ProjectsItem>
 									</tbody>
 								</table>
 							</div>
@@ -84,21 +85,22 @@ function projects(props) {
 	);
 }
 function ProjectsItem(props) {
-	let item;
-	item = props.items.map((key, value) => {
-		let str = (
+	const { items = null } = props;
+	return items.map((value, index) => {
+		const { name = null, createdAt = null, request = null, _id = null } = value;
+		return (
 			<tr>
-				<td>#{value + 1}</td>
+				<td>#{index + 1}</td>
 				<td>
-					<a>{key.name}</a>
+					<a>{name}</a>
 					<br />
-					<small>Created {new Date(key.createdAt).toDateString()}</small>
+					<small>Created {new Date(createdAt).toDateString()}</small>
 				</td>
 				<td>
 					<ul className="list-inline">
 						<li className="list-inline-item">
 							<a href="">
-								{key.request}
+								{request}
 								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
@@ -130,27 +132,27 @@ function ProjectsItem(props) {
 					<span className="badge badge-success">Success</span>
 				</td>
 				<td className="project-actions text-right">
-					<a className="btn btn-primary btn-sm" href={"./project/" + key.id}>
+					<a className="btn btn-primary btn-sm" href={"./project/" + _id}>
 						<i className="fas fa-folder"></i>
 						View
 					</a>
 					<a
 						className="btn btn-info btn-sm"
-						href={"./dashboard/employer/project/" + key.id + "/edit"}
+						href={"./dashboard/employer/project/" + _id + "/edit"}
 					>
 						<i className="fas fa-pencil-alt"></i>
 						Edit
 					</a>
 					<a
 						className="btn btn-danger btn-sm"
-						href={"./dashboard/employer/project/" + key.id + "/del"}
+						href={"./dashboard/employer/project/" + _id + "/del"}
 					>
 						<i className="fas fa-trash"></i>
 						Delete
 					</a>
 					<a
 						className="btn btn-primary btn-sm"
-						href={"./dashboard/frelanser/project/" + key.id + "/request/add"}
+						href={"./dashboard/frelanser/project/" + _id + "/request/add"}
 					>
 						<i className="fas fa-pencil-alt"></i>
 						request
@@ -158,8 +160,6 @@ function ProjectsItem(props) {
 				</td>
 			</tr>
 		);
-		return str;
 	});
-	return item;
 }
 export default projects;

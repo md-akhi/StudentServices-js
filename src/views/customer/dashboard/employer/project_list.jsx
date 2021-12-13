@@ -13,6 +13,8 @@ import Avatar3Img from "../../../data/img/avatar3.png";
 import Avatar4Img from "../../../data/img/avatar4.png";
 
 function projects(props) {
+	const { list = null } = props;
+
 	return (
 		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
@@ -37,25 +39,6 @@ function projects(props) {
 						<div className="card">
 							<div className="card-header">
 								<h3 className="card-title">Projects</h3>
-
-								<div className="card-tools">
-									<button
-										type="button"
-										className="btn btn-tool"
-										data-card-widget="collapse"
-										title="Collapse"
-									>
-										<i className="fas fa-minus"></i>
-									</button>
-									<button
-										type="button"
-										className="btn btn-tool"
-										data-card-widget="remove"
-										title="Remove"
-									>
-										<i className="fas fa-times"></i>
-									</button>
-								</div>
 							</div>
 							<div className="card-body p-0">
 								<table className="table table-striped projects">
@@ -72,7 +55,7 @@ function projects(props) {
 										</tr>
 									</thead>
 									<tbody>
-										<ProjectsItem items={props.list}></ProjectsItem>
+										<ProjectsItem items={list}></ProjectsItem>
 									</tbody>
 								</table>
 							</div>
@@ -97,20 +80,28 @@ function projects(props) {
 	);
 }
 function ProjectsItem(props) {
-	return props.items.map((key, value) => {
-		let str = (
+	const { items = null } = props;
+	return items.map((value, index) => {
+		const {
+			name = null,
+			createdAt = null,
+			request = null,
+			frelancerId: FId = null,
+			_id: PId = null,
+		} = value;
+		return (
 			<tr>
-				<td>#{value + 1}</td>
+				<td>#{index + 1}</td>
 				<td>
-					<a>{key.name}</a>
+					<a>{name}</a>
 					<br />
-					<small>Created {new Date(key.createdAt).toDateString()}</small>
+					<small>Created {new Date(createdAt).toDateString()}</small>
 				</td>
 				<td>
 					<ul className="list-inline">
 						<li className="list-inline-item">
 							<a href="">
-								{key.request}
+								{request}
 								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
@@ -142,10 +133,10 @@ function ProjectsItem(props) {
 					<span className="badge badge-success">Success</span>
 				</td>
 				<td className="project-actions text-right">
-					{key.frelancerId ? (
+					{FId ? (
 						<a
 							className="btn btn-primary btn-sm"
-							href={"./invoice/" + key.id + "/" + key.frelancerId}
+							href={"./invoice/" + PId + "/" + FId}
 						>
 							<i className="fas fa-folder"></i>
 							Invoice
@@ -155,21 +146,21 @@ function ProjectsItem(props) {
 					)}
 					<a
 						className="btn btn-primary btn-sm"
-						href={"./project/" + key.id + "/detail"}
+						href={"./project/" + PId + "/detail"}
 					>
 						<i className="fas fa-folder"></i>
 						View
 					</a>
 					<a
 						className="btn btn-info btn-sm"
-						href={"./project/" + key.id + "/edit"}
+						href={"./project/" + PId + "/edit"}
 					>
 						<i className="fas fa-pencil-alt"></i>
 						Edit
 					</a>
 					<a
 						className="btn btn-danger btn-sm"
-						href={"./project/" + key.id + "/del"}
+						href={"./project/" + PId + "/del"}
 					>
 						<i className="fas fa-trash"></i>
 						Delete
@@ -177,7 +168,6 @@ function ProjectsItem(props) {
 				</td>
 			</tr>
 		);
-		return str;
 	});
 }
 export default projects;

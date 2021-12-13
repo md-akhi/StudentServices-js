@@ -8,6 +8,7 @@ import MainSidebarLayout from "../../layouts/mainSidebar";
 import NavbarLayout from "../../layouts/navbar";
 
 export default function (props) {
+	const { data = null } = props;
 	return (
 		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
@@ -33,24 +34,6 @@ export default function (props) {
 							<div className="card-header">
 								<h3 className="card-title">requests</h3>
 
-								<div className="card-tools">
-									<button
-										type="button"
-										className="btn btn-tool"
-										data-card-widget="collapse"
-										title="Collapse"
-									>
-										<i className="fas fa-minus"></i>
-									</button>
-									<button
-										type="button"
-										className="btn btn-tool"
-										data-card-widget="remove"
-										title="Remove"
-									>
-										<i className="fas fa-times"></i>
-									</button>
-								</div>
 							</div>
 							<div className="card-body p-0">
 								<table className="table table-striped projects">
@@ -65,7 +48,7 @@ export default function (props) {
 										</tr>
 									</thead>
 									<tbody>
-										<RequestsItem data={props.data}></RequestsItem>
+										<RequestsItem data={data}></RequestsItem>
 									</tbody>
 								</table>
 							</div>
@@ -91,37 +74,41 @@ export default function (props) {
 }
 
 function RequestsItem(props) {
-	return props.data.map((key, value) => {
-		let project = key.projectId;
+	const { data = null } = props;
+	return data.map((value, index) => {
+		const {
+			createdAt = null,
+			status = null,
+			projectId = null,
+			_id: RId = null,
+		} = value;
+		const { name = null, _id: PId = null } = projectId;
 		let str = (
 			<tr>
-				<td>#{value + 1}</td>
+				<td>#{index + 1}</td>
 				<td>
-					{project.name}
+					{name}
 					<br />
-					<small>Created {new Date(key.createdAt).toDateString()}</small>
+					<small>Created {new Date(createdAt).toDateString()}</small>
 				</td>
 				<td className="project-state">
-					<span className="badge badge-success">Success {key.status}</span>
+					<span className="badge badge-success">Success {status}</span>
 				</td>
 				<td className="project-actions text-right">
-					<a
-						className="btn btn-primary btn-sm"
-						href={"/project/" + project._id}
-					>
+					<a className="btn btn-primary btn-sm" href={"/project/" + PId}>
 						<i className="fas fa-folder"></i>
 						View project
 					</a>
 					<a
 						className="btn btn-info btn-sm"
-						href={"./request/" + key._id + "/edit"}
+						href={"./request/" + RId + "/edit"}
 					>
 						<i className="fas fa-pencil-alt"></i>
 						Edit
 					</a>
 					<a
 						className="btn btn-danger btn-sm"
-						href={"./request/" + key._id + "/del"}
+						href={"./request/" + RId + "/del"}
 					>
 						<i className="fas fa-trash"></i>
 						Delete

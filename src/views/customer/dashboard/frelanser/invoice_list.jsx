@@ -10,6 +10,7 @@ import NavbarLayout from "../../layouts/navbar";
 import AvatarImg from "../../../data/img/avatar.png";
 
 function Invoices(props) {
+	const { data = null } = props;
 	return (
 		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
@@ -35,24 +36,6 @@ function Invoices(props) {
 							<div className="card-header">
 								<h3 className="card-title">Invoices</h3>
 
-								<div className="card-tools">
-									<button
-										type="button"
-										className="btn btn-tool"
-										data-card-widget="collapse"
-										title="Collapse"
-									>
-										<i className="fas fa-minus"></i>
-									</button>
-									<button
-										type="button"
-										className="btn btn-tool"
-										data-card-widget="remove"
-										title="Remove"
-									>
-										<i className="fas fa-times"></i>
-									</button>
-								</div>
 							</div>
 							<div className="card-body p-0">
 								<table className="table table-striped projects">
@@ -69,7 +52,7 @@ function Invoices(props) {
 										</tr>
 									</thead>
 									<tbody>
-										<InvoicesItem data={props.data}></InvoicesItem>
+										<InvoicesItem data={data}></InvoicesItem>
 									</tbody>
 								</table>
 							</div>
@@ -94,22 +77,28 @@ function Invoices(props) {
 	);
 }
 function InvoicesItem(props) {
-	return props.data.map((key, value) => {
+	const { data = null } = props;
+	return data.map((value, index) => {
+		const {
+			projectId = null,
+			_id: IId = null,
+			request = null,
+			frelancerId = null,
+		} = value;
+		const { name = null, createdAt = null, _id: PId = null } = projectId;
 		let str = (
 			<tr>
-				<td>#{value + 1}</td>
+				<td>#{index + 1}</td>
 				<td>
-					<a>{key.projectId.name}</a>
+					<a>{name}</a>
 					<br />
-					<small>
-						Created {new Date(key.projectId.createdAt).toDateString()}
-					</small>
+					<small>Created {new Date(createdAt).toDateString()}</small>
 				</td>
 				<td>
 					<ul className="list-inline">
 						<li className="list-inline-item">
 							<a href="">
-								{key.request}
+								{request}
 								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
@@ -132,8 +121,8 @@ function InvoicesItem(props) {
 					<span className="badge badge-success">Success</span>
 				</td>
 				<td className="project-actions text-right">
-					{key.frelancerId ? (
-						<a className="btn btn-primary btn-sm" href={"./invoice/" + key._id}>
+					{frelancerId ? (
+						<a className="btn btn-primary btn-sm" href={"./invoice/" + IId}>
 							<i className="fas fa-folder"></i>
 							Invoice
 						</a>
@@ -142,7 +131,7 @@ function InvoicesItem(props) {
 					)}
 					<a
 						className="btn btn-primary btn-sm"
-						href={"./project/" + key.id + "/detail"}
+						href={"./project/" + PId + "/detail"}
 					>
 						<i className="fas fa-folder"></i>
 						View Project

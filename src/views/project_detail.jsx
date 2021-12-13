@@ -7,9 +7,16 @@ import User1Img from "./data/img/user1-128x128.jpg";
 import User7Img from "./data/img/user7-128x128.jpg";
 
 function projectDetail(props) {
-	let data = props.item;
+	const { item = null } = props;
+	const {
+		name: dataName = null,
+		description: dataDescription = null,
+		estimatedDuration: dataDuration = null,
+		estimatedBudget: dataBudget = null,
+		createdAt: dataCreatedAt = null,
+	} = item;
 	return (
-		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout className="hold-transition layout-fixed">
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
@@ -54,7 +61,7 @@ function projectDetail(props) {
 															Estimated budget
 														</span>
 														<span className="info-box-number text-center text-muted mb-0">
-															{data.estimatedBudget}
+															{dataBudget}
 														</span>
 													</div>
 												</div>
@@ -78,7 +85,7 @@ function projectDetail(props) {
 															Estimated project duration
 														</span>
 														<span className="info-box-number text-center text-muted mb-0">
-															{data.estimatedDuration}
+															{dataDuration}
 														</span>
 													</div>
 												</div>
@@ -177,9 +184,9 @@ function projectDetail(props) {
 									<div className="col-12 col-md-12 col-lg-4 order-1 order-md-2">
 										<h3 className="text-primary">
 											<i className="fas fa-paint-brush"></i>
-											{data.name}
+											{dataName}
 										</h3>
-										<p className="text-muted">{data.description}</p>
+										<p className="text-muted">{dataDescription}</p>
 										<br />
 										<div className="text-muted">
 											<p className="text-sm">

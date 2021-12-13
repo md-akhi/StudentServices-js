@@ -16,9 +16,9 @@ import Avatar3Img from "./data/img/avatar3.png";
 import Avatar4Img from "./data/img/avatar4.png";
 
 function Profile(props) {
-	let data = props.item;
+	const { item: data = null } = props;
 	return (
-		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout className="hold-transition layout-fixed">
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
@@ -594,7 +594,7 @@ function Profile(props) {
 			<FooterLayout></FooterLayout>
 
 			{/* Control Sidebar */}
-			<aside classNameNameName="control-sidebar control-sidebar-dark">
+			<aside className="control-sidebar control-sidebar-dark">
 				{/* Control sidebar content goes here */}
 			</aside>
 			{/* /.control-sidebar */}
@@ -614,44 +614,28 @@ function ProjectsItem(props) {
 					<small>Created {new Date(key.createdAt).toDateString()}</small>
 				</td>
 				<td>
-					<ul classNameNameName="list-inline">
-						<li classNameNameName="list-inline-item">
+					<ul className="list-inline">
+						<li className="list-inline-item">
 							<a href="">
 								{key.request}
-								<img
-									alt="Avatar"
-									classNameNameName="table-avatar"
-									src={AvatarImg}
-								/>
+								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
-						<li classNameNameName="list-inline-item">
-							<img
-								alt="Avatar"
-								classNameNameName="table-avatar"
-								src={Avatar2Img}
-							/>
+						<li className="list-inline-item">
+							<img alt="Avatar" className="table-avatar" src={Avatar2Img} />
 						</li>
-						<li classNameNameName="list-inline-item">
-							<img
-								alt="Avatar"
-								classNameNameName="table-avatar"
-								src={Avatar3Img}
-							/>
+						<li className="list-inline-item">
+							<img alt="Avatar" className="table-avatar" src={Avatar3Img} />
 						</li>
-						<li classNameNameName="list-inline-item">
-							<img
-								alt="Avatar"
-								classNameNameName="table-avatar"
-								src={Avatar4Img}
-							/>
+						<li className="list-inline-item">
+							<img alt="Avatar" className="table-avatar" src={Avatar4Img} />
 						</li>
 					</ul>
 				</td>
-				<td classNameNameName="project_progress">
-					<div classNameNameName="progress progress-sm">
+				<td className="project_progress">
+					<div className="progress progress-sm">
 						<div
-							classNameNameName="progress-bar bg-green"
+							className="progress-bar bg-green"
 							role="progressbar"
 							aria-valuenow="57"
 							aria-valuemin="0"
@@ -661,29 +645,23 @@ function ProjectsItem(props) {
 					</div>
 					<small>57% Complete</small>
 				</td>
-				<td classNameNameName="project-state">
-					<span classNameNameName="badge badge-success">Success</span>
+				<td className="project-state">
+					<span className="badge badge-success">Success</span>
 				</td>
-				<td classNameNameName="project-actions text-right">
+				<td className="project-actions text-right">
 					<a
-						classNameNameName="btn btn-primary btn-sm"
+						className="btn btn-primary btn-sm"
 						href={"./project/detail/" + key.id}
 					>
-						<i classNameNameName="fas fa-folder"></i>
+						<i className="fas fa-folder"></i>
 						View
 					</a>
-					<a
-						classNameNameName="btn btn-info btn-sm"
-						href={"./project/edit/" + key.id}
-					>
-						<i classNameNameName="fas fa-pencil-alt"></i>
+					<a className="btn btn-info btn-sm" href={"./project/edit/" + key.id}>
+						<i className="fas fa-pencil-alt"></i>
 						Edit
 					</a>
-					<a
-						classNameNameName="btn btn-danger btn-sm"
-						href={"./project/del/" + key.id}
-					>
-						<i classNameNameName="fas fa-trash"></i>
+					<a className="btn btn-danger btn-sm" href={"./project/del/" + key.id}>
+						<i className="fas fa-trash"></i>
 						Delete
 					</a>
 				</td>

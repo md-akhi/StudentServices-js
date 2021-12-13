@@ -11,8 +11,14 @@ import User1Img from "../../../data/img/user1-128x128.jpg";
 import User7Img from "../../../data/img/user7-128x128.jpg";
 
 function projectDetail(props) {
-	let data = props.data;
-	let requests = props.requests;
+	const { data = null, requests = null } = props;
+	const {
+		budget = null,
+		duration = null,
+		frelancerId = null,
+		name = null,
+		description = null,
+	} = data;
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
@@ -37,25 +43,6 @@ function projectDetail(props) {
 						<div className="card">
 							<div className="card-header">
 								<h3 className="card-title">Projects Detail</h3>
-
-								<div className="card-tools">
-									<button
-										type="button"
-										className="btn btn-tool"
-										data-card-widget="collapse"
-										title="Collapse"
-									>
-										<i className="fas fa-minus"></i>
-									</button>
-									<button
-										type="button"
-										className="btn btn-tool"
-										data-card-widget="remove"
-										title="Remove"
-									>
-										<i className="fas fa-times"></i>
-									</button>
-								</div>
 							</div>
 							<div className="card-body">
 								<div className="row">
@@ -68,7 +55,7 @@ function projectDetail(props) {
 															Estimated budget
 														</span>
 														<span className="info-box-number text-center text-muted mb-0">
-															{data.estimatedBudget}
+															{budget}
 														</span>
 													</div>
 												</div>
@@ -92,7 +79,7 @@ function projectDetail(props) {
 															Estimated project duration
 														</span>
 														<span className="info-box-number text-center text-muted mb-0">
-															{data.estimatedDuration}
+															{duration}
 														</span>
 													</div>
 												</div>
@@ -103,7 +90,7 @@ function projectDetail(props) {
 												<h4>Recent Activity</h4>
 												<RequestItem
 													data={requests}
-													active={data.frelancerId == undefined ? true : false}
+													active={frelancerId == undefined ? true : false}
 												></RequestItem>
 												<div className="post">
 													<div className="user-block">
@@ -194,9 +181,9 @@ function projectDetail(props) {
 									</div>
 									<div className="col-12 col-md-12 col-lg-4 order-1 order-md-2">
 										<h3 className="text-primary">
-											<i className="fas fa-paint-brush"></i> {data.name}
+											<i className="fas fa-paint-brush"></i> {name}
 										</h3>
-										<p className="text-muted">{data.description}</p>
+										<p className="text-muted">{description}</p>
 										<br />
 										<div className="text-muted">
 											<p className="text-sm">
@@ -273,8 +260,9 @@ function projectDetail(props) {
 }
 
 function RequestItem(props) {
-	let item = props.data.map((key, value) => {
-		let str = (
+	const { data = null } = props;
+	return data.map((key, value) => {
+		return (
 			<div className="post">
 				<div className="user-block">
 					<img
@@ -307,9 +295,7 @@ function RequestItem(props) {
 				</div>
 			</div>
 		);
-		return str;
 	});
-	return item;
 }
 
 export default projectDetail;

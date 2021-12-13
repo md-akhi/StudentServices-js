@@ -9,8 +9,9 @@ import Avatar3Img from "./data/img/avatar3.png";
 import Avatar4Img from "./data/img/avatar4.png";
 
 function projects(props) {
+	const { list = null } = props;
 	return (
-		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
+		<BodyLayout class="hold-transition layout-fixed">
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
@@ -59,7 +60,7 @@ function projects(props) {
 										</tr>
 									</thead>
 									<tbody>
-										<ProjectsItem items={props.list}></ProjectsItem>
+										<ProjectsItem items={list}></ProjectsItem>
 									</tbody>
 								</table>
 							</div>
@@ -84,21 +85,27 @@ function projects(props) {
 	);
 }
 function ProjectsItem(props) {
-	let item;
-	item = props.items.map((key, value) => {
-		let str = (
+	const { items = null } = props;
+	return items.map((value, index) => {
+		const {
+			isActive = false,
+			createdAt = null,
+			email = null,
+			id = null,
+		} = value;
+		return (
 			<tr>
-				{/* <td>#{value + 1}</td> */}
+				<td>#{index + 1}</td>
 				<td>
-					<a>{key.isActive}</a>
+					<a>{isActive}</a>
 					<br />
-					<small>Created {new Date(key.createdAt).toDateString()}</small>
+					<small>Created {new Date(createdAt).toDateString()}</small>
 				</td>
 				<td>
 					<ul className="list-inline">
 						<li className="list-inline-item">
 							<a href="">
-								{key.email.now}
+								{email.now}
 								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
@@ -130,15 +137,13 @@ function ProjectsItem(props) {
 					<span className="badge badge-success">Success</span>
 				</td>
 				<td className="project-actions text-right">
-					<a className="btn btn-primary btn-sm" href={"./user/" + key.id}>
+					<a className="btn btn-primary btn-sm" href={"./user/" + id}>
 						<i className="fas fa-folder"></i>
 						View
 					</a>
 				</td>
 			</tr>
 		);
-		return str;
 	});
-	return item;
 }
 export default projects;
