@@ -3,28 +3,57 @@
   "version": "1.0.0",
   "description": "Student Services",
   "main": "index.js",
-  "keywords": ["student", "services"],
-  "authors": [
-    "Mohammad Amanalikhani <md.akhi.ir@gmail.com> (http://md.akhi.ir)"
+  "keywords": [
+    "student",
+    "services"
   ],
-  "license": "UNLICENSED",
+  "homepage": "https://github.com/md-akhi/studentServices#readme",
+  "authors": [
+    {
+      "name": "Mohammad Amanalikhani",
+      "email": "md.akhi.ir@gmail.com",
+      "url": "http://md.akhi.ir/"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Mohammad Amanalikhani",
+      "email": "md.akhi.ir@gmail.com",
+      "url": "http://md.akhi.ir/"
+    }
+  ],
+  "funding": [
+    {
+      "type": "individual",
+      "url": "http://md.akhi.ir/"
+    },
+    "http://md.akhi.ir/",
+    {
+      "type": "patreon",
+      "url": "http://md.akhi.ir"
+    }
+  ],
+  "license": {
+    "type": "UNLICENSED",
+    "url": "https://unlicense.org/"
+  },
+  "man": "./doc",
   "scripts": {
     "start": "npm run dev",
     "develop": "npm run dev",
     "dev": "cross-env NODE_ENV=development run-s dev:*",
     "dev:mongod": "sh build/config/Mongod.sh",
-    "dev:gulp": "cross-env NODE_ENV=development gulp",
     "dev:nodemon": "cross-env NODE_ENV=development nodemon --exec npm run wb:dev",
     "wb:dev": "run-s webpack:dev babel:dev",
+    "gulp:dev": "cross-env NODE_ENV=development gulp",
     "webpack:dev": "webpack",
     "babel:dev": "babel-node src/app.js",
     "build": "npm run prod",
     "prod": "cross-env NODE_ENV=production run-s prod:*",
     "prod:mongod": "sh build/config/Mongod.sh",
-    "prod:gulp": "gulp",
     "prod:webpack": "webpack",
     "prod:babel": "babel src -o dist",
-    "prod:start": "node dist/app.js",
+    "start:prod": "node dist/app.js",
     "test": "mocha",
     "debug": "set DEBUG=* npm run dev --inspect",
     "prepare": "husky install"
@@ -44,6 +73,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/md-akhi/studentServices.git"
+  },
+  "bugs": {
+    "url": "https://github.com/md-akhi/studentServices/issues",
+    "email": "bugs@akhi.ir"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
@@ -178,6 +211,7 @@
     "webpack": "^5.64.0",
     "webpack-cli": "^4.9.1",
     "webpack-merge": "^5.8.0",
+    "webpack-node-externals": "^3.0.0",
     "webpack-stream": "^6.1.2"
   },
   "husky": {
@@ -186,7 +220,14 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": ["prettier --write", "eslint --fix", "git add"],
-    "*": ["prettier --write", "git add"]
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
