@@ -6,244 +6,279 @@
  */
 
 const CardWidget = (($) => {
-  /**
-   * Constants
-   * ====================================================
-   */
+	/**
+	 * Constants
+	 * ====================================================
+	 */
 
-  const NAME               = 'CardWidget'
-  const DATA_KEY           = 'lte.cardwidget'
-  const EVENT_KEY          = `.${DATA_KEY}`
-  const JQUERY_NO_CONFLICT = $.fn[NAME]
+	const NAME = "CardWidget";
+	const DATA_KEY = "lte.cardwidget";
+	const EVENT_KEY = `.${DATA_KEY}`;
+	const JQUERY_NO_CONFLICT = $.fn[NAME];
 
-  const Event = {
-    EXPANDED: `expanded${EVENT_KEY}`,
-    COLLAPSED: `collapsed${EVENT_KEY}`,
-    MAXIMIZED: `maximized${EVENT_KEY}`,
-    MINIMIZED: `minimized${EVENT_KEY}`,
-    REMOVED: `removed${EVENT_KEY}`
-  }
+	const Event = {
+		EXPANDED: `expanded${EVENT_KEY}`,
+		COLLAPSED: `collapsed${EVENT_KEY}`,
+		MAXIMIZED: `maximized${EVENT_KEY}`,
+		MINIMIZED: `minimized${EVENT_KEY}`,
+		REMOVED: `removed${EVENT_KEY}`,
+	};
 
-  const ClassName = {
-    CARD: 'card',
-    COLLAPSED: 'collapsed-card',
-    WAS_COLLAPSED: 'was-collapsed',
-    MAXIMIZED: 'maximized-card',
-  }
+	const ClassName = {
+		CARD: "card",
+		COLLAPSED: "collapsed-card",
+		WAS_COLLAPSED: "was-collapsed",
+		MAXIMIZED: "maximized-card",
+	};
 
-  const Selector = {
-    DATA_REMOVE: '[data-card-widget="remove"]',
-    DATA_COLLAPSE: '[data-card-widget="collapse"]',
-    DATA_MAXIMIZE: '[data-card-widget="maximize"]',
-    CARD: `.${ClassName.CARD}`,
-    CARD_HEADER: '.card-header',
-    CARD_BODY: '.card-body',
-    CARD_FOOTER: '.card-footer',
-    COLLAPSED: `.${ClassName.COLLAPSED}`,
-  }
+	const Selector = {
+		DATA_REMOVE: '[data-card-widget="remove"]',
+		DATA_COLLAPSE: '[data-card-widget="collapse"]',
+		DATA_MAXIMIZE: '[data-card-widget="maximize"]',
+		CARD: `.${ClassName.CARD}`,
+		CARD_HEADER: ".card-header",
+		CARD_BODY: ".card-body",
+		CARD_FOOTER: ".card-footer",
+		COLLAPSED: `.${ClassName.COLLAPSED}`,
+	};
 
-  const Default = {
-    animationSpeed: 'normal',
-    collapseTrigger: Selector.DATA_COLLAPSE,
-    removeTrigger: Selector.DATA_REMOVE,
-    maximizeTrigger: Selector.DATA_MAXIMIZE,
-    collapseIcon: 'fa-minus',
-    expandIcon: 'fa-plus',
-    maximizeIcon: 'fa-expand',
-    minimizeIcon: 'fa-compress',
-  }
+	const Default = {
+		animationSpeed: "normal",
+		collapseTrigger: Selector.DATA_COLLAPSE,
+		removeTrigger: Selector.DATA_REMOVE,
+		maximizeTrigger: Selector.DATA_MAXIMIZE,
+		collapseIcon: "fa-minus",
+		expandIcon: "fa-plus",
+		maximizeIcon: "fa-expand",
+		minimizeIcon: "fa-compress",
+	};
 
-  class CardWidget {
-    constructor(element, settings) {
-      this._element  = element
-      this._parent = element.parents(Selector.CARD).first()
+	class CardWidget {
+		constructor(element, settings) {
+			this._element = element;
+			this._parent = element.parents(Selector.CARD).first();
 
-      if (element.hasClass(ClassName.CARD)) {
-        this._parent = element
-      }
+			if (element.hasClass(ClassName.CARD)) {
+				this._parent = element;
+			}
 
-      this._settings = $.extend({}, Default, settings)
-    }
+			this._settings = $.extend({}, Default, settings);
+		}
 
-    collapse() {
-      this._parent.children(`${Selector.CARD_BODY}, ${Selector.CARD_FOOTER}`)
-        .slideUp(this._settings.animationSpeed, () => {
-          this._parent.addClass(ClassName.COLLAPSED)
-        })
-      this._parent.find(this._settings.collapseTrigger + ' .' + this._settings.collapseIcon)
-        .addClass(this._settings.expandIcon)
-        .removeClass(this._settings.collapseIcon)
+		collapse() {
+			this._parent
+				.children(`${Selector.CARD_BODY}, ${Selector.CARD_FOOTER}`)
+				.slideUp(this._settings.animationSpeed, () => {
+					this._parent.addClass(ClassName.COLLAPSED);
+				});
+			this._parent
+				.find(
+					this._settings.collapseTrigger + " ." + this._settings.collapseIcon
+				)
+				.addClass(this._settings.expandIcon)
+				.removeClass(this._settings.collapseIcon);
 
-      const collapsed = $.Event(Event.COLLAPSED)
+			const collapsed = $.Event(Event.COLLAPSED);
 
-      this._element.trigger(collapsed, this._parent)
-    }
+			this._element.trigger(collapsed, this._parent);
+		}
 
-    expand() {
-      this._parent.children(`${Selector.CARD_BODY}, ${Selector.CARD_FOOTER}`)
-        .slideDown(this._settings.animationSpeed, () => {
-          this._parent.removeClass(ClassName.COLLAPSED)
-        })
+		expand() {
+			this._parent
+				.children(`${Selector.CARD_BODY}, ${Selector.CARD_FOOTER}`)
+				.slideDown(this._settings.animationSpeed, () => {
+					this._parent.removeClass(ClassName.COLLAPSED);
+				});
 
-      this._parent.find(this._settings.collapseTrigger + ' .' + this._settings.expandIcon)
-        .addClass(this._settings.collapseIcon)
-        .removeClass(this._settings.expandIcon)
+			this._parent
+				.find(this._settings.collapseTrigger + " ." + this._settings.expandIcon)
+				.addClass(this._settings.collapseIcon)
+				.removeClass(this._settings.expandIcon);
 
-      const expanded = $.Event(Event.EXPANDED)
+			const expanded = $.Event(Event.EXPANDED);
 
-      this._element.trigger(expanded, this._parent)
-    }
+			this._element.trigger(expanded, this._parent);
+		}
 
-    remove() {
-      this._parent.slideUp()
+		remove() {
+			this._parent.slideUp();
 
-      const removed = $.Event(Event.REMOVED)
+			const removed = $.Event(Event.REMOVED);
 
-      this._element.trigger(removed, this._parent)
-    }
+			this._element.trigger(removed, this._parent);
+		}
 
-    toggle() {
-      if (this._parent.hasClass(ClassName.COLLAPSED)) {
-        this.expand()
-        return
-      }
+		toggle() {
+			if (this._parent.hasClass(ClassName.COLLAPSED)) {
+				this.expand();
+				return;
+			}
 
-      this.collapse()
-    }
-    
-    maximize() {
-      this._parent.find(this._settings.maximizeTrigger + ' .' + this._settings.maximizeIcon)
-        .addClass(this._settings.minimizeIcon)
-        .removeClass(this._settings.maximizeIcon)
-      this._parent.css({
-        'height': this._parent.height(),
-        'width': this._parent.width(),
-        'transition': 'all .15s'
-      }).delay(150).queue(function(){
-        $(this).addClass(ClassName.MAXIMIZED)
-        $('html').addClass(ClassName.MAXIMIZED)
-        if ($(this).hasClass(ClassName.COLLAPSED)) {
-          $(this).addClass(ClassName.WAS_COLLAPSED)
-        }
-        $(this).dequeue()
-      })
+			this.collapse();
+		}
 
-      const maximized = $.Event(Event.MAXIMIZED)
+		maximize() {
+			this._parent
+				.find(
+					this._settings.maximizeTrigger + " ." + this._settings.maximizeIcon
+				)
+				.addClass(this._settings.minimizeIcon)
+				.removeClass(this._settings.maximizeIcon);
+			this._parent
+				.css({
+					height: this._parent.height(),
+					width: this._parent.width(),
+					transition: "all .15s",
+				})
+				.delay(150)
+				.queue(function () {
+					$(this).addClass(ClassName.MAXIMIZED);
+					$("html").addClass(ClassName.MAXIMIZED);
+					if ($(this).hasClass(ClassName.COLLAPSED)) {
+						$(this).addClass(ClassName.WAS_COLLAPSED);
+					}
+					$(this).dequeue();
+				});
 
-      this._element.trigger(maximized, this._parent)
-    }
+			const maximized = $.Event(Event.MAXIMIZED);
 
-    minimize() {
-      this._parent.find(this._settings.maximizeTrigger + ' .' + this._settings.minimizeIcon)
-        .addClass(this._settings.maximizeIcon)
-        .removeClass(this._settings.minimizeIcon)
-      this._parent.css('cssText', 'height:' + this._parent[0].style.height + ' !important;' +
-        'width:' + this._parent[0].style.width + ' !important; transition: all .15s;'
-      ).delay(10).queue(function(){
-        $(this).removeClass(ClassName.MAXIMIZED)
-        $('html').removeClass(ClassName.MAXIMIZED)
-        $(this).css({
-          'height': 'inherit',
-          'width': 'inherit'
-        })
-        if ($(this).hasClass(ClassName.WAS_COLLAPSED)) {
-          $(this).removeClass(ClassName.WAS_COLLAPSED)
-        }
-        $(this).dequeue()
-      })
+			this._element.trigger(maximized, this._parent);
+		}
 
-      const MINIMIZED = $.Event(Event.MINIMIZED)
+		minimize() {
+			this._parent
+				.find(
+					this._settings.maximizeTrigger + " ." + this._settings.minimizeIcon
+				)
+				.addClass(this._settings.maximizeIcon)
+				.removeClass(this._settings.minimizeIcon);
+			this._parent
+				.css(
+					"cssText",
+					"height:" +
+						this._parent[0].style.height +
+						" !important;" +
+						"width:" +
+						this._parent[0].style.width +
+						" !important; transition: all .15s;"
+				)
+				.delay(10)
+				.queue(function () {
+					$(this).removeClass(ClassName.MAXIMIZED);
+					$("html").removeClass(ClassName.MAXIMIZED);
+					$(this).css({
+						height: "inherit",
+						width: "inherit",
+					});
+					if ($(this).hasClass(ClassName.WAS_COLLAPSED)) {
+						$(this).removeClass(ClassName.WAS_COLLAPSED);
+					}
+					$(this).dequeue();
+				});
 
-      this._element.trigger(MINIMIZED, this._parent)
-    }
+			const MINIMIZED = $.Event(Event.MINIMIZED);
 
-    toggleMaximize() {
-      if (this._parent.hasClass(ClassName.MAXIMIZED)) {
-        this.minimize()
-        return
-      }
+			this._element.trigger(MINIMIZED, this._parent);
+		}
 
-      this.maximize()
-    }
+		toggleMaximize() {
+			if (this._parent.hasClass(ClassName.MAXIMIZED)) {
+				this.minimize();
+				return;
+			}
 
-    // Private
+			this.maximize();
+		}
 
-    _init(card) {
-      this._parent = card
+		// Private
 
-      $(this).find(this._settings.collapseTrigger).click(() => {
-        this.toggle()
-      })
+		_init(card) {
+			this._parent = card;
 
-      $(this).find(this._settings.maximizeTrigger).click(() => {
-        this.toggleMaximize()
-      })
+			$(this)
+				.find(this._settings.collapseTrigger)
+				.click(() => {
+					this.toggle();
+				});
 
-      $(this).find(this._settings.removeTrigger).click(() => {
-        this.remove()
-      })
-    }
+			$(this)
+				.find(this._settings.maximizeTrigger)
+				.click(() => {
+					this.toggleMaximize();
+				});
 
-    // Static
+			$(this)
+				.find(this._settings.removeTrigger)
+				.click(() => {
+					this.remove();
+				});
+		}
 
-    static _jQueryInterface(config) {
-      let data = $(this).data(DATA_KEY)
+		// Static
 
-      if (!data) {
-        data = new CardWidget($(this), data)
-        $(this).data(DATA_KEY, typeof config === 'string' ? data: config)
-      }
+		static _jQueryInterface(config) {
+			let data = $(this).data(DATA_KEY);
 
-      if (typeof config === 'string' && config.match(/collapse|expand|remove|toggle|maximize|minimize|toggleMaximize/)) {
-        data[config]()
-      } else if (typeof config === 'object') {
-        data._init($(this))
-      }
-    }
-  }
+			if (!data) {
+				data = new CardWidget($(this), data);
+				$(this).data(DATA_KEY, typeof config === "string" ? data : config);
+			}
 
-  /**
-   * Data API
-   * ====================================================
-   */
+			if (
+				typeof config === "string" &&
+				config.match(
+					/collapse|expand|remove|toggle|maximize|minimize|toggleMaximize/
+				)
+			) {
+				data[config]();
+			} else if (typeof config === "object") {
+				data._init($(this));
+			}
+		}
+	}
 
-  $(document).on('click', Selector.DATA_COLLAPSE, function (event) {
-    if (event) {
-      event.preventDefault()
-    }
+	/**
+	 * Data API
+	 * ====================================================
+	 */
 
-    CardWidget._jQueryInterface.call($(this), 'toggle')
-  })
+	$(document).on("click", Selector.DATA_COLLAPSE, function (event) {
+		if (event) {
+			event.preventDefault();
+		}
 
-  $(document).on('click', Selector.DATA_REMOVE, function (event) {
-    if (event) {
-      event.preventDefault()
-    }
+		CardWidget._jQueryInterface.call($(this), "toggle");
+	});
 
-    CardWidget._jQueryInterface.call($(this), 'remove')
-  })
+	$(document).on("click", Selector.DATA_REMOVE, function (event) {
+		if (event) {
+			event.preventDefault();
+		}
 
-  $(document).on('click', Selector.DATA_MAXIMIZE, function (event) {
-    if (event) {
-      event.preventDefault()
-    }
+		CardWidget._jQueryInterface.call($(this), "remove");
+	});
 
-    CardWidget._jQueryInterface.call($(this), 'toggleMaximize')
-  })
+	$(document).on("click", Selector.DATA_MAXIMIZE, function (event) {
+		if (event) {
+			event.preventDefault();
+		}
 
-  /**
-   * jQuery API
-   * ====================================================
-   */
+		CardWidget._jQueryInterface.call($(this), "toggleMaximize");
+	});
 
-  $.fn[NAME] = CardWidget._jQueryInterface
-  $.fn[NAME].Constructor = CardWidget
-  $.fn[NAME].noConflict  = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT
-    return CardWidget._jQueryInterface
-  }
+	/**
+	 * jQuery API
+	 * ====================================================
+	 */
 
-  return CardWidget
-})(jQuery)
+	$.fn[NAME] = CardWidget._jQueryInterface;
+	$.fn[NAME].Constructor = CardWidget;
+	$.fn[NAME].noConflict = function () {
+		$.fn[NAME] = JQUERY_NO_CONFLICT;
+		return CardWidget._jQueryInterface;
+	};
 
-export default CardWidget
+	return CardWidget;
+})(jQuery);
+
+export default CardWidget;
