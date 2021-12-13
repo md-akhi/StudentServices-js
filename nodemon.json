@@ -5,20 +5,8 @@
   "restartable": "rs",
   "verbose": true,
   "colours": true,
-  "watch": ["test/", "src/"],
+  "watch": ["test/**/*", "src/**/*"],
   "runOnChangeOnly": false,
-  "execMap": {
-    "js": "node --harmony"
-  },
-  "ignore": [
-    "/.vscode/",
-    "/.github/",
-    "*.yaml",
-    "/docs/",
-    "*.md",
-    "/z/",
-    "*.test.js",
-    "src/public/"
-  ],
+  "ignore": ["src/public/"],
   "ext": "js,json,jsx"
 }
