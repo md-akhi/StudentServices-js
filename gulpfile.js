@@ -103,12 +103,11 @@ const scriptsTask = () => {
 					output: {
 						format: "umd",
 						name: paths.scripts.merge,
-						banner: `
-						/*!
-							* MD AKHI v${pkg.version} (${pkg.homepage})
-							* Copyright 2021-${year} ${pkg.authors[0]}
-							* Licensed  (https://github.com//LICENSE)
-							*/`,
+						banner: `/*!
+	* MD AKHI v${pkg.version} (${pkg.homepage})
+	* Copyright 2021-${year} ${pkg.authors[0].name} (${pkg.authors[0].url})
+	* Licensed  ${pkg.license.type}(${pkg.license.url})
+	*/`,
 						jquery: "jQuery",
 					},
 					plugins: [
@@ -142,13 +141,14 @@ const pluginsTask = () => {
 		src(module.from + paths.plugins.src, { allowEmpty: true }).pipe(
 			dest(paths.plugins.dest + module.to)
 		);
-		//.pipe(notify({ message: "Scripts task complete" }));;
+		//.pipe(notify({ message: "Plugins task complete" }));
 	});
 };
 
 // Clean
 const cleanTask = () => {
 	return src("src/public", { allowEmpty: true, read: false }).pipe(clean());
+	//.pipe(notify({ message: "Clean task complete" }));
 };
 
 const developmentTask = () => {
