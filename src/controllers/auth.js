@@ -92,28 +92,30 @@ export default function (infoApp) {
 		],
 		LogIn_Post: function (req, res) {
 			const { email, password } = req.body;
-			let redirect = req.query.redirect;
-			if (!email || !password) {
-				res.render(Template.Auth() + "/login", {
-					message: "Please enter both email and password",
+			const redirect = req.query.redirect;
+			//if (!email || !password) {
+			//	res.redirect(Path.Auth());
+			// res.render(Template.Auth() + "/login", {
+			// 	message: "Please enter both email and password",
+			// });
+
+			UserModel.findOne({ "email.now": email })
+				.then((user) => {
+					if (user.password.now === password) {
+						// REDIRECT TO THE dashboard
+						infoApp.user = user;
+						infoApp.user.login = true;
+						if (redirect) res.redirect(redirect);
+						res.redirect(customerPath.Dashboard());
+					}
+				})
+				.catch((err) => {
+					console.error(err);
+					//res.redirect(Path.Auth());
+					// res.render(Template.Auth() + "/login", {
+					// 	message: "login err",
+					// });
 				});
-			} else {
-				UserModel.findOne({ "email.now": email })
-					.then((user) => {
-						if (user.password.now === password) {
-							// REDIRECT TO THE dashboard
-							infoApp.user = user;
-							infoApp.user.login = true;
-							if (redirect) res.redirect(redirect);
-							res.redirect(customerPath.Dashboard());
-						}
-					})
-					.catch((err) => {
-						res.render(Template.Auth() + "/login", {
-							message: "login err",
-						});
-					});
-			}
 		},
 
 		// reset password

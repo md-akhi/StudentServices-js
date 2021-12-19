@@ -25,7 +25,7 @@ export default function () {
 
 	// catch server errors and respond with 500
 	Router.use(function (err, req, res, next) {
-		//console.error(err.stack);
+		console.error(err.stack);
 		res
 			.status(500)
 			.json({ status: "500", massage: "Something broke! 500", error: err });

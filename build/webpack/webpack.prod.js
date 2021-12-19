@@ -1,9 +1,12 @@
 const path = require("path");
 const webpack = require("webpack");
+const nodeExternals = require("webpack-node-externals");
 //const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	mode: "production",
+	target: "node",
+	externals: [nodeExternals()],
 	output: {
 		path: path.resolve(__dirname, "../../", "dist", "public"),
 		filename: "/js/[chunkhash].js",

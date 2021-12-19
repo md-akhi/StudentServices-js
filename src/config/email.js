@@ -28,7 +28,7 @@ async function main() {
 			html: "<b>Hello world?</b>", // html body
 		},
 		function (err, info) {
-			if (err) console.log(err);
+			if (err) console.error(err);
 			else console.log(info);
 		}
 	);

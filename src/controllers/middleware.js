@@ -10,11 +10,11 @@ export default function (infoApp) {
 		 * @returns {null} null
 		 */
 		LogInChecker: (req, res, next) => {
-			if (infoApp.user.login === false) {
+			if (infoApp.user.login == false) {
 				if (req.baseUrl !== homePath.Auth()) {
 					res.redirect(homePath.Auth() + "/login?redirect=" + req.originalUrl);
 				}
-			} else if (infoApp.user.login === true) {
+			} else if (infoApp.user.login == true) {
 				if (req.baseUrl == homePath.Auth()) {
 					res.redirect(Path.Dashboard());
 				}
