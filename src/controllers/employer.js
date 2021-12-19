@@ -6,6 +6,7 @@ import {
 	Request as RequestModel,
 	Invoice as InvoiceModel,
 	Payment as PaymentModel,
+	File as FileModel,
 } from "../models/project.js";
 import {
 	customerTemplate as Template,
@@ -160,7 +161,7 @@ export default function (infoApp) {
 			function (req, res) {
 				const id = req.params.id;
 				ProjectModel.findByIdAndDelete(id, function (err) {
-					if (err) console.log(err);
+					if (err) console.error(err);
 					console.log("Successful deletion");
 				});
 				// REDIRECT TO THE project
@@ -184,9 +185,13 @@ export default function (infoApp) {
 								callback
 							);
 						},
+						files: function (callback) {
+							FileModel.findOne({ projectId: projectId }).exec(callback);
+						},
 					})
 					.then((results) => {
-						if (results.project == null) {
+						const { requests = null, project = null, files = null } = results;
+						if (project == null) {
 							// No results.
 							var err = new Error("Project not found");
 							err.status = 404;
@@ -196,20 +201,22 @@ export default function (infoApp) {
 						// Successful, so render.
 						const RenderReact = renderToString(
 							<ProjectDetailReact
-								data={results.project}
-								requests={results.requests}
+								data={project}
+								requests={requests}
+								files={files}
 							/>
 						);
 						res.render(Template.Employer() + "/project_detail", {
 							reactApp: RenderReact,
 							data: JSON.stringify({
-								data: results.project,
-								requests: results.requests,
+								data: project,
+								requests: requests,
+								files: files,
 							}),
 						});
 					})
 					.catch((err) => {
-						console.log(err);
+						console.error(err);
 					});
 			},
 		],
@@ -257,7 +264,7 @@ export default function (infoApp) {
 						res.redirect(Path.Employer() + "/project/" + projectId + "/detail");
 					})
 					.catch((err) => {
-						console.log(err);
+						console.error(err);
 						if (err) {
 							//return next(err);
 						}
@@ -296,7 +303,7 @@ export default function (infoApp) {
 						});
 					})
 					.catch(function (err) {
-						if (err) console.log(err);
+						if (err) console.error(err);
 					});
 			},
 		],
@@ -323,7 +330,7 @@ export default function (infoApp) {
 						});
 					})
 					.catch(function (err) {
-						if (err) console.log(err);
+						if (err) console.error(err);
 					});
 			},
 		],
@@ -363,11 +370,11 @@ export default function (infoApp) {
 								console.log(body);
 							})
 							.catch((err) => {
-								console.log(err);
+								console.error(err);
 							});
 					})
 					.catch(function (err) {
-						if (err) console.log(err);
+						if (err) console.error(err);
 					});
 			},
 		],
@@ -406,11 +413,11 @@ export default function (infoApp) {
 								console.log(body);
 							})
 							.catch((err) => {
-								console.log(err);
+								console.error(err);
 							});
 					})
 					.catch(function (err) {
-						if (err) console.log(err);
+						if (err) console.error(err);
 					});
 			},
 		],

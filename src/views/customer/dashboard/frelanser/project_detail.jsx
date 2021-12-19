@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 
-import * as dataEmployer from "../../../data/employer.js";
+import * as dataFrelanser from "../../../data/frelanser.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
 import FooterLayout from "../../layouts/footer";
 import BodyLayout from "../../layouts/body";
@@ -24,16 +24,16 @@ export default (props) => {
 	} = data;
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
-			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
+			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
 			<MainSidebarLayout
-				Data={dataEmployer.menuSidbarRight}
+				Data={dataFrelanser.menuSidbarRight}
 			></MainSidebarLayout>
 
 			{/* Content Wrapper. Contains page content */}
 			<div className="content-wrapper">
 				{/* Content Header (Page header) */}
 				<BreadCrumbComponet
-					Data={dataEmployer.breadCrumb}
+					Data={dataFrelanser.breadCrumb}
 					Name={"Employer"}
 					Active={"Employer"}
 				></BreadCrumbComponet>
@@ -200,7 +200,6 @@ export default (props) => {
 										</div>
 
 										<h5 className="mt-5 text-muted">Project files</h5>
-
 										<FilesUploadComponent
 											files={files}
 											userId={userId}
@@ -232,8 +231,8 @@ export default (props) => {
 };
 
 function RequestItem(props) {
-	const { data = null } = props;
-	return data.map((item, index) => {
+	const { files = null } = props;
+	return files.map((item, index) => {
 		return (
 			<div className="post">
 				<div className="user-block">
@@ -274,6 +273,8 @@ class FilesUploadComponent extends Component {
 	constructor(props) {
 		super(props);
 		const { data = null } = props;
+		this.userId = userId;
+		this.projectId = projectId;
 		this.onFileChange = this.onFileChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.state = {
@@ -287,8 +288,8 @@ class FilesUploadComponent extends Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		const { userId = null, projectId = null } = this.props;
 		let formData = new FormData();
+		const { userId = null, projectId = null } = this.props;
 		formData.append("userId", userId);
 		formData.append("projectId", projectId);
 		for (const [key, value] of Object.entries(this.state.files)) {
@@ -332,6 +333,8 @@ class FilesUploadComponent extends Component {
 class FilesComponent extends Component {
 	constructor(props) {
 		super(props);
+		const { files = null } = props;
+		this.files = files;
 		this.onFileDownload = this.onFileDownload.bind(this);
 	}
 
@@ -344,11 +347,8 @@ class FilesComponent extends Component {
 	}
 
 	render() {
-		const { files = null } = this.props;
-		console.log(files);
 		return (
 			<ul className="list-unstyled">
-				{files.files.map((item, index) => {})}
 				<li>
 					<a href="" className="btn-link text-secondary">
 						<i className="far fa-fw fa-file-word"></i>{" "}

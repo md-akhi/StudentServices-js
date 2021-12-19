@@ -3,7 +3,7 @@ import Middleware from "../controllers/middleware.js";
 import FrelanserController from "../controllers/frelanser.js";
 
 export default function (infoApp) {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	Router.route("/").get(FrelanserController(infoApp).Root_Get);
 
@@ -33,6 +33,10 @@ export default function (infoApp) {
 
 	Router.route("/invoice/:invoiceId/print").get(
 		FrelanserController(infoApp).InvoicePrint_Get
+	);
+
+	Router.route("/project/:projectId/detail").get(
+		FrelanserController(infoApp).ProjectDetail_Get
 	);
 
 	// Router

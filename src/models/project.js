@@ -137,37 +137,34 @@ var InvoiceSchema = Mongoose.Schema({
 let Invoice = Mongoose.model("invoice", InvoiceSchema);
 
 var FileSchema = Mongoose.Schema({
-	userId: {
-		type: Mongoose.ObjectId,
-		ref: UserModel,
-	},
 	projectId: {
 		type: Mongoose.ObjectId,
 		ref: Project,
 	},
 	files: [
 		{
+			userId: {
+				type: Mongoose.ObjectId,
+				ref: UserModel,
+			},
+			base: {
+				type: String,
+			},
 			name: {
 				type: String,
 			},
-			originalName: {
+			mimetype: {
 				type: String,
 			},
-			description: {
+			md5: {
 				type: String,
 			},
-			type: {
-				type: String,
-			},
-			size: {
-				type: Number,
+			createdAt: {
+				type: Date,
+				default: Date.now,
 			},
 		},
 	],
-	createdAt: {
-		type: Date,
-		default: Date.now,
-	},
 });
 let File = Mongoose.model("file", FileSchema);
 

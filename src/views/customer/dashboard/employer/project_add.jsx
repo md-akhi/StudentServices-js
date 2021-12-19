@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import Axios from "axios";
 
 import * as dataEmployer from "../../../data/employer.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
@@ -161,7 +161,9 @@ export default (props) => {
 													/>
 												</div>
 											</div>
+										</div>
 
+										<div className="card card-secondary">
 											<div className="card-header">
 												<h3 className="card-title">Files</h3>
 											</div>
@@ -221,13 +223,11 @@ export default (props) => {
 class FilesUploadComponent extends Component {
 	constructor(props) {
 		super(props);
-		const { data = null, userId = null, projectId = null } = props;
-		this.userId = userId;
-		this.projectId = projectId;
+		const { data = null } = props;
 		this.onFileChange = this.onFileChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.state = {
-			files: "", //data
+			files: {}, //data
 		};
 	}
 
@@ -237,34 +237,26 @@ class FilesUploadComponent extends Component {
 
 	onSubmit(e) {
 		e.preventDefault();
-		const http = "/api/employer/upload/" + this.projectId;
-		var formData = new FormData();
-		for (const key of Object.keys(this.state.files)) {
-			formData.append("file", this.state.files[key]);
+		const { userId = null, projectId = null } = this.props;
+		let formData = new FormData();
+		formData.append("userId", userId);
+		formData.append("projectId", projectId);
+		for (const [key, value] of Object.entries(this.state.files)) {
+			formData.append(key, value);
 		}
-		axios({
-			method: "post",
-			url: http,
-			data: {
-				state: this.state.files,
-				file: formData,
-				userId: this.userId,
-				projectId: this.projectId,
-			},
-		}).then((res) => {
-			//http://localhost:9000
+		Axios.post("/api/employer/upload", formData, {}).then((res) => {
 			console.log(res);
 		});
 	}
 
 	render() {
 		return (
-			<form onSubmit={this.onSubmit} enctype="multipart/form-data">
+			<form onSubmit={this.onSubmit} encType="multipart/form-data">
 				<div className="form-group">
 					<label htmlFor="inputFiles">Files</label>
 					<input
 						type="file"
-						name="file"
+						name="files"
 						onChange={this.onFileChange}
 						multiple
 					/>

@@ -6,6 +6,8 @@ import { renderToString } from "react-dom/server";
 import {
 	Request as RequestModel,
 	Invoice as InvoiceModel,
+	File as FileModel,
+	Project as ProjectModel,
 } from "../models/project.js";
 import {
 	customerTemplate as Template,
@@ -58,11 +60,13 @@ export default function (infoApp) {
 				const userId = infoApp.user.id;
 				const projectId = req.params.projectId;
 				const RenderReact = renderToString(
-					<RequestAddReact user={userId} project={projectId} />
+					<RequestAddReact data={{ userId: userId, projectId: projectId }} />
 				);
 				res.render(Template.Frelanser() + "/request_add", {
 					reactApp: RenderReact,
-					data: JSON.stringify({ user: userId, project: projectId }),
+					data: JSON.stringify({
+						data: { userId: userId, projectId: projectId },
+					}),
 				});
 			},
 		],
@@ -78,7 +82,7 @@ export default function (infoApp) {
 					description: description,
 					amount: amount,
 					duration: duration,
-					invoice: JSON.parse(invoice), 
+					invoice: JSON.parse(invoice),
 				});
 
 				newRequest
@@ -105,7 +109,7 @@ export default function (infoApp) {
 						userId: userId,
 					},
 					function (err, request) {
-						if (err) console.log(err);
+						if (err) console.error(err);
 						const RenderReact = renderToString(
 							<RequestAddReact data={request} isEdit={true} />
 						);
@@ -122,17 +126,20 @@ export default function (infoApp) {
 				const requestId = req.params.requestId;
 				const userId = infoApp.user.id;
 				const { description, amount, duration, invoice } = req.body;
-				const filter = {
+				RequestModel.findOne({
 					_id: requestId,
-					userId: userId,
-				};
-				const update = {
-					description: description,
-					duration: duration,
-					amount: amount,
-					invoice: JSON.parse(invoice),
-				};
-				RequestModel.findOneAndUpdate(filter, update);
+				})
+					.then(function (request) {
+						request.description = description;
+						request.duration = duration;
+						request.amount = amount;
+						request.invoice = JSON.parse(invoice);
+						request.save();
+					})
+					.catch(function (err) {
+						console.error(err);
+					});
+
 				// payId: payId,
 				// request: request,
 				// Progress: Progress,
@@ -146,7 +153,7 @@ export default function (infoApp) {
 			function (req, res) {
 				const requestId = req.params.requestId;
 				RequestModel.findByIdAndDelete(requestId, function (err) {
-					if (err) console.log(err);
+					if (err) console.error(err);
 					// REDIRECT TO THE project
 					res.redirect(Path.Frelanser() + "/requests");
 				});
@@ -170,7 +177,7 @@ export default function (infoApp) {
 						});
 					})
 					.catch(function (err) {
-						if (err) console.log(err);
+						if (err) console.error(err);
 					});
 			},
 		],
@@ -197,7 +204,7 @@ export default function (infoApp) {
 						});
 					})
 					.catch(function (err) {
-						if (err) console.log(err);
+						if (err) console.error(err);
 					});
 			},
 		],
@@ -207,11 +214,11 @@ export default function (infoApp) {
 				const userId = infoApp.user.id;
 				let invoiceId = req.params.invoiceId;
 				const RenderReact = renderToString(
-					<InvoicePrintReact name="employer" />
+					<InvoicePrintReact name="Frelanser" />
 				);
 				res.render(Template.Frelanser() + "/invoice_print", {
 					reactApp: RenderReact,
-					data: JSON.stringify({ name: "employer" }),
+					data: JSON.stringify({ name: "Frelanser" }),
 				});
 			},
 		],
@@ -225,6 +232,58 @@ export default function (infoApp) {
 					reactApp: RenderReact,
 					data: JSON.stringify({ name: "frelanser" }),
 				});
+			},
+		],
+
+		ProjectDetail_Get: [
+			function (req, res) {
+				const userId = infoApp.user.id;
+				const projectId = req.params.projectId;
+				async
+					.parallel({
+						requests: function (callback) {
+							RequestModel.find({ projectId: projectId })
+								.populate("userId")
+								.exec(callback);
+						},
+						project: function (callback) {
+							ProjectModel.findOne({ _id: projectId, userId: userId }).exec(
+								callback
+							);
+						},
+						files: function (callback) {
+							FileModel.findOne({ projectId: projectId }).exec(callback);
+						},
+					})
+					.then((results) => {
+						const { requests= null, project= null, files= null } = results;
+						if (project == null) {
+							// No results.
+							var err = new Error("Project not found");
+							err.status = 404;
+							//return next(err);
+							res.redirect(Path.Frelanser() + "/projects");
+						}
+						// Successful, so render.
+						const RenderReact = renderToString(
+							<ProjectDetailReact
+								data={project}
+								requests={requests}
+								files={files}
+							/>
+						);
+						res.render(Template.Frelanser() + "/project_detail", {
+							reactApp: RenderReact,
+							data: JSON.stringify({
+								data: project,
+								requests: requests,
+								files: files,
+							}),
+						});
+					})
+					.catch((err) => {
+						console.error(err);
+					});
 			},
 		],
 	};
