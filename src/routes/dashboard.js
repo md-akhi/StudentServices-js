@@ -6,7 +6,7 @@ import EmployerRouter from "./employer.js";
 import FrelanserRouter from "./frelanser.js";
 
 export default function (infoApp) {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	// middleware function
 	Router.use(Middleware(infoApp).SessionChecker);

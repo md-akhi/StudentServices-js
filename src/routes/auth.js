@@ -4,7 +4,7 @@ import Middleware from "../controllers/middleware.js";
 import AuthController from "../controllers/auth.js";
 
 export default function (infoApp) {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	// middleware function
 	Router.use(Middleware(infoApp).SessionChecker);

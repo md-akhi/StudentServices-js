@@ -3,12 +3,13 @@ import Middleware from "../controllers/middleware.js";
 import EmployerController from "../controllers/employer.js";
 
 export default function (infoApp) {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	// root
 	Router.route("/").get(EmployerController(infoApp).Root_Get);
 
 	Router.route("/projects").get(EmployerController(infoApp).Projects_Get);
+	
 	Router.route("/projects/archived").get(
 		EmployerController(infoApp).Projects_Get
 	);

@@ -37,13 +37,12 @@ export default function (App, infoApp) {
 	const SessionStore = MongoStore.create({
 		mongoUrl: env.MONGODB_URL + env.DB_NAME,
 	});
-	const sessionUID = UID4();
 
 	//if (App.get("env") === "production") {
 	App.set("trust proxy", 1);
 	App.use(
 		Session({
-			genid: () => sessionUID,
+			genid: () => UID4(),
 			name: "session",
 			secret: UID5(pkg.name, UID5.URL),
 			resave: true,

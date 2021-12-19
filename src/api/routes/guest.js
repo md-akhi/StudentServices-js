@@ -2,7 +2,7 @@ import Express from "express";
 import ControllerGuest from "../controllers/guest.js";
 
 export default function () {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	Router.route("/")
 		.all()

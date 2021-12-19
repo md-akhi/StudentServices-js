@@ -1,7 +1,7 @@
 import Express from "express";
 
 export default function () {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	Router.route("/")
 		.get((req, res) => {

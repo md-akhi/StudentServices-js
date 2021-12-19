@@ -2,7 +2,7 @@ import Express from "express";
 import FrelanserController from "../controllers/frelanser.js";
 
 export default function () {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	Router.route("/request/:requestId")
 		.get(FrelanserController().Requests_Get)

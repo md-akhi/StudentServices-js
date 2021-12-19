@@ -7,7 +7,7 @@ import AuthRouter from "./auth.js";
 import DashboardRouter from "./dashboard.js";
 
 export default function (infoApp) {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	// middleware function
 	Router.use(Middleware(infoApp).SessionChecker);

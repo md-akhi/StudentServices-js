@@ -3,7 +3,7 @@ import Middleware from "../controllers/middleware.js";
 import HomeController from "../controllers/home.js";
 
 export default function (infoApp) {
-	let Router = Express.Router();
+	const Router = Express.Router();
 
 	// root
 	Router.route("/").get(HomeController(infoApp).Root_Get);
