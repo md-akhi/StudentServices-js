@@ -2,6 +2,9 @@ import React from "react";
 
 import { hydrate } from "react-dom";
 
-import InvoiceDetailReact from "../../../../customer/dashboard/employer/invoice_detail";
+import InvoiceListReact from "../../../../customer/dashboard/employer/invoice_list";
 
-hydrate(<InvoiceDetailReact {...window.__PRELOADED_STATE__}/>, document.getElementById("reactApp"));
+hydrate(
+	<InvoiceListReact {...window.__PRELOADED_STATE__} />,
+	document.getElementById("reactApp")
+);
