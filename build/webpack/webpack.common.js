@@ -15,6 +15,7 @@ const pages = [
 	"customer/dashboard/frelanser/invoice_detail",
 	"customer/dashboard/frelanser/invoice_list",
 	"customer/dashboard/frelanser/invoice_print",
+	"customer/dashboard/frelanser/project_detail",
 	"customer/dashboard/frelanser/request_add",
 	"customer/dashboard/frelanser/request_list",
 	"customer/dashboard/frelanser/user_detail",

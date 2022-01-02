@@ -1,5 +1,6 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
+import async from "async";
 //import { User as UserModel } from "../models/user.js";
 //import Frelanser from "../models/frelanser.js";
 //import { * as Model } from "../models/project.js";
@@ -21,6 +22,7 @@ import InvoiceListReact from "../views/customer/dashboard/frelanser/invoice_list
 import InvoiceDetailReact from "../views/customer/dashboard/frelanser/invoice_detail";
 import InvoicePrintReact from "../views/customer/dashboard/frelanser/invoice_print";
 import UserDetailReact from "../views/customer/dashboard/frelanser/user_detail";
+import ProjectDetailReact from "../views/customer/dashboard/frelanser/project_detail";
 
 export default function (infoApp) {
 	// Middleware function to check for logged-in users
@@ -37,7 +39,7 @@ export default function (infoApp) {
 
 		Requests_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				RequestModel.find({
 					userId: userId,
 				})
@@ -51,14 +53,16 @@ export default function (infoApp) {
 							data: JSON.stringify({ data: requests }),
 						});
 					})
-					.catch(function (err) {});
+					.catch(function (err) {
+						console.log(err);
+					});
 			},
 		],
 
 		RequestAdd_Get: [
 			async (req, res) => {
-				const userId = infoApp.user.id;
-				const projectId = req.params.projectId;
+				const { id: userId = 0 } = infoApp.user;
+				const { projectId } = req.params;
 				const RenderReact = renderToString(
 					<RequestAddReact data={{ userId: userId, projectId: projectId }} />
 				);
@@ -72,11 +76,11 @@ export default function (infoApp) {
 		],
 		RequestAdd_Post: [
 			function (req, res) {
-				const userId = infoApp.user.id;
-				const projectId = req.params.projectId;
+				const { id: userId = 0 } = infoApp.user;
+				const { projectId = 0 } = req.params;
 				const { description, amount, duration, invoice } = req.body;
 
-				let newRequest = new RequestModel({
+				const newRequest = new RequestModel({
 					userId: userId,
 					projectId: projectId,
 					description: description,
@@ -84,7 +88,6 @@ export default function (infoApp) {
 					duration: duration,
 					invoice: JSON.parse(invoice),
 				});
-
 				newRequest
 					.save(newRequest)
 					.then((request) => {
@@ -101,7 +104,7 @@ export default function (infoApp) {
 
 		RequestEdit_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const requestId = req.params.requestId;
 				RequestModel.findOne(
 					{
@@ -124,7 +127,7 @@ export default function (infoApp) {
 		RequestEdit_Post: [
 			function (req, res) {
 				const requestId = req.params.requestId;
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const { description, amount, duration, invoice } = req.body;
 				RequestModel.findOne({
 					_id: requestId,
@@ -162,7 +165,7 @@ export default function (infoApp) {
 
 		Invoices_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				InvoiceModel.find({
 					frelancerId: userId,
 				})
@@ -184,7 +187,7 @@ export default function (infoApp) {
 
 		InvoiceDetail_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				let invoiceId = req.params.invoiceId;
 				InvoiceModel.findOne({
 					_id: invoiceId,
@@ -211,7 +214,7 @@ export default function (infoApp) {
 
 		InvoicePrint_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				let invoiceId = req.params.invoiceId;
 				const RenderReact = renderToString(
 					<InvoicePrintReact name="Frelanser" />
@@ -237,7 +240,7 @@ export default function (infoApp) {
 
 		ProjectDetail_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const projectId = req.params.projectId;
 				async
 					.parallel({
@@ -256,7 +259,7 @@ export default function (infoApp) {
 						},
 					})
 					.then((results) => {
-						const { requests= null, project= null, files= null } = results;
+						const { requests = null, project = null, files = null } = results;
 						if (project == null) {
 							// No results.
 							var err = new Error("Project not found");
