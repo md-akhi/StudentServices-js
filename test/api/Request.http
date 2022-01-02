@@ -1,19 +1,26 @@
+@hostname = localhost
+@port = 9000
+@host = http://{{hostname}}:{{port}}/api
+@contentType = application/json
 
 
-
-GET http://localhost:9000/api/frelanser/request/617fcbb9e0b439123803af32
+GET {{host}}/employer/upload
+Accept-Language: en-GB,en-US;q=0.8,en;q=0.6,zh-CN;q=0.4
 User-Agent: rest-client
 Content-Type: application/json
 
 ###
 
-POST http://localhost:9000/api/frelanser/request/617fcbb9e0b439123803af32
-content-type: application/json
+POST {{host}}/employer/upload
+User-Agent: rest-client
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="0"; filename="1.png"
+Content-Type: image/png
+
+< ./1.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
 

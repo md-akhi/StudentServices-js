@@ -1,0 +1,9 @@
+// MongoDB Playground
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// The current database to use.
+use('studentServices');
+
+// Search for documents in the current collection.
+db.invoices.deleteMany({_id: ObjectId("617fcbe18eeb881368b4b079")},{_id: ObjectId("617fcf6b9b9a5613f40f59a0")});
+
