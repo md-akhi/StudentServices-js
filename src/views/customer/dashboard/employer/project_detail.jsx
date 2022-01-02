@@ -13,6 +13,7 @@ import User7Img from "../../../data/img/user7-128x128.jpg";
 
 export default (props) => {
 	const { data = null, requests = null, files = null } = props;
+	console.log(props);
 	const {
 		_id: projectId = null,
 		userId = null,
@@ -262,7 +263,9 @@ function RequestItem(props) {
 							Accept Request
 						</a>
 					) : (
-						""
+						<a href={"./del/" + item._id} className="btn btn-sm btn-primary">
+							del Request
+						</a>
 					)}
 				</div>
 			</div>
@@ -345,10 +348,13 @@ class FilesComponent extends Component {
 
 	render() {
 		const { files = null } = this.props;
-		console.log(files);
 		return (
 			<ul className="list-unstyled">
-				{files.files.map((item, index) => {})}
+				{files
+					? files.files.map((item, index) => {
+							return;
+					  })
+					: ""}
 				<li>
 					<a href="" className="btn-link text-secondary">
 						<i className="far fa-fw fa-file-word"></i>{" "}

@@ -12,8 +12,8 @@ import Avatar2Img from "../../../data/img/avatar2.png";
 import Avatar3Img from "../../../data/img/avatar3.png";
 import Avatar4Img from "../../../data/img/avatar4.png";
 
-function projects(props) {
-	const { list = null } = props;
+export default(props)=> {
+	const { list = null, Invoices = null } = props;
 
 	return (
 		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
@@ -55,7 +55,10 @@ function projects(props) {
 										</tr>
 									</thead>
 									<tbody>
-										<ProjectsItem items={list}></ProjectsItem>
+										<ProjectsItem
+											items={list}
+											invoices={Invoices}
+										></ProjectsItem>
 									</tbody>
 								</table>
 							</div>
@@ -80,15 +83,18 @@ function projects(props) {
 	);
 }
 function ProjectsItem(props) {
-	const { items = null } = props;
-	return items.map((value, index) => {
+	const { items, invoices } = props;
+	return items.map((item, index) => {
 		const {
 			name = null,
 			createdAt = null,
 			request = null,
 			frelancerId: FId = null,
 			_id: PId = null,
-		} = value;
+		} = item;
+		const { _id: IId = null } = FId
+			? invoices.find(({ projectId }) => projectId + 0 == PId + 0)
+			: { _id: null };
 		return (
 			<tr>
 				<td>#{index + 1}</td>
@@ -133,11 +139,8 @@ function ProjectsItem(props) {
 					<span className="badge badge-success">Success</span>
 				</td>
 				<td className="project-actions text-right">
-					{FId ? (
-						<a
-							className="btn btn-primary btn-sm"
-							href={"./invoice/" + PId + "/" + FId}
-						>
+					{IId ? (
+						<a className="btn btn-primary btn-sm" href={"./invoice/" + IId}>
 							<i className="fas fa-folder"></i>
 							Invoice
 						</a>
@@ -170,4 +173,3 @@ function ProjectsItem(props) {
 		);
 	});
 }
-export default projects;

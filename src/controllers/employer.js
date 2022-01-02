@@ -1,5 +1,6 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
+import async from "async";
 //import { * as Model } from "../models/project.js";
 import {
 	Project as ProjectModel,
@@ -14,7 +15,6 @@ import {
 } from "../routes/routes.js";
 import Middleware from "../controllers/middleware.js";
 import PaymentIDPay from "../config/pay.js";
-import async from "async";
 import EmployerReact from "../views/customer/dashboard/employer";
 import ProjectListReact from "../views/customer/dashboard/employer/project_list";
 import ProjectAddReact from "../views/customer/dashboard/employer/project_add";
@@ -40,21 +40,38 @@ export default function (infoApp) {
 
 		Projects_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
-				ProjectModel.find(
-					{
-						userId: userId,
-					},
-					function (err, Project) {
+				const { id: userId = 0 } = infoApp.user;
+
+				async
+					.parallel({
+						invoices: function (callback) {
+							InvoiceModel.find({ employerId: userId }).exec(callback);
+						},
+						projects: function (callback) {
+							ProjectModel.find({ userId: userId }).exec(callback);
+						},
+					})
+					.then((results) => {
+						const { invoices = null, projects = null } = results;
+						if (projects == null) {
+							// No results.
+							var err = new Error("Project not found");
+							err.status = 404;
+							//return next(err);
+							res.redirect(Path.Frelanser() + "/projects");
+						}
+						// Successful, so render.
 						const RenderReact = renderToString(
-							<ProjectListReact list={Project} />
+							<ProjectListReact list={projects} Invoices={invoices} />
 						);
 						res.render(Template.Employer() + "/project_list", {
 							reactApp: RenderReact,
-							data: JSON.stringify({ list: Project }),
+							data: JSON.stringify({ list: projects, Invoices: invoices }),
 						});
-					}
-				);
+					})
+					.catch((err) => {
+						console.error(err);
+					});
 			},
 		],
 
@@ -62,22 +79,22 @@ export default function (infoApp) {
 		ProjectAdd_Get: [
 			function (req, res) {
 				const RenderReact = renderToString(
-					<ProjectAddReact name={"employer"} />
+					<ProjectAddReact data={{}} isEdit={false} />
 				);
 				res.render(Template.Employer() + "/project_add", {
 					reactApp: RenderReact,
-					data: JSON.stringify({ name: "employer" }),
+					data: JSON.stringify({ data: {}, isEdit: false }),
 				});
 			},
 		],
 		// Handle Project add on POST.
 		ProjectAdd_Post: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const { name, description, status, company, budget, total, duration } =
 					req.body;
 
-				let newPoroject = new ProjectModel({
+				const newPoroject = new ProjectModel({
 					userId: userId,
 					name: name,
 					description: description,
@@ -107,7 +124,7 @@ export default function (infoApp) {
 
 		ProjectEdit_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const id = req.params.id;
 				ProjectModel.findOne(
 					{ _id: id, userId: userId },
@@ -127,7 +144,7 @@ export default function (infoApp) {
 		ProjectEdit_Post: [
 			function (req, res) {
 				const id = req.params.id;
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const {
 					name,
 					description,
@@ -171,7 +188,7 @@ export default function (infoApp) {
 
 		ProjectDetail_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const projectId = req.params.projectId;
 				async
 					.parallel({
@@ -223,7 +240,7 @@ export default function (infoApp) {
 
 		RequestSet_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const projectId = req.params.projectId;
 				const requestId = req.params.requestId;
 
@@ -273,13 +290,26 @@ export default function (infoApp) {
 		],
 		RequestDelete_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
-				const projectId = req.params.projectId;
-				let frelancerId = req.params.frelancerId;
-				ProjectModel.findOneAndDelete(
+				const { id: userId = 0 } = infoApp.user;
+				const { projectId, frelancerId } = req.params;
+				ProjectModel.findOne(
 					{ _id: projectId, userId: userId },
-					{ frelancerId: frelancerId },
 					function (err, project) {
+						if (err) {
+							console.log(err);
+						} 
+						project.frelancerId = 0;
+						project.save();
+						//res.redirect(Path.Employer() + "/projects");
+					}
+				);
+				InvoiceModel.findOneAndDelete(
+					{ projectId: projectId },
+					function (err, invoice) {
+						if (err) {
+							console.log(err);
+						}
+						console.log(invoice);
 						res.redirect(Path.Employer() + "/projects");
 					}
 				);
@@ -288,7 +318,7 @@ export default function (infoApp) {
 
 		Invoices_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				InvoiceModel.find({
 					employerId: userId,
 				})
@@ -310,11 +340,10 @@ export default function (infoApp) {
 
 		InvoiceDetail_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
-				const invoiceId = req.params.invoiceId;
+				const { id: userId = 0 } = infoApp.user;
+				const { invoiceId = false } = req.params;
 				InvoiceModel.findOne({
 					_id: invoiceId,
-					employerId: userId,
 				})
 					.populate("projectId")
 					.populate("requestId")
@@ -322,29 +351,29 @@ export default function (infoApp) {
 					.populate("frelancerId")
 					.then(function (invoice) {
 						const RenderReact = renderToString(
-							<InvoiceDetailReact data={invoice} />
+							<InvoiceDetailReact Invoice={invoice} />
 						);
 						res.render(Template.Employer() + "/invoice_detail", {
 							reactApp: RenderReact,
-							data: JSON.stringify({ data: invoice }),
+							data: JSON.stringify({ Invoice: invoice }),
 						});
 					})
 					.catch(function (err) {
-						if (err) console.error(err);
+						console.error(err);
 					});
 			},
 		],
 		InvoiceDetail_Post: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const invoiceId = req.params.invoiceId;
 			},
 		],
 
 		InvoicePayment_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
-				const invoiceId = req.params.invoiceId;
+				const { id: userId = 0 } = infoApp.user;
+				const { invoiceId } = req.params;
 				InvoiceModel.findOne({
 					//PaymentModel
 					_id: invoiceId,
@@ -381,7 +410,7 @@ export default function (infoApp) {
 
 		Invoiceverify_Post: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const invoiceId = req.params.invoiceId;
 				PaymentModel.findOne({
 					//PaymentModel
@@ -424,7 +453,7 @@ export default function (infoApp) {
 
 		InvoicePrint_Get: [
 			function (req, res) {
-				const userId = infoApp.user.id;
+				const { id: userId = 0 } = infoApp.user;
 				const invoiceId = req.params.invoiceId;
 				const RenderReact = renderToString(
 					<InvoicePrintReact name={"employer"} />
@@ -439,7 +468,7 @@ export default function (infoApp) {
 		// archivesGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 		// REDIRECT TO THE project
 		// 		res.redirect(Path.Employer() + "/project/archive");
@@ -448,7 +477,7 @@ export default function (infoApp) {
 		// archivesPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 		const { status } = req.body;
 		// 		ProjectModel.findById(id, function (err, edit) {
@@ -463,14 +492,14 @@ export default function (infoApp) {
 		// fileGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// filePost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -478,14 +507,14 @@ export default function (infoApp) {
 		// taskGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// taskPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -493,14 +522,14 @@ export default function (infoApp) {
 		// bugGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// bugPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -508,14 +537,14 @@ export default function (infoApp) {
 		// noteGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// notePost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -523,14 +552,14 @@ export default function (infoApp) {
 		// paymentGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// paymentPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -538,14 +567,14 @@ export default function (infoApp) {
 		// invoiceGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// invoicePost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -553,14 +582,14 @@ export default function (infoApp) {
 		// todosGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// todosPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -568,14 +597,14 @@ export default function (infoApp) {
 		// addTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// addTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -583,14 +612,14 @@ export default function (infoApp) {
 		// editTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// editTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -598,14 +627,14 @@ export default function (infoApp) {
 		// deleteTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// deleteTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -613,14 +642,14 @@ export default function (infoApp) {
 		// doneTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// doneTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
@@ -628,14 +657,14 @@ export default function (infoApp) {
 		// orderTodoGet: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
 		// orderTodoPost: [
 		//
 		// 	function (req, res) {
-		// 		const userId = infoApp.user.id;
+		// 		const { id: userId = 0} = infoApp.user;
 		// 		const id = req.params.id;
 		// 	},
 		// ],
