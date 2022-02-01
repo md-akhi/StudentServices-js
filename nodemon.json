@@ -6,7 +6,7 @@
   "verbose": true,
   "colours": true,
   "watch": ["test/**/*", "src/**/*"],
-  "runOnChangeOnly": false,
+  "runOnChangeOnly": true,
   "ignore": ["src/public/"],
   "ext": "js,json,jsx"
 }
