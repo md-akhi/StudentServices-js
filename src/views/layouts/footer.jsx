@@ -1,6 +1,6 @@
 import React from "react";
 
-function FooterLayout(props) {
+export default(props) =>{
 	return (
 		<footer className="main-footer">
 			<strong>
@@ -14,4 +14,3 @@ function FooterLayout(props) {
 	);
 }
 
-export default FooterLayout;

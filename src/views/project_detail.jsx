@@ -6,7 +6,7 @@ import BodyLayout from "./layouts/body";
 import User1Img from "./data/img/user1-128x128.jpg";
 import User7Img from "./data/img/user7-128x128.jpg";
 
-function projectDetail(props) {
+export default(props)=> {
 	const { item = null } = props;
 	const {
 		name: dataName = null,
@@ -262,4 +262,3 @@ function projectDetail(props) {
 	);
 }
 
-export default projectDetail;

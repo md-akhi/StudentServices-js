@@ -11,7 +11,7 @@ import Avatar2Img from "../../../data/img/avatar2.png";
 import Avatar3Img from "../../../data/img/avatar3.png";
 import Avatar4Img from "../../../data/img/avatar4.png";
 
-function InvoicePrint(props) {
+export default(props) =>{
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<div className="wrapper">
@@ -250,4 +250,3 @@ function ProjectsItem(props) {
 	});
 	return item;
 }
-export default InvoicePrint;

@@ -3,7 +3,7 @@ import React from "react";
 import LogoImg from "../../data/img/AdminLTELogo.png";
 import User2Img from "../../data/img/user2-160x160.jpg";
 
-function MainSidebarLayout(props) {
+export default(props)=>{
 	return (
 		<aside className="main-sidebar sidebar-dark-primary elevation-4">
 			{/* Main Sidebar Container */}
@@ -240,4 +240,3 @@ function SubMenuSidbar(props) {
 	);
 	return listItems;
 }
-export default MainSidebarLayout;

@@ -5,7 +5,7 @@ import User1Img from "../../data/img/user1-128x128.jpg";
 import User3Img from "../../data/img/user3-128x128.jpg";
 import User8Img from "../../data/img/user8-128x128.jpg";
 
-function NavbarLayout(props) {
+export default(props)=> {
 	return (
 		<nav className="main-header navbar navbar-expand navbar-white navbar-light">
 			{/* Navbar */}
@@ -191,5 +191,3 @@ function NavbarLayout(props) {
 		</nav>
 	);
 }
-
-export default NavbarLayout;

@@ -1,7 +1,7 @@
 import React from "react";
 import BodyLayout from "../customer/layouts/body";
 
-function error404(props) {
+export default(props)=> {
 	return (
 		<BodyLayout className="hold-transition">
 			{/* Content Wrapper. Contains page content */}
@@ -76,4 +76,3 @@ function error404(props) {
 	);
 }
 
-export default error404;

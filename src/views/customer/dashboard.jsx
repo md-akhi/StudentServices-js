@@ -8,7 +8,7 @@ import NavbarLayout from "./layouts/navbar";
 import BreadCrumbComponet from "./component/breadCrumb";
 //import StatBoxComponet from "./component/StatBox";
 
-function dashborad(props) {
+export default(props) => {
 	return (
 		<BodyLayout class="layout-fixed layout-navbar-fixed sidebar-collapse">
 			<NavbarLayout NavbarLinks={dataDashboard.linkNavUp}></NavbarLayout>
@@ -57,4 +57,3 @@ function dashborad(props) {
 	);
 }
 
-export default dashborad;

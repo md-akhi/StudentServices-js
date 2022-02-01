@@ -297,7 +297,7 @@ export default function (infoApp) {
 					function (err, project) {
 						if (err) {
 							console.log(err);
-						} 
+						}
 						project.frelancerId = 0;
 						project.save();
 						//res.redirect(Path.Employer() + "/projects");
@@ -564,20 +564,6 @@ export default function (infoApp) {
 		// 	},
 		// ],
 
-		// invoiceGet: [
-		//
-		// 	function (req, res) {
-		// 		const { id: userId = 0} = infoApp.user;
-		// 		const id = req.params.id;
-		// 	},
-		// ],
-		// invoicePost: [
-		//
-		// 	function (req, res) {
-		// 		const { id: userId = 0} = infoApp.user;
-		// 		const id = req.params.id;
-		// 	},
-		// ],
 
 		// todosGet: [
 		//

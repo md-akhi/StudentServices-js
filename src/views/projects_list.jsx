@@ -8,7 +8,7 @@ import Avatar2Img from "./data/img/avatar2.png";
 import Avatar3Img from "./data/img/avatar3.png";
 import Avatar4Img from "./data/img/avatar4.png";
 
-function projects(props) {
+export default(props) =>{
 	const { list = null } = props;
 	return (
 		<BodyLayout class="hold-transition layout-fixed">
@@ -162,4 +162,3 @@ function ProjectsItem(props) {
 		);
 	});
 }
-export default projects;

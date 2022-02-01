@@ -14,7 +14,7 @@ import CalendarComponet from "../component/Calendar";
 import ChatComponet from "../component/Chat";
 import ToDoComponet from "../component/ToDo";
 
-function frelanser(props) {
+export default(props)=> {
 	return (
 		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
@@ -73,4 +73,3 @@ function frelanser(props) {
 	);
 }
 
-export default frelanser;

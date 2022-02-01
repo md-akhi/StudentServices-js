@@ -20,7 +20,7 @@ import Avatar2Img from "../../../data/img/avatar2.png";
 import Avatar3Img from "../../../data/img/avatar3.png";
 import Avatar4Img from "../../../data/img/avatar4.png";
 
-function Profile(props) {
+export default(props) =>{
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
@@ -707,4 +707,3 @@ function ProjectsItem(props) {
 	});
 	return item;
 }
-export default Profile;
