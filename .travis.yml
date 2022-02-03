@@ -2,5 +2,27 @@ services:
   - mongodb
 language: node_js
 node_js:
-  # - "latest" # figure out how this should work! no example of this in travis ci docs
-  - "14.17.3"
+  - "lts/*" # - "latest" # figure out how this should work! no example of this in travis ci docs
+os: linux
+branches:
+  only:
+    - gh-pages
+    - /.*/
+# before_install:
+#   -
+# install:
+#   -
+# before_deploy:
+#   -
+# deploy:
+#   provider: heroku
+#   api_key: ...
+#   on: production
+# after_deploy:
+#   -
+# before_script:
+#   -
+# script:
+#   -
+# after_script:
+#   -

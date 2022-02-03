@@ -1,3 +1,7 @@
+/z/
+/dist/
+/package-lock.json
+
 # Logs
 logs
 *.log
@@ -88,11 +92,3 @@ typings/
 
 # TernJS port file
 .tern-port
-
-
-/z
-public/js/*
-public/img/*
-public/css/*
-public/plugins/*
-/package-lock.json
