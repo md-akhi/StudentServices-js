@@ -1,6 +1,6 @@
 import React from "react";
 
-function NavbarLinksComponet(props) {
+export default(props)=> {
 	return (
 		<ul className="navbar-nav">
 			<MenuNav Data={props.Data} />
@@ -33,4 +33,3 @@ function MenuNav(props) {
 	return listItems;
 }
 
-export default NavbarLinksComponet;

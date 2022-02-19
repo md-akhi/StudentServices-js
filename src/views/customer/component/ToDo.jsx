@@ -1,6 +1,6 @@
 import React from "react";
 
-function ToDoComponet(props) {
+export default(props)=> {
 	const [checked, setChecked] = React.useState(true);
 
 	return (
@@ -178,7 +178,6 @@ function ToDoComponet(props) {
 	);
 }
 
-export default ToDoComponet;
 
 // class TodoList extends Component {
 // 	render() {

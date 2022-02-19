@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 import * as dataEmployer from "../../../data/employer.js";
 import BreadCrumbComponet from "../../component/breadCrumb";
@@ -11,17 +12,120 @@ import NavbarLayout from "../../layouts/navbar";
 export default (props) => {
 	const { isEdit = false, data = null } = props;
 	const {
-		userId = false,
-		_id: projectId = null,
-		name = null,
-		description = null,
-		company = null,
-		leader = null,
-		budget = null,
-		total = null,
-		duration = null,
+		userId = 0,
+		_id: projectId = 0,
+		name = "",
+		description = "",
+		company = "",
+		leader = "",
+		budget = 0,
+		total = 0,
+		duration = 0,
 		createdAt = null,
 	} = data;
+
+	const [nameProject, setNameProject] = useState(name);
+	const [descriptionProject, setDescriptionProject] = useState(description);
+	const [companyProject, setCompanyProject] = useState(company);
+	const [leaderProject, setLeaderProject] = useState(leader);
+	const [budgetProject, setBudgetProject] = useState(budget);
+	const [totalProject, setTotalProject] = useState(total);
+	const [durationProject, setDurationProject] = useState(duration);
+
+	const [checkForm, setCheckForm] = useState({
+		name: isEdit,
+		description: isEdit,
+		company: isEdit,
+		leader: isEdit,
+		budget: isEdit,
+		total: isEdit,
+		duration: isEdit,
+	});
+	const [isValid, setIsValid] = useState(isEdit);
+
+	const validForm = (obj) => {
+		setCheckForm({ ...checkForm, ...obj });
+		let result = true;
+		for (const [key, value] of Object.entries(checkForm)) {
+			if (value === false) result = false;
+		}
+		setIsValid(result);
+	};
+
+	const CheckName = (e) => {
+		setNameProject(e.target.value);
+		if (nameProject.length == 0) {
+			// toast.error("name false");
+			validForm({ name: false });
+			return;
+		}
+		// toast.success("name true");
+		validForm({ name: true });
+	};
+	const CheckDescription = (e) => {
+		setDescriptionProject(e.target.value);
+		if (descriptionProject.length == 0) {
+			// toast.error("description false");
+			validForm({ description: false });
+			return;
+		}
+		// toast.success("description true");
+		validForm({ description: true });
+	};
+	const CheckCompany = (e) => {
+		setCompanyProject(e.target.value);
+		if (companyProject.length == 0) {
+			// toast.error("company false");
+			validForm({ company: false });
+			return;
+		}
+		// toast.success("company true");
+		validForm({ company: true });
+	};
+	const CheckLeader = (e) => {
+		setLeaderProject(e.target.value);
+		if (leaderProject.length == 0) {
+			// toast.error("leader false");
+			validForm({ leader: false });
+			return;
+		}
+		// toast.success("leader true");
+		validForm({ leader: true });
+	};
+	const CheckBudget = (e) => {
+		setBudgetProject(e.target.value);
+		if (budgetProject <= 0) {
+			// toast.error("budget false");
+			validForm({ budget: false });
+			return;
+		}
+		// toast.success("budget true");
+		validForm({ budget: true });
+	};
+	const CheckTotal = (e) => {
+		setTotalProject(e.target.value);
+		if (totalProject <= 0) {
+			// toast.error("total false");
+			validForm({ total: false });
+			return;
+		}
+		// toast.success("total true");
+		validForm({ total: true });
+	};
+	const CheckDuration = (e) => {
+		setDurationProject(e.target.value);
+		if (durationProject <= 0) {
+			// toast.error("duration false");
+			validForm({ duration: false });
+			return;
+		}
+		// toast.success("duration true");
+		validForm({ duration: true });
+	};
+	const HandleSubmit = (e) => {
+		e.preventDefault();
+	};
+
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
@@ -42,6 +146,7 @@ export default (props) => {
 				{/* Main content */}
 				<section className="content">
 					<div className="container-fluid">
+						<Toaster />
 						{/* Main content */}
 						<section className="content">
 							<form action={isEdit ? "./edit" : "./add"} method="post">
@@ -59,7 +164,9 @@ export default (props) => {
 														id="inputName"
 														className="form-control"
 														name="name"
-														defaultValue={name}
+														onChange={(e) => CheckName(e)}
+														defaultValue={nameProject}
+														required
 													/>
 												</div>
 												<div className="form-group">
@@ -71,7 +178,9 @@ export default (props) => {
 														className="form-control"
 														rows="4"
 														name="description"
-														defaultValue={description}
+														onChange={(e) => CheckDescription(e)}
+														defaultValue={descriptionProject}
+														required
 													></textarea>
 												</div>
 												<div className="form-group">
@@ -80,13 +189,14 @@ export default (props) => {
 														id="inputStatus"
 														className="form-control custom-select"
 														name="status"
+														onChange={(e) => "setStatusProject(e)"}
 													>
 														<option selected disabled>
 															Select one
 														</option>
-														<option value="0">On Hold</option>
-														<option value="-1">Canceled</option>
-														<option value="1">Success</option>
+														<option defaultValue="0">On Hold</option>
+														<option defaultValue="-1">Canceled</option>
+														<option defaultValue="1">Success</option>
 													</select>
 												</div>
 												<div className="form-group">
@@ -98,7 +208,8 @@ export default (props) => {
 														id="inputClientCompany"
 														className="form-control"
 														name="company"
-														defaultValue={company}
+														onChange={(e) => CheckCompany(e)}
+														defaultValue={companyProject}
 													/>
 												</div>
 												<div className="form-group">
@@ -110,7 +221,8 @@ export default (props) => {
 														id="inputProjectLeader"
 														className="form-control"
 														name="leader"
-														defaultValue={leader}
+														onChange={(e) => CheckLeader(e)}
+														defaultValue={leaderProject}
 													/>
 												</div>
 											</div>
@@ -133,7 +245,9 @@ export default (props) => {
 														id="inputEstimatedBudget"
 														className="form-control"
 														name="budget"
-														defaultValue={budget}
+														onChange={(e) => CheckBudget(e)}
+														defaultValue={budgetProject}
+														required
 													/>
 												</div>
 												<div className="form-group">
@@ -145,7 +259,8 @@ export default (props) => {
 														id="inputSpentBudget"
 														className="form-control"
 														name="total"
-														defaultValue={total}
+														onChange={(e) => CheckTotal(e)}
+														defaultValue={totalProject}
 													/>
 												</div>
 												<div className="form-group">
@@ -157,7 +272,9 @@ export default (props) => {
 														id="inputEstimatedDuration"
 														className="form-control"
 														name="duration"
-														defaultValue={duration}
+														onChange={(e) => CheckDuration(e)}
+														defaultValue={durationProject}
+														required
 													/>
 												</div>
 											</div>
@@ -184,13 +301,13 @@ export default (props) => {
 										<a href="#" className="btn btn-secondary">
 											Cancel
 										</a>
-										<input
+										<button
 											type="submit"
-											defaultValue={
-												isEdit ? "Update Porject" : "Create new Porject"
-											}
+											disabled={!isValid}
 											className="btn btn-success float-right"
-										/>
+										>
+											{isEdit ? "Update Porject" : "Create Porject"}
+										</button>
 									</div>
 								</div>
 								<input type="hidden" name="userId" defaultValue={userId} />
@@ -244,9 +361,15 @@ class FilesUploadComponent extends Component {
 		for (const [key, value] of Object.entries(this.state.files)) {
 			formData.append(key, value);
 		}
-		Axios.post("/api/employer/upload", formData, {}).then((res) => {
-			console.log(res);
-		});
+		Axios.post("/api/employer/upload", formData, {})
+			.then((res) => {
+				toast.success("uploaded successfully");
+				console.log(res);
+			})
+			.catch((err) => {
+				toast.error("upload failed");
+				console.log(err);
+			});
 	}
 
 	render() {

@@ -74,15 +74,11 @@ export default function (props) {
 
 function RequestsItem(props) {
 	const { data = null } = props;
-	return data.map((value, index) => {
-		const {
-			createdAt = null,
-			status = null,
-			projectId = null,
-			_id: RId = null,
-		} = value;
-		const { name = null, _id: PId = null } = projectId;
-		let str = (
+	return data.map((item, index) => {
+		if (!item) return;
+		const { createdAt = 0, status = -1, projectId = {}, _id: RId = 0 } = item;
+		const { name = "", _id: PId = 0 } = projectId;
+		return (
 			<tr>
 				<td>#{index + 1}</td>
 				<td>
@@ -118,6 +114,5 @@ function RequestsItem(props) {
 				</td>
 			</tr>
 		);
-		return str;
 	});
 }

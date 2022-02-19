@@ -12,11 +12,29 @@ import MasterCardImg from "../../../data/img/credit/mastercard.png";
 import AmericanExpressImg from "../../../data/img/credit/american-express.png";
 import PayPalImg from "../../../data/img/credit/paypal2.png";
 
-function Invoice(props) {
-	let project = props.data.projectId;
-	let request = props.data.requestId;
-	let employer = props.data.employerId;
-	let frelancer = props.data.frelancerId;
+export default (props) => {
+	const { Invoice = null } = props;
+	const {
+		_id: invoiceId = 0,
+		projectId = {},
+		requestId = {},
+		employerId = {},
+		frelancerId = {},
+	} = Invoice;
+	const { name: PName = "" } = projectId;
+	const { _id: RId = 0, invoice: RInvoices = {} } = requestId;
+	const {
+		//name: EName = "",
+		//address: EAddress = "",
+		//phone: EPhone = "",
+		email: EEmail = "",
+	} = employerId;
+	const {
+		//name: FName = "",
+		//address: FAddress = "",
+		//phone: FPhone = "",
+		email: FEmail = "",
+	} = frelancerId;
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
@@ -29,8 +47,8 @@ function Invoice(props) {
 				{/* Content Header (Page header) */}
 				<BreadCrumbComponet
 					Data={dataEmployer.breadCrumb}
-					Name={"Employer"}
-					Active={"Employer"}
+					Name={"Frelanser"}
+					Active={"Frelanser"}
 				></BreadCrumbComponet>
 				{/* /.content-header */}
 
@@ -55,7 +73,7 @@ function Invoice(props) {
 										<div className="col-12">
 											<h4>
 												<i className="fas fa-globe"></i>
-												{project.name} .
+												{PName} .
 												<small className="float-right">Date: 2/10/2014</small>
 											</h4>
 										</div>
@@ -66,31 +84,31 @@ function Invoice(props) {
 										<div className="col-sm-4 invoice-col">
 											From
 											<address>
-												{/* <strong>{employer.name}.</strong> */}
+												{/* <strong>{EName}.</strong>
 												<br />
-												{/* {employer.address} 795 Folsom Ave, Suite 600 */}
+												{EAddress} 795 Folsom Ave, Suite 600
 												<br />
-												{/* Phone:{employer.phone} (804) 123-5432 */}
+												Phone:{EPhone} (804) 123-5432 */}
 												<br />
-												Email: {employer.email.now}
+												Email: {EEmail.now}
 											</address>
 										</div>
 										{/* /.col */}
 										<div className="col-sm-4 invoice-col">
 											To
 											<address>
-												{/* <strong>{frelancer.name}.</strong> */}
+												{/* <strong>{FName}.</strong>
 												<br />
-												{/* {frelancer.address} 795 Folsom Ave, Suite 600 */}
+												{FAddress} 795 Folsom Ave, Suite 600
 												<br />
-												{/* Phone:{frelancer.phone} (804) 123-5432 */}
+												Phone:{FPhone} (804) 123-5432 */}
 												<br />
-												Email: {frelancer.email.now}
+												Email: {FEmail.now}
 											</address>
 										</div>
 										{/* /.col */}
 										<div className="col-sm-4 invoice-col">
-											<b>Invoice #{request.id}</b>
+											<b>Invoice #{String(RId)}</b>
 											<br />
 											<br />
 											<b>Order ID:</b> 4F3S8J
@@ -117,7 +135,7 @@ function Invoice(props) {
 													</tr>
 												</thead>
 												<tbody>
-													{/* <expenseItem data={request.expense}></expenseItem> */}
+													<ExpenseItem data={RInvoices}></ExpenseItem>
 													<tr>
 														<td>1</td>
 														<td>Call of Duty</td>
@@ -211,7 +229,7 @@ function Invoice(props) {
 									<div className="row no-print">
 										<div className="col-12">
 											<a
-												href={"./" + props.data.id + "/print"}
+												href={"./" + invoiceId + "/print"}
 												rel="noopener"
 												target="_blank"
 												className="btn btn-default"
@@ -255,19 +273,19 @@ function Invoice(props) {
 			{/* ./wrapper */}
 		</BodyLayout>
 	);
-}
-function expenseItem(props) {
-	return props.items.map((key, value) => {
-		let str = (
+};
+function ExpenseItem(props) {
+	const { data } = props;
+	return data.map((item, index) => {
+		const { _id: id, description, amount } = item;
+		return (
 			<tr>
-				<td>1</td>
-				<td>Call of Duty</td>
-				<td>455-981-221</td>
-				<td>El snort testosterone trophy driving gloves handsome</td>
-				<td>$64.50</td>
+				<td>{index + 1}</td>
+				<td>name</td>
+				<td>number</td>
+				<td>{description}</td>
+				<td>${amount}</td>
 			</tr>
 		);
-		return str;
 	});
 }
-export default Invoice;

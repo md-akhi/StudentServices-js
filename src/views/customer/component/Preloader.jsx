@@ -2,7 +2,7 @@ import React from "react";
 
 import LogoImg from "../../data/img/AdminLTELogo.png";
 
-function PreLoader(props) {
+export default(props)=> {
 	return (
 		<div class="preloader flex-column justify-content-center align-items-center">
 			{/* Preloader */}
@@ -17,4 +17,3 @@ function PreLoader(props) {
 	);
 }
 
-export default PreLoader;

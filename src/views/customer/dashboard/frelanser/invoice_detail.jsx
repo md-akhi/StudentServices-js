@@ -12,28 +12,28 @@ import MasterCardImg from "../../../data/img/credit/mastercard.png";
 import AmericanExpressImg from "../../../data/img/credit/american-express.png";
 import PayPalImg from "../../../data/img/credit/paypal2.png";
 
-function Invoice(props) {
-	const { data = null } = props;
+export default (props) => {
+	const { Invoice = null } = props;
 	const {
-		id = null,
-		projectId = null,
-		requestId = null,
-		employerId = null,
-		frelancerId = null,
-	} = data;
-	const { name: PName = null } = projectId;
-	const { id: RId = null } = requestId;
+		_id: invoiceId = 0,
+		projectId = {},
+		requestId = {},
+		employerId = {},
+		frelancerId = {},
+	} = Invoice;
+	const { name: PName = "" } = projectId;
+	const { _id: RId = 0, invoice: RInvoices = {} } = requestId;
 	const {
-		name: EName = null,
-		address: EAddress = null,
-		phone: EPhone = null,
-		email: EEmail = null,
+		//name: EName = "",
+		//address: EAddress = "",
+		//phone: EPhone = "",
+		email: EEmail = "",
 	} = employerId;
 	const {
-		name: FName = null,
-		address: FAddress = null,
-		phone: FPhone = null,
-		email: FEmail = null,
+		//name: FName = "",
+		//address: FAddress = "",
+		//phone: FPhone = "",
+		email: FEmail = "",
 	} = frelancerId;
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
@@ -84,11 +84,11 @@ function Invoice(props) {
 										<div className="col-sm-4 invoice-col">
 											From
 											<address>
-												{/* <strong>{EName}.</strong> */}
+												{/* <strong>{EName}.</strong>
 												<br />
-												{/* {EAddress} 795 Folsom Ave, Suite 600 */}
+												{EAddress} 795 Folsom Ave, Suite 600
 												<br />
-												{/* Phone:{EPhone} (804) 123-5432 */}
+												Phone:{EPhone} (804) 123-5432 */}
 												<br />
 												Email: {EEmail.now}
 											</address>
@@ -97,18 +97,18 @@ function Invoice(props) {
 										<div className="col-sm-4 invoice-col">
 											To
 											<address>
-												{/* <strong>{FName}.</strong> */}
+												{/* <strong>{FName}.</strong>
 												<br />
-												{/* {FAddress} 795 Folsom Ave, Suite 600 */}
+												{FAddress} 795 Folsom Ave, Suite 600
 												<br />
-												{/* Phone:{FPhone} (804) 123-5432 */}
+												Phone:{FPhone} (804) 123-5432 */}
 												<br />
 												Email: {FEmail.now}
 											</address>
 										</div>
 										{/* /.col */}
 										<div className="col-sm-4 invoice-col">
-											<b>Invoice #{RId}</b>
+											<b>Invoice #{String(RId)}</b>
 											<br />
 											<br />
 											<b>Order ID:</b> 4F3S8J
@@ -135,7 +135,7 @@ function Invoice(props) {
 													</tr>
 												</thead>
 												<tbody>
-													{/* <expenseItem data={request.expense}></expenseItem> */}
+													<ExpenseItem data={RInvoices}></ExpenseItem>
 													<tr>
 														<td>1</td>
 														<td>Call of Duty</td>
@@ -273,19 +273,19 @@ function Invoice(props) {
 			{/* ./wrapper */}
 		</BodyLayout>
 	);
-}
-function expenseItem(props) {
-	return props.items.map((key, value) => {
-		let str = (
+};
+function ExpenseItem(props) {
+	const { data } = props;
+	return data.map((item, index) => {
+		const { _id: id, description, amount } = item;
+		return (
 			<tr>
-				<td>1</td>
-				<td>Call of Duty</td>
-				<td>455-981-221</td>
-				<td>El snort testosterone trophy driving gloves handsome</td>
-				<td>$64.50</td>
+				<td>{index + 1}</td>
+				<td>name</td>
+				<td>number</td>
+				<td>{description}</td>
+				<td>${amount}</td>
 			</tr>
 		);
-		return str;
 	});
 }
-export default Invoice;

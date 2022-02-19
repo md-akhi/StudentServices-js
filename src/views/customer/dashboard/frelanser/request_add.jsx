@@ -15,9 +15,61 @@ export default (props) => {
 		projectId = null,
 		description = null,
 		duration = null,
-		invoice = [],
+		invoice = {},
 		createdAt = null,
 	} = data;
+
+	const [descriptionRequest, setDescriptionRequest] = useState(description);
+	const [invoiceRequest, setInvoiceRequest] = useState(invoice);
+	const [durationRequest, setDurationRequest] = useState(duration);
+
+	const [checkForm, setCheckForm] = useState({
+		description: isEdit,
+		invoice: isEdit,
+		duration: isEdit,
+	});
+	const [isValid, setIsValid] = useState(isEdit);
+
+	const validForm = (obj) => {
+		setCheckForm({ ...checkForm, ...obj });
+		let result = true;
+		for (const [key, value] of Object.entries(checkForm)) {
+			if (value === false) result = false;
+		}
+		setIsValid(result);
+	};
+
+	const CheckDescription = (e) => {
+		setDescriptionRequest(e.target.value);
+		if (descriptionRequest.length == 0) {
+			// toast.error("name false");
+			validForm({ description: false });
+			return;
+		}
+		// toast.success("name true");
+		validForm({ description: true });
+	};
+	const CheckInvoice = (e) => {
+		setInvoiceRequest(e.target.value);
+		if (invoiceRequest.length == 0) {
+			// toast.error("name false");
+			validForm({ invoice: false });
+			return;
+		}
+		// toast.success("name true");
+		validForm({ invoice: true });
+	};
+	const CheckDuration = (e) => {
+		setDurationRequest(e.target.value);
+		if (durationRequest.length == 0) {
+			// toast.error("name false");
+			validForm({ duration: false });
+			return;
+		}
+		// toast.success("name true");
+		validForm({ duration: true });
+	};
+
 	return (
 		<BodyLayout className="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataFrelanser.linkNavUp}></NavbarLayout>
@@ -56,7 +108,8 @@ export default (props) => {
 														className="form-control"
 														rows="4"
 														name="description"
-														defaultValue={description}
+														onChange={(e) => CheckDescription(e)}
+														defaultValue={descriptionRequest}
 													></textarea>
 												</div>
 											</div>
@@ -69,7 +122,10 @@ export default (props) => {
 											<div className="card-body">
 												<div className="form-group">
 													<label htmlFor="ShowInvoce"> invoce</label>
-													<InvocesApp data={invoice}></InvocesApp>
+													<InvocesApp
+														data={invoiceRequest}
+														check={CheckInvoice}
+													></InvocesApp>
 												</div>
 											</div>
 											{/* /.card-body */}
@@ -92,6 +148,8 @@ export default (props) => {
 														className="form-control"
 														name="duration"
 														defaultValue={duration}
+														onChange={(e) => CheckDuration(e)}
+														defaultValue={durationRequest}
 													/>
 												</div>
 											</div>
@@ -105,13 +163,13 @@ export default (props) => {
 										<a href="#" className="btn btn-secondary">
 											Cancel
 										</a>
-										<input
+										<button
 											type="submit"
-											defaultValue={
-												isEdit ? "Update Request" : "Create Request"
-											}
+											disabled={!isValid}
 											className="btn btn-success float-right"
-										/>
+										>
+											{isEdit ? "Update Request" : "Create Request"}
+										</button>
 										<input type="hidden" name="userId" defaultValue={userId} />
 										<input
 											type="hidden"
@@ -146,7 +204,7 @@ export default (props) => {
 };
 
 function InvocesApp(props) {
-	const { data = [] } = props;
+	const { data = [], check: FCeck } = props;
 	const [items, setItems] = useState(data);
 	const [item, setItem] = useState({
 		description: "",

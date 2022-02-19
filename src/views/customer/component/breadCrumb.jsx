@@ -1,6 +1,6 @@
 import React from "react";
 
-function BreadCrumbComponet(props) {
+export default(props)=> {
 	return (
 		<div className="content-header">
 			{/* Content Header (Page header) */}
@@ -41,4 +41,3 @@ function Item(props) {
 	return listItems;
 }
 
-export default BreadCrumbComponet;

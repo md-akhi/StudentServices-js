@@ -231,8 +231,8 @@ export default (props) => {
 };
 
 function RequestItem(props) {
-	const { files = null } = props;
-	return files.map((item, index) => {
+	const { data = null } = props;
+	return data.map((item, index) => {
 		return (
 			<div className="post">
 				<div className="user-block">
@@ -273,8 +273,6 @@ class FilesUploadComponent extends Component {
 	constructor(props) {
 		super(props);
 		const { data = null } = props;
-		this.userId = userId;
-		this.projectId = projectId;
 		this.onFileChange = this.onFileChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.state = {
@@ -347,8 +345,14 @@ class FilesComponent extends Component {
 	}
 
 	render() {
+		const { files = null } = this.props;
 		return (
 			<ul className="list-unstyled">
+				{files
+					? files.files.map((item, index) => {
+							return;
+					  })
+					: ""}
 				<li>
 					<a href="" className="btn-link text-secondary">
 						<i className="far fa-fw fa-file-word"></i>{" "}

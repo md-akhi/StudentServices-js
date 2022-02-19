@@ -9,7 +9,8 @@ import NavbarLayout from "../../layouts/navbar";
 
 import AvatarImg from "../../../data/img/avatar.png";
 
-function Invoices(props) {
+export default (props) => {
+	const { data = null } = props;
 	return (
 		<BodyLayout class="hold-transition sidebar-mini layout-fixed">
 			<NavbarLayout NavbarLinks={dataEmployer.linkNavUp}></NavbarLayout>
@@ -50,7 +51,11 @@ function Invoices(props) {
 										</tr>
 									</thead>
 									<tbody>
-										<InvoicesItem data={props.data}></InvoicesItem>
+										{data ? (
+											<InvoicesItem data={data}></InvoicesItem>
+										) : (
+											"<tr>Not</tr>"
+										)}
 									</tbody>
 								</table>
 							</div>
@@ -73,24 +78,31 @@ function Invoices(props) {
 			{/* ./wrapper */}
 		</BodyLayout>
 	);
-}
+};
 function InvoicesItem(props) {
-	return props.data.map((key, value) => {
-		let str = (
+	const { data } = props;
+	return data.map((item, index) => {
+		const {
+			_id: invoiceId = 0,
+			projectId = {},
+			request = null,
+			frelancerId = 0,
+		} = item;
+		console.log(item);
+		const { name: PName = "", createdAt: Pcreated = "" } = projectId;
+		return (
 			<tr>
-				<td>#{value + 1}</td>
+				<td>#{index + 1}</td>
 				<td>
-					<a>{key.projectId.name}</a>
+					<a>{PName ?? ""}</a>
 					<br />
-					<small>
-						Created {new Date(key.projectId.createdAt).toDateString()}
-					</small>
+					<small>Created {new Date(Pcreated).toDateString()}</small>
 				</td>
 				<td>
 					<ul className="list-inline">
 						<li className="list-inline-item">
 							<a href="">
-								{key.request}
+								{request}
 								<img alt="Avatar" className="table-avatar" src={AvatarImg} />
 							</a>
 						</li>
@@ -113,8 +125,11 @@ function InvoicesItem(props) {
 					<span className="badge badge-success">Success</span>
 				</td>
 				<td className="project-actions text-right">
-					{key.frelancerId ? (
-						<a className="btn btn-primary btn-sm" href={"./invoice/" + key._id}>
+					{frelancerId ? (
+						<a
+							className="btn btn-primary btn-sm"
+							href={"./invoice/" + invoiceId}
+						>
 							<i className="fas fa-folder"></i>
 							Invoice
 						</a>
@@ -123,7 +138,7 @@ function InvoicesItem(props) {
 					)}
 					<a
 						className="btn btn-primary btn-sm"
-						href={"./project/" + key.id + "/detail"}
+						href={"./project/" + invoiceId + "/detail"}
 					>
 						<i className="fas fa-folder"></i>
 						View Project
@@ -131,7 +146,5 @@ function InvoicesItem(props) {
 				</td>
 			</tr>
 		);
-		return str;
 	});
 }
-export default Invoices;
