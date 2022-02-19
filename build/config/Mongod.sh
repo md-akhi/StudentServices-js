@@ -13,12 +13,12 @@ export $(grep -v '^#' .env | xargs)
 echo "OS TYPE: $OSTYPE - Platform: $Platform"
 
 if [[ $Platform == "WIN" ]]; then
-	echo "Win: Start & Connect MongoDB."
+	echo "Win: Connect MongoDB."
 	./build/config/MongodWin.bat
-echo "Win: Start & Connect MongoDB - done."
+echo "Win: Connected MongoDB - done."
 
 elif [[ $Platform == "LINUX" ]]; then
- echo "Linux: Start & Connect MongoDB."
- echo "Linux: Start & Connect MongoDB - done."
+ echo "Linux: Connect MongoDB."
+ echo "Linux: Connected MongoDB - done."
 
 fi
